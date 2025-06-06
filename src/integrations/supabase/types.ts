@@ -14047,42 +14047,78 @@ export type Database = {
       vignettes: {
         Row: {
           author: string
+          compliance_score: number | null
           content: string
           created_at: string
           excerpt: string
+          external_api_id: string | null
           id: string
+          impact_score: number | null
+          key_drivers: string[] | null
+          last_synced: string | null
+          leader_avatar_url: string | null
+          leader_bio: string | null
+          leader_department: string | null
+          leader_name: string | null
+          leader_title: string | null
           read_time: number
+          risk_factors: string[] | null
           seo_description: string | null
           slug: string
           status: string
+          strategic_recommendations: string[] | null
           tags: string[]
           title: string
           updated_at: string
         }
         Insert: {
           author?: string
+          compliance_score?: number | null
           content: string
           created_at?: string
           excerpt: string
+          external_api_id?: string | null
           id?: string
+          impact_score?: number | null
+          key_drivers?: string[] | null
+          last_synced?: string | null
+          leader_avatar_url?: string | null
+          leader_bio?: string | null
+          leader_department?: string | null
+          leader_name?: string | null
+          leader_title?: string | null
           read_time?: number
+          risk_factors?: string[] | null
           seo_description?: string | null
           slug: string
           status?: string
+          strategic_recommendations?: string[] | null
           tags?: string[]
           title: string
           updated_at?: string
         }
         Update: {
           author?: string
+          compliance_score?: number | null
           content?: string
           created_at?: string
           excerpt?: string
+          external_api_id?: string | null
           id?: string
+          impact_score?: number | null
+          key_drivers?: string[] | null
+          last_synced?: string | null
+          leader_avatar_url?: string | null
+          leader_bio?: string | null
+          leader_department?: string | null
+          leader_name?: string | null
+          leader_title?: string | null
           read_time?: number
+          risk_factors?: string[] | null
           seo_description?: string | null
           slug?: string
           status?: string
+          strategic_recommendations?: string[] | null
           tags?: string[]
           title?: string
           updated_at?: string
@@ -16132,6 +16168,14 @@ export type Database = {
       seed_actual_projects: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      sync_ses_conversations_status: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          total_records: number
+          last_sync_date: string
+          sync_needed: boolean
+        }[]
       }
       validate_share_email_domain: {
         Args: { email: string }
