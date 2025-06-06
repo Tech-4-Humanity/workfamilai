@@ -1,9 +1,7 @@
-
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, Target, Star } from 'lucide-react';
+import { useState } from 'react';
+import { EnhancedLeaderProfile } from '@/components/family/EnhancedLeaderProfile';
+import { familyMemberDetails } from '@/data/familyMembers';
 
 const departmentData = {
   'product-development': {
@@ -1343,135 +1341,198 @@ const departmentData = {
 const DepartmentDetail = () => {
   const { departmentId } = useParams();
   const navigate = useNavigate();
+  const [showEnhancedProfile, setShowEnhancedProfile] = useState(false);
   
-  const department = departmentData[departmentId as keyof typeof departmentData];
+  // Try to get enhanced family data first, fallback to legacy data
+  const enhancedData = familyMemberDetails[departmentId as keyof typeof familyMemberDetails];
+  const legacyData = departmentData[departmentId as keyof typeof departmentData];
   
-  if (!department) {
+  if (!enhancedData && !legacyData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Department Not Found</h1>
-          <Button onClick={() => navigate('/')}>Return to Org Chart</Button>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Family Member Not Found</h1>
+          <button 
+            onClick={() => navigate('/')}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Return to Family Home
+          </button>
         </div>
       </div>
     );
   }
 
-  const totalAgents = department.teams.reduce((sum, team) => sum + team.agents.length, 0);
+  // If we have enhanced data, show the new family experience
+  if (enhancedData && showEnhancedProfile) {
+    return (
+      <EnhancedLeaderProfile
+        leader={enhancedData.leader}
+        divisions={enhancedData.divisions}
+        onBack={() => setShowEnhancedProfile(false)}
+      />
+    );
+  }
+
+  // Use enhanced data if available, otherwise fallback to legacy
+  const displayData = enhancedData || legacyData;
+  const totalAgents = enhancedData 
+    ? enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
+    : displayData.teams.reduce((sum, team) => sum + team.agents.length, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Header */}
+      {/* Enhanced Header with Family Context */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <Button 
-            variant="ghost" 
+          <button 
             onClick={() => navigate('/')}
-            className="mb-6 hover:bg-gray-100"
+            className="mb-6 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center space-x-2"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Org Chart
-          </Button>
+            <span>←</span>
+            <span>Back to Family Home</span>
+          </button>
           
-          {/* Leader Profile */}
+          {/* Enhanced Leader Profile Preview */}
           <div className="text-center mb-8">
-            <Card className="max-w-2xl mx-auto border-2 border-gray-200 bg-gradient-to-r from-white to-gray-50">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-center space-x-4 mb-4">
-                  <div className={`w-16 h-16 ${department.leader.color} rounded-full flex items-center justify-center text-white text-2xl`}>
-                    {department.leader.avatar}
-                  </div>
-                  <div className="text-left">
-                    <CardTitle className="text-3xl text-gray-900">{department.leader.name}</CardTitle>
-                    <p className="text-xl text-gray-600">{department.leader.title}</p>
-                  </div>
+            <div className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-white to-gray-50 rounded-xl border-2 border-gray-200 shadow-lg">
+              <div className="flex items-center justify-center space-x-4 mb-4">
+                <div className={`w-16 h-16 ${enhancedData?.leader.color || displayData.leader.color} rounded-full flex items-center justify-center text-white text-2xl`}>
+                  {displayData.leader.avatar}
                 </div>
-                <div className="flex justify-center space-x-3 mb-4">
-                  <Badge variant="outline" className="text-sm">
-                    {department.leader.enneagramType}
-                  </Badge>
-                  <Badge variant="secondary" className="text-sm">
-                    {department.leader.personality}
-                  </Badge>
+                <div className="text-left">
+                  <h1 className="text-3xl font-bold text-gray-900">{displayData.leader.name}</h1>
+                  <p className="text-xl text-gray-600">{displayData.leader.title}</p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  {department.leader.description}
-                </p>
-                <div className="flex justify-center space-x-6 text-sm text-gray-600">
-                  <span className="flex items-center">
-                    <Target className="h-4 w-4 mr-1" />
-                    {department.teams.length} Agent Teams
-                  </span>
-                  <span className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    {totalAgents} AI Agents
-                  </span>
+              </div>
+              
+              <div className="flex justify-center space-x-3 mb-4">
+                <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                  {displayData.leader.enneagramType}
+                </span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
+                  {displayData.leader.personality}
+                </span>
+              </div>
+
+              {enhancedData && (
+                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                  <p className="text-lg italic text-blue-800 font-medium">"{enhancedData.leader.motto}"</p>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+
+              <p className="text-gray-700 leading-relaxed mb-6">
+                {enhancedData?.leader.background || displayData.leader.description}
+              </p>
+              
+              <div className="flex justify-center space-x-6 text-sm text-gray-600 mb-4">
+                <span className="flex items-center">
+                  👥 {enhancedData ? enhancedData.divisions.length : displayData.teams.length} {enhancedData ? 'Divisions' : 'Teams'}
+                </span>
+                <span className="flex items-center">
+                  🤖 {totalAgents} AI Agents
+                </span>
+              </div>
+
+              {enhancedData && (
+                <button
+                  onClick={() => setShowEnhancedProfile(true)}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  View Complete Family Profile
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Teams Grid */}
+      {/* Teams/Divisions Grid */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Agent Teams</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          {enhancedData ? 'Agent Divisions' : 'Agent Teams'}
+        </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {department.teams.map((team, index) => (
-            <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
+          {(enhancedData ? enhancedData.divisions : displayData.teams).map((item, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
                   <div>
-                    <CardTitle className="text-lg text-gray-900 mb-2">
-                      {team.name}
-                    </CardTitle>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {item.name}
+                    </h3>
                     <p className="text-sm text-gray-600 mb-3">
-                      {team.description}
+                      {item.description}
                     </p>
-                    <Badge variant="outline" className="text-xs">
-                      {team.agents.length} Specialists
-                    </Badge>
+                    <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                      {item.agents.length} Specialists
+                    </span>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {team.agents.map((agent, agentIndex) => (
+                
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {item.agents.map((agent, agentIndex) => (
                     <div 
                       key={agentIndex}
-                      className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                     >
-                      <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
-                      <span className="text-sm text-gray-700">{agent}</span>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0 mt-2"></div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-900">
+                          {enhancedData ? agent.name : agent}
+                        </span>
+                        {enhancedData && agent.specialization && (
+                          <p className="text-xs text-gray-600">{agent.specialization}</p>
+                        )}
+                        {enhancedData && agent.achievement && (
+                          <p className="text-xs text-blue-600 italic mt-1">{agent.achievement}</p>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Enhanced Stats Footer */}
       <div className="bg-white border-t mt-16">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">{department.teams.length}</div>
-              <div className="text-sm text-gray-600">Agent Teams</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:text-blue-700">
+                {enhancedData ? enhancedData.divisions.length : displayData.teams.length}
+              </div>
+              <div className="text-sm text-gray-600">{enhancedData ? 'Agent Divisions' : 'Agent Teams'}</div>
+              <div className="text-xs text-gray-500">Specialized Units</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600 mb-2">{totalAgents}</div>
-              <div className="text-sm text-gray-600">Specialized AI Agents</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700">{totalAgents}</div>
+              <div className="text-sm text-gray-600">AI Agents</div>
+              <div className="text-xs text-gray-500">Neural Network Nodes</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-purple-600 mb-2 group-hover:text-purple-700">24/7</div>
               <div className="text-sm text-gray-600">Always Active</div>
+              <div className="text-xs text-gray-500">Family Coordination</div>
             </div>
           </div>
+          
+          {enhancedData && (
+            <div className="mt-8 text-center">
+              <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full px-6 py-3">
+                <span className="text-sm font-medium text-gray-700">Family Role:</span>
+                <span className="text-sm text-blue-600">{enhancedData.leader.personality}</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-sm text-green-600">Neural Integration</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-sm text-purple-600">Complementary Dynamics</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
