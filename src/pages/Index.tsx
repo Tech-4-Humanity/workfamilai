@@ -15,8 +15,7 @@ const departmentHeads = [
     enneagramType: 'Type 1',
     description: 'The perfectionist who never misses a detail and transforms product ideas into flawless realities.',
     color: 'bg-blue-500',
-    agentCount: 81,
-    avatar: '👩‍🔬'
+    agentCount: 81
   },
   {
     id: 'marketing',
@@ -26,8 +25,7 @@ const departmentHeads = [
     enneagramType: 'Type 2',
     description: 'The empathetic helper who intuitively understands customer needs before they can articulate them.',
     color: 'bg-green-500',
-    agentCount: 81,
-    avatar: '👨‍💼'
+    agentCount: 81
   },
   {
     id: 'human-resources',
@@ -37,8 +35,7 @@ const departmentHeads = [
     enneagramType: 'Type 3',
     description: 'The achievement-oriented talent developer who turns HR from cost center into strategic powerhouse.',
     color: 'bg-purple-500',
-    agentCount: 81,
-    avatar: '👩‍💼'
+    agentCount: 81
   },
   {
     id: 'finance-operations',
@@ -48,8 +45,7 @@ const departmentHeads = [
     enneagramType: 'Type 4',
     description: 'The creative individualist who sees patterns others miss and finds hidden revenue streams.',
     color: 'bg-orange-500',
-    agentCount: 81,
-    avatar: '👨‍💻'
+    agentCount: 81
   },
   {
     id: 'customer-support',
@@ -59,8 +55,7 @@ const departmentHeads = [
     enneagramType: 'Type 5',
     description: 'The investigative problem-solver who transforms support from reactive firefighting to proactive prevention.',
     color: 'bg-teal-500',
-    agentCount: 81,
-    avatar: '👩‍⚕️'
+    agentCount: 81
   },
   {
     id: 'innovation-rd',
@@ -70,8 +65,7 @@ const departmentHeads = [
     enneagramType: 'Type 6',
     description: 'The loyal but questioning innovation leader who balances breakthrough thinking with practical implementation.',
     color: 'bg-indigo-500',
-    agentCount: 81,
-    avatar: '👨‍🔬'
+    agentCount: 81
   },
   {
     id: 'sales',
@@ -81,8 +75,7 @@ const departmentHeads = [
     enneagramType: 'Type 7',
     description: 'The enthusiastic opportunity finder who turns every conversation into a journey of possibilities.',
     color: 'bg-red-500',
-    agentCount: 81,
-    avatar: '👩‍💼'
+    agentCount: 81
   },
   {
     id: 'governance-compliance',
@@ -92,8 +85,7 @@ const departmentHeads = [
     enneagramType: 'Type 8',
     description: 'The challenging but principled guardian who transforms compliance from restriction into competitive advantage.',
     color: 'bg-gray-700',
-    agentCount: 81,
-    avatar: '👨‍⚖️'
+    agentCount: 81
   },
   {
     id: 'external-relations',
@@ -103,8 +95,7 @@ const departmentHeads = [
     enneagramType: 'Type 9',
     description: 'The diplomatic consensus-builder who transforms conflicts into productive partnerships.',
     color: 'bg-pink-500',
-    agentCount: 81,
-    avatar: '👩‍🎓'
+    agentCount: 81
   }
 ];
 
