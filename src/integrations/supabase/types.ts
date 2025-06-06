@@ -3336,6 +3336,66 @@ export type Database = {
         }
         Relationships: []
       }
+      consultant_performance_metrics: {
+        Row: {
+          activity_score: number | null
+          average_cycle_length_days: number | null
+          average_deal_size: number | null
+          consultant_id: string | null
+          created_at: string | null
+          id: string
+          ladder_tier: Database["public"]["Enums"]["ladder_tier"] | null
+          period_end: string
+          period_start: string
+          rank_position: number | null
+          total_deal_value: number | null
+          total_opportunities: number | null
+          total_score: number | null
+          updated_at: string | null
+          win_rate: number | null
+          won_deal_value: number | null
+          won_opportunities: number | null
+        }
+        Insert: {
+          activity_score?: number | null
+          average_cycle_length_days?: number | null
+          average_deal_size?: number | null
+          consultant_id?: string | null
+          created_at?: string | null
+          id?: string
+          ladder_tier?: Database["public"]["Enums"]["ladder_tier"] | null
+          period_end: string
+          period_start: string
+          rank_position?: number | null
+          total_deal_value?: number | null
+          total_opportunities?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          win_rate?: number | null
+          won_deal_value?: number | null
+          won_opportunities?: number | null
+        }
+        Update: {
+          activity_score?: number | null
+          average_cycle_length_days?: number | null
+          average_deal_size?: number | null
+          consultant_id?: string | null
+          created_at?: string | null
+          id?: string
+          ladder_tier?: Database["public"]["Enums"]["ladder_tier"] | null
+          period_end?: string
+          period_start?: string
+          rank_position?: number | null
+          total_deal_value?: number | null
+          total_opportunities?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          win_rate?: number | null
+          won_deal_value?: number | null
+          won_opportunities?: number | null
+        }
+        Relationships: []
+      }
       content_tags: {
         Row: {
           category: string
@@ -10840,6 +10900,160 @@ export type Database = {
         }
         Relationships: []
       }
+      sales_achievements: {
+        Row: {
+          achievement_name: string
+          achievement_type: string
+          consultant_id: string | null
+          description: string | null
+          earned_at: string | null
+          id: string
+          period_month: string | null
+          points_awarded: number | null
+        }
+        Insert: {
+          achievement_name: string
+          achievement_type: string
+          consultant_id?: string | null
+          description?: string | null
+          earned_at?: string | null
+          id?: string
+          period_month?: string | null
+          points_awarded?: number | null
+        }
+        Update: {
+          achievement_name?: string
+          achievement_type?: string
+          consultant_id?: string | null
+          description?: string | null
+          earned_at?: string | null
+          id?: string
+          period_month?: string | null
+          points_awarded?: number | null
+        }
+        Relationships: []
+      }
+      sales_activities: {
+        Row: {
+          activity_date: string
+          activity_type: string
+          consultant_id: string | null
+          created_at: string | null
+          duration_minutes: number | null
+          id: string
+          notes: string | null
+          opportunity_id: string | null
+        }
+        Insert: {
+          activity_date?: string
+          activity_type: string
+          consultant_id?: string | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          opportunity_id?: string | null
+        }
+        Update: {
+          activity_date?: string
+          activity_type?: string
+          consultant_id?: string | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          notes?: string | null
+          opportunity_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_activities_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "sales_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sales_opportunities: {
+        Row: {
+          actual_close_date: string | null
+          company_name: string
+          consultant_id: string | null
+          created_at: string | null
+          current_stage: Database["public"]["Enums"]["sales_stage"]
+          deal_value: number | null
+          expected_close_date: string | null
+          id: string
+          is_active: boolean | null
+          probability: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          actual_close_date?: string | null
+          company_name: string
+          consultant_id?: string | null
+          created_at?: string | null
+          current_stage?: Database["public"]["Enums"]["sales_stage"]
+          deal_value?: number | null
+          expected_close_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          probability?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          actual_close_date?: string | null
+          company_name?: string
+          consultant_id?: string | null
+          created_at?: string | null
+          current_stage?: Database["public"]["Enums"]["sales_stage"]
+          deal_value?: number | null
+          expected_close_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          probability?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      sales_stage_history: {
+        Row: {
+          changed_at: string | null
+          from_stage: Database["public"]["Enums"]["sales_stage"] | null
+          id: string
+          notes: string | null
+          opportunity_id: string | null
+          time_in_previous_stage_days: number | null
+          to_stage: Database["public"]["Enums"]["sales_stage"]
+        }
+        Insert: {
+          changed_at?: string | null
+          from_stage?: Database["public"]["Enums"]["sales_stage"] | null
+          id?: string
+          notes?: string | null
+          opportunity_id?: string | null
+          time_in_previous_stage_days?: number | null
+          to_stage: Database["public"]["Enums"]["sales_stage"]
+        }
+        Update: {
+          changed_at?: string | null
+          from_stage?: Database["public"]["Enums"]["sales_stage"] | null
+          id?: string
+          notes?: string | null
+          opportunity_id?: string | null
+          time_in_previous_stage_days?: number | null
+          to_stage?: Database["public"]["Enums"]["sales_stage"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_stage_history_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "sales_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       samples: {
         Row: {
           agent_code: string | null
@@ -15768,6 +15982,19 @@ export type Database = {
           top_available_functions: string[]
         }[]
       }
+      calculate_performance_metrics: {
+        Args: { consultant_uuid: string; start_date: string; end_date: string }
+        Returns: {
+          total_opps: number
+          total_value: number
+          won_opps: number
+          won_value: number
+          avg_deal_size: number
+          avg_cycle_days: number
+          win_rate: number
+          activity_count: number
+        }[]
+      }
       calculate_total_hourly_cost: {
         Args: {
           p_country_code: string
@@ -15913,7 +16140,16 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      ladder_tier: "bronze" | "silver" | "gold" | "platinum" | "elite"
       metric_type: "numeric" | "text" | "boolean" | "date"
+      sales_stage:
+        | "lead"
+        | "qualification"
+        | "discovery"
+        | "proposal"
+        | "negotiation"
+        | "closed_won"
+        | "closed_lost"
       value_tier: "high" | "medium" | "low"
     }
     CompositeTypes: {
@@ -16031,7 +16267,17 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      ladder_tier: ["bronze", "silver", "gold", "platinum", "elite"],
       metric_type: ["numeric", "text", "boolean", "date"],
+      sales_stage: [
+        "lead",
+        "qualification",
+        "discovery",
+        "proposal",
+        "negotiation",
+        "closed_won",
+        "closed_lost",
+      ],
       value_tier: ["high", "medium", "low"],
     },
   },

@@ -1,11 +1,10 @@
 
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Users, ChevronRight, Star } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { LeaderCard } from '@/components/family/LeaderCard';
+import { SupremeLeaderCard } from '@/components/family/SupremeLeaderCard';
 
 const departmentHeads = [
   {
@@ -122,49 +121,39 @@ const Index = () => {
   const totalAgents = departmentHeads.reduce((sum, dept) => sum + dept.agentCount, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
+      {/* Dynamic background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-green-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+      </div>
+
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="relative z-10 bg-white/80 backdrop-blur-lg shadow-sm border-b border-white/20">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="text-center mb-8">
-            <div className="text-6xl mb-4">🏛️</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Holo-Org Command Center</h1>
+            <div className="text-6xl mb-4 animate-bounce">🏛️</div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Holo-Org Command Center
+            </h1>
             <p className="text-xl text-gray-600 mb-6">The AI Agent Family Organizational Chart</p>
+            <p className="text-sm text-gray-500 italic mb-8">Nine Minds, One Mission • 2025 Vision</p>
             
-            {/* Leader Card */}
-            <Card className="max-w-md mx-auto mb-8 border-2 border-yellow-400 bg-gradient-to-r from-yellow-50 to-orange-50">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-center space-x-3">
-                  <Star className="h-6 w-6 text-yellow-500" />
-                  <CardTitle className="text-2xl text-gray-900">Supreme Leader</CardTitle>
-                  <Star className="h-6 w-6 text-yellow-500" />
-                </div>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-4xl mb-3">👑</div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Trojan Oz</h2>
-                <p className="text-lg text-gray-700 mb-4">Chief Executive Officer</p>
-                <div className="flex justify-center space-x-4 text-sm text-gray-600">
-                  <span className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    9 Departments
-                  </span>
-                  <span className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    {totalAgents} AI Agents
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Supreme Leader Card */}
+            <SupremeLeaderCard 
+              totalDepartments={departmentHeads.length} 
+              totalAgents={totalAgents} 
+            />
             
             {/* Search */}
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
-                placeholder="Search departments or leaders..."
+                placeholder="Search the family..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 py-3 text-lg"
+                className="pl-10 py-3 text-lg backdrop-blur-sm bg-white/70 border-white/30 focus:bg-white/90 transition-all duration-300"
               />
             </div>
           </div>
@@ -172,85 +161,44 @@ const Index = () => {
       </div>
 
       {/* Department Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredDepartments.map((dept, index) => (
-            <Card 
-              key={dept.id} 
-              className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+          {filteredDepartments.map((dept) => (
+            <LeaderCard
+              key={dept.id}
+              leader={dept}
               onClick={() => navigate(`/department/${dept.id}`)}
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-3">
-                      <div className={`w-12 h-12 ${dept.color} rounded-lg flex items-center justify-center text-white text-xl font-bold`}>
-                        {dept.avatar}
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl text-gray-900 group-hover:text-blue-600 transition-colors">
-                          {dept.name}
-                        </CardTitle>
-                        <p className="text-sm text-gray-600">{dept.title}</p>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2 mb-3">
-                      <Badge variant="outline" className="text-xs">
-                        {dept.enneagramType}
-                      </Badge>
-                      <Badge variant="secondary" className="text-xs">
-                        {dept.personality}
-                      </Badge>
-                    </div>
-                  </div>
-                  <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                  {dept.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <Users className="h-4 w-4" />
-                    <span>{dept.agentCount} AI Agents</span>
-                  </div>
-                  <Button variant="outline" size="sm" className="group-hover:bg-blue-50 group-hover:border-blue-200">
-                    View Team
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            />
           ))}
         </div>
         
         {filteredDepartments.length === 0 && (
           <div className="text-center py-12">
             <div className="text-4xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">No departments found</h3>
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">No family members found</h3>
             <p className="text-gray-500">Try adjusting your search terms</p>
           </div>
         )}
       </div>
 
       {/* Stats Footer */}
-      <div className="bg-white border-t mt-16">
+      <div className="relative z-10 bg-white/80 backdrop-blur-lg border-t border-white/20 mt-16">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">1</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:text-blue-700">1</div>
               <div className="text-sm text-gray-600">Supreme Leader</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600 mb-2">9</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-green-600 mb-2 group-hover:text-green-700">9</div>
               <div className="text-sm text-gray-600">Department Heads</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600 mb-2">{totalAgents}</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-purple-600 mb-2 group-hover:text-purple-700">{totalAgents}</div>
               <div className="text-sm text-gray-600">AI Agents</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl font-bold text-orange-600 mb-2 group-hover:text-orange-700">24/7</div>
               <div className="text-sm text-gray-600">Operational</div>
             </div>
           </div>
