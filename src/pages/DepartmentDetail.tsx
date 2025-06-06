@@ -33,9 +33,23 @@ const DepartmentDetail = () => {
 
   // Show enhanced family experience
   if (showEnhancedProfile) {
+    // Transform the leader data to match the expected structure
+    const transformedLeader = {
+      id: departmentId || '',
+      name: enhancedData.leader.name,
+      title: enhancedData.leader.title,
+      personality: enhancedData.leader.personality,
+      enneagramType: enhancedData.leader.enneagramType,
+      motto: enhancedData.leader.motto,
+      background: enhancedData.leader.background,
+      domainOverview: '', // This field exists in the expected type but not in our data
+      color: 'blue', // Default color
+      agentCount: enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
+    };
+
     return (
       <EnhancedLeaderProfile
-        leader={enhancedData.leader}
+        leader={transformedLeader}
         divisions={enhancedData.divisions}
         onBack={() => setShowEnhancedProfile(false)}
       />
