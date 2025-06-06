@@ -1,14 +1,17 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Team } from '@/data/departmentData';
+import { Team } from '@/data/departmentCore';
+import { memo } from 'react';
 
 interface TeamCardProps {
-  team: Team;
+  team: Team & { namedAgents?: string[] };
   namedAgents: string[];
 }
 
-const TeamCard = ({ team, namedAgents }: TeamCardProps) => {
+const TeamCard = memo(({ team, namedAgents }: TeamCardProps) => {
+  const agentsToDisplay = team.namedAgents || namedAgents;
+
   return (
     <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <CardHeader className="pb-4">
@@ -28,7 +31,7 @@ const TeamCard = ({ team, namedAgents }: TeamCardProps) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          {namedAgents.map((namedAgent, agentIndex) => (
+          {agentsToDisplay.map((namedAgent, agentIndex) => (
             <div 
               key={agentIndex}
               className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors"
@@ -41,6 +44,8 @@ const TeamCard = ({ team, namedAgents }: TeamCardProps) => {
       </CardContent>
     </Card>
   );
-};
+});
+
+TeamCard.displayName = 'TeamCard';
 
 export default TeamCard;

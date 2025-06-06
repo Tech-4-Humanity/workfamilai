@@ -2,16 +2,20 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { departmentData, getNamedAgents } from '@/data/departmentData';
+import { getDepartmentData } from '@/data/departmentCore';
 import LeaderProfile from '@/components/department/LeaderProfile';
 import TeamCard from '@/components/department/TeamCard';
 import DepartmentStats from '@/components/department/DepartmentStats';
+import { useMemo } from 'react';
 
 const DepartmentDetail = () => {
   const { departmentId } = useParams();
   const navigate = useNavigate();
   
-  const department = departmentData[departmentId as keyof typeof departmentData];
+  const department = useMemo(() => {
+    if (!departmentId) return null;
+    return getDepartmentData(departmentId);
+  }, [departmentId]);
   
   if (!department) {
     return (
@@ -53,17 +57,13 @@ const DepartmentDetail = () => {
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Agent Teams</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {department.teams.map((team, index) => {
-            const namedAgents = getNamedAgents(departmentId as string, index, team.agents);
-            
-            return (
-              <TeamCard 
-                key={index}
-                team={team}
-                namedAgents={namedAgents}
-              />
-            );
-          })}
+          {department.teams.map((team, index) => (
+            <TeamCard 
+              key={index}
+              team={team}
+              namedAgents={team.namedAgents || []}
+            />
+          ))}
         </div>
       </div>
 
