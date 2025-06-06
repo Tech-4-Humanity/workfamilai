@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
+import { ChatModal } from '@/components/chat/ChatModal';
 
 interface LeaderProfilePreviewProps {
   leader: {
@@ -65,12 +66,24 @@ export const LeaderProfilePreview = ({
           </span>
         </div>
 
-        <Button
-          onClick={onViewProfile}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-        >
-          View Complete Family Profile
-        </Button>
+        <div className="flex justify-center space-x-3">
+          <Button
+            onClick={onViewProfile}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            View Complete Family Profile
+          </Button>
+          
+          <ChatModal
+            agentName={leader.name}
+            agentPersonality={leader.personality}
+            agentBackground={leader.background}
+            agentColor="blue"
+            buttonText={`Chat with ${leader.name.split(' ')[0]}`}
+            buttonVariant="outline"
+            triggerClassName="px-6 py-3 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors font-medium"
+          />
+        </div>
       </div>
     </div>
   );

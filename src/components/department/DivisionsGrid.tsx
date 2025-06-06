@@ -1,12 +1,22 @@
 
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Users, Star, Award } from 'lucide-react';
+import { ChatModal } from '@/components/chat/ChatModal';
+
+interface Agent {
+  name: string;
+  specialization: string;
+  achievement: string;
+  background: string;
+  signature_method: string;
+  cultural_expertise: string;
+}
+
 interface Division {
   name: string;
   description: string;
-  agents: Array<{
-    name: string;
-    specialization?: string;
-    achievement?: string;
-  }>;
+  agents: Agent[];
 }
 
 interface DivisionsGridProps {
@@ -15,54 +25,73 @@ interface DivisionsGridProps {
 
 export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-        Agent Divisions
-      </h2>
+    <div className="space-y-8">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Divisions & AI Agents</h2>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-        {divisions.map((division, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {division.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    {division.description}
-                  </p>
-                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                    {division.agents.length} Specialists
-                  </span>
-                </div>
+      {divisions.map((division, divisionIndex) => (
+        <Card key={divisionIndex} className="overflow-hidden">
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b">
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl text-gray-900">{division.name}</CardTitle>
+                <p className="text-gray-600 mt-1">{division.description}</p>
               </div>
-              
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {division.agents.map((agent, agentIndex) => (
-                  <div 
-                    key={agentIndex}
-                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0 mt-2"></div>
-                    <div>
-                      <span className="text-sm font-medium text-gray-900">
-                        {agent.name}
-                      </span>
-                      {agent.specialization && (
-                        <p className="text-xs text-gray-600">{agent.specialization}</p>
-                      )}
-                      {agent.achievement && (
-                        <p className="text-xs text-blue-600 italic mt-1">{agent.achievement}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center text-blue-600">
+                <Users className="h-5 w-5 mr-2" />
+                <span className="font-semibold">{division.agents.length} Agents</span>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          </CardHeader>
+          
+          <CardContent className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {division.agents.map((agent, agentIndex) => (
+                <Card key={agentIndex} className="border border-gray-200 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <h4 className="font-semibold text-gray-900 text-lg">{agent.name}</h4>
+                      <Badge variant="secondary" className="text-xs">
+                        {agent.specialization}
+                      </Badge>
+                    </div>
+                    
+                    <p className="text-gray-600 text-sm mb-3 leading-relaxed">
+                      {agent.background}
+                    </p>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-sm">
+                        <Award className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{agent.achievement}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <Star className="h-4 w-4 text-yellow-600 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{agent.signature_method}</span>
+                      </div>
+                      
+                      <div className="text-xs text-gray-500 mt-2">
+                        <strong>Cultural Expertise:</strong> {agent.cultural_expertise}
+                      </div>
+                    </div>
+
+                    <ChatModal
+                      agentName={agent.name}
+                      agentPersonality={agent.specialization}
+                      agentBackground={`${agent.background} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}.`}
+                      agentColor="indigo"
+                      buttonText={`Chat with ${agent.name.split(' ')[0]}`}
+                      buttonVariant="outline"
+                      buttonSize="sm"
+                      triggerClassName="w-full"
+                    />
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 };
