@@ -13,92 +13,71 @@ interface DomainCount {
 }
 
 export const useAgentData = () => {
-  const { data: functionCounts, error: functionError } = useQuery({
+  const { data: functionCounts } = useQuery({
     queryKey: ['agent-function-counts'],
     queryFn: async (): Promise<AgentCount[]> => {
-      try {
-        const { data, error } = await supabase
-          .from('10,000 agents')
-          .select('function')
-          .not('function', 'is', null);
-        
-        if (error) throw error;
-        
-        // Count occurrences of each function
-        const counts: Record<string, number> = {};
-        data.forEach(row => {
-          if (row.function) {
-            counts[row.function] = (counts[row.function] || 0) + 1;
-          }
-        });
-        
-        return Object.entries(counts).map(([function_name, count]) => ({
-          function: function_name,
-          count
-        }));
-      } catch (error) {
-        console.error('Error fetching function counts:', error);
-        return [];
-      }
-    },
-    retry: 3,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+      const { data, error } = await supabase
+        .from('10,000 agents')
+        .select('function')
+        .not('function', 'is', null);
+      
+      if (error) throw error;
+      
+      // Count occurrences of each function
+      const counts: Record<string, number> = {};
+      data.forEach(row => {
+        if (row.function) {
+          counts[row.function] = (counts[row.function] || 0) + 1;
+        }
+      });
+      
+      return Object.entries(counts).map(([function_name, count]) => ({
+        function: function_name,
+        count
+      }));
+    }
   });
 
-  const { data: domainCounts, error: domainError } = useQuery({
+  const { data: domainCounts } = useQuery({
     queryKey: ['agent-domain-counts'],
     queryFn: async (): Promise<DomainCount[]> => {
-      try {
-        const { data, error } = await supabase
-          .from('10,000 agents')
-          .select('domain')
-          .not('domain', 'is', null);
-        
-        if (error) throw error;
-        
-        // Count occurrences of each domain
-        const counts: Record<string, number> = {};
-        data.forEach(row => {
-          if (row.domain) {
-            counts[row.domain] = (counts[row.domain] || 0) + 1;
-          }
-        });
-        
-        return Object.entries(counts).map(([domain, count]) => ({
-          domain,
-          count
-        }));
-      } catch (error) {
-        console.error('Error fetching domain counts:', error);
-        return [];
-      }
-    },
-    retry: 3,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+      const { data, error } = await supabase
+        .from('10,000 agents')
+        .select('domain')
+        .not('domain', 'is', null);
+      
+      if (error) throw error;
+      
+      // Count occurrences of each domain
+      const counts: Record<string, number> = {};
+      data.forEach(row => {
+        if (row.domain) {
+          counts[row.domain] = (counts[row.domain] || 0) + 1;
+        }
+      });
+      
+      return Object.entries(counts).map(([domain, count]) => ({
+        domain,
+        count
+      }));
+    }
   });
 
-  const { data: totalAgents, error: totalError } = useQuery({
+  const { data: totalAgents } = useQuery({
     queryKey: ['total-agents'],
     queryFn: async (): Promise<number> => {
-      try {
-        const { count, error } = await supabase
-          .from('10,000 agents')
-          .select('*', { count: 'exact', head: true });
-        
-        if (error) throw error;
-        return count || 0;
-      } catch (error) {
-        console.error('Error fetching total agents:', error);
-        return 10000; // Fallback value
-      }
-    },
-    retry: 3,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+      const { count, error } = await supabase
+        .from('10,000 agents')
+        .select('*', { count: 'exact', head: true });
+      
+      if (error) throw error;
+      return count || 0;
+    }
   });
 
   // Map functions to department heads
   const getDepartmentAgentCount = (departmentId: string): number => {
-    if (!functionCounts) return 81; // Fallback to expected count per department
+    if (!functionCounts) return 0;
     
     const functionMapping: Record<string, string[]> = {
       'product-development': ['Product Management', 'UX Design', 'Software Development', 'Quality Assurance'],
@@ -115,18 +94,13 @@ export const useAgentData = () => {
     const departmentFunctions = functionMapping[departmentId] || [];
     return functionCounts
       .filter(fc => departmentFunctions.some(df => fc.function.includes(df) || df.includes(fc.function)))
-      .reduce((sum, fc) => sum + fc.count, 81); // Default to 81 if no matches
+      .reduce((sum, fc) => sum + fc.count, 0);
   };
 
   return {
     functionCounts,
     domainCounts,
     totalAgents,
-    getDepartmentAgentCount,
-    errors: {
-      functionError,
-      domainError,
-      totalError
-    }
+    getDepartmentAgentCount
   };
 };
