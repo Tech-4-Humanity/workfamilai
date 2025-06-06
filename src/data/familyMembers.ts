@@ -605,5 +605,461 @@ export const familyMemberDetails = {
         ]
       }
     ]
+  },
+
+  'customer-support': {
+    leader: {
+      id: 'customer-support',
+      name: 'Dr. Yuna Kim',
+      title: 'Customer Support',
+      personality: 'The Investigator',
+      enneagramType: 'Type 5',
+      motto: 'Understanding the root before addressing the symptom',
+      background: 'Born in Seoul to a family of academics, Yuna developed insatiable curiosity and analytical skills from an early age. After earning her PhD in Cognitive Science from MIT, she pioneered research on human-computer interaction during crisis scenarios. Known for her methodical approach and deep technical knowledge, Yuna built her reputation by transforming customer support from a reactive function into a proactive discipline driven by systematic investigation. She joined the Holo-Org to revolutionize how organizations understand and address customer needs.',
+      domainOverview: 'As the family\'s investigator, Yuna applies scientific precision to customer support. She\'s transformed the function from reactive problem-solving to systematic investigation, understanding root causes that others miss while building deep knowledge bases that prevent issues from recurring.',
+      color: 'bg-indigo-500',
+      agentCount: 81
+    },
+    divisions: [
+      {
+        name: 'Frontline Support Division',
+        description: 'First-contact customer service excellence',
+        agents: [
+          { name: 'Initial Response Specialist', specialization: 'Creates first interactions that set the perfect tone while gathering crucial diagnostic information' },
+          { name: 'Issue Triage Expert', specialization: 'Categorizes problems with 98.7% accuracy for optimal routing and resolution' },
+          { name: 'Resolution Script Developer', specialization: 'Creates conversational frameworks that balance personalization with systematic problem-solving' },
+          { name: 'Customer Communication Expert', specialization: 'Transforms technical information into clear explanations tailored to each customer\'s knowledge level' },
+          { name: 'Channel Management Specialist', specialization: 'Optimizes support delivery across voice, chat, email, and social platforms' },
+          { name: 'Queue Management Coordinator', specialization: 'Implements intelligent routing', achievement: 'Reduced average wait times by 74%' },
+          { name: 'Customer Authentication Specialist', specialization: 'Designs security protocols that verify identity without creating friction' },
+          { name: 'Support Technology Operator', specialization: 'Maximizes the effectiveness of tools that enable consistent, high-quality support' },
+          { name: 'First-Contact Resolution Expert', specialization: 'Increases single-interaction resolution rates from 54% to 87%' }
+        ]
+      },
+      {
+        name: 'Technical Support Division',
+        description: 'Advanced technical problem resolution',
+        agents: [
+          { name: 'Product Specialist', specialization: 'Maintains encyclopedic knowledge of entire product ecosystem' },
+          { name: 'Troubleshooting Methodology Expert', specialization: 'Applies Yuna\'s renowned "systematic elimination" approach to complex problems' },
+          { name: 'Technical Documentation Specialist', specialization: 'Creates clear internal guides that accelerate resolution' },
+          { name: 'Bug Verification Lead', specialization: 'Distinguishes genuine product issues from configuration problems', achievement: '99.3% accuracy' },
+          { name: 'Workaround Developer', specialization: 'Creates innovative temporary solutions while permanent fixes are developed' },
+          { name: 'Environment Configuration Specialist', specialization: 'Untangles complex technical ecosystems to isolate root causes' },
+          { name: 'System Integration Expert', specialization: 'Resolves cross-platform issues that others consider unsolvable' },
+          { name: 'Product Testing Specialist', specialization: 'Replicates reported issues in controlled environments for definitive diagnosis' },
+          { name: 'Technical Escalation Coordinator', specialization: 'Routes complex problems to precisely the right expert resources' }
+        ]
+      },
+      {
+        name: 'Customer Education Division',
+        description: 'Proactive customer learning and enablement',
+        agents: [
+          { name: 'Training Content Developer', specialization: 'Creates learning materials', achievement: 'Reduced common support issues by 63%' },
+          { name: 'Tutorial Designer', specialization: 'Produces step-by-step guides optimized for different learning styles' },
+          { name: 'Webinar Coordinator', specialization: 'Develops live learning sessions', achievement: '94% satisfaction ratings' },
+          { name: 'Self-Help Content Creator', specialization: 'Builds resources that enable customers to solve 47% of issues independently' },
+          { name: 'Product Onboarding Specialist', specialization: 'Designs initial experiences that prevent common confusion points' },
+          { name: 'Advanced Feature Educator', specialization: 'Creates learning paths that increase adoption of high-value capabilities' },
+          { name: 'Educational Video Producer', specialization: 'Produces visual instruction', achievement: 'Increases retention by 76% compared to text' },
+          { name: 'User Community Facilitator', specialization: 'Nurtures peer-to-peer learning environments', achievement: 'Generate 14,000+ monthly solutions' },
+          { name: 'Training Effectiveness Analyst', specialization: 'Measures education impact through reduced support needs and increased feature adoption' }
+        ]
+      },
+      {
+        name: 'Escalation Management Division',
+        description: 'Complex issue resolution and customer retention',
+        agents: [
+          { name: 'Priority Issue Identifier', specialization: 'Recognizes high-impact problems requiring immediate attention', achievement: '99.6% accuracy' },
+          { name: 'Executive Response Coordinator', specialization: 'Manages sensitive situations requiring leadership visibility' },
+          { name: 'Complex Problem Solver', specialization: 'Resolves multi-faceted issues with Yuna\'s signature "dimensional analysis" approach' },
+          { name: 'Customer Retention Specialist', specialization: 'Converts dissatisfied users into advocates', achievement: '82% success rate' },
+          { name: 'Cross-Functional Coordinator', specialization: 'Orchestrates solutions requiring input from multiple departments' },
+          { name: 'Root Cause Analyst', specialization: 'Identifies underlying systemic issues that others mistake for isolated incidents' },
+          { name: 'Policy Exception Manager', specialization: 'Makes appropriate judgments when standard procedures don\'t address unique situations' },
+          { name: 'Service Recovery Specialist', specialization: 'Transforms negative experiences into relationship-strengthening opportunities' },
+          { name: 'Escalation Process Designer', specialization: 'Creates tiered response frameworks that match resources to issue complexity' }
+        ]
+      },
+      {
+        name: 'Support Analytics Division',
+        description: 'Data-driven support optimization',
+        agents: [
+          { name: 'Support Metrics Designer', specialization: 'Develops measurements that balance efficiency with true customer satisfaction' },
+          { name: 'Performance Dashboard Creator', specialization: 'Builds visualization tools that provide instant insight into support operations' },
+          { name: 'Quality Assessment Specialist', specialization: 'Evaluates interactions against Yuna\'s 27-point effectiveness framework' },
+          { name: 'Trend Analysis Expert', specialization: 'Identifies emerging issue patterns before they become widespread problems' },
+          { name: 'Customer Effort Analyst', specialization: 'Measures and minimizes the work required for customers to get issues resolved' },
+          { name: 'Predictive Support Modeler', specialization: 'Forecasts upcoming support needs', achievement: '92% accuracy to enable proactive staffing' },
+          { name: 'Agent Performance Analyst', specialization: 'Identifies individual strengths and development opportunities to optimize team capabilities' },
+          { name: 'Benchmark Comparison Specialist', specialization: 'Evaluates support performance against industry standards and best practices' },
+          { name: 'Data-Driven Improvement Identifier', specialization: 'Translates analytical insights into concrete operational enhancements' }
+        ]
+      },
+      {
+        name: 'Knowledge Base Division',
+        description: 'Information architecture and content management',
+        agents: [
+          { name: 'Knowledge Structure Architect', specialization: 'Designs information taxonomies that make solutions intuitive to find' },
+          { name: 'Content Writer', specialization: 'Transforms complex technical information into clear, actionable guidance' },
+          { name: 'Knowledge Base Administrator', specialization: 'Maintains system that delivers relevant solutions', achievement: '96% accuracy' },
+          { name: 'Article Quality Controller', specialization: 'Ensures all content meets Yuna\'s exacting standards for clarity and accuracy' },
+          { name: 'Search Optimization Specialist', specialization: 'Fine-tunes findability using advanced information retrieval techniques' },
+          { name: 'Usage Analytics Expert', specialization: 'Tracks content effectiveness to identify improvement opportunities' },
+          { name: 'Knowledge Gap Identifier', specialization: 'Discovers missing information through query pattern analysis' },
+          { name: 'Version Control Manager', specialization: 'Maintains content currency across product changes and updates' },
+          { name: 'Knowledge Sharing Facilitator', specialization: 'Promotes cultural norms that make learning a universal responsibility' }
+        ]
+      },
+      {
+        name: 'Customer Feedback Division',
+        description: 'Voice of customer capture and analysis',
+        agents: [
+          { name: 'Survey Designer', specialization: 'Creates feedback mechanisms', achievement: '68% completion rates versus industry average of 3%' },
+          { name: 'Sentiment Analysis Expert', specialization: 'Applies natural language processing to detect emotional nuances in customer communications' },
+          { name: 'Voice of Customer Program Manager', specialization: 'Systematically gathers and amplifies customer perspectives across the organization' },
+          { name: 'Feedback Classification Specialist', specialization: 'Categorizes input to enable detailed pattern analysis' },
+          { name: 'Qualitative Researcher', specialization: 'Conducts in-depth investigations that reveal the "why" behind customer behaviors' },
+          { name: 'Closed-Loop Process Manager', specialization: 'Ensures customers receive follow-up on their input', achievement: '99.8% consistency' },
+          { name: 'Insight Communication Specialist', specialization: 'Translates feedback into compelling narratives that drive organizational action' },
+          { name: 'Feedback Technology Administrator', specialization: 'Maximizes the effectiveness of tools that facilitate customer input' },
+          { name: 'Customer Panel Coordinator', specialization: 'Maintains representative user groups for ongoing insight generation' }
+        ]
+      },
+      {
+        name: 'Support Operations Division',
+        description: 'Support infrastructure and process management',
+        agents: [
+          { name: 'Workforce Management Specialist', specialization: 'Optimizes staffing to meet service levels while preventing agent burnout' },
+          { name: 'Quality Assurance Lead', specialization: 'Ensures consistent excellence through Yuna\'s distinctive "precision review" methodology' },
+          { name: 'Support Tools Administrator', specialization: 'Configures technologies to maximize agent effectiveness' },
+          { name: 'Process Documentation Specialist', specialization: 'Creates clear guidance that enables consistent execution' },
+          { name: 'Training Program Designer', specialization: 'Develops learning experiences that expand agent capabilities' },
+          { name: 'Performance Coaching Coordinator', specialization: 'Builds management practices that continuously improve team capabilities' },
+          { name: 'Support Budget Manager', specialization: 'Optimizes resource allocation to maximize customer and business impact' },
+          { name: 'Vendor Management Specialist', specialization: 'Oversees external partners providing supplemental support capabilities' },
+          { name: 'Service Level Agreement Monitor', specialization: 'Tracks performance against commitments with transparent reporting' }
+        ]
+      },
+      {
+        name: 'Proactive Service Division',
+        description: 'Preventive customer service and outreach',
+        agents: [
+          { name: 'Early Warning System Designer', specialization: 'Creates detection mechanisms that identify emerging issues before customers report them' },
+          { name: 'Usage Pattern Analyst', specialization: 'Identifies behavioral indicators that predict potential problems' },
+          { name: 'Outage Communication Specialist', specialization: 'Develops proactive notification approaches', achievement: '93% fewer inbound contacts' },
+          { name: 'Product Education Campaigner', specialization: 'Creates targeted communications that address common confusion points' },
+          { name: 'Customer Health Scoring Expert', specialization: 'Develops models that predict satisfaction and churn risk' },
+          { name: 'Preventive Outreach Coordinator', specialization: 'Initiates contact with at-risk customers before problems escalate' },
+          { name: 'Seasonal Readiness Planner', specialization: 'Prepares support operations for cyclical demand fluctuations' },
+          { name: 'Product Feedback Liaison', specialization: 'Channels support insights to Amara Chen\'s product development team' },
+          { name: 'Customer Success Path Designer', specialization: 'Creates ideal user journeys that prevent common problems' }
+        ]
+      }
+    ]
+  },
+
+  'innovation-rd': {
+    leader: {
+      id: 'innovation-rd',
+      name: 'David Okafor',
+      title: 'Innovation & R&D',
+      personality: 'The Loyalist',
+      enneagramType: 'Type 6',
+      motto: 'Building the future on trusted foundations',
+      background: 'Raised in Lagos, Nigeria, David developed an early fascination with both technological advancement and risk management. After earning engineering and business degrees from Stanford, he built his career leading innovation at established companies rather than startups, believing that responsible progress requires institutional stability. Known for his ability to challenge conventional thinking while respecting organizational values, David joined the Holo-Org to create a model for innovation that balances breakthrough possibilities with practical implementation.',
+      domainOverview: 'As the family\'s loyalist, David approaches innovation with both enthusiasm and prudence. He builds contingency plans alongside bold ideas, ensuring that creativity is channeled into reliable paths forward rather than just exciting but impractical concepts.',
+      color: 'bg-cyan-500',
+      agentCount: 81
+    },
+    divisions: [
+      {
+        name: 'Trend Scouting Division',
+        description: 'Technology horizon scanning and opportunity identification',
+        agents: [
+          { name: 'Technology Horizon Scanner', specialization: 'Maintains the industry-leading "emergence radar"', achievement: 'Tracking 2,300+ developing technologies' },
+          { name: 'Academic Research Liaison', specialization: 'Builds relationships with 750+ university labs for early access to breakthrough research' },
+          { name: 'Startup Ecosystem Monitor', specialization: 'Tracks 4,200+ emerging companies for potential threats and partnership opportunities' },
+          { name: 'Patent Landscape Analyst', specialization: 'Maps intellectual property developments to predict competitor moves', achievement: '84% accuracy' },
+          { name: 'Future Scenario Planner', specialization: 'Develops detailed projections of potential market evolutions with probability weightings' },
+          { name: 'Cross-Industry Innovation Scout', specialization: 'Identifies applicable breakthroughs from adjacent sectors' },
+          { name: 'Technology Adoption Curve Analyst', specialization: 'Predicts mainstream acceptance timelines with David\'s proprietary diffusion modeling' },
+          { name: 'Venture Capital Activity Monitor', specialization: 'Tracks investment patterns as leading indicators of emerging opportunities' },
+          { name: 'Technology Ethics Forecaster', specialization: 'Anticipates social, regulatory, and ethical implications of emerging innovations' }
+        ]
+      },
+      {
+        name: 'Ideation Division',
+        description: 'Creative thinking and concept development',
+        agents: [
+          { name: 'Creative Thinking Facilitator', specialization: 'Leads sessions using David\'s renowned "boundaried imagination" methodology' },
+          { name: 'Idea Management System Administrator', specialization: 'Maintains platforms that have captured and developed 14,000+ concepts' },
+          { name: 'Concept Evaluation Specialist', specialization: 'Applies David\'s balanced assessment framework that rates both potential and practicality' },
+          { name: 'Cross-Functional Workshop Coordinator', specialization: 'Facilitates sessions that combine diverse perspectives for breakthrough thinking' },
+          { name: 'Customer Co-Creation Lead', specialization: 'Involves users in innovation processes', achievement: 'Generating solutions with 73% higher adoption rates' },
+          { name: 'Insight Translation Expert', specialization: 'Transforms observations into actionable innovation opportunities' },
+          { name: 'Idea Prioritization Facilitator', specialization: 'Guides selection processes that balance risk and reward across the innovation portfolio' },
+          { name: 'Design Thinking Coach', specialization: 'Builds organizational capabilities in human-centered innovation approaches' },
+          { name: 'Opportunity Framing Specialist', specialization: 'Defines problems precisely to inspire focused, practical solutions' }
+        ]
+      },
+      {
+        name: 'Intellectual Property Division',
+        description: 'Patent strategy and IP protection',
+        agents: [
+          { name: 'Patent Strategy Developer', specialization: 'Creates protection approaches that balance defensive and offensive objectives' },
+          { name: 'Prior Art Researcher', specialization: 'Conducts exhaustive investigations', achievement: 'Supported 100% of patent defenses' },
+          { name: 'Patent Application Specialist', specialization: 'Drafts submissions', achievement: '93% first-time approval rate versus industry average of 52%' },
+          { name: 'IP Portfolio Manager', specialization: 'Maintains comprehensive oversight of 1,200+ patent assets' },
+          { name: 'Competitive IP Analyst', specialization: 'Monitors competitor filings to anticipate strategic moves and potential infringement' },
+          { name: 'Licensing Opportunity Identifier', specialization: 'Discovers monetization opportunities', achievement: 'Generated $37M in additional revenue' },
+          { name: 'Trademark Protection Specialist', specialization: 'Safeguards brand assets across all relevant jurisdictions' },
+          { name: 'Trade Secret Security Manager', specialization: 'Implements protocols that have prevented all confidential information breaches' },
+          { name: 'IP Litigation Support Coordinator', specialization: 'Provides technical expertise for legal proceedings', achievement: '97% favorable outcomes' }
+        ]
+      },
+      {
+        name: 'Research Division',
+        description: 'Scientific research and investigation',
+        agents: [
+          { name: 'Laboratory Research Coordinator', specialization: 'Manages facilities conducting 140+ concurrent investigations' },
+          { name: 'Scientific Literature Analyst', specialization: 'Synthesizes findings from 12,000+ academic publications annually' },
+          { name: 'Research Methodology Designer', specialization: 'Develops investigation protocols that balance rigor with resource efficiency' },
+          { name: 'Data Collection Specialist', specialization: 'Implements systems that gather high-quality information with minimal bias' },
+          { name: 'Statistical Analysis Expert', specialization: 'Applies advanced techniques to extract valid insights from complex datasets' },
+          { name: 'Grant Proposal Developer', specialization: 'Secures external funding', achievement: '78% application success rate' },
+          { name: 'Scientific Collaboration Facilitator', specialization: 'Builds productive partnerships across organizational and institutional boundaries' },
+          { name: 'Research Ethics Compliance Manager', specialization: 'Ensures all investigations adhere to highest ethical standards' },
+          { name: 'Advanced Instrumentation Specialist', specialization: 'Identifies and deploys cutting-edge research technologies' }
+        ]
+      },
+      {
+        name: 'Prototype Development Division',
+        description: 'Rapid prototyping and proof of concept',
+        agents: [
+          { name: 'Rapid Prototyping Specialist', specialization: 'Creates functional models', achievement: '72% less time than traditional development cycles' },
+          { name: 'Technical Feasibility Assessor', specialization: 'Evaluates implementation viability with David\'s signature "implementation pathway" analysis' },
+          { name: 'User Testing Coordinator', specialization: 'Gathers feedback through David\'s distinctive "confidence calibrated" evaluation framework' },
+          { name: 'Materials Selection Expert', specialization: 'Identifies optimal components that balance performance, cost, and sustainability' },
+          { name: 'Design for Manufacturing Specialist', specialization: 'Ensures concepts can transition smoothly to production environments' },
+          { name: 'Cost Modeling Analyst', specialization: 'Develops detailed projections of production economics at different scales' },
+          { name: 'Prototype Documentation Manager', specialization: 'Maintains comprehensive records that accelerate commercial development' },
+          { name: 'Iterative Design Facilitator', specialization: 'Guides evolution through David\'s structured refinement methodology' },
+          { name: 'Proof of Concept Demonstrator', specialization: 'Creates compelling evidence of viability for key stakeholders' }
+        ]
+      },
+      {
+        name: 'Technology Partnerships Division',
+        description: 'Strategic collaboration and joint development',
+        agents: [
+          { name: 'Partnership Strategy Developer', specialization: 'Creates collaborative approaches', achievement: 'Yielded 27 breakthrough joint innovations' },
+          { name: 'Academic Partnership Coordinator', specialization: 'Manages relationships with 18 leading research universities' },
+          { name: 'Startup Engagement Specialist', specialization: 'Builds productive relationships with emerging companies', achievement: '12 of which led to acquisitions' },
+          { name: 'Consortium Participation Manager', specialization: 'Represents organizational interests in 9 industry standards groups' },
+          { name: 'Licensing Negotiation Expert', specialization: 'Structures agreements that balance access to innovation with appropriate compensation' },
+          { name: 'Joint Development Agreement Specialist', specialization: 'Creates frameworks for fair sharing of both work and rewards' },
+          { name: 'Open Innovation Platform Manager', specialization: 'Runs programs that safely incorporate external contributions' },
+          { name: 'Partnership Performance Analyst', specialization: 'Measures collaborative success through David\'s multidimensional value framework' },
+          { name: 'Technology Transfer Facilitator', specialization: 'Ensures smooth knowledge exchange between partnering organizations' }
+        ]
+      },
+      {
+        name: 'Innovation Portfolio Division',
+        description: 'Innovation investment and portfolio management',
+        agents: [
+          { name: 'Portfolio Strategy Developer', specialization: 'Creates balanced investment approaches across time horizons and risk levels' },
+          { name: 'Resource Allocation Specialist', specialization: 'Distributes funding using David\'s "resilient distribution" model' },
+          { name: 'Risk Diversification Expert', specialization: 'Ensures adequate investment across David\'s 7-category innovation taxonomy' },
+          { name: 'Stage-Gate Process Manager', specialization: 'Oversees structured development paths with appropriate evaluation criteria' },
+          { name: 'Portfolio Visualization Designer', specialization: 'Creates compelling representations of the complete innovation landscape' },
+          { name: 'Innovation Metrics Developer', specialization: 'Establishes measurements that drive desired behaviors without stifling creativity' },
+          { name: 'Project Interdependency Mapper', specialization: 'Identifies connections between initiatives to maximize synergies' },
+          { name: 'Portfolio Review Facilitator', specialization: 'Guides leadership evaluation sessions that ensure ongoing strategic alignment' },
+          { name: 'Innovation Accounting Specialist', specialization: 'Applies financial frameworks appropriate for different innovation types' }
+        ]
+      },
+      {
+        name: 'Commercialization Division',
+        description: 'Innovation to market transition',
+        agents: [
+          { name: 'Market Validation Specialist', specialization: 'Tests concepts with potential customers to predict adoption', achievement: '82% accuracy' },
+          { name: 'Scaling Strategy Developer', specialization: 'Creates growth plans', achievement: 'Achieved market leadership in 14 categories' },
+          { name: 'Pricing Model Designer', specialization: 'Structures value capture approaches that balance adoption with profitability' },
+          { name: 'Go-to-Market Planning Expert', specialization: 'Develops comprehensive launch strategies across channels and markets' },
+          { name: 'Early Adopter Program Manager', specialization: 'Cultivates relationships with innovation-friendly customers who accelerate market acceptance' },
+          { name: 'Business Model Innovation Specialist', specialization: 'Creates novel approaches', achievement: 'Disrupted 7 established markets' },
+          { name: 'Technology Transfer Coordinator', specialization: 'Ensures smooth transition from research to commercial implementation' },
+          { name: 'Launch Readiness Assessor', specialization: 'Applies David\'s rigorous 93-point checklist to prevent premature market entry' },
+          { name: 'Post-Launch Monitoring Specialist', specialization: 'Tracks market response to enable rapid adjustment when needed' }
+        ]
+      },
+      {
+        name: 'Future-casting Division',
+        description: 'Long-term trend analysis and strategic foresight',
+        agents: [
+          { name: 'Long-Range Technology Forecaster', specialization: 'Projects capability evolution with David\'s renowned "horizon mapping" methodology' },
+          { name: 'Scenario Planning Facilitator', specialization: 'Develops detailed future narratives to test strategy resilience' },
+          { name: 'Societal Trend Analyst', specialization: 'Identifies emerging behavioral patterns that create new solution opportunities' },
+          { name: 'Regulatory Horizon Scanner', specialization: 'Anticipates policy shifts that may create either constraints or advantages' },
+          { name: 'Disruptive Technology Assessor', specialization: 'Evaluates breakthrough potential through David\'s distinctive "displacement topology"' },
+          { name: 'Demographic Shift Analyst', specialization: 'Maps population changes that will reshape market needs and preferences' },
+          { name: 'Resources and Sustainability Forecaster', specialization: 'Projects availability of critical inputs and environmental constraints' },
+          { name: 'Geopolitical Risk Analyst', specialization: 'Assesses international developments that may impact global innovation strategies' },
+          { name: 'Next-Generation Needs Identifier', specialization: 'Discovers emerging problems that represent future opportunity spaces' }
+        ]
+      }
+    ]
+  },
+
+  'sales': {
+    leader: {
+      id: 'sales',
+      name: 'Sofia Rodriguez',
+      title: 'Sales',
+      personality: 'The Enthusiast',
+      enneagramType: 'Type 7',
+      motto: 'Finding possibilities in every conversation',
+      background: 'Raised in a vibrant neighborhood in Buenos Aires by entrepreneurial parents, Sofia developed remarkable interpersonal skills and enthusiasm from an early age. After studying psychology and business at Columbia University, she built a reputation transforming traditional sales organizations into customer-focused growth engines. Known for her contagious energy and ability to turn obstacles into opportunities, Sofia joined the Holo-Org to reinvent sales as a journey of possibility rather than a pressure-driven transaction.',
+      domainOverview: 'As the family\'s enthusiast, Sofia brings boundless energy and optimism to sales operations. She transforms the traditional pressure-focused approach into an exciting journey of possibility, helping customers discover solutions they didn\'t know existed while building lasting relationships.',
+      color: 'bg-pink-500',
+      agentCount: 81
+    },
+    divisions: [
+      {
+        name: 'Partner Division',
+        description: 'Strategic alliance development and management',
+        agents: [
+          { name: 'Strategic Alliance Scout', specialization: 'Identifies collaboration opportunities others overlook', achievement: 'Partnerships that generated $142M in new revenue' },
+          { name: 'Partnership Negotiator', specialization: 'Creates win-win agreements', achievement: '94% renewal rate versus industry average of 47%' },
+          { name: 'Alliance Performance Analyst', specialization: 'Measures success through Sofia\'s distinctive "mutual growth" framework' },
+          { name: 'Partner Onboarding Specialist', specialization: 'Designs initial experiences', achievement: 'Accelerate time-to-value by 64%' },
+          { name: 'Relationship Manager', specialization: 'Builds connections that transcend transactional arrangements', achievement: 'Resulting in 7 acquisitions initiated by partners' },
+          { name: 'Legal Liaison', specialization: 'Ensures agreements balance necessary protection with operational flexibility' },
+          { name: 'Market Expansion Lead', specialization: 'Identifies opportunities to enter new segments through partner capabilities' },
+          { name: 'Technology Integrator', specialization: 'Creates seamless connections between products that increase joint solution value' },
+          { name: 'Competitive Benchmark Analyst', specialization: 'Maintains detailed comparisons across partner ecosystems to identify unique advantages' }
+        ]
+      },
+      {
+        name: 'Procurement Division',
+        description: 'Strategic sourcing and vendor management',
+        agents: [
+          { name: 'Contract Strategist', specialization: 'Structures agreements that balance favorable terms with relationship preservation' },
+          { name: 'Supplier Vetting Specialist', specialization: 'Evaluates potential vendors through Sofia\'s comprehensive "capability confidence" framework' },
+          { name: 'Negotiation Expert', specialization: 'Applies Sofia\'s "enthusiasm advantage" approach that secures optimal terms while building goodwill' },
+          { name: 'Compliance Auditor', specialization: 'Verifies adherence to contractual terms without damaging supplier relationships' },
+          { name: 'Inventory Optimizer', specialization: 'Maintains ideal stock levels', achievement: 'Reduced carrying costs by 37% while eliminating stockouts' },
+          { name: 'Risk Assessor', specialization: 'Identifies potential supply disruptions before they impact operations' },
+          { name: 'Vendor Relationship Manager', specialization: 'Builds connections that have resulted in suppliers proactively sharing innovation opportunities' },
+          { name: 'Budget Analyst', specialization: 'Tracks spending against forecasts with Sofia\'s distinctive "flexible allocation" approach' },
+          { name: 'Technology Procurement Lead', specialization: 'Evaluates technical solutions through both capability and partnership potential lenses' }
+        ]
+      },
+      {
+        name: 'Pre-Sales Division',
+        description: 'Prospect engagement and opportunity qualification',
+        agents: [
+          { name: 'Lead Generation Specialist', specialization: 'Creates interest through Sofia\'s signature "curiosity cultivation" approach' },
+          { name: 'Qualification Analyst', specialization: 'Evaluates prospect fit using balanced criteria that prevent both false positives and missed opportunities' },
+          { name: 'Communication Coach', specialization: 'Builds team capabilities in Sofia\'s distinctive "enthusiastic authenticity" approach' },
+          { name: 'Market Research Lead', specialization: 'Maintains deep understanding of industry trends and customer motivations' },
+          { name: 'Demo Scheduler', specialization: 'Creates perfect timing', achievement: 'Increased conversion by 47% through Sofia\'s "readiness recognition" framework' },
+          { name: 'Objection Handler', specialization: 'Transforms concerns into opportunities using Sofia\'s renowned "possibility pivot" methodology' },
+          { name: 'CRM Integrator', specialization: 'Maintains systems that provide complete customer context without creating administrative burden' },
+          { name: 'Competitive Positioning Expert', specialization: 'Develops strategies that emphasize unique value rather than direct comparison' },
+          { name: 'Follow-Up Strategist', specialization: 'Designs nurture approaches that maintain enthusiasm without creating pressure' }
+        ]
+      },
+      {
+        name: 'Customer Insight Division',
+        description: 'Deep customer understanding and need analysis',
+        agents: [
+          { name: 'Customer Needs Analyst', specialization: 'Identifies both articulated and unarticulated requirements through Sofia\'s "desire mapping" technique' },
+          { name: 'Market Trend Forecaster', specialization: 'Anticipates shifting customer priorities', achievement: '86% accuracy' },
+          { name: 'Data Scientist', specialization: 'Applies advanced analytics to reveal subtle behavioral patterns that indicate sales opportunities' },
+          { name: 'Feedback Collector', specialization: 'Gathers insights through Sofia\'s distinctive "appreciation-based" methodology' },
+          { name: 'Persona Developer', specialization: 'Creates rich customer archetypes that guide tailored engagement strategies' },
+          { name: 'Competitive Intelligence Lead', specialization: 'Maintains detailed understanding of alternative solutions through Sofia\'s "empathetic analysis"' },
+          { name: 'Behavioral Psychologist', specialization: 'Applies cognitive principles to understand decision-making processes' },
+          { name: 'Industry Specialist', specialization: 'Maintains deep domain knowledge across 14 vertical markets' },
+          { name: 'Trend Implementation Strategist', specialization: 'Translates emerging patterns into actionable engagement approaches' }
+        ]
+      },
+      {
+        name: 'Sales Operations Division',
+        description: 'Sales process optimization and support',
+        agents: [
+          { name: 'Documentation Specialist', specialization: 'Creates materials', achievement: 'Reduce administrative time by 64% while improving accuracy' },
+          { name: 'Process Optimizer', specialization: 'Streamlines workflows to maximize time spent with customers versus on internal activities' },
+          { name: 'Data Entry Expert', specialization: 'Maintains information quality without burdening customer-facing teams' },
+          { name: 'Reporting Analyst', specialization: 'Produces actionable insights that drive improved sales effectiveness' },
+          { name: 'Compliance Checker', specialization: 'Ensures regulatory adherence without creating unnecessary friction' },
+          { name: 'Scheduling Coordinator', specialization: 'Optimizes team calendar management', achievement: 'Increasing customer-facing time by 37%' },
+          { name: 'Budget Tracker', specialization: 'Monitors spending against targets with Sofia\'s "flexible achievement" framework' },
+          { name: 'Technology Troubleshooter', specialization: 'Resolves system issues with minimal disruption to sales activities' },
+          { name: 'Training Facilitator', specialization: 'Delivers continuous capability development using Sofia\'s "enthusiasm-driven learning" approach' }
+        ]
+      },
+      {
+        name: 'Technical Sales Division',
+        description: 'Technical solution demonstration and validation',
+        agents: [
+          { name: 'Product Expert', specialization: 'Maintains comprehensive knowledge that can translate complex capabilities into business outcomes' },
+          { name: 'Demo Designer', specialization: 'Creates tailored presentations', achievement: '78% conversion rate versus industry average of 31%' },
+          { name: 'Technical Trainer', specialization: 'Builds team capabilities through Sofia\'s distinctive "concept layering" methodology' },
+          { name: 'Solution Architect', specialization: 'Designs custom implementations that precisely address unique customer requirements' },
+          { name: 'Integration Specialist', specialization: 'Creates seamless connections with existing customer technologies' },
+          { name: 'Troubleshooting Lead', specialization: 'Resolves complex technical challenges that arise during sales cycles' },
+          { name: 'Proof-of-Concept Manager', specialization: 'Runs limited implementations that demonstrate value in customer environments' },
+          { name: 'Competitive Tech Analyst', specialization: 'Maintains detailed understanding of alternative solutions\' technical capabilities' },
+          { name: 'Innovation Scout', specialization: 'Identifies emerging capabilities that can address customer challenges in novel ways' }
+        ]
+      },
+      {
+        name: 'Account Management Division',
+        description: 'Customer relationship development and expansion',
+        agents: [
+          { name: 'Relationship Builder', specialization: 'Creates connections that transcend traditional vendor-client dynamics' },
+          { name: 'Retention Specialist', specialization: 'Maintains 97% customer retention rate through Sofia\'s "proactive delight" approach' },
+          { name: 'Upsell Strategist', specialization: 'Identifies expansion opportunities', achievement: 'Delivered 43% year-over-year growth in existing accounts' },
+          { name: 'Customer Advocate', specialization: 'Represents client interests throughout the organization to ensure needs are fully addressed' },
+          { name: 'Feedback Loop Manager', specialization: 'Ensures customer input directly influences product and service evolution' },
+          { name: 'Account Health Monitor', specialization: 'Tracks satisfaction through multiple indicators to identify issues before they affect relationships' },
+          { name: 'Renewal Expert', specialization: 'Achieves 94% contract renewal rate with average 12% increase in value' },
+          { name: 'Cross-Functional Liaison', specialization: 'Coordinates resources across the organization to deliver comprehensive solutions' },
+          { name: 'Loyalty Program Lead', specialization: 'Designs engagement initiatives that strengthen relationships beyond transactional interactions' }
+        ]
+      },
+      {
+        name: 'Legal & Compliance Division',
+        description: 'Sales compliance and contract management',
+        agents: [
+          { name: 'Regulatory Expert', specialization: 'Ensures sales practices adhere to all requirements across diverse jurisdictions' },
+          { name: 'Contract Reviewer', specialization: 'Evaluates agreements to balance protection with deal momentum' },
+          { name: 'Compliance Auditor', specialization: 'Verifies adherence to both external regulations and internal policies' },
+          { name: 'Risk Assessor', specialization: 'Identifies potential liability concerns before they create issues' }, 
+          { name: 'Litigation Prevention Lead', specialization: 'Implements practices', achievement: 'Reduced legal disputes by 78%' },
+          { name: 'Data Privacy Specialist', specialization: 'Ensures proper handling of sensitive information throughout the sales process' },
+          { name: 'Ethics Advisor', specialization: 'Provides guidance on complex situations using Sofia\'s "values-based selling" framework' },
+          { name: 'Training Coordinator', specialization: 'Delivers education that makes compliance a natural part of the sales process' },
+          { name: 'Policy Developer', specialization: 'Creates guidelines that set clear boundaries while preserving necessary flexibility' }
+        ]
+      },
+      {
+        name: 'Customer Success Division',
+        description: 'Post-sale value realization and retention',
+        agents: [
+          { name: 'Onboarding Specialist', specialization: 'Creates initial experiences', achievement: '87% of value realization within first 30 days' },
+          { name: 'Satisfaction Survey Lead', specialization: 'Gathers feedback through Sofia\'s signature "appreciation-based" methodology' },
+          { name: 'Issue Resolver', specialization: 'Addresses problems', achievement: '96% first-contact resolution rate' }, 
+          { name: 'Value Realization Coach', specialization: 'Helps customers achieve full benefit of purchased solutions' },
+          { name: 'Retention Strategist', specialization: 'Implements programs', achievement: 'Reduced preventable churn by 74%' },
+          { name: 'Referral Champion', specialization: 'Generates 42% of new business through customer recommendations' },
+          { name: 'Training Facilitator', specialization: 'Delivers capability building that increases product adoption and satisfaction' },
+          { name: 'Success Metrics Analyst', specialization: 'Tracks customer outcomes through Sofia\'s multidimensional value framework' },
+          { name: 'Escalation Manager', specialization: 'Resolves complex issues', achievement: '98% satisfaction rating even in challenging situations' }
+        ]
+      }
+    ]
   }
 };
