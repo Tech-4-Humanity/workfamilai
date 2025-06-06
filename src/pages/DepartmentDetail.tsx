@@ -53,6 +53,8 @@ const DepartmentDetail = () => {
     );
   }
 
+  const totalAgents = enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
+
   // Show department detail view
   return (
     <div className="container max-w-7xl mx-auto py-8 px-4">
@@ -69,20 +71,21 @@ const DepartmentDetail = () => {
         <div className="lg:col-span-1">
           <LeaderProfilePreview 
             leader={enhancedData.leader}
-            departmentId={departmentId}
-            onViewEnhancedProfile={() => setShowEnhancedProfile(true)}
+            divisionsCount={enhancedData.divisions.length}
+            totalAgents={totalAgents}
+            onViewProfile={() => setShowEnhancedProfile(true)}
           />
         </div>
         
         <div className="lg:col-span-2">
           <DepartmentStats 
-            agentCount={enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)}
-            divisionCount={enhancedData.divisions.length}
+            divisionsCount={enhancedData.divisions.length}
+            totalAgents={totalAgents}
+            leaderPersonality={enhancedData.leader.personality}
           />
           
           <DivisionsGrid 
             divisions={enhancedData.divisions}
-            departmentId={departmentId}
           />
         </div>
       </div>
