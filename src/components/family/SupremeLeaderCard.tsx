@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star, Users } from 'lucide-react';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
+import { useState } from 'react';
 
 interface SupremeLeaderCardProps {
   totalDepartments: number;
@@ -9,7 +10,15 @@ interface SupremeLeaderCardProps {
 }
 
 export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLeaderCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const ozImageUrl = getLeaderImageUrl('Trojan Oz');
+
+  const handleImageLoad = () => setImageLoaded(true);
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(true);
+  };
 
   return (
     <Card className="max-w-md mx-auto mb-8 border-2 border-yellow-400/50 bg-gradient-to-br from-yellow-50/80 to-orange-50/80 backdrop-blur-lg shadow-2xl overflow-hidden group hover:scale-105 transition-all duration-500">
@@ -48,23 +57,32 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
       </CardHeader>
 
       <CardContent className="text-center relative z-10">
-        {/* Professional photo with crown effect */}
+        {/* Professional photo with crown effect and improved loading */}
         <div className="relative mb-4">
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
-          <img
-            src={ozImageUrl}
-            alt="Trojan Oz"
-            className="relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl"
-            onError={(e) => {
-              // Fallback to crown emoji if image fails to load
-              e.currentTarget.style.display = 'none';
-              const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-              if (fallback) fallback.style.display = 'flex';
-            }}
-          />
-          <div className="hidden w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full items-center justify-center text-4xl border-4 border-yellow-400/50 shadow-2xl">
-            👑
-          </div>
+          
+          {!imageLoaded && !imageError && (
+            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400/50 to-orange-500/50 rounded-full flex items-center justify-center border-4 border-yellow-400/50 shadow-2xl animate-pulse">
+              <div className="w-12 h-12 bg-white/30 rounded-full"></div>
+            </div>
+          )}
+          
+          {!imageError && (
+            <img
+              src={ozImageUrl}
+              alt="Trojan Oz"
+              className={`relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          )}
+          
+          {imageError && (
+            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-4xl border-4 border-yellow-400/50 shadow-2xl">
+              👑
+            </div>
+          )}
+          
           {/* Crown overlay */}
           <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
             <span className="text-2xl">👑</span>
@@ -84,7 +102,7 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
           </span>
           <span className="flex items-center space-x-2">
             <Users className="h-4 w-4" />
-            <span className="font-semibold">{totalAgents} AI Agents</span>
+            <span className="font-semibold">{totalAgents?.toLocaleString() || '10,000+'} AI Agents</span>
           </span>
         </div>
       </CardContent>

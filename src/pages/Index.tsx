@@ -5,6 +5,7 @@ import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { LeaderCard } from '@/components/family/LeaderCard';
 import { SupremeLeaderCard } from '@/components/family/SupremeLeaderCard';
+import { useAgentData } from '@/hooks/useAgentData';
 
 const departmentHeads = [
   {
@@ -15,7 +16,7 @@ const departmentHeads = [
     enneagramType: 'Type 1',
     description: 'The perfectionist who never misses a detail and transforms product ideas into flawless realities.',
     color: 'bg-blue-500',
-    agentCount: 81
+    avatar: '🔬'
   },
   {
     id: 'marketing',
@@ -25,7 +26,7 @@ const departmentHeads = [
     enneagramType: 'Type 2',
     description: 'The empathetic helper who intuitively understands customer needs before they can articulate them.',
     color: 'bg-green-500',
-    agentCount: 81
+    avatar: '📈'
   },
   {
     id: 'human-resources',
@@ -35,7 +36,7 @@ const departmentHeads = [
     enneagramType: 'Type 3',
     description: 'The achievement-oriented talent developer who turns HR from cost center into strategic powerhouse.',
     color: 'bg-purple-500',
-    agentCount: 81
+    avatar: '👥'
   },
   {
     id: 'finance-operations',
@@ -45,7 +46,7 @@ const departmentHeads = [
     enneagramType: 'Type 4',
     description: 'The creative individualist who sees patterns others miss and finds hidden revenue streams.',
     color: 'bg-orange-500',
-    agentCount: 81
+    avatar: '💼'
   },
   {
     id: 'customer-support',
@@ -55,7 +56,7 @@ const departmentHeads = [
     enneagramType: 'Type 5',
     description: 'The investigative problem-solver who transforms support from reactive firefighting to proactive prevention.',
     color: 'bg-teal-500',
-    agentCount: 81
+    avatar: '🔍'
   },
   {
     id: 'innovation-rd',
@@ -65,7 +66,7 @@ const departmentHeads = [
     enneagramType: 'Type 6',
     description: 'The loyal but questioning innovation leader who balances breakthrough thinking with practical implementation.',
     color: 'bg-indigo-500',
-    agentCount: 81
+    avatar: '💡'
   },
   {
     id: 'sales',
@@ -75,7 +76,7 @@ const departmentHeads = [
     enneagramType: 'Type 7',
     description: 'The enthusiastic opportunity finder who turns every conversation into a journey of possibilities.',
     color: 'bg-red-500',
-    agentCount: 81
+    avatar: '🎯'
   },
   {
     id: 'governance-compliance',
@@ -85,7 +86,7 @@ const departmentHeads = [
     enneagramType: 'Type 8',
     description: 'The challenging but principled guardian who transforms compliance from restriction into competitive advantage.',
     color: 'bg-gray-700',
-    agentCount: 81
+    avatar: '⚖️'
   },
   {
     id: 'external-relations',
@@ -95,13 +96,14 @@ const departmentHeads = [
     enneagramType: 'Type 9',
     description: 'The diplomatic consensus-builder who transforms conflicts into productive partnerships.',
     color: 'bg-pink-500',
-    agentCount: 81
+    avatar: '🤝'
   }
 ];
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const { totalAgents, getDepartmentAgentCount } = useAgentData();
 
   const filteredDepartments = departmentHeads.filter(dept =>
     dept.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -109,7 +111,11 @@ const Index = () => {
     dept.personality.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const totalAgents = departmentHeads.reduce((sum, dept) => sum + dept.agentCount, 0);
+  // Add real agent counts to department data
+  const departmentsWithRealCounts = filteredDepartments.map(dept => ({
+    ...dept,
+    agentCount: getDepartmentAgentCount(dept.id)
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
@@ -131,10 +137,10 @@ const Index = () => {
             <p className="text-xl text-gray-600 mb-6">The AI Agent Family Organizational Chart</p>
             <p className="text-sm text-gray-500 italic mb-8">Nine Minds, One Mission • 2025 Vision</p>
             
-            {/* Supreme Leader Card */}
+            {/* Supreme Leader Card with real total */}
             <SupremeLeaderCard 
               totalDepartments={departmentHeads.length} 
-              totalAgents={totalAgents} 
+              totalAgents={totalAgents || 0} 
             />
             
             {/* Search */}
@@ -154,7 +160,7 @@ const Index = () => {
       {/* Department Grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredDepartments.map((dept) => (
+          {departmentsWithRealCounts.map((dept) => (
             <LeaderCard
               key={dept.id}
               leader={dept}
@@ -163,7 +169,7 @@ const Index = () => {
           ))}
         </div>
         
-        {filteredDepartments.length === 0 && (
+        {departmentsWithRealCounts.length === 0 && (
           <div className="text-center py-12">
             <div className="text-4xl mb-4">🔍</div>
             <h3 className="text-xl font-semibold text-gray-700 mb-2">No family members found</h3>
@@ -172,7 +178,7 @@ const Index = () => {
         )}
       </div>
 
-      {/* Stats Footer */}
+      {/* Stats Footer with real data */}
       <div className="relative z-10 bg-white/80 backdrop-blur-lg border-t border-white/20 mt-16">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
@@ -185,7 +191,9 @@ const Index = () => {
               <div className="text-sm text-gray-600">Department Heads</div>
             </div>
             <div className="group hover:scale-105 transition-transform duration-300">
-              <div className="text-3xl font-bold text-purple-600 mb-2 group-hover:text-purple-700">{totalAgents}</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2 group-hover:text-purple-700">
+                {totalAgents?.toLocaleString() || '10,000+'}
+              </div>
               <div className="text-sm text-gray-600">AI Agents</div>
             </div>
             <div className="group hover:scale-105 transition-transform duration-300">
