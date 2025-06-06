@@ -1,9 +1,25 @@
-
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Users, Target, Star } from 'lucide-react';
+import { createGlobalNameAssigner } from '@/utils/globalNames';
+
+// Create a single name assigner instance for consistency
+const nameAssigner = createGlobalNameAssigner();
+
+// Pre-assign names for all departments to ensure consistency
+const DEPARTMENT_NAMES = {
+  'product-development': nameAssigner.assignNamesForDepartment('product-development', 81),
+  'marketing': nameAssigner.assignNamesForDepartment('marketing', 81),
+  'human-resources': nameAssigner.assignNamesForDepartment('human-resources', 81),
+  'finance-operations': nameAssigner.assignNamesForDepartment('finance-operations', 81),
+  'customer-support': nameAssigner.assignNamesForDepartment('customer-support', 81),
+  'innovation-rd': nameAssigner.assignNamesForDepartment('innovation-rd', 81),
+  'sales': nameAssigner.assignNamesForDepartment('sales', 81),
+  'governance-compliance': nameAssigner.assignNamesForDepartment('governance-compliance', 81),
+  'external-relations': nameAssigner.assignNamesForDepartment('external-relations', 81)
+};
 
 const departmentData = {
   'product-development': {
@@ -22,7 +38,7 @@ const departmentData = {
         description: 'Deep market analysis and trend identification',
         agents: [
           'Trend Analysis Specialist',
-          'Customer Interview Coordinator',
+          'Customer Interview Coordinator', 
           'Competitor Research Expert',
           'Data Survey Designer',
           'Market Sizing Analyst',
@@ -1340,6 +1356,18 @@ const departmentData = {
   }
 };
 
+// Function to get named agents for a team
+const getNamedAgents = (departmentId: string, teamIndex: number, agentRoles: string[]) => {
+  const departmentNames = DEPARTMENT_NAMES[departmentId] || [];
+  const startIndex = teamIndex * 9; // Each team has 9 agents
+  
+  return agentRoles.map((role, index) => {
+    const nameIndex = startIndex + index;
+    const agentName = departmentNames[nameIndex] || `Agent ${nameIndex + 1000}`;
+    return `${agentName} - ${role}`;
+  });
+};
+
 const DepartmentDetail = () => {
   const { departmentId } = useParams();
   const navigate = useNavigate();
@@ -1420,38 +1448,42 @@ const DepartmentDetail = () => {
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Agent Teams</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {department.teams.map((team, index) => (
-            <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-lg text-gray-900 mb-2">
-                      {team.name}
-                    </CardTitle>
-                    <p className="text-sm text-gray-600 mb-3">
-                      {team.description}
-                    </p>
-                    <Badge variant="outline" className="text-xs">
-                      {team.agents.length} Specialists
-                    </Badge>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {team.agents.map((agent, agentIndex) => (
-                    <div 
-                      key={agentIndex}
-                      className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
-                      <span className="text-sm text-gray-700">{agent}</span>
+          {department.teams.map((team, index) => {
+            const namedAgents = getNamedAgents(departmentId as string, index, team.agents);
+            
+            return (
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-lg text-gray-900 mb-2">
+                        {team.name}
+                      </CardTitle>
+                      <p className="text-sm text-gray-600 mb-3">
+                        {team.description}
+                      </p>
+                      <Badge variant="outline" className="text-xs">
+                        {team.agents.length} Specialists
+                      </Badge>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {namedAgents.map((namedAgent, agentIndex) => (
+                      <div 
+                        key={agentIndex}
+                        className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
+                        <span className="text-sm text-gray-700">{namedAgent}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
 
