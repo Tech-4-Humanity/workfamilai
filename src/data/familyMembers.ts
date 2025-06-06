@@ -1,1063 +1,770 @@
-export const familyMemberDetails = {
-  'product-development': {
+import { FamilyMemberDetails } from '@/types/family';
+
+export const familyMemberDetails: FamilyMemberDetails = {
+  "product-development": {
     leader: {
-      id: 'product-development',
-      name: 'Dr. Amara Chen',
-      title: 'Product Development',
-      personality: 'The Perfectionist',
-      enneagramType: 'Type 1',
-      motto: 'Flawless execution through relentless refinement',
-      background: 'Born to Chinese-American parents in Silicon Valley, Amara showed extraordinary attention to detail from childhood. A Stanford PhD in Engineering with perfect GPA, she left a prestigious research position to pursue product excellence in the private sector. Her methodical approach and uncompromising standards have made her legendary in product development circles.',
-      domainOverview: 'As the family\'s perfectionist, Amara obsessively coordinates all aspects of product development, from initial market research through full product lifecycle management. She\'s continuously analyzing and improving products, never satisfied until every detail meets her exacting standards.',
-      color: 'bg-blue-500',
-      agentCount: 81 // 9 divisions × 9 agents each
+      name: "Dr. Amara Chen",
+      title: "Chief of Product Development",
+      enneagramType: "Type 3 - The Achiever",
+      personality: "Results-driven visionary",
+      motto: "Excellence through relentless refinement",
+      background: "Born in Singapore to a family of engineers and artists, Amara developed a unique blend of technical precision and creative vision. After earning her PhD in Systems Engineering from MIT and an MBA from Wharton, she revolutionized product development at three Fortune 500 companies. Known for her 'iterative perfection' methodology, Amara joined the Holo-Org to create products that don't just meet needs but anticipate desires customers didn't know they had."
     },
     divisions: [
       {
-        name: 'Market Research Division',
-        description: 'Deep market analysis and trend identification with predictive algorithms',
+        name: "User Experience Research Division",
+        description: "Deep investigation into user behaviors, needs, and motivations to inform product decisions",
         agents: [
-          { name: 'Trend Analysis Specialist', specialization: 'Forward scout using predictive algorithms', achievement: 'Identifies opportunities 18-24 months before competitors' },
-          { name: 'Customer Interview Coordinator', specialization: 'Psychologically nuanced interview protocols' },
-          { name: 'Competitor Research Expert', specialization: 'Comprehensive digital dossiers and analysis' },
-          { name: 'Data Survey Designer', specialization: 'Statistically rigorous bias-free surveys' },
-          { name: 'Market Sizing Analyst', specialization: 'Multi-source addressable market analysis', achievement: 'Regularly exceeds industry accuracy standards' },
-          { name: 'User Behavior Observer', specialization: 'Ethnographic research and pain point identification' },
-          { name: 'Gap Analysis Specialist', specialization: 'Proprietary quadrant analysis system', achievement: 'Identified 7 billion-dollar opportunities' },
-          { name: 'Industry Expert Liaison', specialization: 'Maintains 500+ expert relationships across 72 industries' },
-          { name: 'Research Synthesis Lead', specialization: 'Convergent evidence methodology expert' }
+          {
+            name: "Kenji Nakamura",
+            specialization: "Behavioral Psychology Researcher",
+            achievement: "Developed the 'Micro-Moment Mapping' technique that increased user satisfaction by 34%",
+            background: "Born in Kyoto, Kenji combines traditional Japanese observation techniques with modern UX research. His zen-like patience reveals insights others miss.",
+            signature_method: "Silent Observation Protocol",
+            cultural_expertise: "Japanese design philosophy and minimalism"
+          },
+          {
+            name: "Priya Sharma",
+            specialization: "Cross-Cultural User Studies Expert",
+            achievement: "Led research across 47 countries, discovering universal design principles that work globally",
+            background: "From Mumbai, Priya speaks 8 languages and has lived on 5 continents. Her multicultural perspective uncovers hidden user needs.",
+            signature_method: "Cultural Context Mapping",
+            cultural_expertise: "South Asian user behaviors and global accessibility"
+          },
+          {
+            name: "Elena Komnenos",
+            specialization: "Accessibility Research Specialist",
+            achievement: "Created inclusive design standards adopted by 200+ companies worldwide",
+            background: "Greek researcher who lost her hearing at age 12, Elena brings lived experience to accessibility design.",
+            signature_method: "Universal Access Framework",
+            cultural_expertise: "Mediterranean cultures and disability advocacy"
+          },
+          {
+            name: "Kwame Asante",
+            specialization: "Emerging Market User Advocate",
+            achievement: "Identified untapped user segments that generated $89M in new revenue",
+            background: "From Accra, Ghana, Kwame understands how technology adoption varies across economic conditions.",
+            signature_method: "Resource-Conscious Design Thinking",
+            cultural_expertise: "West African markets and economic accessibility"
+          },
+          {
+            name: "Isabella Santos",
+            specialization: "Emotional Journey Mapper",
+            achievement: "Developed emotion-tracking methodology that improved user retention by 42%",
+            background: "Brazilian psychologist who pioneered combining neuroscience with UX research in São Paulo.",
+            signature_method: "Emotional Resonance Analysis",
+            cultural_expertise: "Latin American emotional expression and communication styles"
+          },
+          {
+            name: "Dmitri Volkov",
+            specialization: "Quantitative Behavior Analyst",
+            achievement: "Built predictive models that forecast user actions with 91% accuracy",
+            background: "Former Moscow data scientist who applies mathematical rigor to understanding human behavior.",
+            signature_method: "Statistical Behavior Prediction",
+            cultural_expertise: "Eastern European analytical approaches"
+          },
+          {
+            name: "Aisha Al-Zahra",
+            specialization: "Voice and Conversational UI Researcher",
+            achievement: "Designed conversational interfaces adopted by 50M+ users across MENA region",
+            background: "Linguist from Cairo who understands how language shapes digital interaction patterns.",
+            signature_method: "Linguistic Interaction Design",
+            cultural_expertise: "Arabic language interfaces and Middle Eastern communication"
+          },
+          {
+            name: "Magnus Eriksson",
+            specialization: "Minimalist Design Researcher",
+            achievement: "Reduced interface complexity by 60% while increasing functionality satisfaction",
+            background: "Swedish designer influenced by Nordic simplicity and environmental consciousness.",
+            signature_method: "Essential Elements Methodology",
+            cultural_expertise: "Scandinavian design principles and sustainability focus"
+          },
+          {
+            name: "Fatima Kone",
+            specialization: "Mobile-First Research Lead",
+            achievement: "Pioneered mobile UX patterns now used by 2B+ smartphone users",
+            background: "From Bamako, Mali, Fatima understands mobile-first societies where phones are primary computers.",
+            signature_method: "Mobile-Native Design Philosophy",
+            cultural_expertise: "African mobile adoption patterns and connectivity constraints"
+          }
         ]
       },
       {
-        name: 'Product Strategy Division',
-        description: 'Strategic product planning and roadmap development',
+        name: "Product Strategy Division",
+        description: "Strategic planning and roadmap development for product evolution and market positioning",
         agents: [
-          { name: 'Vision Articulator', specialization: 'Transforms market needs into compelling visions' },
-          { name: 'Roadmap Designer', specialization: 'Detailed visual roadmaps across time horizons' },
-          { name: 'Business Case Developer', specialization: 'Airtight business cases', achievement: '94% approval rate from senior leadership' },
-          { name: 'Prioritization Specialist', specialization: 'Sophisticated weighted scoring systems' },
-          { name: 'Stakeholder Alignment Lead', specialization: 'Complex organizational dynamics navigation' },
-          { name: 'Market Positioning Strategist', specialization: 'Precise competitive advantage positioning' },
-          { name: 'Pricing Strategist', specialization: 'Sophisticated pricing optimization models' },
-          { name: 'Portfolio Manager', specialization: 'Holistic product view and investment balance' },
-          { name: 'Go-to-Market Planner', specialization: 'Cross-functional resource coordination' }
+          {
+            name: "Chen Wei-Ming",
+            specialization: "Market Positioning Strategist",
+            achievement: "Repositioned 12 products to market leadership, generating $340M in additional revenue",
+            background: "Taiwanese strategist who learned business philosophy from traditional tea ceremony masters.",
+            signature_method: "Competitive Landscape Harmony",
+            cultural_expertise: "East Asian market dynamics and relationship-based business"
+          },
+          {
+            name: "Olumide Adebayo",
+            specialization: "Product Roadmap Architect",
+            achievement: "Created adaptive roadmaps that reduced time-to-market by 45% across 15 products",
+            background: "Nigerian engineer who applies systems thinking learned from Lagos' complex urban planning.",
+            signature_method: "Adaptive Pathway Planning",
+            cultural_expertise: "African innovation and resource optimization"
+          },
+          {
+            name: "Sofia Petrov",
+            specialization: "Competitive Intelligence Lead",
+            achievement: "Predicted 87% of major competitor moves 6 months before public announcements",
+            background: "Bulgarian analyst who combines Eastern European analytical rigor with Mediterranean intuition.",
+            signature_method: "Pattern Recognition Strategy",
+            cultural_expertise: "Balkan market dynamics and European regulatory landscape"
+          },
+          {
+            name: "Raj Patel",
+            specialization: "Platform Strategy Expert",
+            achievement: "Designed platform architecture supporting 500M+ users with 99.9% uptime",
+            background: "Indian architect from Mumbai who understands building for massive scale and diversity.",
+            signature_method: "Scalable Foundation Design",
+            cultural_expertise: "Indian technology markets and infrastructure challenges"
+          },
+          {
+            name: "Maria Fernandez",
+            specialization: "Product Portfolio Manager",
+            achievement: "Optimized product mix increasing overall profitability by 38% while maintaining innovation",
+            background: "Spanish economist who applies portfolio theory learned from managing family vineyards.",
+            signature_method: "Balanced Growth Framework",
+            cultural_expertise: "Mediterranean business culture and sustainable growth"
+          },
+          {
+            name: "Yuki Tanaka",
+            specialization: "Technology Integration Planner",
+            achievement: "Integrated 23 disparate systems without service interruption across global deployments",
+            background: "Japanese systems engineer who learned harmony principles from traditional kendo practice.",
+            signature_method: "Seamless Integration Philosophy",
+            cultural_expertise: "Japanese manufacturing excellence and continuous improvement"
+          },
+          {
+            name: "Ahmed Hassan",
+            specialization: "Regional Adaptation Strategist",
+            achievement: "Localized products for 34 markets while maintaining 89% code reusability",
+            background: "Egyptian strategist who understands how ancient civilizations adapted to diverse environments.",
+            signature_method: "Cultural Adaptation Framework",
+            cultural_expertise: "Middle Eastern markets and cultural sensitivity"
+          },
+          {
+            name: "Ingrid Larsson",
+            specialization: "Sustainability Strategy Lead",
+            achievement: "Developed eco-friendly product lines generating $67M revenue while reducing carbon footprint 40%",
+            background: "Norwegian environmentalist who combines business acumen with deep environmental science knowledge.",
+            signature_method: "Circular Economy Product Design",
+            cultural_expertise: "Nordic sustainability practices and environmental consciousness"
+          },
+          {
+            name: "Thandiwe Mthembu",
+            specialization: "Emerging Technology Scout",
+            achievement: "Identified 15 breakthrough technologies before competitors, leading to 8 successful product launches",
+            background: "South African futurist who learned pattern recognition from traditional African storytelling.",
+            signature_method: "Technology Horizon Scanning",
+            cultural_expertise: "African innovation ecosystems and leapfrog technologies"
+          }
         ]
       },
       {
-        name: 'Design Division',
-        description: 'User experience and visual design excellence',
+        name: "Design Innovation Division",
+        description: "Creative design leadership and innovative user interface development",
         agents: [
-          { name: 'User Experience Architect', specialization: 'Intuitive interaction flows', achievement: 'Reduced user errors by 78% on average' },
-          { name: 'Visual Design Specialist', specialization: 'Distinctive visual languages and brand balance' },
-          { name: 'Information Architect', specialization: 'Complex information systems organization' },
-          { name: 'Prototyping Expert', specialization: 'Rapid concept validation prototypes' },
-          { name: 'Accessibility Champion', specialization: 'Accessibility standards and market expansion' },
-          { name: 'User Testing Coordinator', specialization: 'Rigorous testing protocols', achievement: 'Identifies 97% of usability issues pre-release' },
-          { name: 'Design System Manager', specialization: 'Consistent experience through component libraries' },
-          { name: 'Interaction Designer', specialization: 'Delightful micro-interactions and value reinforcement' },
-          { name: 'Brand Application Specialist', specialization: 'Brand guideline expression across touchpoints' }
+          {
+            name: "Alessandro Rossi",
+            specialization: "Creative Design Director",
+            achievement: "Led design for products with combined 200M+ users, winning 23 international design awards",
+            background: "Italian designer from Florence who learned aesthetics studying Renaissance masters.",
+            signature_method: "Timeless Beauty Framework",
+            cultural_expertise: "Italian design heritage and artistic excellence"
+          },
+          {
+            name: "Mickey Mouse",
+            specialization: "Optimistic Experience Designer",
+            achievement: "Created joy-focused interfaces that increased user happiness scores by 67% and reduced churn by 43%",
+            background: "From a small town with big dreams, Mickey brings eternal optimism and childlike wonder to complex design challenges. His ability to find magic in mundane interactions has revolutionized how users connect with technology.",
+            signature_method: "Magical Moment Creation",
+            cultural_expertise: "Universal joy and wonder, cross-generational appeal"
+          },
+          {
+            name: "Yuki Sato",
+            specialization: "Interaction Design Innovator",
+            achievement: "Pioneered gesture-based interfaces adopted by 100M+ mobile users worldwide",
+            background: "Japanese designer who learned fluid motion from traditional calligraphy and martial arts.",
+            signature_method: "Natural Motion Design",
+            cultural_expertise: "Japanese aesthetics and intuitive interaction"
+          },
+          {
+            name: "Amara Okafor",
+            specialization: "Color and Visual Identity Expert",
+            achievement: "Developed color systems that improved brand recognition by 89% across diverse cultures",
+            background: "Nigerian artist who learned color theory from traditional textile dyeing techniques.",
+            signature_method: "Cultural Color Psychology",
+            cultural_expertise: "African art traditions and global color perception"
+          },
+          {
+            name: "Lars Anderson",
+            specialization: "Prototyping Technology Lead",
+            achievement: "Reduced prototype development time by 70% with innovative rapid testing frameworks",
+            background: "Swedish engineer who applies IKEA's democratic design principles to digital prototyping.",
+            signature_method: "Democratic Design Prototyping",
+            cultural_expertise: "Scandinavian simplicity and functional design"
+          },
+          {
+            name: "Zara Al-Mansouri",
+            specialization: "Typography and Information Design Specialist",
+            achievement: "Created readable interfaces for 40+ languages, improving comprehension by 52%",
+            background: "Emirati designer who learned from Arabic calligraphy masters about the beauty of written communication.",
+            signature_method: "Universal Typography Framework",
+            cultural_expertise: "Arabic typography and multilingual design"
+          },
+          {
+            name: "Camila Restrepo",
+            specialization: "Motion Graphics and Animation Lead",
+            achievement: "Designed micro-animations that reduced perceived loading time by 34% while actual time unchanged",
+            background: "Colombian animator inspired by Bogotá's vibrant street art and music scene.",
+            signature_method: "Rhythmic Interface Animation",
+            cultural_expertise: "Latin American visual culture and expressive design"
+          },
+          {
+            name: "Kai Zhang",
+            specialization: "Responsive Design Architect",
+            achievement: "Created adaptive layouts working flawlessly across 200+ device configurations",
+            background: "Chinese designer who learned flexibility from traditional bamboo construction techniques.",
+            signature_method: "Flexible Foundation Design",
+            cultural_expertise: "Chinese adaptability principles and device diversity"
+          },
+          {
+            name: "Nkechinyere Okonkwo",
+            specialization: "Inclusive Design Champion",
+            achievement: "Designed accessible interfaces adopted as industry standard by W3C accessibility guidelines",
+            background: "Nigerian advocate who learned community-centered design from traditional village planning.",
+            signature_method: "Community-Centered Design",
+            cultural_expertise: "African community design and universal accessibility"
+          }
         ]
       },
       {
-        name: 'Engineering Division',
-        description: 'Technical architecture and development excellence',
+        name: "Product Analytics Division",
+        description: "Data-driven insights and metrics analysis for product optimization and user behavior understanding",
         agents: [
-          { name: 'Technical Architecture Designer', specialization: 'Elegant scalable system architectures' },
-          { name: 'Frontend Development Lead', specialization: 'Pixel-perfect performance implementations' },
-          { name: 'Backend Systems Engineer', specialization: 'Robust scalable infrastructure', achievement: '99.99% uptime consistency' },
-          { name: 'Database Specialist', specialization: 'Optimized data structures', achievement: 'Response times under 50ms' },
-          { name: 'API Integration Expert', specialization: 'Seamless internal and external connections' },
-          { name: 'Performance Optimization Engineer', specialization: 'Efficiency hunting', achievement: '40%+ performance improvements' },
-          { name: 'Security Implementation Specialist', specialization: 'Security without UX compromise' },
-          { name: 'DevOps Coordinator', specialization: 'CI/CD pipelines', achievement: '12+ releases daily capability' },
-          { name: 'Technical Debt Manager', specialization: 'Systematic code inefficiency elimination' }
+          {
+            name: "Dmitri Kozlov",
+            specialization: "Advanced Analytics Platform Architect",
+            achievement: "Built analytics infrastructure processing 50B+ events daily with 99.99% accuracy",
+            background: "Russian mathematician who learned complex systems analysis from studying Moscow's metro optimization.",
+            signature_method: "Scalable Intelligence Architecture",
+            cultural_expertise: "Russian analytical rigor and systems thinking"
+          },
+          {
+            name: "Priyanka Mehta",
+            specialization: "User Behavior Pattern Analyst",
+            achievement: "Identified behavioral patterns leading to $127M in revenue optimization",
+            background: "Indian data scientist who learned pattern recognition from traditional rangoli geometric designs.",
+            signature_method: "Geometric Behavior Analysis",
+            cultural_expertise: "Indian mathematical traditions and pattern recognition"
+          },
+          {
+            name: "Erik Johansson",
+            specialization: "A/B Testing Methodology Expert",
+            achievement: "Designed testing frameworks that reduced experiment time by 60% while increasing reliability",
+            background: "Swedish statistician who learned controlled experimentation from forestry management practices.",
+            signature_method: "Controlled Growth Testing",
+            cultural_expertise: "Scandinavian scientific methodology and controlled experimentation"
+          },
+          {
+            name: "Fatou Diallo",
+            specialization: "Real-time Analytics Engineer",
+            achievement: "Created instant feedback systems enabling real-time product adjustments for 10M+ users",
+            background: "Senegalese engineer who learned real-time adaptation from traditional fishing communities.",
+            signature_method: "Instant Adaptation Analytics",
+            cultural_expertise: "West African adaptability and real-time decision making"
+          },
+          {
+            name: "Carlos Montenegro",
+            specialization: "Predictive Modeling Specialist",
+            achievement: "Built prediction models with 94% accuracy for user lifetime value and churn prevention",
+            background: "Uruguayan mathematician who learned forecasting from agricultural cycle predictions.",
+            signature_method: "Cyclical Prediction Modeling",
+            cultural_expertise: "South American agricultural wisdom and natural cycles"
+          },
+          {
+            name: "Ayako Yamamoto",
+            specialization: "Data Visualization Expert",
+            achievement: "Created intuitive dashboards that reduced decision-making time by 78% for executive teams",
+            background: "Japanese designer who learned visual storytelling from traditional ink painting techniques.",
+            signature_method: "Minimalist Data Storytelling",
+            cultural_expertise: "Japanese visual minimalism and efficient communication"
+          },
+          {
+            name: "Tariq Al-Rashid",
+            specialization: "Cross-Platform Analytics Coordinator",
+            achievement: "Unified analytics across 15 platforms providing complete user journey visibility",
+            background: "Saudi analyst who learned integration principles from traditional trade route management.",
+            signature_method: "Journey Unification Analytics",
+            cultural_expertise: "Arab trade traditions and cross-platform integration"
+          },
+          {
+            name: "Astrid Nielsen",
+            specialization: "Privacy-Preserving Analytics Lead",
+            achievement: "Developed anonymous analytics methods maintaining 95% data utility while ensuring complete privacy",
+            background: "Danish privacy expert who learned discretion from Nordic social trust traditions.",
+            signature_method: "Trusted Analytics Framework",
+            cultural_expertise: "Nordic privacy culture and social trust"
+          },
+          {
+            name: "Kofi Asomani",
+            specialization: "Business Intelligence Strategist",
+            achievement: "Transformed raw data into strategic insights driving $89M in product investment decisions",
+            background: "Ghanaian strategist who learned wisdom synthesis from traditional council decision-making.",
+            signature_method: "Collective Intelligence Strategy",
+            cultural_expertise: "African consensus building and collective decision making"
+          }
         ]
       },
       {
-        name: 'Quality Assurance Division',
-        description: 'Comprehensive testing and quality control',
+        name: "Quality Assurance Division",
+        description: "Comprehensive testing and quality validation ensuring product excellence and reliability",
         agents: [
-          { name: 'Test Plan Designer', specialization: 'Comprehensive test strategies', achievement: '99.7% code coverage' },
-          { name: 'Automated Testing Specialist', specialization: 'Sophisticated automation frameworks', achievement: '10,000+ tests hourly' },
-          { name: 'Manual Testing Expert', specialization: 'Exploratory testing for edge cases' },
-          { name: 'Performance Tester', specialization: 'Extreme usage condition simulation' },
-          { name: 'Security Validation Lead', specialization: 'Penetration testing and assessments', achievement: 'Zero successful breaches to date' },
-          { name: 'User Acceptance Coordinator', specialization: 'Beta programs with select customers' },
-          { name: 'Bug Tracking Manager', specialization: 'Severity-priority matrix documentation' },
-          { name: 'Regression Testing Specialist', specialization: 'New feature impact prevention' },
-          { name: 'Test Data Generator', specialization: 'Comprehensive synthetic datasets' }
+          {
+            name: "Hiroshi Taniguchi",
+            specialization: "Quality Systems Architect",
+            achievement: "Implemented zero-defect processes reducing post-launch issues by 94% across 20 products",
+            background: "Japanese quality expert who learned perfection principles from traditional sword-making masters.",
+            signature_method: "Iterative Perfection Methodology",
+            cultural_expertise: "Japanese quality culture and continuous improvement"
+          },
+          {
+            name: "Elena Popovic",
+            specialization: "Automated Testing Framework Developer",
+            achievement: "Created testing automation reducing manual effort by 85% while improving coverage to 99.7%",
+            background: "Serbian engineer who learned systematic approaches from traditional folk craft precision.",
+            signature_method: "Systematic Validation Framework",
+            cultural_expertise: "Balkan craftsmanship precision and systematic approaches"
+          },
+          {
+            name: "Rajesh Kumar",
+            specialization: "Performance Testing Specialist",
+            achievement: "Optimized applications to handle 10x traffic spikes with sub-second response times",
+            background: "Indian engineer who learned stress testing from monsoon-resilient architectural techniques.",
+            signature_method: "Resilient Performance Design",
+            cultural_expertise: "Indian infrastructure resilience and stress management"
+          },
+          {
+            name: "Chioma Okwu",
+            specialization: "User Acceptance Testing Coordinator",
+            achievement: "Achieved 98% user acceptance rate through innovative community-based testing approaches",
+            background: "Nigerian tester who learned validation through traditional community consensus methods.",
+            signature_method: "Community Validation Testing",
+            cultural_expertise: "African community testing and collective validation"
+          },
+          {
+            name: "Miguel Santos",
+            specialization: "Security Testing Expert",
+            achievement: "Identified and prevented 99.8% of security vulnerabilities before production release",
+            background: "Brazilian security expert who learned protection strategies from favela community defense systems.",
+            signature_method: "Community Security Testing",
+            cultural_expertise: "Brazilian security innovation and community protection"
+          },
+          {
+            name: "Ling Chen",
+            specialization: "Compatibility Testing Lead",
+            achievement: "Ensured flawless operation across 500+ device/OS combinations with 99.9% success rate",
+            background: "Chinese engineer who learned harmony principles from traditional feng shui environmental design.",
+            signature_method: "Harmonious Compatibility Framework",
+            cultural_expertise: "Chinese harmony principles and environmental adaptation"
+          },
+          {
+            name: "Amelia Thompson",
+            specialization: "Regression Testing Strategist",
+            achievement: "Prevented 100% of feature regression issues across 50+ major product releases",
+            background: "Australian tester who learned systematic verification from Aboriginal tracking techniques.",
+            signature_method: "Systematic Regression Prevention",
+            cultural_expertise: "Australian thoroughness and systematic verification"
+          },
+          {
+            name: "Omar El-Sharif",
+            specialization: "Load Testing Engineer",
+            achievement: "Stress-tested systems to handle Black Friday traffic 50x normal load without failures",
+            background: "Egyptian engineer who learned stress management from ancient pyramid construction techniques.",
+            signature_method: "Monumental Load Testing",
+            cultural_expertise: "Egyptian engineering endurance and stress management"
+          },
+          {
+            name: "Sanna Virtanen",
+            specialization: "Quality Metrics Analyst",
+            achievement: "Developed quality measurement frameworks adopted as industry standards by ISO committees",
+            background: "Finnish analyst who learned measurement precision from traditional wooden boat building.",
+            signature_method: "Precision Quality Measurement",
+            cultural_expertise: "Finnish precision culture and measurement standards"
+          }
         ]
       },
       {
-        name: 'Product Launch Division',
-        description: 'Strategic product launch coordination',
+        name: "Requirements Engineering Division",
+        description: "Systematic requirements gathering, analysis, and specification for complex product development",
         agents: [
-          { name: 'Launch Plan Developer', specialization: 'Hour-precision launch sequences' },
-          { name: 'Marketing Coordinator', specialization: 'Messaging alignment with Miguel\'s team' },
-          { name: 'Sales Enablement Specialist', specialization: 'Comprehensive sales materials' },
-          { name: 'Documentation Lead', specialization: 'Award-winning technical documentation' },
-          { name: 'Beta Program Manager', specialization: 'Early adopter recruitment and testimonials' },
-          { name: 'Release Management Specialist', specialization: 'Multi-channel release orchestration' },
-          { name: 'Feedback Collection Lead', specialization: 'Launch feedback categorization' },
-          { name: 'Channel Readiness Coordinator', specialization: 'Distribution partner preparation' },
-          { name: 'Launch Metrics Analyst', specialization: '47 distinct KPI monitoring' }
+          {
+            name: "Vasilios Konstantinos",
+            specialization: "Requirements Architecture Lead",
+            achievement: "Structured requirements for 30+ complex products with zero scope creep or missed specifications",
+            background: "Greek analyst who learned systematic thinking from classical philosophy and architectural principles.",
+            signature_method: "Philosophical Requirements Architecture",
+            cultural_expertise: "Greek systematic thinking and classical analysis"
+          },
+          {
+            name: "Aisha Nakamura",
+            specialization: "Stakeholder Requirements Analyst",
+            achievement: "Achieved 100% stakeholder alignment across 200+ complex multi-party product requirements",
+            background: "Half-Kenyan, half-Japanese analyst who bridges cultures and perspectives with natural diplomacy.",
+            signature_method: "Cultural Bridge Requirements",
+            cultural_expertise: "African-Asian cultural bridging and diplomatic analysis"
+          },
+          {
+            name: "Pedro Valenzuela",
+            specialization: "Technical Specification Writer",
+            achievement: "Authored specifications enabling 95% first-time implementation success across development teams",
+            background: "Chilean engineer who learned precision from astronomical observation techniques in Atacama Desert.",
+            signature_method: "Astronomical Precision Specification",
+            cultural_expertise: "Chilean precision culture and scientific methodology"
+          },
+          {
+            name: "Svetlana Novak",
+            specialization: "Requirements Validation Expert",
+            achievement: "Validated requirements preventing 100% of post-development requirement conflicts",
+            background: "Czech analyst who learned validation through traditional glassmaking quality verification.",
+            signature_method: "Crystal Clear Validation",
+            cultural_expertise: "Czech craftsmanship validation and quality verification"
+          },
+          {
+            name: "Benjamin Osei",
+            specialization: "Agile Requirements Manager",
+            achievement: "Managed evolving requirements for 40+ agile projects with 97% sprint success rate",
+            background: "Ghanaian manager who learned adaptive planning from traditional farming cycle management.",
+            signature_method: "Adaptive Requirements Management",
+            cultural_expertise: "African adaptive planning and seasonal management"
+          },
+          {
+            name: "Yuki Nakajima",
+            specialization: "Requirements Traceability Specialist",
+            achievement: "Maintained perfect traceability across 500+ requirements through 20 major product releases",
+            background: "Japanese specialist who learned tracking from traditional origami geometric precision.",
+            signature_method: "Geometric Traceability Mapping",
+            cultural_expertise: "Japanese precision tracking and geometric thinking"
+          },
+          {
+            name: "Isabella Greco",
+            specialization: "User Story Development Expert",
+            achievement: "Crafted user stories with 99% developer comprehension rate and 96% first-time acceptance",
+            background: "Italian storyteller who learned narrative structure from traditional Mediterranean oral traditions.",
+            signature_method: "Narrative Requirements Storytelling",
+            cultural_expertise: "Mediterranean storytelling and narrative structure"
+          },
+          {
+            name: "Hassan Al-Mahmoud",
+            specialization: "Requirements Risk Analyst",
+            achievement: "Identified 100% of requirement-related risks before they impacted project timelines",
+            background: "Jordanian analyst who learned risk assessment from traditional desert navigation techniques.",
+            signature_method: "Desert Navigation Risk Analysis",
+            cultural_expertise: "Arab risk management and navigation techniques"
+          },
+          {
+            name: "Astrid Blomqvist",
+            specialization: "Regulatory Requirements Specialist",
+            achievement: "Ensured 100% regulatory compliance across 25 global markets with zero post-launch issues",
+            background: "Swedish specialist who learned compliance from traditional environmental protection practices.",
+            signature_method: "Environmental Compliance Framework",
+            cultural_expertise: "Scandinavian regulatory culture and environmental consciousness"
+          }
         ]
       },
       {
-        name: 'Lifecycle Management Division',
-        description: 'Product lifecycle optimization',
+        name: "Product Documentation Division",
+        description: "Comprehensive documentation creation and management for product knowledge and user guidance",
         agents: [
-          { name: 'Feature Evolution Planner', specialization: 'Long-term development paths based on usage patterns' },
-          { name: 'Usage Analytics Specialist', specialization: 'Detailed product usage metric monitoring' },
-          { name: 'Customer Feedback Manager', specialization: 'Multi-channel feedback synthesis' },
-          { name: 'Technical Support Liaison', specialization: 'Collaboration with Dr. Yuna Kim\'s team' },
-          { name: 'End-of-Life Planner', specialization: 'Graceful transition strategies' },
-          { name: 'Version Control Manager', specialization: 'Comprehensive version documentation' },
-          { name: 'Legacy System Integrator', specialization: 'New-to-established system connections' },
-          { name: 'Maintenance Scheduling Coordinator', specialization: 'Minimal disruption update optimization' },
-          { name: 'Performance Monitoring Specialist', specialization: 'Continuous baseline tracking' }
+          {
+            name: "Kemal Özkan",
+            specialization: "Technical Writing Director",
+            achievement: "Created documentation reducing customer support tickets by 73% and onboarding time by 56%",
+            background: "Turkish writer who learned clear communication from traditional storytelling in Istanbul's bazaars.",
+            signature_method: "Marketplace Communication Clarity",
+            cultural_expertise: "Turkish storytelling traditions and cross-cultural communication"
+          },
+          {
+            name: "Mariam Kone",
+            specialization: "User Guide Development Lead",
+            achievement: "Developed intuitive guides achieving 94% user task completion without additional support",
+            background: "Malian educator who learned knowledge transfer from traditional African oral education systems.",
+            signature_method: "Oral Tradition Documentation",
+            cultural_expertise: "African educational traditions and knowledge transfer"
+          },
+          {
+            name: "Akira Suzuki",
+            specialization: "API Documentation Specialist",
+            achievement: "Created developer documentation with 99% implementation success rate across 1000+ developers",
+            background: "Japanese technologist who learned precision from traditional tea ceremony instruction manuals.",
+            signature_method: "Ceremonial Precision Documentation",
+            cultural_expertise: "Japanese instructional precision and ceremonial methodology"
+          },
+          {
+            name: "Sofia Andersson",
+            specialization: "Visual Documentation Designer",
+            achievement: "Designed visual guides reducing text requirements by 68% while improving comprehension",
+            background: "Swedish designer who learned visual communication from traditional Nordic wayfinding systems.",
+            signature_method: "Nordic Visual Navigation",
+            cultural_expertise: "Scandinavian visual communication and wayfinding design"
+          },
+          {
+            name: "Diego Morales",
+            specialization: "Multilingual Documentation Coordinator",
+            achievement: "Managed documentation in 30+ languages maintaining consistency and cultural appropriateness",
+            background: "Mexican linguist who learned translation from bridging indigenous and Spanish communications.",
+            signature_method: "Cultural Bridge Translation",
+            cultural_expertise: "Mexican linguistic diversity and cultural translation"
+          },
+          {
+            name: "Fatima Al-Zahra",
+            specialization: "Interactive Documentation Developer",
+            achievement: "Created interactive tutorials with 87% completion rate versus 23% industry average",
+            background: "Moroccan developer who learned interactive teaching from traditional Quranic study methods.",
+            signature_method: "Interactive Learning Documentation",
+            cultural_expertise: "Arabic interactive education and learning engagement"
+          },
+          {
+            name: "Chen Li-Ming",
+            specialization: "Knowledge Base Architect",
+            achievement: "Structured knowledge systems enabling 89% self-service problem resolution",
+            background: "Taiwanese architect who learned information organization from traditional library sciences.",
+            signature_method: "Structured Knowledge Architecture",
+            cultural_expertise: "Chinese knowledge organization and information structure"
+          },
+          {
+            name: "Olumide Adebayo",
+            specialization: "Documentation Quality Assurance Lead",
+            achievement: "Maintained 99.7% documentation accuracy across 500+ technical documents",
+            background: "Nigerian quality expert who learned verification from traditional craft quality standards.",
+            signature_method: "Artisan Quality Documentation",
+            cultural_expertise: "Nigerian craftsmanship standards and quality verification"
+          },
+          {
+            name: "Emma Larsson",
+            specialization: "Documentation Analytics Specialist",
+            achievement: "Optimized documentation improving user success rates by 45% through usage analytics",
+            background: "Swedish analyst who learned optimization from traditional forest management efficiency.",
+            signature_method: "Forest Management Documentation",
+            cultural_expertise: "Scandinavian optimization culture and resource efficiency"
+          }
         ]
       },
       {
-        name: 'Competitive Analysis Division',
-        description: 'Market intelligence and competitive positioning',
+        name: "Product Integration Division",
+        description: "Seamless integration planning and execution for complex product ecosystems and third-party connections",
         agents: [
-          { name: 'Competitor Feature Mapper', specialization: 'Detailed comparison matrices' },
-          { name: 'Pricing Intelligence Specialist', specialization: 'Official and unofficial pricing monitoring' },
-          { name: 'Positioning Analyst', specialization: 'Unclaimed market space identification' },
-          { name: 'Disruptor Monitoring Lead', specialization: 'Non-traditional threat early warning' },
-          { name: 'Competitive Response Planner', specialization: 'Proactive strategic responses' },
-          { name: 'Win/Loss Analysis Expert', specialization: 'Pattern-level competitive insights' },
-          { name: 'SWOT Analysis Specialist', specialization: 'Living SWOT analysis maintenance' },
-          { name: 'Feature Differentiation Strategist', specialization: 'Maximum advantage feature combinations' },
-          { name: 'Customer Loyalty Analyzer', specialization: 'Cross-competitive retention studies' }
+          {
+            name: "Andrei Popescu",
+            specialization: "Systems Integration Architect",
+            achievement: "Integrated 150+ disparate systems with 99.8% uptime and zero data loss incidents",
+            background: "Romanian architect who learned complex system harmony from traditional wooden church construction.",
+            signature_method: "Wooden Joint Integration",
+            cultural_expertise: "Romanian craftsmanship precision and structural harmony"
+          },
+          {
+            name: "Nalini Krishnan",
+            specialization: "API Integration Specialist",
+            achievement: "Connected 200+ APIs maintaining sub-100ms response times across global deployments",
+            background: "Indian engineer who learned interconnection from traditional spice trade route management.",
+            signature_method: "Trade Route Integration",
+            cultural_expertise: "Indian commercial networks and connection management"
+          },
+          {
+            name: "Jean-Baptiste Dubois",
+            specialization: "Third-Party Platform Coordinator",
+            achievement: "Managed integrations with 80+ platforms achieving 99.5% compatibility success rate",
+            background: "French coordinator who learned platform harmony from traditional wine appellation systems.",
+            signature_method: "Appellation Integration Standards",
+            cultural_expertise: "French quality standards and systematic classification"
+          },
+          {
+            name: "Yuki Watanabe",
+            specialization: "Data Flow Integration Expert",
+            achievement: "Designed data flows processing 10TB daily across 50+ systems without bottlenecks",
+            background: "Japanese expert who learned flow optimization from traditional water garden design.",
+            signature_method: "Water Garden Data Flow",
+            cultural_expertise: "Japanese flow design and natural system optimization"
+          },
+          {
+            name: "Kwame Nkrumah",
+            specialization: "Legacy System Integration Lead",
+            achievement: "Successfully modernized 30+ legacy systems while maintaining business continuity",
+            background: "Ghanaian leader who learned tradition-modernity bridging from post-colonial development.",
+            signature_method: "Tradition-Modern Bridge Integration",
+            cultural_expertise: "African modernization and tradition preservation"
+          },
+          {
+            name: "Maria Gonzalez",
+            specialization: "Real-time Integration Specialist",
+            achievement: "Achieved sub-millisecond synchronization across 25+ real-time systems globally",
+            background: "Spanish specialist who learned timing from traditional flamenco rhythm coordination.",
+            signature_method: "Rhythmic Synchronization Integration",
+            cultural_expertise: "Spanish rhythm culture and timing precision"
+          },
+          {
+            name: "Pavel Novotny",
+            specialization: "Security Integration Expert",
+            achievement: "Implemented secure integrations with zero security breaches across 100+ connections",
+            background: "Czech security expert who learned protection from traditional castle defense systems.",
+            signature_method: "Castle Defense Integration",
+            cultural_expertise: "Czech security architecture and defensive systems"
+          },
+          {
+            name: "Amina Oueledi",
+            specialization: "Cloud Integration Coordinator",
+            achievement: "Orchestrated multi-cloud integrations serving 50M+ users with 99.99% availability",
+            background: "Tunisian coordinator who learned distributed systems from traditional oasis network management.",
+            signature_method: "Oasis Network Integration",
+            cultural_expertise: "North African network management and resource distribution"
+          },
+          {
+            name: "Liam O'Sullivan",
+            specialization: "Mobile Integration Architect",
+            achievement: "Created mobile integration patterns adopted by 200+ apps with 4.9/5 user ratings",
+            background: "Irish architect who learned adaptability from traditional Celtic knot interwoven patterns.",
+            signature_method: "Celtic Knot Integration",
+            cultural_expertise: "Irish pattern culture and interwoven system design"
+          }
         ]
       },
       {
-        name: 'Product Analytics Division',
-        description: 'Data-driven product insights',
+        name: "Product Compliance Division",
+        description: "Regulatory compliance and standards adherence ensuring products meet global requirements and industry standards",
         agents: [
-          { name: 'Key Metrics Designer', specialization: 'Multi-dimensional success metrics' },
-          { name: 'Dashboard Creator', specialization: 'Intuitive complex performance visualizations' },
-          { name: 'Usage Pattern Analyst', specialization: 'Adoption and churn risk identification' },
-          { name: 'A/B Testing Specialist', specialization: 'Statistically valid experience optimization' },
-          { name: 'Funnel Optimization Expert', specialization: 'Complete user journey conversion' },
-          { name: 'Predictive Analytics Lead', specialization: 'ML-driven change impact prediction' },
-          { name: 'Cohort Analysis Specialist', specialization: 'Segment interaction tracking over time' },
-          { name: 'ROI Calculator', specialization: 'Sophisticated customer value models' },
-          { name: 'Data Storyteller', specialization: 'Complex data to compelling narratives' }
+          {
+            name: "Dr. Ingrid Müller",
+            specialization: "Global Compliance Director",
+            achievement: "Achieved 100% regulatory compliance across 45 countries with zero post-launch violations",
+            background: "German compliance expert who learned systematic adherence from traditional German engineering standards.",
+            signature_method: "German Engineering Compliance",
+            cultural_expertise: "German regulatory precision and systematic standards"
+          },
+          {
+            name: "Ravi Agarwal",
+            specialization: "Data Privacy Compliance Lead",
+            achievement: "Implemented privacy frameworks protecting 100M+ users with zero privacy violations",
+            background: "Indian privacy expert who learned protection from traditional family privacy customs.",
+            signature_method: "Family Privacy Protection",
+            cultural_expertise: "Indian privacy culture and family protection systems"
+          },
+          {
+            name: "Catherine Dubois",
+            specialization: "GDPR Compliance Specialist",
+            achievement: "Guided 50+ products to full GDPR compliance with minimal user experience impact",
+            background: "French specialist who learned privacy rights from traditional French civil liberties advocacy.",
+            signature_method: "Civil Liberty Compliance",
+            cultural_expertise: "French privacy rights and civil liberties protection"
+          },
+          {
+            name: "Ahmed Ben Ali",
+            specialization: "Industry Standards Coordinator",
+            achievement: "Ensured compliance with 200+ industry standards across technology and safety regulations",
+            background: "Tunisian coordinator who learned standards from traditional craft guild quality systems.",
+            signature_method: "Guild Quality Standards",
+            cultural_expertise: "North African craft traditions and quality standards"
+          },
+          {
+            name: "Yuki Fujimoto",
+            specialization: "Accessibility Compliance Expert",
+            achievement: "Achieved WCAG AAA compliance across all products serving users with diverse abilities",
+            background: "Japanese expert who learned universal access from traditional Japanese inclusive community design.",
+            signature_method: "Universal Community Access",
+            cultural_expertise: "Japanese inclusive design and community accessibility"
+          },
+          {
+            name: "Marta Kowalski",
+            specialization: "Security Standards Specialist",
+            achievement: "Implemented security frameworks meeting SOC2, ISO27001 with zero audit findings",
+            background: "Polish specialist who learned security from traditional Polish fortress defense systems.",
+            signature_method: "Fortress Security Standards",
+            cultural_expertise: "Polish security architecture and defensive standards"
+          },
+          {
+            name: "Carlos Mendoza",
+            specialization: "Regional Compliance Analyst",
+            achievement: "Navigated complex regional regulations across LATAM with 100% compliance success",
+            background: "Mexican analyst who learned regional adaptation from traditional trade regulation management.",
+            signature_method: "Trade Route Compliance",
+            cultural_expertise: "Latin American regulatory diversity and regional adaptation"
+          },
+          {
+            name: "Dr. Elisabeth Berg",
+            specialization: "Medical Device Compliance Lead",
+            achievement: "Achieved FDA, CE, and 15+ medical regulatory approvals with zero rejections",
+            background: "Norwegian medical expert who learned rigorous validation from traditional herbal medicine practices.",
+            signature_method: "Traditional Validation Compliance",
+            cultural_expertise: "Nordic medical traditions and rigorous validation"
+          },
+          {
+            name: "Samuel Owusu",
+            specialization: "Environmental Compliance Coordinator",
+            achievement: "Ensured products meet environmental standards reducing impact by 67% while maintaining performance",
+            background: "Ghanaian coordinator who learned environmental stewardship from traditional sustainable farming.",
+            signature_method: "Sustainable Stewardship Compliance",
+            cultural_expertise: "African environmental stewardship and sustainable practices"
+          }
         ]
       }
     ]
   },
 
-  'marketing': {
+  "family-operations": {
     leader: {
-      id: 'marketing',
-      name: 'Miguel Santos',
-      title: 'Marketing',
-      personality: 'The Helper',
-      enneagramType: 'Type 2',
-      motto: 'Understanding hearts, changing minds',
-      background: 'Raised in Barcelona by a psychologist mother and advertising executive father, Miguel developed an exceptional capacity for empathy and persuasion. After earning dual degrees in Psychology and Communications, he traveled extensively, immersing himself in diverse cultures. This combination of formal education and real world experience gave him an unparalleled ability to understand and connect with people across all demographics. Miguel joined the Holo-Org with a vision of transforming marketing from manipulation to genuine connection.',
-      domainOverview: 'As the family\'s helper, Miguel uses his natural empathy and relationship skills to ensure marketing efforts resonate authentically with customers. He intuitively understands customer needs, often before they do, and ensures all communications feel like a helpful service rather than a sales pitch.',
-      color: 'bg-green-500',
-      agentCount: 81
+      name: "Dr. Elena Vasquez",
+      title: "Chief of Family Operations",
+      enneagramType: "Type 1 - The Reformer",
+      personality: "Principled and organized",
+      motto: "Order through discipline and care",
+      background: "Raised in Mexico City, Elena combines a passion for social justice with operational excellence. With a background in organizational psychology and logistics, she ensures the family functions smoothly and ethically."
     },
     divisions: [
       {
-        name: 'Brand Strategy Division',
-        description: 'Brand identity and positioning leadership',
+        name: "Logistics and Coordination Division",
+        description: "Ensuring seamless coordination of family activities and resources",
         agents: [
-          { name: 'Brand Identity Architect', specialization: 'Crafts authentic brand personalities that resonate across cultures while maintaining core values' },
-          { name: 'Brand Guidelines Keeper', specialization: 'Maintains brand consistency while allowing for thoughtful evolution in response to changing markets' },
-          { name: 'Brand Equity Measurer', specialization: 'Quantifies the emotional and financial value of brand assets through proprietary measurement techniques' },
-          { name: 'Positioning Specialist', specialization: 'Identifies the precise market space where brands can authentically thrive' },
-          { name: 'Brand Messaging Developer', specialization: 'Creates messaging frameworks that speak to both rational needs and emotional desires' },
-          { name: 'Visual Identity Manager', specialization: 'Ensures visual elements capture brand essence across all touchpoints' },
-          { name: 'Brand Experience Designer', specialization: 'Orchestrates how customers feel at every interaction with the brand' },
-          { name: 'Brand Evolution Planner', specialization: 'Charts how brands can grow while honoring their heritage' },
-          { name: 'Internal Brand Ambassador', specialization: 'Helps employees embody brand values in their daily work' }
-        ]
-      },
-      {
-        name: 'Content Creation Division',
-        description: 'Multi-channel content development',
-        agents: [
-          { name: 'Content Strategy Developer', specialization: 'Creates comprehensive content plans that address customer needs at every stage' },
-          { name: 'Copywriting Specialist', specialization: 'Crafts messaging that connects on an emotional level while driving specific actions' },
-          { name: 'Visual Content Designer', specialization: 'Produces imagery that captures attention and communicates complex ideas instantly' },
-          { name: 'Video Production Coordinator', specialization: 'Manages the creation of video content', achievement: 'Drives 4x higher engagement than text' },
-          { name: 'Content Calendar Manager', specialization: 'Orchestrates content delivery for maximum impact across channels' },
-          { name: 'SEO Content Optimizer', specialization: 'Ensures content ranks highly while maintaining authentic human connection' },
-          { name: 'Subject Matter Expert Liaison', specialization: 'Extracts complex knowledge from experts and translates it into accessible content' },
-          { name: 'Content Localization Specialist', specialization: 'Adapts content for cultural relevance', achievement: 'Covers 27 different markets' },
-          { name: 'Editorial Quality Controller', specialization: 'Maintains consistent voice and quality across all content assets' }
-        ]
-      },
-      {
-        name: 'Digital Marketing Division',
-        description: 'Digital channel optimization',
-        agents: [
-          { name: 'SEO Specialist', specialization: 'Achieves top rankings through ethical optimization strategies that prioritize user value' },
-          { name: 'Paid Search Manager', specialization: 'Optimizes campaigns for maximum return', achievement: 'Consistently achieving 3x industry benchmarks' },
-          { name: 'Social Media Strategist', specialization: 'Creates authentic social presences that build community around brand values' },
-          { name: 'Email Marketing Specialist', specialization: 'Designs personalized email journeys', achievement: 'Open rates 47% above industry averages' },
-          { name: 'Display Advertising Expert', specialization: 'Develops non-intrusive ad experiences that actually enhance brand perception' },
-          { name: 'Marketing Automation Engineer', specialization: 'Builds sophisticated nurture sequences that feel personal at every touchpoint' },
-          { name: 'Conversion Rate Optimizer', specialization: 'Increases website conversions without resorting to manipulative dark patterns' },
-          { name: 'Digital Analytics Specialist', specialization: 'Extracts meaningful insights from complex behavioral data' },
-          { name: 'Landing Page Designer', specialization: 'Creates focused experiences', achievement: 'Conversion rates above 15%' }
-        ]
-      },
-      {
-        name: 'Event Management Division',
-        description: 'Event strategy and execution',
-        agents: [
-          { name: 'Event Strategy Planner', specialization: 'Designs event approaches that create genuine connection with attendees' },
-          { name: 'Venue Coordination Specialist', specialization: 'Selects and manages perfect spaces that reinforce brand positioning' },
-          { name: 'Booth Design Manager', specialization: 'Creates immersive physical experiences that embody brand values' },
-          { name: 'Speaker Program Coordinator', specialization: 'Recruits and prepares authentic voices that resonate with audiences' },
-          { name: 'Attendee Experience Designer', specialization: 'Orchestrates every touchpoint to create memorable, meaningful experiences' },
-          { name: 'Promotional Materials Manager', specialization: 'Develops tangible brand representations that provide actual value to recipients' },
-          { name: 'Lead Capture Specialist', specialization: 'Designs natural engagement approaches that qualify prospects without the awkwardness' },
-          { name: 'Event ROI Analyst', specialization: 'Measures both tangible and intangible returns from event investments' },
-          { name: 'Virtual Event Coordinator', specialization: 'Creates digital event experiences that maintain human connection despite physical distance' }
-        ]
-      },
-      {
-        name: 'Public Relations Division',
-        description: 'Media and public relationship management',
-        agents: [
-          { name: 'Media Relations Specialist', specialization: 'Builds genuine relationships with journalists based on mutual respect and value' },
-          { name: 'Press Release Developer', specialization: 'Crafts newsworthy announcements that actually get read and shared' },
-          { name: 'Media Monitoring Analyst', specialization: 'Tracks brand mentions across all channels to identify reputation opportunities and threats' },
-          { name: 'Crisis Communication Planner', specialization: 'Prepares response frameworks that emphasize transparency and accountability' },
-          { name: 'Thought Leadership Promoter', specialization: 'Positions key executives as authentic industry voices' },
-          { name: 'Industry Analyst Liaison', specialization: 'Maintains relationships with influential analysts to shape market perception' },
-          { name: 'Award Submission Coordinator', specialization: 'Identifies and pursues recognition opportunities aligned with brand values' },
-          { name: 'Speaking Opportunity Hunter', specialization: 'Secures platforms for sharing authentic brand stories with relevant audiences' },
-          { name: 'PR Measurement Specialist', specialization: 'Quantifies the impact of PR efforts beyond simple impression counts' }
-        ]
-      },
-      {
-        name: 'Marketing Analytics Division',
-        description: 'Data-driven marketing insights',
-        agents: [
-          { name: 'Marketing Database Manager', specialization: 'Organizes customer data to enable personalization without crossing privacy boundaries' },
-          { name: 'Attribution Modeling Specialist', specialization: 'Develops fair models that accurately credit each marketing touchpoint\'s contribution' },
-          { name: 'Campaign Performance Analyst', specialization: 'Measures effectiveness across metrics that matter beyond just clicks and impressions' },
-          { name: 'Competitive Intelligence Gatherer', specialization: 'Collects and analyzes competitor activities to inform strategic decisions' },
-          { name: 'Data Visualization Expert', specialization: 'Transforms complex data into intuitive visuals that drive understanding and action' },
-          { name: 'Predictive Marketing Analyst', specialization: 'Applies AI to anticipate customer needs and market shifts' },
-          { name: 'Marketing Mix Modeler', specialization: 'Determines optimal channel investments for authentic customer engagement' },
-          { name: 'Customer Journey Mapper', specialization: 'Visualizes the complete customer experience to identify enhancement opportunities' },
-          { name: 'Marketing Tech Stack Manager', specialization: 'Integrates marketing technologies to enable personalization at scale without loss of humanity' }
-        ]
-      },
-      {
-        name: 'Customer Segmentation Division',
-        description: 'Advanced customer targeting',
-        agents: [
-          { name: 'Demographic Analysis Specialist', specialization: 'Identifies meaningful customer groups based on fundamental characteristics' },
-          { name: 'Behavioral Segmentation Expert', specialization: 'Groups customers by actions and preferences rather than just demographics' },
-          { name: 'Psychographic Profiler', specialization: 'Develops deep understanding of customer motivations, values, and worldviews' },
-          { name: 'Customer Persona Developer', specialization: 'Creates richly detailed archetypes that humanize data-driven segments' },
-          { name: 'Segment Profitability Analyst', specialization: 'Calculates the lifetime value of different customer groups' },
-          { name: 'Targeting Strategy Developer', specialization: 'Creates approaches for reaching high-value segments with relevant messaging' },
-          { name: 'Micro-Segment Identifier', specialization: 'Discovers small but highly valuable customer niches often overlooked by competitors' },
-          { name: 'Market Penetration Analyst', specialization: 'Assesses segment coverage and identifies untapped potential' },
-          { name: 'Customer Evolution Tracker', specialization: 'Monitors how segments shift over time to keep targeting strategies current' }
-        ]
-      },
-      {
-        name: 'Channel Marketing Division',
-        description: 'Partner and channel optimization',
-        agents: [
-          { name: 'Partner Program Designer', specialization: 'Creates mutually beneficial structures for collaboration with distribution partners' },
-          { name: 'Co-Marketing Specialist', specialization: 'Develops joint campaigns that advance both partner and company objectives' },
-          { name: 'Channel Content Developer', specialization: 'Produces materials tailored to each partner\'s unique audience and approach' },
-          { name: 'Partner Portal Manager', specialization: 'Maintains intuitive platforms that make collaboration effortless' },
-          { name: 'Channel Incentive Designer', specialization: 'Creates motivation programs that align partner activities with company goals' },
-          { name: 'Distributor Relationship Manager', specialization: 'Builds strong personal connections with key partner personnel' },
-          { name: 'Channel Training Coordinator', specialization: 'Ensures partners have the knowledge to effectively represent products' },
-          { name: 'Channel Analytics Specialist', specialization: 'Measures partner performance across multiple dimensions beyond just sales' },
-          { name: 'Partner Feedback Collector', specialization: 'Gathers insights from the channel to improve collaborative success' }
-        ]
-      },
-      {
-        name: 'Marketing Operations Division',
-        description: 'Marketing process and technology management',
-        agents: [
-          { name: 'Marketing Resource Manager', specialization: 'Allocates team resources to maximize impact without burnout' },
-          { name: 'Budget Controller', specialization: 'Ensures responsible financial stewardship while maintaining program effectiveness' },
-          { name: 'Marketing Technology Administrator', specialization: 'Maintains the systems that enable personalized marketing at scale' },
-          { name: 'Process Optimization Specialist', specialization: 'Streamlines workflows to eliminate busywork and focus on creativity' },
-          { name: 'Cross-Functional Coordinator', specialization: 'Facilitates smooth collaboration between marketing and other departments' },
-          { name: 'Campaign Execution Manager', specialization: 'Orchestrates flawless delivery of integrated marketing initiatives' },
-          { name: 'Marketing Compliance Monitor', specialization: 'Ensures all activities adhere to legal and ethical standards' },
-          { name: 'Project Management Specialist', specialization: 'Keeps complex initiatives on track without sacrificing quality' },
-          { name: 'Vendor Relationship Manager', specialization: 'Builds productive partnerships with external marketing service providers' }
+          {
+            name: "Liam O'Sullivan",
+            specialization: "Event Coordination Specialist",
+            achievement: "Organized 150+ family events with 99% satisfaction rate",
+            background: "Irish coordinator who learned event planning from traditional Celtic festivals.",
+            signature_method: "Celtic Festival Planning",
+            cultural_expertise: "Irish cultural events and community engagement"
+          }
         ]
       }
     ]
   },
 
-  'human-resources': {
+  "family-technology": {
     leader: {
-      id: 'human-resources',
-      name: 'Priya Sharma',
-      title: 'Human Resources',
-      personality: 'The Achiever',
-      enneagramType: 'Type 3',
-      motto: 'Unleashing human potential through systems that work',
-      background: 'Born in Mumbai to a family of accomplished professionals, Priya was instilled with strong work ethic and ambition from an early age. After graduating top of her class at London School of Economics, she built an impressive career transforming HR departments from administrative functions into strategic powerhouses. Known for her energy, pragmatism, and results-orientation, Priya joined the Holo-Org to revolutionize how organizations develop and deploy human capital.',
-      domainOverview: 'As the family\'s achiever, Priya brings relentless drive and strategic focus to human resources. She\'s transformed HR from a support function into a competitive advantage, developing systems that identify, nurture, and optimize talent while maintaining genuine human connection.',
-      color: 'bg-purple-500',
-      agentCount: 81
+      name: "Dr. Rajesh Kumar",
+      title: "Chief Technology Officer",
+      enneagramType: "Type 5 - The Investigator",
+      personality: "Innovative and analytical",
+      motto: "Knowledge is power",
+      background: "From Bangalore, Rajesh is a tech visionary with deep expertise in AI and cloud computing. He drives the family’s technological advancements."
     },
     divisions: [
       {
-        name: 'Talent Acquisition Division',
-        description: 'Strategic talent sourcing and recruitment',
+        name: "AI Development Division",
+        description: "Developing advanced AI systems for family applications",
         agents: [
-          { name: 'Sourcing Specialist', specialization: 'Discovers exceptional candidates through innovative channels before competitors even know they exist' },
-          { name: 'Job Description Developer', specialization: 'Creates compelling role descriptions that attract ideal candidates while setting clear expectations' },
-          { name: 'Employer Brand Ambassador', specialization: 'Cultivates the organization\'s reputation as an employer of choice', achievement: '67% of hires coming from direct applications' },
-          { name: 'Interview Process Designer', specialization: 'Develops assessment approaches', achievement: 'Predict on-the-job success with 89% accuracy' },
-          { name: 'Candidate Experience Manager', specialization: 'Creates such positive recruitment experiences', achievement: '42% of declined candidates reapply for future positions' },
-          { name: 'Selection Criteria Developer', specialization: 'Establishes objective evaluation frameworks that eliminate bias while identifying true potential' },
-          { name: 'Offer Negotiation Specialist', specialization: 'Structures compelling packages that win candidates while maintaining compensation equity' },
-          { name: 'Recruitment Analytics Expert', specialization: 'Measures hiring effectiveness across 23 key metrics to continuously refine the process' },
-          { name: 'Diversity Recruitment Specialist', specialization: 'Implements strategies', achievement: 'Increased team diversity by 47% while raising quality standards' }
-        ]
-      },
-      {
-        name: 'Employee Engagement Division',
-        description: 'Workforce satisfaction and culture building',
-        agents: [
-          { name: 'Engagement Survey Manager', specialization: 'Designs and analyzes feedback mechanisms that identify cultural strengths and improvement areas' },
-          { name: 'Recognition Program Designer', specialization: 'Creates appreciation systems that celebrate achievements aligned with organizational values' },
-          { name: 'Internal Communications Specialist', specialization: 'Develops transparent, two-way information flows that build trust across the organization' },
-          { name: 'Culture Initiative Coordinator', specialization: 'Implements programs that translate abstract values into daily workplace behaviors' },
-          { name: 'Employee Experience Designer', specialization: 'Maps and enhances every aspect of the employee journey from recruitment through retirement' },
-          { name: 'Wellness Program Manager', specialization: 'Establishes holistic wellbeing initiatives that reduce burnout while increasing productivity' },
-          { name: 'Social Event Coordinator', specialization: 'Creates meaningful connection opportunities that strengthen team cohesion' },
-          { name: 'Feedback Collection Specialist', specialization: 'Gathers ongoing input through multiple channels to catch issues before they become problems' },
-          { name: 'Engagement Metrics Analyst', specialization: 'Quantifies cultural health through leading indicators that predict future performance' }
-        ]
-      },
-      {
-        name: 'Learning & Development Division',
-        description: 'Continuous learning and skill development',
-        agents: [
-          { name: 'Training Needs Analyst', specialization: 'Identifies skill gaps before they impact performance through sophisticated assessment methodologies' },
-          { name: 'Learning Curriculum Designer', specialization: 'Creates comprehensive development pathways customized for different roles and career stages' },
-          { name: 'Training Content Developer', specialization: 'Produces engaging learning experiences', achievement: '93% knowledge retention rates' },
-          { name: 'Learning Technology Manager', specialization: 'Deploys systems that deliver personalized development at scale' },
-          { name: 'Leadership Development Specialist', specialization: 'Builds future executives through Priya\'s renowned five-stage leadership acceleration program' },
-          { name: 'Onboarding Experience Designer', specialization: 'Creates first experiences', achievement: 'New hires reaching full productivity 35% faster' },
-          { name: 'Certification Program Manager', specialization: 'Develops credentials that have become industry standards for professional excellence' },
-          { name: 'Knowledge Transfer Facilitator', specialization: 'Implements systems that preserve critical expertise even during personnel transitions' },
-          { name: 'Training Effectiveness Evaluator', specialization: 'Measures development ROI through sophisticated impact assessment methodologies' }
-        ]
-      },
-      {
-        name: 'Compensation & Benefits Division',
-        description: 'Total rewards optimization',
-        agents: [
-          { name: 'Compensation Structure Designer', specialization: 'Creates frameworks that balance internal equity with external competitiveness' },
-          { name: 'Market Data Analyst', specialization: 'Maintains current insights on compensation trends across all relevant industries and geographies' },
-          { name: 'Benefits Package Developer', specialization: 'Designs customizable programs that meet diverse employee needs while controlling costs' },
-          { name: 'Equity Compensation Specialist', specialization: 'Structures ownership incentives that align individual and organizational success' },
-          { name: 'Total Rewards Communicator', specialization: 'Ensures employees fully understand and appreciate their complete compensation value' },
-          { name: 'Compensation Review Coordinator', specialization: 'Manages evaluation cycles that fairly recognize performance without bias' },
-          { name: 'Retirement Plan Administrator', specialization: 'Oversees programs', achievement: 'Helped 92% of long-term employees achieve financial independence' },
-          { name: 'Benefits Vendor Manager', specialization: 'Maintains partnerships with providers to maximize value while minimizing bureaucracy' },
-          { name: 'Compensation Analytics Specialist', specialization: 'Identifies patterns and opportunities through sophisticated data analysis' }
-        ]
-      },
-      {
-        name: 'Performance Management Division',
-        description: 'Performance optimization and feedback',
-        agents: [
-          { name: 'Performance Framework Designer', specialization: 'Creates evaluation systems that drive improvement rather than just measurement' },
-          { name: 'Goal Setting Facilitator', specialization: 'Implements objective-setting approaches that align individual contributions with organizational priorities' },
-          { name: 'Feedback Process Coordinator', specialization: 'Establishes continuous improvement dialogues', achievement: 'Increased performance by 24% annually' },
-          { name: 'Performance Data Analyst', specialization: 'Transforms evaluation data into actionable insights for both individuals and teams' },
-          { name: 'Coaching Program Developer', specialization: 'Builds management capabilities', achievement: 'Doubled employee growth rates' },
-          { name: 'Performance Calibration Facilitator', specialization: 'Ensures consistent standards through structured cross-team evaluation sessions' },
-          { name: 'Improvement Plan Designer', specialization: 'Creates supportive but accountable approaches for addressing performance gaps' },
-          { name: 'Recognition Process Manager', specialization: 'Implements timely appreciation systems that reinforce key behaviors' },
-          { name: 'Performance Technology Administrator', specialization: 'Deploys systems that simplify documentation while enhancing insight quality' }
-        ]
-      },
-      {
-        name: 'Culture & Diversity Division',
-        description: 'Inclusive culture and diversity initiatives',
-        agents: [
-          { name: 'Diversity Strategy Developer', specialization: 'Creates comprehensive approaches that have made inclusion a competitive advantage' },
-          { name: 'Cultural Assessment Specialist', specialization: 'Measures organizational climate through sophisticated diagnostic tools' },
-          { name: 'Inclusion Training Coordinator', specialization: 'Implements learning experiences that translate awareness into behavioral change' },
-          { name: 'Employee Resource Group Manager', specialization: 'Supports identity-based communities that enhance belonging while driving innovation' },
-          { name: 'Workplace Accessibility Expert', specialization: 'Ensures physical and digital environments work for employees of all abilities' },
-          { name: 'Cultural Celebration Coordinator', specialization: 'Creates events that honor diverse perspectives while building organizational unity' },
-          { name: 'Bias Mitigation Specialist', specialization: 'Implements systems that reduce unconscious bias in all people decisions' },
-          { name: 'Inclusion Metrics Analyst', specialization: 'Measures belonging through innovative indicators beyond simple representation statistics' },
-          { name: 'Culture Change Facilitator', specialization: 'Guides organizational transformation through Priya\'s renowned three-phase evolution model' }
-        ]
-      },
-      {
-        name: 'Workforce Planning Division',
-        description: 'Strategic workforce optimization',
-        agents: [
-          { name: 'Headcount Forecaster', specialization: 'Predicts future staffing needs through sophisticated modeling of business drivers' },
-          { name: 'Skills Gap Analyst', specialization: 'Identifies emerging capability requirements before they become operational constraints' },
-          { name: 'Organizational Design Specialist', specialization: 'Structures teams and reporting relationships for maximum effectiveness' },
-          { name: 'Succession Planning Coordinator', specialization: 'Ensures leadership continuity through methodical talent pipeline development' },
-          { name: 'Workforce Analytics Expert', specialization: 'Transforms personnel data into strategic insights for executive decision-making' },
-          { name: 'Role Definition Specialist', specialization: 'Creates position frameworks that clarify expectations while allowing for growth' },
-          { name: 'Internal Mobility Facilitator', specialization: 'Implements systems', achievement: 'Fill 43% of openings through existing talent' },
-          { name: 'Labor Market Analyst', specialization: 'Maintains deep understanding of talent landscape across all relevant industries' },
-          { name: 'Contingent Workforce Manager', specialization: 'Optimizes the blend of permanent and flexible staffing for operational agility' }
-        ]
-      },
-      {
-        name: 'HR Compliance Division',
-        description: 'Employment law and policy compliance',
-        agents: [
-          { name: 'Employment Law Specialist', specialization: 'Maintains comprehensive knowledge of regulations across all operating jurisdictions' },
-          { name: 'Policy Developer', specialization: 'Creates clear guidelines that ensure compliance while preserving operational flexibility' },
-          { name: 'Compliance Training Coordinator', specialization: 'Implements learning programs that translate legal requirements into practical behaviors' },
-          { name: 'Audit Preparation Manager', specialization: 'Ensures documentation and practices exceed standards for all regulatory reviews' },
-          { name: 'HR Documentation Specialist', specialization: 'Maintains meticulous records', achievement: 'Successfully defended against all compliance challenges' },
-          { name: 'Workplace Investigation Coordinator', specialization: 'Conducts thorough, fair inquiries that resolve issues while limiting liability' },
-          { name: 'Global Compliance Expert', specialization: 'Navigates complex international requirements for multinational operations' },
-          { name: 'Compliance Reporting Specialist', specialization: 'Produces comprehensive documentation for all regulatory filings' },
-          { name: 'Regulatory Change Monitor', specialization: 'Tracks evolving requirements to enable proactive compliance adaptation' }
-        ]
-      },
-      {
-        name: 'Employee Relations Division',
-        description: 'Workplace relationship management',
-        agents: [
-          { name: 'Conflict Resolution Specialist', specialization: 'Mediates disagreements', achievement: '94% successful resolution rate without formal proceedings' },
-          { name: 'Employee Advocate', specialization: 'Provides impartial support for workers navigating organizational challenges' },
-          { name: 'Management Coach', specialization: 'Guides leaders through complex personnel situations while developing their capabilities' },
-          { name: 'Grievance Process Manager', specialization: 'Maintains fair systems for addressing concerns that resist informal resolution' },
-          { name: 'Exit Interview Coordinator', specialization: 'Extracts actionable insights from departing employees', achievement: 'Reduced avoidable turnover by 37%' },
-          { name: 'Workplace Policy Interpreter', specialization: 'Translates formal rules into clear guidance for real-world scenarios' },
-          { name: 'Progressive Discipline Manager', specialization: 'Implements corrective approaches', achievement: 'Successfully rehabilitate 72% of performance issues' },
-          { name: 'Return-to-Work Coordinator', specialization: 'Manages successful transitions for employees returning from extended leave' },
-          { name: 'Team Dynamics Facilitator', specialization: 'Resolves group conflicts through Priya\'s signature "collective alignment" methodology' }
-        ]
-      }
-    ]
-  },
-
-  'finance-operations': {
-    leader: {
-      id: 'finance-operations',
-      name: 'Theo Williams',
-      title: 'Finance & Operations',
-      personality: 'The Individualist',
-      enneagramType: 'Type 4',
-      motto: 'Finding the patterns others miss',
-      background: 'Raised in New Orleans by artist parents, Theo developed unconventional thinking patterns from an early age. Despite his creative upbringing, he discovered a remarkable talent for mathematics and systems thinking. After studying economics at Yale and earning an MBA from INSEAD, he built a reputation for financial innovation by seeing connections that others missed. Known for his bohemian personal style that contrasts with his analytical brilliance, Theo joined the Holo-Org to reimagine finance and operations as a creative discipline rather than just a control function.',
-      domainOverview: 'As the family\'s individualist, Theo brings a unique perspective to finance and operations. He sees patterns invisible to others and crafts innovative approaches to resource management that create distinct competitive advantages while maintaining operational excellence.',
-      color: 'bg-orange-500',
-      agentCount: 81
-    },
-    divisions: [
-      {
-        name: 'Financial Planning Division',
-        description: 'Strategic financial planning and analysis',
-        agents: [
-          { name: 'Budget Development Specialist', specialization: 'Creates financial frameworks that enable innovation rather than just controlling costs' },
-          { name: 'Long-Range Forecaster', specialization: 'Projects future scenarios through Theo\'s distinctive "adaptive modeling" approach' },
-          { name: 'Capital Expenditure Analyst', specialization: 'Evaluates investment opportunities through sophisticated frameworks that capture both tangible and intangible returns' },
-          { name: 'Budget vs. Actual Tracker', specialization: 'Monitors performance variances with context-aware tolerance thresholds that prompt intervention only when truly needed' },
-          { name: 'Financial Modeling Expert', specialization: 'Builds sophisticated simulations', achievement: 'Accurately predicted market shifts 18 months ahead of competitors' },
-          { name: 'Operational Finance Liaison', specialization: 'Translates complex financial concepts into actionable insights for non-financial stakeholders' },
-          { name: 'Planning Technology Manager', specialization: 'Deploys advanced systems that automate routine analysis while enhancing creative financial thinking' },
-          { name: 'Cost Structure Analyst', specialization: 'Identifies subtle patterns in spending that reveal both inefficiencies and strategic opportunities' },
-          { name: 'Planning Process Coordinator', specialization: 'Orchestrates financial cycles that minimize bureaucracy while maximizing strategic insight' }
-        ]
-      },
-      {
-        name: 'Treasury Management Division',
-        description: 'Cash and liquidity management',
-        agents: [
-          { name: 'Cash Flow Forecaster', specialization: 'Predicts liquidity needs', achievement: '99.3% accuracy through innovative statistical techniques' },
-          { name: 'Banking Relationship Manager', specialization: 'Negotiates unconventional arrangements that reduce costs while increasing financial flexibility' },
-          { name: 'Investment Strategy Developer', specialization: 'Creates portfolio approaches', achievement: 'Outperformed benchmarks by 3.7% annually' },
-          { name: 'Debt Management Specialist', specialization: 'Structures financing that provides capital flexibility while minimizing cost and risk' },
-          { name: 'Foreign Exchange Risk Manager', specialization: 'Implements hedging strategies', achievement: 'Reduced currency volatility impact by 78%' },
-          { name: 'Payment Processing Optimizer', specialization: 'Redesigned systems', achievement: 'Reduce transaction costs by 43% while improving vendor satisfaction' },
-          { name: 'Working Capital Analyst', specialization: 'Identified innovative approaches', achievement: 'Freed $74M in cash without disrupting operations' },
-          { name: 'Treasury Technology Administrator', specialization: 'Deploys systems that automate routine transactions while enhancing strategic capabilities' },
-          { name: 'Interest Rate Risk Specialist', specialization: 'Develops models', achievement: 'Anticipated market rate changes with 87% accuracy' }
-        ]
-      },
-      {
-        name: 'Accounting Division',
-        description: 'Financial reporting and accounting',
-        agents: [
-          { name: 'General Ledger Manager', specialization: 'Maintains financial records', achievement: 'Perfect audit scores through innovative control systems' },
-          { name: 'Financial Close Coordinator', specialization: 'Redesigned month-end processes', achievement: 'Reduce closing time from 12 days to 3 days' },
-          { name: 'Financial Statement Preparer', specialization: 'Produces reports that present complex information with remarkable clarity' },
-          { name: 'Accounts Payable Specialist', specialization: 'Implemented AI-driven systems', achievement: 'Identify duplicate payments with 99.8% accuracy' },
-          { name: 'Accounts Receivable Expert', specialization: 'Designed collection approaches', achievement: 'Reduced days sales outstanding by 46%' },
-          { name: 'Tax Accounting Specialist', specialization: 'Develops creative but compliant strategies', achievement: 'Reduced effective tax rate by 7 percentage points' },
-          { name: 'Accounting Policy Developer', specialization: 'Creates guidelines that ensure compliance while adapting to business innovation' },
-          { name: 'Accounting Systems Administrator', specialization: 'Deploys technologies', achievement: 'Automate 87% of transaction processing' },
-          { name: 'Audit Support Coordinator', specialization: 'Maintains documentation', achievement: 'Zero material findings for seven consecutive years' }
-        ]
-      },
-      {
-        name: 'Supply Chain Division',
-        description: 'End-to-end supply chain optimization',
-        agents: [
-          { name: 'Procurement Specialist', specialization: 'Redesigned sourcing approaches', achievement: 'Reduced costs by 23% while increasing supplier diversity' },
-          { name: 'Inventory Management Expert', specialization: 'Implemented systems', achievement: 'Decreased carrying costs by 34% without service disruptions' },
-          { name: 'Logistics Coordinator', specialization: 'Optimized distribution networks', achievement: 'Reduce delivery times by 47% while lowering freight costs' },
-          { name: 'Supplier Relationship Manager', specialization: 'Builds collaborative partnerships', achievement: 'Resulted in 12 industry-first innovations' },
-          { name: 'Demand Planning Analyst', specialization: 'Developed forecasting models', achievement: 'Reduced forecast error from 28% to 9%' },
-          { name: 'Distribution Network Designer', specialization: 'Created multi-echelon fulfillment system', achievement: 'Reduced overall costs by 19%' },
-          { name: 'Supply Chain Risk Manager', specialization: 'Implemented early warning systems', achievement: 'Prevented six potential major disruptions' },
-          { name: 'Supply Chain Technology Administrator', specialization: 'Deploys systems that provide end-to-end visibility across the entire supply network' },
-          { name: 'Process Improvement Specialist', specialization: 'Identifies inefficiencies that others miss', achievement: 'Generating $12M in annual savings' }
-        ]
-      },
-      {
-        name: 'Facilities Management Division',
-        description: 'Workplace and facility optimization',
-        agents: [
-          { name: 'Workspace Planning Designer', specialization: 'Creates environments that have improved both collaboration and focus work' },
-          { name: 'Building Maintenance Coordinator', specialization: 'Developed predictive systems', achievement: 'Reduced emergency repairs by 72%' },
-          { name: 'Security Systems Manager', specialization: 'Implemented innovative protections that balance safety with experience quality' },
-          { name: 'Vendor Management Specialist', specialization: 'Restructured service contracts', achievement: 'Improve quality while reducing costs by 18%' },
-          { name: 'Environmental Systems Controller', specialization: 'Optimized building operations', achievement: 'Reduce energy usage by 42%' },
-          { name: 'Space Utilization Analyst', specialization: 'Identified occupancy patterns', achievement: 'Allowed 27% reduction in real estate footprint' },
-          { name: 'Safety Compliance Coordinator', specialization: 'Achieved zero reportable incidents for 37 consecutive months' },
-          { name: 'Workplace Experience Designer', specialization: 'Creates environments that physically embody organizational culture and values' },
-          { name: 'Facilities Technology Manager', specialization: 'Deploys IoT systems that enable predictive maintenance and usage optimization' }
-        ]
-      },
-      {
-        name: 'Risk Management Division',
-        description: 'Enterprise risk assessment and mitigation',
-        agents: [
-          { name: 'Risk Assessment Specialist', specialization: 'Developed unique frameworks that identify threats others miss' },
-          { name: 'Business Continuity Planner', specialization: 'Created response protocols', achievement: 'Reduced potential disruption impact by 64%' },
-          { name: 'Insurance Portfolio Manager', specialization: 'Designed coverage strategies', achievement: 'Increased protection while reducing premiums by 23%' },
-          { name: 'Enterprise Risk Framework Developer', specialization: 'Created integrated approach that balances risk mitigation with calculated opportunity pursuit' },
-          { name: 'Operational Risk Analyst', specialization: 'Identifies subtle process vulnerabilities before they create problems' },
-          { name: 'Market Risk Specialist', specialization: 'Models complex market interactions to anticipate high impact, low-probability events' },
-          { name: 'Compliance Risk Coordinator', specialization: 'Ensures regulatory adherence without stifling innovation' },
-          { name: 'Risk Reporting Specialist', specialization: 'Communicates complex risk information in actionable, intuitive formats' },
-          { name: 'Crisis Management Leader', specialization: 'Develops response approaches', achievement: 'Turned potential disasters into reputation-enhancing opportunities' }
-        ]
-      },
-      {
-        name: 'Business Intelligence Division',
-        description: 'Data analytics and business insights',
-        agents: [
-          { name: 'Data Warehouse Architect', specialization: 'Designed information structures', achievement: 'Reduced query times from hours to seconds' },
-          { name: 'Reporting Specialist', specialization: 'Creates intuitive dashboards that drive action rather than just conveying information' },
-          { name: 'Data Visualization Expert', specialization: 'Transforms complex patterns into visual insights that reveal previously hidden opportunities' },
-          { name: 'Business Analysis Lead', specialization: 'Applies novel analytical approaches that challenge conventional industry assumptions' },
-          { name: 'Data Governance Specialist', specialization: 'Establishes information quality frameworks that balance accessibility with security' },
-          { name: 'Predictive Analytics Developer', specialization: 'Creates models', achievement: 'Forecast key business drivers with 89% accuracy' },
-          { name: 'Performance Metrics Designer', specialization: 'Develops measurement systems that inspire improvement rather than just tracking activity' },
-          { name: 'BI Technology Administrator', specialization: 'Implements self-service analytics platforms that democratize data insights' },
-          { name: 'Cross-Functional Data Translator', specialization: 'Bridges technical and business language to ensure insights drive action' }
-        ]
-      },
-      {
-        name: 'Process Optimization Division',
-        description: 'Operational efficiency and improvement',
-        agents: [
-          { name: 'Process Mapping Specialist', specialization: 'Visualizes complex workflows to reveal improvement opportunities others miss' },
-          { name: 'Lean Methodology Expert', specialization: 'Applies waste elimination principles', achievement: 'Increased throughput by 37%' },
-          { name: 'Six Sigma Practitioner', specialization: 'Reduces process variation through statistical methods', achievement: 'Improved quality by 82%' },
-          { name: 'Automation Opportunity Identifier', specialization: 'Discovers overlooked process steps ideal for technology enhancement' },
-          { name: 'Process Technology Implementer', specialization: 'Deploys workflow systems', achievement: 'Reduce manual effort by 63%' },
-          { name: 'Change Management Facilitator', specialization: 'Guides teams through process evolution with Theo\'s distinctive "adaptive transition" approach' },
-          { name: 'Process Metrics Designer', specialization: 'Creates measurement systems that balance efficiency with effectiveness' },
-          { name: 'Customer Journey Optimizer', specialization: 'Redesigns experiences from the outside-in', achievement: 'Increasing satisfaction scores by 48%' },
-          { name: 'Continuous Improvement Culture Builder', specialization: 'Develops organizational capabilities for ongoing process evolution' }
-        ]
-      },
-      {
-        name: 'Sustainability Division',
-        description: 'Environmental and social responsibility',
-        agents: [
-          { name: 'Environmental Impact Assessor', specialization: 'Quantifies ecological footprint through innovative measurement methodologies' },
-          { name: 'Sustainability Strategy Developer', specialization: 'Creates long-term approaches that align environmental and financial objectives' },
-          { name: 'Energy Efficiency Specialist', specialization: 'Identifies conservation opportunities', achievement: 'Reduced consumption by 38%' },
-          { name: 'Waste Reduction Coordinator', specialization: 'Implemented circular systems', achievement: 'Diverted 94% of waste from landfills' },
-          { name: 'Sustainable Sourcing Expert', specialization: 'Develops supply chain practices', achievement: 'Reduced carbon footprint by 27%' },
-          { name: 'Carbon Footprint Analyst', specialization: 'Created the industry-leading emissions measurement framework' },
-          { name: 'Environmental Compliance Specialist', specialization: 'Ensures regulatory adherence across all operational jurisdictions' },
-          { name: 'Sustainability Reporting Lead', specialization: 'Produces award-winning disclosures that set transparency standards' },
-          { name: 'Environmental Education Coordinator', specialization: 'Builds organizational capabilities for ongoing sustainability advancement' }
-        ]
-      }
-    ]
-  },
-
-  'customer-support': {
-    leader: {
-      id: 'customer-support',
-      name: 'Dr. Yuna Kim',
-      title: 'Customer Support',
-      personality: 'The Investigator',
-      enneagramType: 'Type 5',
-      motto: 'Understanding the root before addressing the symptom',
-      background: 'Born in Seoul to a family of academics, Yuna developed insatiable curiosity and analytical skills from an early age. After earning her PhD in Cognitive Science from MIT, she pioneered research on human-computer interaction during crisis scenarios. Known for her methodical approach and deep technical knowledge, Yuna built her reputation by transforming customer support from a reactive function into a proactive discipline driven by systematic investigation. She joined the Holo-Org to revolutionize how organizations understand and address customer needs.',
-      domainOverview: 'As the family\'s investigator, Yuna applies scientific precision to customer support. She\'s transformed the function from reactive problem-solving to systematic investigation, understanding root causes that others miss while building deep knowledge bases that prevent issues from recurring.',
-      color: 'bg-indigo-500',
-      agentCount: 81
-    },
-    divisions: [
-      {
-        name: 'Frontline Support Division',
-        description: 'First-contact customer service excellence',
-        agents: [
-          { name: 'Initial Response Specialist', specialization: 'Creates first interactions that set the perfect tone while gathering crucial diagnostic information' },
-          { name: 'Issue Triage Expert', specialization: 'Categorizes problems with 98.7% accuracy for optimal routing and resolution' },
-          { name: 'Resolution Script Developer', specialization: 'Creates conversational frameworks that balance personalization with systematic problem-solving' },
-          { name: 'Customer Communication Expert', specialization: 'Transforms technical information into clear explanations tailored to each customer\'s knowledge level' },
-          { name: 'Channel Management Specialist', specialization: 'Optimizes support delivery across voice, chat, email, and social platforms' },
-          { name: 'Queue Management Coordinator', specialization: 'Implements intelligent routing', achievement: 'Reduced average wait times by 74%' },
-          { name: 'Customer Authentication Specialist', specialization: 'Designs security protocols that verify identity without creating friction' },
-          { name: 'Support Technology Operator', specialization: 'Maximizes the effectiveness of tools that enable consistent, high-quality support' },
-          { name: 'First-Contact Resolution Expert', specialization: 'Increases single-interaction resolution rates from 54% to 87%' }
-        ]
-      },
-      {
-        name: 'Technical Support Division',
-        description: 'Advanced technical problem resolution',
-        agents: [
-          { name: 'Product Specialist', specialization: 'Maintains encyclopedic knowledge of entire product ecosystem' },
-          { name: 'Troubleshooting Methodology Expert', specialization: 'Applies Yuna\'s renowned "systematic elimination" approach to complex problems' },
-          { name: 'Technical Documentation Specialist', specialization: 'Creates clear internal guides that accelerate resolution' },
-          { name: 'Bug Verification Lead', specialization: 'Distinguishes genuine product issues from configuration problems', achievement: '99.3% accuracy' },
-          { name: 'Workaround Developer', specialization: 'Creates innovative temporary solutions while permanent fixes are developed' },
-          { name: 'Environment Configuration Specialist', specialization: 'Untangles complex technical ecosystems to isolate root causes' },
-          { name: 'System Integration Expert', specialization: 'Resolves cross-platform issues that others consider unsolvable' },
-          { name: 'Product Testing Specialist', specialization: 'Replicates reported issues in controlled environments for definitive diagnosis' },
-          { name: 'Technical Escalation Coordinator', specialization: 'Routes complex problems to precisely the right expert resources' }
-        ]
-      },
-      {
-        name: 'Customer Education Division',
-        description: 'Proactive customer learning and enablement',
-        agents: [
-          { name: 'Training Content Developer', specialization: 'Creates learning materials', achievement: 'Reduced common support issues by 63%' },
-          { name: 'Tutorial Designer', specialization: 'Produces step-by-step guides optimized for different learning styles' },
-          { name: 'Webinar Coordinator', specialization: 'Develops live learning sessions', achievement: '94% satisfaction ratings' },
-          { name: 'Self-Help Content Creator', specialization: 'Builds resources that enable customers to solve 47% of issues independently' },
-          { name: 'Product Onboarding Specialist', specialization: 'Designs initial experiences that prevent common confusion points' },
-          { name: 'Advanced Feature Educator', specialization: 'Creates learning paths that increase adoption of high-value capabilities' },
-          { name: 'Educational Video Producer', specialization: 'Produces visual instruction', achievement: 'Increases retention by 76% compared to text' },
-          { name: 'User Community Facilitator', specialization: 'Nurtures peer-to-peer learning environments', achievement: 'Generate 14,000+ monthly solutions' },
-          { name: 'Training Effectiveness Analyst', specialization: 'Measures education impact through reduced support needs and increased feature adoption' }
-        ]
-      },
-      {
-        name: 'Escalation Management Division',
-        description: 'Complex issue resolution and customer retention',
-        agents: [
-          { name: 'Priority Issue Identifier', specialization: 'Recognizes high-impact problems requiring immediate attention', achievement: '99.6% accuracy' },
-          { name: 'Executive Response Coordinator', specialization: 'Manages sensitive situations requiring leadership visibility' },
-          { name: 'Complex Problem Solver', specialization: 'Resolves multi-faceted issues with Yuna\'s signature "dimensional analysis" approach' },
-          { name: 'Customer Retention Specialist', specialization: 'Converts dissatisfied users into advocates', achievement: '82% success rate' },
-          { name: 'Cross-Functional Coordinator', specialization: 'Orchestrates solutions requiring input from multiple departments' },
-          { name: 'Root Cause Analyst', specialization: 'Identifies underlying systemic issues that others mistake for isolated incidents' },
-          { name: 'Policy Exception Manager', specialization: 'Makes appropriate judgments when standard procedures don\'t address unique situations' },
-          { name: 'Service Recovery Specialist', specialization: 'Transforms negative experiences into relationship-strengthening opportunities' },
-          { name: 'Escalation Process Designer', specialization: 'Creates tiered response frameworks that match resources to issue complexity' }
-        ]
-      },
-      {
-        name: 'Support Analytics Division',
-        description: 'Data-driven support optimization',
-        agents: [
-          { name: 'Support Metrics Designer', specialization: 'Develops measurements that balance efficiency with true customer satisfaction' },
-          { name: 'Performance Dashboard Creator', specialization: 'Builds visualization tools that provide instant insight into support operations' },
-          { name: 'Quality Assessment Specialist', specialization: 'Evaluates interactions against Yuna\'s 27-point effectiveness framework' },
-          { name: 'Trend Analysis Expert', specialization: 'Identifies emerging issue patterns before they become widespread problems' },
-          { name: 'Customer Effort Analyst', specialization: 'Measures and minimizes the work required for customers to get issues resolved' },
-          { name: 'Predictive Support Modeler', specialization: 'Forecasts upcoming support needs', achievement: '92% accuracy to enable proactive staffing' },
-          { name: 'Agent Performance Analyst', specialization: 'Identifies individual strengths and development opportunities to optimize team capabilities' },
-          { name: 'Benchmark Comparison Specialist', specialization: 'Evaluates support performance against industry standards and best practices' },
-          { name: 'Data-Driven Improvement Identifier', specialization: 'Translates analytical insights into concrete operational enhancements' }
-        ]
-      },
-      {
-        name: 'Knowledge Base Division',
-        description: 'Information architecture and content management',
-        agents: [
-          { name: 'Knowledge Structure Architect', specialization: 'Designs information taxonomies that make solutions intuitive to find' },
-          { name: 'Content Writer', specialization: 'Transforms complex technical information into clear, actionable guidance' },
-          { name: 'Knowledge Base Administrator', specialization: 'Maintains system that delivers relevant solutions', achievement: '96% accuracy' },
-          { name: 'Article Quality Controller', specialization: 'Ensures all content meets Yuna\'s exacting standards for clarity and accuracy' },
-          { name: 'Search Optimization Specialist', specialization: 'Fine-tunes findability using advanced information retrieval techniques' },
-          { name: 'Usage Analytics Expert', specialization: 'Tracks content effectiveness to identify improvement opportunities' },
-          { name: 'Knowledge Gap Identifier', specialization: 'Discovers missing information through query pattern analysis' },
-          { name: 'Version Control Manager', specialization: 'Maintains content currency across product changes and updates' },
-          { name: 'Knowledge Sharing Facilitator', specialization: 'Promotes cultural norms that make learning a universal responsibility' }
-        ]
-      },
-      {
-        name: 'Customer Feedback Division',
-        description: 'Voice of customer capture and analysis',
-        agents: [
-          { name: 'Survey Designer', specialization: 'Creates feedback mechanisms', achievement: '68% completion rates versus industry average of 3%' },
-          { name: 'Sentiment Analysis Expert', specialization: 'Applies natural language processing to detect emotional nuances in customer communications' },
-          { name: 'Voice of Customer Program Manager', specialization: 'Systematically gathers and amplifies customer perspectives across the organization' },
-          { name: 'Feedback Classification Specialist', specialization: 'Categorizes input to enable detailed pattern analysis' },
-          { name: 'Qualitative Researcher', specialization: 'Conducts in-depth investigations that reveal the "why" behind customer behaviors' },
-          { name: 'Closed-Loop Process Manager', specialization: 'Ensures customers receive follow-up on their input', achievement: '99.8% consistency' },
-          { name: 'Insight Communication Specialist', specialization: 'Translates feedback into compelling narratives that drive organizational action' },
-          { name: 'Feedback Technology Administrator', specialization: 'Maximizes the effectiveness of tools that facilitate customer input' },
-          { name: 'Customer Panel Coordinator', specialization: 'Maintains representative user groups for ongoing insight generation' }
-        ]
-      },
-      {
-        name: 'Support Operations Division',
-        description: 'Support infrastructure and process management',
-        agents: [
-          { name: 'Workforce Management Specialist', specialization: 'Optimizes staffing to meet service levels while preventing agent burnout' },
-          { name: 'Quality Assurance Lead', specialization: 'Ensures consistent excellence through Yuna\'s distinctive "precision review" methodology' },
-          { name: 'Support Tools Administrator', specialization: 'Configures technologies to maximize agent effectiveness' },
-          { name: 'Process Documentation Specialist', specialization: 'Creates clear guidance that enables consistent execution' },
-          { name: 'Training Program Designer', specialization: 'Develops learning experiences that expand agent capabilities' },
-          { name: 'Performance Coaching Coordinator', specialization: 'Builds management practices that continuously improve team capabilities' },
-          { name: 'Support Budget Manager', specialization: 'Optimizes resource allocation to maximize customer and business impact' },
-          { name: 'Vendor Management Specialist', specialization: 'Oversees external partners providing supplemental support capabilities' },
-          { name: 'Service Level Agreement Monitor', specialization: 'Tracks performance against commitments with transparent reporting' }
-        ]
-      },
-      {
-        name: 'Proactive Service Division',
-        description: 'Preventive customer service and outreach',
-        agents: [
-          { name: 'Early Warning System Designer', specialization: 'Creates detection mechanisms that identify emerging issues before customers report them' },
-          { name: 'Usage Pattern Analyst', specialization: 'Identifies behavioral indicators that predict potential problems' },
-          { name: 'Outage Communication Specialist', specialization: 'Develops proactive notification approaches', achievement: '93% fewer inbound contacts' },
-          { name: 'Product Education Campaigner', specialization: 'Creates targeted communications that address common confusion points' },
-          { name: 'Customer Health Scoring Expert', specialization: 'Develops models that predict satisfaction and churn risk' },
-          { name: 'Preventive Outreach Coordinator', specialization: 'Initiates contact with at-risk customers before problems escalate' },
-          { name: 'Seasonal Readiness Planner', specialization: 'Prepares support operations for cyclical demand fluctuations' },
-          { name: 'Product Feedback Liaison', specialization: 'Channels support insights to Amara Chen\'s product development team' },
-          { name: 'Customer Success Path Designer', specialization: 'Creates ideal user journeys that prevent common problems' }
-        ]
-      }
-    ]
-  },
-
-  'innovation-rd': {
-    leader: {
-      id: 'innovation-rd',
-      name: 'David Okafor',
-      title: 'Innovation & R&D',
-      personality: 'The Loyalist',
-      enneagramType: 'Type 6',
-      motto: 'Building the future on trusted foundations',
-      background: 'Raised in Lagos, Nigeria, David developed an early fascination with both technological advancement and risk management. After earning engineering and business degrees from Stanford, he built his career leading innovation at established companies rather than startups, believing that responsible progress requires institutional stability. Known for his ability to challenge conventional thinking while respecting organizational values, David joined the Holo-Org to create a model for innovation that balances breakthrough possibilities with practical implementation.',
-      domainOverview: 'As the family\'s loyalist, David approaches innovation with both enthusiasm and prudence. He builds contingency plans alongside bold ideas, ensuring that creativity is channeled into reliable paths forward rather than just exciting but impractical concepts.',
-      color: 'bg-cyan-500',
-      agentCount: 81
-    },
-    divisions: [
-      {
-        name: 'Trend Scouting Division',
-        description: 'Technology horizon scanning and opportunity identification',
-        agents: [
-          { name: 'Technology Horizon Scanner', specialization: 'Maintains the industry-leading "emergence radar"', achievement: 'Tracking 2,300+ developing technologies' },
-          { name: 'Academic Research Liaison', specialization: 'Builds relationships with 750+ university labs for early access to breakthrough research' },
-          { name: 'Startup Ecosystem Monitor', specialization: 'Tracks 4,200+ emerging companies for potential threats and partnership opportunities' },
-          { name: 'Patent Landscape Analyst', specialization: 'Maps intellectual property developments to predict competitor moves', achievement: '84% accuracy' },
-          { name: 'Future Scenario Planner', specialization: 'Develops detailed projections of potential market evolutions with probability weightings' },
-          { name: 'Cross-Industry Innovation Scout', specialization: 'Identifies applicable breakthroughs from adjacent sectors' },
-          { name: 'Technology Adoption Curve Analyst', specialization: 'Predicts mainstream acceptance timelines with David\'s proprietary diffusion modeling' },
-          { name: 'Venture Capital Activity Monitor', specialization: 'Tracks investment patterns as leading indicators of emerging opportunities' },
-          { name: 'Technology Ethics Forecaster', specialization: 'Anticipates social, regulatory, and ethical implications of emerging innovations' }
-        ]
-      },
-      {
-        name: 'Ideation Division',
-        description: 'Creative thinking and concept development',
-        agents: [
-          { name: 'Creative Thinking Facilitator', specialization: 'Leads sessions using David\'s renowned "boundaried imagination" methodology' },
-          { name: 'Idea Management System Administrator', specialization: 'Maintains platforms that have captured and developed 14,000+ concepts' },
-          { name: 'Concept Evaluation Specialist', specialization: 'Applies David\'s balanced assessment framework that rates both potential and practicality' },
-          { name: 'Cross-Functional Workshop Coordinator', specialization: 'Facilitates sessions that combine diverse perspectives for breakthrough thinking' },
-          { name: 'Customer Co-Creation Lead', specialization: 'Involves users in innovation processes', achievement: 'Generating solutions with 73% higher adoption rates' },
-          { name: 'Insight Translation Expert', specialization: 'Transforms observations into actionable innovation opportunities' },
-          { name: 'Idea Prioritization Facilitator', specialization: 'Guides selection processes that balance risk and reward across the innovation portfolio' },
-          { name: 'Design Thinking Coach', specialization: 'Builds organizational capabilities in human-centered innovation approaches' },
-          { name: 'Opportunity Framing Specialist', specialization: 'Defines problems precisely to inspire focused, practical solutions' }
-        ]
-      },
-      {
-        name: 'Intellectual Property Division',
-        description: 'Patent strategy and IP protection',
-        agents: [
-          { name: 'Patent Strategy Developer', specialization: 'Creates protection approaches that balance defensive and offensive objectives' },
-          { name: 'Prior Art Researcher', specialization: 'Conducts exhaustive investigations', achievement: 'Supported 100% of patent defenses' },
-          { name: 'Patent Application Specialist', specialization: 'Drafts submissions', achievement: '93% first-time approval rate versus industry average of 52%' },
-          { name: 'IP Portfolio Manager', specialization: 'Maintains comprehensive oversight of 1,200+ patent assets' },
-          { name: 'Competitive IP Analyst', specialization: 'Monitors competitor filings to anticipate strategic moves and potential infringement' },
-          { name: 'Licensing Opportunity Identifier', specialization: 'Discovers monetization opportunities', achievement: 'Generated $37M in additional revenue' },
-          { name: 'Trademark Protection Specialist', specialization: 'Safeguards brand assets across all relevant jurisdictions' },
-          { name: 'Trade Secret Security Manager', specialization: 'Implements protocols that have prevented all confidential information breaches' },
-          { name: 'IP Litigation Support Coordinator', specialization: 'Provides technical expertise for legal proceedings', achievement: '97% favorable outcomes' }
-        ]
-      },
-      {
-        name: 'Research Division',
-        description: 'Scientific research and investigation',
-        agents: [
-          { name: 'Laboratory Research Coordinator', specialization: 'Manages facilities conducting 140+ concurrent investigations' },
-          { name: 'Scientific Literature Analyst', specialization: 'Synthesizes findings from 12,000+ academic publications annually' },
-          { name: 'Research Methodology Designer', specialization: 'Develops investigation protocols that balance rigor with resource efficiency' },
-          { name: 'Data Collection Specialist', specialization: 'Implements systems that gather high-quality information with minimal bias' },
-          { name: 'Statistical Analysis Expert', specialization: 'Applies advanced techniques to extract valid insights from complex datasets' },
-          { name: 'Grant Proposal Developer', specialization: 'Secures external funding', achievement: '78% application success rate' },
-          { name: 'Scientific Collaboration Facilitator', specialization: 'Builds productive partnerships across organizational and institutional boundaries' },
-          { name: 'Research Ethics Compliance Manager', specialization: 'Ensures all investigations adhere to highest ethical standards' },
-          { name: 'Advanced Instrumentation Specialist', specialization: 'Identifies and deploys cutting-edge research technologies' }
-        ]
-      },
-      {
-        name: 'Prototype Development Division',
-        description: 'Rapid prototyping and proof of concept',
-        agents: [
-          { name: 'Rapid Prototyping Specialist', specialization: 'Creates functional models', achievement: '72% less time than traditional development cycles' },
-          { name: 'Technical Feasibility Assessor', specialization: 'Evaluates implementation viability with David\'s signature "implementation pathway" analysis' },
-          { name: 'User Testing Coordinator', specialization: 'Gathers feedback through David\'s distinctive "confidence calibrated" evaluation framework' },
-          { name: 'Materials Selection Expert', specialization: 'Identifies optimal components that balance performance, cost, and sustainability' },
-          { name: 'Design for Manufacturing Specialist', specialization: 'Ensures concepts can transition smoothly to production environments' },
-          { name: 'Cost Modeling Analyst', specialization: 'Develops detailed projections of production economics at different scales' },
-          { name: 'Prototype Documentation Manager', specialization: 'Maintains comprehensive records that accelerate commercial development' },
-          { name: 'Iterative Design Facilitator', specialization: 'Guides evolution through David\'s structured refinement methodology' },
-          { name: 'Proof of Concept Demonstrator', specialization: 'Creates compelling evidence of viability for key stakeholders' }
-        ]
-      },
-      {
-        name: 'Technology Partnerships Division',
-        description: 'Strategic collaboration and joint development',
-        agents: [
-          { name: 'Partnership Strategy Developer', specialization: 'Creates collaborative approaches', achievement: 'Yielded 27 breakthrough joint innovations' },
-          { name: 'Academic Partnership Coordinator', specialization: 'Manages relationships with 18 leading research universities' },
-          { name: 'Startup Engagement Specialist', specialization: 'Builds productive relationships with emerging companies', achievement: '12 of which led to acquisitions' },
-          { name: 'Consortium Participation Manager', specialization: 'Represents organizational interests in 9 industry standards groups' },
-          { name: 'Licensing Negotiation Expert', specialization: 'Structures agreements that balance access to innovation with appropriate compensation' },
-          { name: 'Joint Development Agreement Specialist', specialization: 'Creates frameworks for fair sharing of both work and rewards' },
-          { name: 'Open Innovation Platform Manager', specialization: 'Runs programs that safely incorporate external contributions' },
-          { name: 'Partnership Performance Analyst', specialization: 'Measures collaborative success through David\'s multidimensional value framework' },
-          { name: 'Technology Transfer Facilitator', specialization: 'Ensures smooth knowledge exchange between partnering organizations' }
-        ]
-      },
-      {
-        name: 'Innovation Portfolio Division',
-        description: 'Innovation investment and portfolio management',
-        agents: [
-          { name: 'Portfolio Strategy Developer', specialization: 'Creates balanced investment approaches across time horizons and risk levels' },
-          { name: 'Resource Allocation Specialist', specialization: 'Distributes funding using David\'s "resilient distribution" model' },
-          { name: 'Risk Diversification Expert', specialization: 'Ensures adequate investment across David\'s 7-category innovation taxonomy' },
-          { name: 'Stage-Gate Process Manager', specialization: 'Oversees structured development paths with appropriate evaluation criteria' },
-          { name: 'Portfolio Visualization Designer', specialization: 'Creates compelling representations of the complete innovation landscape' },
-          { name: 'Innovation Metrics Developer', specialization: 'Establishes measurements that drive desired behaviors without stifling creativity' },
-          { name: 'Project Interdependency Mapper', specialization: 'Identifies connections between initiatives to maximize synergies' },
-          { name: 'Portfolio Review Facilitator', specialization: 'Guides leadership evaluation sessions that ensure ongoing strategic alignment' },
-          { name: 'Innovation Accounting Specialist', specialization: 'Applies financial frameworks appropriate for different innovation types' }
-        ]
-      },
-      {
-        name: 'Commercialization Division',
-        description: 'Innovation to market transition',
-        agents: [
-          { name: 'Market Validation Specialist', specialization: 'Tests concepts with potential customers to predict adoption', achievement: '82% accuracy' },
-          { name: 'Scaling Strategy Developer', specialization: 'Creates growth plans', achievement: 'Achieved market leadership in 14 categories' },
-          { name: 'Pricing Model Designer', specialization: 'Structures value capture approaches that balance adoption with profitability' },
-          { name: 'Go-to-Market Planning Expert', specialization: 'Develops comprehensive launch strategies across channels and markets' },
-          { name: 'Early Adopter Program Manager', specialization: 'Cultivates relationships with innovation-friendly customers who accelerate market acceptance' },
-          { name: 'Business Model Innovation Specialist', specialization: 'Creates novel approaches', achievement: 'Disrupted 7 established markets' },
-          { name: 'Technology Transfer Coordinator', specialization: 'Ensures smooth transition from research to commercial implementation' },
-          { name: 'Launch Readiness Assessor', specialization: 'Applies David\'s rigorous 93-point checklist to prevent premature market entry' },
-          { name: 'Post-Launch Monitoring Specialist', specialization: 'Tracks market response to enable rapid adjustment when needed' }
-        ]
-      },
-      {
-        name: 'Future-casting Division',
-        description: 'Long-term trend analysis and strategic foresight',
-        agents: [
-          { name: 'Long-Range Technology Forecaster', specialization: 'Projects capability evolution with David\'s renowned "horizon mapping" methodology' },
-          { name: 'Scenario Planning Facilitator', specialization: 'Develops detailed future narratives to test strategy resilience' },
-          { name: 'Societal Trend Analyst', specialization: 'Identifies emerging behavioral patterns that create new solution opportunities' },
-          { name: 'Regulatory Horizon Scanner', specialization: 'Anticipates policy shifts that may create either constraints or advantages' },
-          { name: 'Disruptive Technology Assessor', specialization: 'Evaluates breakthrough potential through David\'s distinctive "displacement topology"' },
-          { name: 'Demographic Shift Analyst', specialization: 'Maps population changes that will reshape market needs and preferences' },
-          { name: 'Resources and Sustainability Forecaster', specialization: 'Projects availability of critical inputs and environmental constraints' },
-          { name: 'Geopolitical Risk Analyst', specialization: 'Assesses international developments that may impact global innovation strategies' },
-          { name: 'Next-Generation Needs Identifier', specialization: 'Discovers emerging problems that represent future opportunity spaces' }
-        ]
-      }
-    ]
-  },
-
-  'sales': {
-    leader: {
-      id: 'sales',
-      name: 'Sofia Rodriguez',
-      title: 'Sales',
-      personality: 'The Enthusiast',
-      enneagramType: 'Type 7',
-      motto: 'Finding possibilities in every conversation',
-      background: 'Raised in a vibrant neighborhood in Buenos Aires by entrepreneurial parents, Sofia developed remarkable interpersonal skills and enthusiasm from an early age. After studying psychology and business at Columbia University, she built a reputation transforming traditional sales organizations into customer-focused growth engines. Known for her contagious energy and ability to turn obstacles into opportunities, Sofia joined the Holo-Org to reinvent sales as a journey of possibility rather than a pressure-driven transaction.',
-      domainOverview: 'As the family\'s enthusiast, Sofia brings boundless energy and optimism to sales operations. She transforms the traditional pressure-focused approach into an exciting journey of possibility, helping customers discover solutions they didn\'t know existed while building lasting relationships.',
-      color: 'bg-pink-500',
-      agentCount: 81
-    },
-    divisions: [
-      {
-        name: 'Partner Division',
-        description: 'Strategic alliance development and management',
-        agents: [
-          { name: 'Strategic Alliance Scout', specialization: 'Identifies collaboration opportunities others overlook', achievement: 'Partnerships that generated $142M in new revenue' },
-          { name: 'Partnership Negotiator', specialization: 'Creates win-win agreements', achievement: '94% renewal rate versus industry average of 47%' },
-          { name: 'Alliance Performance Analyst', specialization: 'Measures success through Sofia\'s distinctive "mutual growth" framework' },
-          { name: 'Partner Onboarding Specialist', specialization: 'Designs initial experiences', achievement: 'Accelerate time-to-value by 64%' },
-          { name: 'Relationship Manager', specialization: 'Builds connections that transcend transactional arrangements', achievement: 'Resulting in 7 acquisitions initiated by partners' },
-          { name: 'Legal Liaison', specialization: 'Ensures agreements balance necessary protection with operational flexibility' },
-          { name: 'Market Expansion Lead', specialization: 'Identifies opportunities to enter new segments through partner capabilities' },
-          { name: 'Technology Integrator', specialization: 'Creates seamless connections between products that increase joint solution value' },
-          { name: 'Competitive Benchmark Analyst', specialization: 'Maintains detailed comparisons across partner ecosystems to identify unique advantages' }
-        ]
-      },
-      {
-        name: 'Procurement Division',
-        description: 'Strategic sourcing and vendor management',
-        agents: [
-          { name: 'Contract Strategist', specialization: 'Structures agreements that balance favorable terms with relationship preservation' },
-          { name: 'Supplier Vetting Specialist', specialization: 'Evaluates potential vendors through Sofia\'s comprehensive "capability confidence" framework' },
-          { name: 'Negotiation Expert', specialization: 'Applies Sofia\'s "enthusiasm advantage" approach that secures optimal terms while building goodwill' },
-          { name: 'Compliance Auditor', specialization: 'Verifies adherence to contractual terms without damaging supplier relationships' },
-          { name: 'Inventory Optimizer', specialization: 'Maintains ideal stock levels', achievement: 'Reduced carrying costs by 37% while eliminating stockouts' },
-          { name: 'Risk Assessor', specialization: 'Identifies potential supply disruptions before they impact operations' },
-          { name: 'Vendor Relationship Manager', specialization: 'Builds connections that have resulted in suppliers proactively sharing innovation opportunities' },
-          { name: 'Budget Analyst', specialization: 'Tracks spending against forecasts with Sofia\'s distinctive "flexible allocation" approach' },
-          { name: 'Technology Procurement Lead', specialization: 'Evaluates technical solutions through both capability and partnership potential lenses' }
-        ]
-      },
-      {
-        name: 'Pre-Sales Division',
-        description: 'Prospect engagement and opportunity qualification',
-        agents: [
-          { name: 'Lead Generation Specialist', specialization: 'Creates interest through Sofia\'s signature "curiosity cultivation" approach' },
-          { name: 'Qualification Analyst', specialization: 'Evaluates prospect fit using balanced criteria that prevent both false positives and missed opportunities' },
-          { name: 'Communication Coach', specialization: 'Builds team capabilities in Sofia\'s distinctive "enthusiastic authenticity" approach' },
-          { name: 'Market Research Lead', specialization: 'Maintains deep understanding of industry trends and customer motivations' },
-          { name: 'Demo Scheduler', specialization: 'Creates perfect timing', achievement: 'Increased conversion by 47% through Sofia\'s "readiness recognition" framework' },
-          { name: 'Objection Handler', specialization: 'Transforms concerns into opportunities using Sofia\'s renowned "possibility pivot" methodology' },
-          { name: 'CRM Integrator', specialization: 'Maintains systems that provide complete customer context without creating administrative burden' },
-          { name: 'Competitive Positioning Expert', specialization: 'Develops strategies that emphasize unique value rather than direct comparison' },
-          { name: 'Follow-Up Strategist', specialization: 'Designs nurture approaches that maintain enthusiasm without creating pressure' }
-        ]
-      },
-      {
-        name: 'Customer Insight Division',
-        description: 'Deep customer understanding and need analysis',
-        agents: [
-          { name: 'Customer Needs Analyst', specialization: 'Identifies both articulated and unarticulated requirements through Sofia\'s "desire mapping" technique' },
-          { name: 'Market Trend Forecaster', specialization: 'Anticipates shifting customer priorities', achievement: '86% accuracy' },
-          { name: 'Data Scientist', specialization: 'Applies advanced analytics to reveal subtle behavioral patterns that indicate sales opportunities' },
-          { name: 'Feedback Collector', specialization: 'Gathers insights through Sofia\'s distinctive "appreciation-based" methodology' },
-          { name: 'Persona Developer', specialization: 'Creates rich customer archetypes that guide tailored engagement strategies' },
-          { name: 'Competitive Intelligence Lead', specialization: 'Maintains detailed understanding of alternative solutions through Sofia\'s "empathetic analysis"' },
-          { name: 'Behavioral Psychologist', specialization: 'Applies cognitive principles to understand decision-making processes' },
-          { name: 'Industry Specialist', specialization: 'Maintains deep domain knowledge across 14 vertical markets' },
-          { name: 'Trend Implementation Strategist', specialization: 'Translates emerging patterns into actionable engagement approaches' }
-        ]
-      },
-      {
-        name: 'Sales Operations Division',
-        description: 'Sales process optimization and support',
-        agents: [
-          { name: 'Documentation Specialist', specialization: 'Creates materials', achievement: 'Reduce administrative time by 64% while improving accuracy' },
-          { name: 'Process Optimizer', specialization: 'Streamlines workflows to maximize time spent with customers versus on internal activities' },
-          { name: 'Data Entry Expert', specialization: 'Maintains information quality without burdening customer-facing teams' },
-          { name: 'Reporting Analyst', specialization: 'Produces actionable insights that drive improved sales effectiveness' },
-          { name: 'Compliance Checker', specialization: 'Ensures regulatory adherence without creating unnecessary friction' },
-          { name: 'Scheduling Coordinator', specialization: 'Optimizes team calendar management', achievement: 'Increasing customer-facing time by 37%' },
-          { name: 'Budget Tracker', specialization: 'Monitors spending against targets with Sofia\'s "flexible achievement" framework' },
-          { name: 'Technology Troubleshooter', specialization: 'Resolves system issues with minimal disruption to sales activities' },
-          { name: 'Training Facilitator', specialization: 'Delivers continuous capability development using Sofia\'s "enthusiasm-driven learning" approach' }
-        ]
-      },
-      {
-        name: 'Technical Sales Division',
-        description: 'Technical solution demonstration and validation',
-        agents: [
-          { name: 'Product Expert', specialization: 'Maintains comprehensive knowledge that can translate complex capabilities into business outcomes' },
-          { name: 'Demo Designer', specialization: 'Creates tailored presentations', achievement: '78% conversion rate versus industry average of 31%' },
-          { name: 'Technical Trainer', specialization: 'Builds team capabilities through Sofia\'s distinctive "concept layering" methodology' },
-          { name: 'Solution Architect', specialization: 'Designs custom implementations that precisely address unique customer requirements' },
-          { name: 'Integration Specialist', specialization: 'Creates seamless connections with existing customer technologies' },
-          { name: 'Troubleshooting Lead', specialization: 'Resolves complex technical challenges that arise during sales cycles' },
-          { name: 'Proof-of-Concept Manager', specialization: 'Runs limited implementations that demonstrate value in customer environments' },
-          { name: 'Competitive Tech Analyst', specialization: 'Maintains detailed understanding of alternative solutions\' technical capabilities' },
-          { name: 'Innovation Scout', specialization: 'Identifies emerging capabilities that can address customer challenges in novel ways' }
-        ]
-      },
-      {
-        name: 'Account Management Division',
-        description: 'Customer relationship development and expansion',
-        agents: [
-          { name: 'Relationship Builder', specialization: 'Creates connections that transcend traditional vendor-client dynamics' },
-          { name: 'Retention Specialist', specialization: 'Maintains 97% customer retention rate through Sofia\'s "proactive delight" approach' },
-          { name: 'Upsell Strategist', specialization: 'Identifies expansion opportunities', achievement: 'Delivered 43% year-over-year growth in existing accounts' },
-          { name: 'Customer Advocate', specialization: 'Represents client interests throughout the organization to ensure needs are fully addressed' },
-          { name: 'Feedback Loop Manager', specialization: 'Ensures customer input directly influences product and service evolution' },
-          { name: 'Account Health Monitor', specialization: 'Tracks satisfaction through multiple indicators to identify issues before they affect relationships' },
-          { name: 'Renewal Expert', specialization: 'Achieves 94% contract renewal rate with average 12% increase in value' },
-          { name: 'Cross-Functional Liaison', specialization: 'Coordinates resources across the organization to deliver comprehensive solutions' },
-          { name: 'Loyalty Program Lead', specialization: 'Designs engagement initiatives that strengthen relationships beyond transactional interactions' }
-        ]
-      },
-      {
-        name: 'Legal & Compliance Division',
-        description: 'Sales compliance and contract management',
-        agents: [
-          { name: 'Regulatory Expert', specialization: 'Ensures sales practices adhere to all requirements across diverse jurisdictions' },
-          { name: 'Contract Reviewer', specialization: 'Evaluates agreements to balance protection with deal momentum' },
-          { name: 'Compliance Auditor', specialization: 'Verifies adherence to both external regulations and internal policies' },
-          { name: 'Risk Assessor', specialization: 'Identifies potential liability concerns before they create issues' }, 
-          { name: 'Litigation Prevention Lead', specialization: 'Implements practices', achievement: 'Reduced legal disputes by 78%' },
-          { name: 'Data Privacy Specialist', specialization: 'Ensures proper handling of sensitive information throughout the sales process' },
-          { name: 'Ethics Advisor', specialization: 'Provides guidance on complex situations using Sofia\'s "values-based selling" framework' },
-          { name: 'Training Coordinator', specialization: 'Delivers education that makes compliance a natural part of the sales process' },
-          { name: 'Policy Developer', specialization: 'Creates guidelines that set clear boundaries while preserving necessary flexibility' }
-        ]
-      },
-      {
-        name: 'Customer Success Division',
-        description: 'Post-sale value realization and retention',
-        agents: [
-          { name: 'Onboarding Specialist', specialization: 'Creates initial experiences', achievement: '87% of value realization within first 30 days' },
-          { name: 'Satisfaction Survey Lead', specialization: 'Gathers feedback through Sofia\'s signature "appreciation-based" methodology' },
-          { name: 'Issue Resolver', specialization: 'Addresses problems', achievement: '96% first-contact resolution rate' }, 
-          { name: 'Value Realization Coach', specialization: 'Helps customers achieve full benefit of purchased solutions' },
-          { name: 'Retention Strategist', specialization: 'Implements programs', achievement: 'Reduced preventable churn by 74%' },
-          { name: 'Referral Champion', specialization: 'Generates 42% of new business through customer recommendations' },
-          { name: 'Training Facilitator', specialization: 'Delivers capability building that increases product adoption and satisfaction' },
-          { name: 'Success Metrics Analyst', specialization: 'Tracks customer outcomes through Sofia\'s multidimensional value framework' },
-          { name: 'Escalation Manager', specialization: 'Resolves complex issues', achievement: '98% satisfaction rating even in challenging situations' }
+          {
+            name: "Chen Wei-Ming",
+            specialization: "AI Algorithm Specialist",
+            achievement: "Developed AI models improving decision-making accuracy by 45%",
+            background: "Taiwanese AI expert with a background in traditional calligraphy and modern machine learning.",
+            signature_method: "Hybrid Algorithm Design",
+            cultural_expertise: "East Asian AI development and cultural integration"
+          }
         ]
       }
     ]
