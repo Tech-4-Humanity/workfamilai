@@ -1,6 +1,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { familyMemberDetails } from '@/data/familyMembers';
 
 interface AgentCount {
   function: string;
@@ -75,26 +76,14 @@ export const useAgentData = () => {
     }
   });
 
-  // Map functions to department heads
+  // Use local family data to get agent counts for each department
   const getDepartmentAgentCount = (departmentId: string): number => {
-    if (!functionCounts) return 0;
+    const familyMember = familyMemberDetails[departmentId];
+    if (!familyMember) return 0;
     
-    const functionMapping: Record<string, string[]> = {
-      'product-development': ['Product Management', 'UX Design', 'Software Development', 'Quality Assurance'],
-      'marketing': ['Marketing Strategy', 'Content Creation', 'Brand Management', 'Digital Marketing'],
-      'human-resources': ['Talent Acquisition', 'HR Management', 'Training & Development', 'Employee Relations'],
-      'finance-operations': ['Financial Analysis', 'Operations Management', 'Risk Management', 'Business Analysis'],
-      'customer-support': ['Customer Support', 'Technical Support', 'Customer Success', 'Help Desk'],
-      'innovation-rd': ['Research & Development', 'Innovation Management', 'Technology Strategy', 'Product Innovation'],
-      'sales': ['Sales Strategy', 'Account Management', 'Business Development', 'Sales Operations'],
-      'governance-compliance': ['Compliance Management', 'Risk Assessment', 'Audit', 'Governance'],
-      'external-relations': ['Public Relations', 'Partnership Management', 'Stakeholder Relations', 'Communications']
-    };
-
-    const departmentFunctions = functionMapping[departmentId] || [];
-    return functionCounts
-      .filter(fc => departmentFunctions.some(df => fc.function.includes(df) || df.includes(fc.function)))
-      .reduce((sum, fc) => sum + fc.count, 0);
+    return familyMember.divisions.reduce((total, division) => {
+      return total + division.agents.length;
+    }, 0);
   };
 
   return {
