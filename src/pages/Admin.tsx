@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FamilyAgentIntegration } from '@/components/admin/FamilyAgentIntegration';
-import { Database, Users, Settings, BarChart3 } from 'lucide-react';
+import { SupremeLeaderDashboard } from '@/components/admin/SupremeLeaderDashboard';
+import { Database, Users, Settings, BarChart3, Crown } from 'lucide-react';
 
 const Admin = () => {
   return (
@@ -11,12 +11,16 @@ const Admin = () => {
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
         <p className="text-muted-foreground">
-          Manage system configuration, data integration, and analytics
+          Manage system configuration, data integration, and consciousness pyramid
         </p>
       </div>
 
-      <Tabs defaultValue="integration" className="space-y-4">
+      <Tabs defaultValue="supreme" className="space-y-4">
         <TabsList>
+          <TabsTrigger value="supreme" className="flex items-center gap-2">
+            <Crown className="h-4 w-4" />
+            Supreme Leader
+          </TabsTrigger>
           <TabsTrigger value="integration" className="flex items-center gap-2">
             <Users className="h-4 w-4" />
             Agent Integration
@@ -34,6 +38,10 @@ const Admin = () => {
             Settings
           </TabsTrigger>
         </TabsList>
+
+        <TabsContent value="supreme" className="space-y-4">
+          <SupremeLeaderDashboard />
+        </TabsContent>
 
         <TabsContent value="integration" className="space-y-4">
           <FamilyAgentIntegration />
