@@ -7,12 +7,14 @@ interface AuditReport {
   audit_type: string;
   status: string;
   base_url: string;
-  pages_crawled: any[];
-  broken_links: any[];
-  missing_handlers: any[];
+  pages_crawled: any;
+  broken_links: any;
+  missing_handlers: any;
   performance_metrics: any;
   started_at: string;
   completed_at?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 interface AuditInsight {
