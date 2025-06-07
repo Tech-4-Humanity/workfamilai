@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 
@@ -21,6 +22,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/department/:departmentId" element={<DepartmentDetail />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/holo-org" element={<HoloOrgDashboard />} />
           <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
