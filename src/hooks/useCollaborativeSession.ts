@@ -19,7 +19,7 @@ interface Message {
   id: string;
   type: 'user' | 'agent';
   content: string;
-  timestamp: Date;
+  timestamp: string; // Changed from Date to string for JSON compatibility
   agent_name?: string;
   knowledge_references?: string[];
 }
@@ -81,7 +81,17 @@ export const useCollaborativeSession = () => {
       const currentHistory = Array.isArray(session.conversation_history) ? session.conversation_history : [];
       const currentInsights = Array.isArray(session.insights_generated) ? session.insights_generated : [];
       
-      const updatedHistory = [...currentHistory, newMessage];
+      // Convert the message to a plain object for JSON storage
+      const messageForStorage = {
+        id: newMessage.id,
+        type: newMessage.type,
+        content: newMessage.content,
+        timestamp: typeof newMessage.timestamp === 'string' ? newMessage.timestamp : new Date().toISOString(),
+        agent_name: newMessage.agent_name,
+        knowledge_references: newMessage.knowledge_references
+      };
+      
+      const updatedHistory = [...currentHistory, messageForStorage];
       const updatedInsights = insights 
         ? [...currentInsights, ...insights]
         : currentInsights;

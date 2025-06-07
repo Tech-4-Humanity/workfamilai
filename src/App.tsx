@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
-import { ThinkscapeDashboard } from "./components/thinkscape/ThinkscapeDashboard";
+import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/department/:departmentId" element={<DepartmentDetail />} />
-          <Route path="/holo-org" element={<ThinkscapeDashboard />} />
+          <Route path="/holo-org" element={<HoloOrgDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
