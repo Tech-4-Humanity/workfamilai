@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star, Users } from 'lucide-react';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
@@ -16,6 +15,7 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
 
   const handleImageLoad = () => setImageLoaded(true);
   const handleImageError = () => {
+    console.log('Image failed to load:', ozImageUrl);
     setImageError(true);
     setImageLoaded(true);
   };
@@ -67,15 +67,13 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
             </div>
           )}
           
-          {!imageError && (
-            <img
-              src={ozImageUrl}
-              alt="Trojan Oz"
-              className={`relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
-              onLoad={handleImageLoad}
-              onError={handleImageError}
-            />
-          )}
+          <img
+            src={ozImageUrl}
+            alt="Trojan Oz - AHC Cyborg Supreme Leader"
+            className={`relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl transition-opacity duration-300 ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0 absolute'}`}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+          />
           
           {imageError && (
             <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-4xl border-4 border-yellow-400/50 shadow-2xl">
