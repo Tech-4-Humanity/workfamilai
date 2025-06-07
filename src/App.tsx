@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
+import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/department/:departmentId" element={<DepartmentDetail />} />
           <Route path="/holo-org" element={<HoloOrgDashboard />} />
+          <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

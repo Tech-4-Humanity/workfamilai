@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -11,12 +11,15 @@ import {
   Users,
   BrainCircuit,
   Zap,
-  Target
+  Target,
+  Home,
+  ArrowLeft
 } from 'lucide-react';
 import { useOrganizationalIntelligence } from '@/hooks/useOrganizationalIntelligence';
 import { useChangeManagement } from '@/hooks/useChangeManagement';
 
 export const OrganizationalDashboard = () => {
+  const navigate = useNavigate();
   const { getOrganizationalInsights, isLoading } = useOrganizationalIntelligence();
   const { getActiveChanges, getChangeAnalytics } = useChangeManagement();
   
@@ -84,16 +87,35 @@ export const OrganizationalDashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
-      {/* Header */}
+      {/* Header with Navigation */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Organizational Intelligence</h1>
-          <p className="text-gray-600">Real-time insights into organizational health and knowledge flow</p>
+        <div className="flex items-center space-x-4">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/')}
+            className="flex items-center space-x-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Family</span>
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Organizational Intelligence</h1>
+            <p className="text-gray-600">Real-time insights into organizational health and knowledge flow</p>
+          </div>
         </div>
-        <Button>
-          <BrainCircuit className="h-4 w-4 mr-2" />
-          Generate Insights
-        </Button>
+        <div className="flex space-x-2">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/holo-org')}
+          >
+            <Home className="h-4 w-4 mr-2" />
+            Holo-Org Dashboard
+          </Button>
+          <Button>
+            <BrainCircuit className="h-4 w-4 mr-2" />
+            Generate Insights
+          </Button>
+        </div>
       </div>
 
       {/* Key Metrics Overview */}

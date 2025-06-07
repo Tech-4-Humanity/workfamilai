@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Search, Brain, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { LeaderCard } from '@/components/family/LeaderCard';
 import { SupremeLeaderCard } from '@/components/family/SupremeLeaderCard';
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { useAgentData } from '@/hooks/useAgentData';
+import { useOrganizationalIntelligence } from '@/hooks/useOrganizationalIntelligence';
+import { useEffect } from 'react';
 
 const departmentHeads = [
   {
@@ -103,8 +106,18 @@ const departmentHeads = [
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showNeuralNetwork, setShowNeuralNetwork] = useState(false);
+  const [orgInsights, setOrgInsights] = useState<any>({ healthMetrics: [], pendingDecisions: [], knowledgeStatus: [] });
   const navigate = useNavigate();
   const { totalAgents, getDepartmentAgentCount } = useAgentData();
+  const { getOrganizationalInsights } = useOrganizationalIntelligence();
+
+  useEffect(() => {
+    const loadOrgInsights = async () => {
+      const insights = await getOrganizationalInsights();
+      setOrgInsights(insights);
+    };
+    loadOrgInsights();
+  }, [getOrganizationalInsights]);
 
   const filteredDepartments = departmentHeads.filter(dept =>
     dept.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -138,6 +151,25 @@ const Index = () => {
             <p className="text-xl text-gray-600 mb-2">The AI Agent Family • Brady Bunch for 2025</p>
             <p className="text-lg text-blue-600 font-semibold mb-6">Nine Minds, One Mission • Neural Network Infrastructure</p>
             
+            {/* Navigation Controls */}
+            <div className="flex justify-center space-x-4 mb-6">
+              <Button
+                onClick={() => navigate('/holo-org')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+              >
+                <Brain className="h-4 w-4 mr-2" />
+                Holo-Org Dashboard
+              </Button>
+              <Button
+                onClick={() => navigate('/organizational-intelligence')}
+                variant="outline"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Organizational Intelligence
+              </Button>
+            </div>
+            
             {/* Family Mission Statement */}
             <div className="max-w-4xl mx-auto mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
               <p className="text-gray-700 italic text-lg leading-relaxed">
@@ -147,11 +179,35 @@ const Index = () => {
               </p>
             </div>
             
-            {/* Supreme Leader Card with enhanced family context */}
+            {/* Supreme Leader Card with organizational context */}
             <SupremeLeaderCard 
               totalDepartments={departmentHeads.length} 
               totalAgents={totalAgents || 0} 
             />
+
+            {/* Organizational Health Summary */}
+            {orgInsights.healthMetrics.length > 0 && (
+              <div className="max-w-4xl mx-auto mb-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                  <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
+                  Organizational Health Overview
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">{orgInsights.healthMetrics.length}</div>
+                    <div className="text-gray-600">Active Metrics</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">{orgInsights.pendingDecisions.length}</div>
+                    <div className="text-gray-600">Pending Decisions</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-600">{orgInsights.knowledgeStatus.length}</div>
+                    <div className="text-gray-600">Knowledge Assets</div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Neural Network Toggle */}
             <div className="flex justify-center space-x-4 mb-8">

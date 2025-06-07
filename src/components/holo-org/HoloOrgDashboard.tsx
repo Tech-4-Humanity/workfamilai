@@ -1,8 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Building, Activity } from 'lucide-react';
+import { Building, Activity, ArrowLeft, TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useKnowledgeBase } from '@/hooks/useKnowledgeBase';
 import { HoloOrgMetrics } from './HoloOrgMetrics';
 import { BusinessInsightsPanel } from './BusinessInsightsPanel';
@@ -12,6 +14,7 @@ import { PartnershipNetworkPanel } from './PartnershipNetworkPanel';
 import { SiteQualityPanel } from './SiteQualityPanel';
 
 export const HoloOrgDashboard = () => {
+  const navigate = useNavigate();
   const [orgStats, setOrgStats] = useState({
     totalExpertise: 0,
     activePartnerships: 0,
@@ -38,19 +41,38 @@ export const HoloOrgDashboard = () => {
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2">
-            <Building className="w-8 h-8 text-blue-600" />
-            Holo-Org Dashboard
-          </h1>
-          <p className="text-muted-foreground">
-            Organizational Intelligence & Partnership Network
-          </p>
+        <div className="flex items-center space-x-4">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/')}
+            className="flex items-center space-x-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Family</span>
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold flex items-center gap-2">
+              <Building className="w-8 h-8 text-blue-600" />
+              Holo-Org Dashboard
+            </h1>
+            <p className="text-muted-foreground">
+              Organizational Intelligence & Partnership Network
+            </p>
+          </div>
         </div>
-        <Badge variant="secondary" className="px-3 py-1">
-          <Activity className="w-3 h-3 mr-1" />
-          Live Network
-        </Badge>
+        <div className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/organizational-intelligence')}
+          >
+            <TrendingUp className="h-4 w-4 mr-2" />
+            Organizational Intelligence
+          </Button>
+          <Badge variant="secondary" className="px-3 py-1">
+            <Activity className="w-3 h-3 mr-1" />
+            Live Network
+          </Badge>
+        </div>
       </div>
 
       <HoloOrgMetrics stats={orgStats} />
