@@ -1,22 +1,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { 
-  Send, 
-  Mic, 
-  MicOff, 
-  Volume2, 
-  Users, 
-  Network, 
-  Lightbulb,
-  Building
-} from 'lucide-react';
 import { useEnhancedChat } from '@/hooks/useEnhancedChat';
+import { ChatHeader } from './ChatHeader';
+import { ChatMessage } from './ChatMessage';
+import { ChatInput } from './ChatInput';
+import { HoloOrgSidebar } from './HoloOrgSidebar';
 
 interface EnhancedChatInterfaceProps {
   agentName: string;
@@ -104,181 +93,37 @@ export const EnhancedChatInterface = ({
     <div className="flex h-full">
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <CardHeader className="border-b">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className={`w-3 h-3 rounded-full bg-${agentColor}-500`} />
-              <CardTitle className="text-lg">
-                {agentName}
-                {isCollaborativeMode && (
-                  <Badge variant="secondary" className="ml-2">
-                    <Building className="w-3 h-3 mr-1" />
-                    Org Mode
-                  </Badge>
-                )}
-              </CardTitle>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant={isCollaborativeMode ? "default" : "outline"}
-                size="sm"
-                onClick={handleOrgMode}
-              >
-                <Users className="w-4 h-4 mr-1" />
-                {isCollaborativeMode ? 'Active' : 'Org Mode'}
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowOrgPanel(!showOrgPanel)}
-              >
-                <Network className="w-4 h-4" />
-              </Button>
-              {onClose && (
-                <Button variant="ghost" size="sm" onClick={onClose}>
-                  ×
-                </Button>
-              )}
-            </div>
-          </div>
-        </CardHeader>
+        <ChatHeader
+          agentName={agentName}
+          agentColor={agentColor}
+          isCollaborativeMode={isCollaborativeMode}
+          showOrgPanel={showOrgPanel}
+          onOrgModeToggle={handleOrgMode}
+          onOrgPanelToggle={() => setShowOrgPanel(!showOrgPanel)}
+          onClose={onClose}
+        />
 
         {/* Messages */}
         <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
           <div className="space-y-4">
             {messages.map((message) => (
-              <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'} rounded-lg p-3`}>
-                  <div className="text-sm mb-1">
-                    {message.type === 'agent' && message.agent_name && (
-                      <div className="font-medium text-xs opacity-70 mb-1">
-                        {message.agent_name}
-                      </div>
-                    )}
-                    {message.content}
-                  </div>
-                  
-                  {/* Expertise References */}
-                  {message.knowledge_references && message.knowledge_references.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {message.knowledge_references.slice(0, 3).map((ref, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          <Network className="w-2 h-2 mr-1" />
-                          Expertise
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Partnership Suggestions */}
-                  {message.collaboration_suggestions && message.collaboration_suggestions.length > 0 && (
-                    <div className="mt-2 space-y-1">
-                      <div className="text-xs opacity-70">Partnership opportunities:</div>
-                      {message.collaboration_suggestions.map((suggestion, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs mr-1">
-                          <Users className="w-2 h-2 mr-1" />
-                          {suggestion.agent}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Business Insights */}
-                  {message.insights_generated && message.insights_generated.length > 0 && (
-                    <div className="mt-2 space-y-1">
-                      <div className="text-xs opacity-70">Business insights:</div>
-                      {message.insights_generated.map((insight, idx) => (
-                        <div key={idx} className="text-xs bg-yellow-100 dark:bg-yellow-900/20 rounded p-1 flex items-start gap-1">
-                          <Lightbulb className="w-3 h-3 mt-0.5 text-yellow-600" />
-                          {insight}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  
-                  <div className="text-xs opacity-50 mt-1">
-                    {message.timestamp.toLocaleTimeString()}
-                  </div>
-                </div>
-              </div>
+              <ChatMessage key={message.id} message={message} />
             ))}
           </div>
         </ScrollArea>
 
-        {/* Input Area */}
-        <div className="p-4 border-t">
-          <div className="flex gap-2">
-            <Input
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Type your message..."
-              disabled={isLoading}
-              className="flex-1"
-            />
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setIsRecording(!isRecording)}
-              disabled={isLoading}
-            >
-              {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-            </Button>
-            <Button onClick={handleSendMessage} disabled={isLoading || !inputMessage.trim()}>
-              <Send className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
+        <ChatInput
+          inputMessage={inputMessage}
+          isRecording={isRecording}
+          isLoading={isLoading}
+          onInputChange={setInputMessage}
+          onSendMessage={handleSendMessage}
+          onRecordingToggle={() => setIsRecording(!isRecording)}
+          onKeyPress={handleKeyPress}
+        />
       </div>
 
-      {/* Holo-Org Intelligence Sidebar */}
-      {showOrgPanel && (
-        <>
-          <Separator orientation="vertical" />
-          <div className="w-80 p-4 bg-muted/30">
-            <div className="space-y-4">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Network className="w-4 h-4" />
-                Holo-Org Intelligence
-              </h3>
-              
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Active Expertise</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="text-xs text-muted-foreground">
-                    Organizational expertise being leveraged in this conversation
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Partnership Network</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="text-xs text-muted-foreground">
-                    Potential partners and advisors based on conversation context
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Business Value</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="text-xs text-muted-foreground">
-                    Key insights and value generated from this session
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </>
-      )}
+      <HoloOrgSidebar showOrgPanel={showOrgPanel} />
     </div>
   );
 };

@@ -23,6 +23,8 @@ export interface FamilyLeader {
   background: string;
 }
 
+export interface Leader extends FamilyLeader {}
+
 export interface FamilyMember {
   leader: FamilyLeader;
   divisions: Division[];

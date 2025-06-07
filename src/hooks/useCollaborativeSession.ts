@@ -47,8 +47,15 @@ export const useCollaborativeSession = () => {
         .single();
 
       if (error) throw error;
-      setCurrentSession(data);
-      return data as CollaborationSession;
+      
+      const sessionData: CollaborationSession = {
+        ...data,
+        conversation_history: Array.isArray(data.conversation_history) ? data.conversation_history : [],
+        insights_generated: Array.isArray(data.insights_generated) ? data.insights_generated : []
+      };
+      
+      setCurrentSession(sessionData);
+      return sessionData;
     } catch (error) {
       console.error('Error creating collaboration session:', error);
       throw error;
@@ -71,10 +78,13 @@ export const useCollaborativeSession = () => {
 
       if (!session) throw new Error('Session not found');
 
-      const updatedHistory = [...(session.conversation_history || []), newMessage];
+      const currentHistory = Array.isArray(session.conversation_history) ? session.conversation_history : [];
+      const currentInsights = Array.isArray(session.insights_generated) ? session.insights_generated : [];
+      
+      const updatedHistory = [...currentHistory, newMessage];
       const updatedInsights = insights 
-        ? [...(session.insights_generated || []), ...insights]
-        : session.insights_generated;
+        ? [...currentInsights, ...insights]
+        : currentInsights;
 
       const { data, error } = await supabase
         .from('collaboration_sessions')
@@ -104,8 +114,15 @@ export const useCollaborativeSession = () => {
         .single();
 
       if (error) throw error;
-      setCurrentSession(data);
-      return data as CollaborationSession;
+      
+      const sessionData: CollaborationSession = {
+        ...data,
+        conversation_history: Array.isArray(data.conversation_history) ? data.conversation_history : [],
+        insights_generated: Array.isArray(data.insights_generated) ? data.insights_generated : []
+      };
+      
+      setCurrentSession(sessionData);
+      return sessionData;
     } catch (error) {
       console.error('Error fetching session:', error);
       return null;
