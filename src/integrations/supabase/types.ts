@@ -1986,6 +1986,53 @@ export type Database = {
           },
         ]
       }
+      audit_insights: {
+        Row: {
+          audit_report_id: string | null
+          created_at: string
+          data_points: Json | null
+          description: string
+          id: string
+          impact_score: number | null
+          insight_type: string
+          recommendation: string | null
+          severity: string
+          title: string
+        }
+        Insert: {
+          audit_report_id?: string | null
+          created_at?: string
+          data_points?: Json | null
+          description: string
+          id?: string
+          impact_score?: number | null
+          insight_type: string
+          recommendation?: string | null
+          severity?: string
+          title: string
+        }
+        Update: {
+          audit_report_id?: string | null
+          created_at?: string
+          data_points?: Json | null
+          description?: string
+          id?: string
+          impact_score?: number | null
+          insight_type?: string
+          recommendation?: string | null
+          severity?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_insights_audit_report_id_fkey"
+            columns: ["audit_report_id"]
+            isOneToOne: false
+            referencedRelation: "site_audit_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_progress: {
         Row: {
           audit_id: string | null
@@ -11606,6 +11653,51 @@ export type Database = {
           rate?: number | null
           service_id?: string
           unit?: string | null
+        }
+        Relationships: []
+      }
+      site_audit_reports: {
+        Row: {
+          audit_type: string
+          base_url: string
+          broken_links: Json | null
+          completed_at: string | null
+          created_at: string
+          id: string
+          missing_handlers: Json | null
+          pages_crawled: Json | null
+          performance_metrics: Json | null
+          started_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          audit_type?: string
+          base_url: string
+          broken_links?: Json | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          missing_handlers?: Json | null
+          pages_crawled?: Json | null
+          performance_metrics?: Json | null
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          audit_type?: string
+          base_url?: string
+          broken_links?: Json | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          missing_handlers?: Json | null
+          pages_crawled?: Json | null
+          performance_metrics?: Json | null
+          started_at?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }

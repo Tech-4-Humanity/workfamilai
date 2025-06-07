@@ -9,6 +9,7 @@ import { BusinessInsightsPanel } from './BusinessInsightsPanel';
 import { PartnershipSessionsPanel } from './PartnershipSessionsPanel';
 import { ValueAnalyticsPanel } from './ValueAnalyticsPanel';
 import { PartnershipNetworkPanel } from './PartnershipNetworkPanel';
+import { SiteQualityPanel } from './SiteQualityPanel';
 
 export const HoloOrgDashboard = () => {
   const [orgStats, setOrgStats] = useState({
@@ -60,6 +61,7 @@ export const HoloOrgDashboard = () => {
           <TabsTrigger value="insights">Business Insights</TabsTrigger>
           <TabsTrigger value="partnerships">Active Partnerships</TabsTrigger>
           <TabsTrigger value="analytics">Value Analytics</TabsTrigger>
+          <TabsTrigger value="quality">Site Quality</TabsTrigger>
         </TabsList>
 
         <TabsContent value="network" className="space-y-4">
@@ -76,6 +78,10 @@ export const HoloOrgDashboard = () => {
 
         <TabsContent value="analytics" className="space-y-4">
           <ValueAnalyticsPanel />
+        </TabsContent>
+
+        <TabsContent value="quality" className="space-y-4">
+          <SiteQualityPanel />
         </TabsContent>
       </Tabs>
     </div>
