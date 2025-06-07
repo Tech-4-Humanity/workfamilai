@@ -437,6 +437,45 @@ export type Database = {
         }
         Relationships: []
       }
+      agent_knowledge_base: {
+        Row: {
+          agent_name: string
+          confidence_score: number | null
+          content: string
+          created_at: string
+          expires_at: string | null
+          id: string
+          knowledge_type: string
+          relevance_tags: string[] | null
+          source: string | null
+          updated_at: string
+        }
+        Insert: {
+          agent_name: string
+          confidence_score?: number | null
+          content: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          knowledge_type: string
+          relevance_tags?: string[] | null
+          source?: string | null
+          updated_at?: string
+        }
+        Update: {
+          agent_name?: string
+          confidence_score?: number | null
+          content?: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          knowledge_type?: string
+          relevance_tags?: string[] | null
+          source?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       agent_pack_activity: {
         Row: {
           created_at: string | null
@@ -3282,6 +3321,48 @@ export type Database = {
           },
         ]
       }
+      collaboration_sessions: {
+        Row: {
+          completed_at: string | null
+          conversation_history: Json | null
+          created_at: string
+          id: string
+          insights_generated: Json | null
+          participating_agents: string[]
+          session_name: string
+          session_type: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          conversation_history?: Json | null
+          created_at?: string
+          id?: string
+          insights_generated?: Json | null
+          participating_agents: string[]
+          session_name: string
+          session_type: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          conversation_history?: Json | null
+          created_at?: string
+          id?: string
+          insights_generated?: Json | null
+          participating_agents?: string[]
+          session_name?: string
+          session_type?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       company_templates: {
         Row: {
           company_code: string
@@ -5894,6 +5975,42 @@ export type Database = {
         }
         Relationships: []
       }
+      knowledge_graph_relationships: {
+        Row: {
+          concept: string
+          context: string | null
+          created_at: string
+          id: string
+          relationship_type: string
+          source_agent: string
+          strength: number | null
+          target_agent: string | null
+          updated_at: string
+        }
+        Insert: {
+          concept: string
+          context?: string | null
+          created_at?: string
+          id?: string
+          relationship_type: string
+          source_agent: string
+          strength?: number | null
+          target_agent?: string | null
+          updated_at?: string
+        }
+        Update: {
+          concept?: string
+          context?: string | null
+          created_at?: string
+          id?: string
+          relationship_type?: string
+          source_agent?: string
+          strength?: number | null
+          target_agent?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leadership_team: {
         Row: {
           agent_count: number | null
@@ -5933,6 +6050,39 @@ export type Database = {
           personality_type?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      learning_events: {
+        Row: {
+          agent_name: string
+          created_at: string
+          event_type: string
+          id: string
+          impact_score: number | null
+          knowledge_category: string | null
+          knowledge_gained: string
+          source_session_id: string | null
+        }
+        Insert: {
+          agent_name: string
+          created_at?: string
+          event_type: string
+          id?: string
+          impact_score?: number | null
+          knowledge_category?: string | null
+          knowledge_gained: string
+          source_session_id?: string | null
+        }
+        Update: {
+          agent_name?: string
+          created_at?: string
+          event_type?: string
+          id?: string
+          impact_score?: number | null
+          knowledge_category?: string | null
+          knowledge_gained?: string
+          source_session_id?: string | null
         }
         Relationships: []
       }
@@ -13846,6 +13996,42 @@ export type Database = {
           metadata?: Json | null
           selection_name?: string
           updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_interaction_analytics: {
+        Row: {
+          agent_involved: string | null
+          created_at: string
+          duration_seconds: number | null
+          id: string
+          interaction_type: string
+          knowledge_topics: string[] | null
+          satisfaction_score: number | null
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          agent_involved?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          interaction_type: string
+          knowledge_topics?: string[] | null
+          satisfaction_score?: number | null
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          agent_involved?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          interaction_type?: string
+          knowledge_topics?: string[] | null
+          satisfaction_score?: number | null
+          session_id?: string | null
           user_id?: string | null
         }
         Relationships: []
