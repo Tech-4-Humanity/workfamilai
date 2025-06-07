@@ -4846,6 +4846,54 @@ export type Database = {
         }
         Relationships: []
       }
+      departmental_knowledge: {
+        Row: {
+          content: string
+          created_at: string
+          created_by: string | null
+          cross_functional_relevance: string[] | null
+          department_id: string
+          expertise_level: string | null
+          id: string
+          knowledge_tags: string[] | null
+          knowledge_type: string
+          last_validated: string | null
+          title: string
+          updated_at: string
+          validation_status: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          created_by?: string | null
+          cross_functional_relevance?: string[] | null
+          department_id: string
+          expertise_level?: string | null
+          id?: string
+          knowledge_tags?: string[] | null
+          knowledge_type: string
+          last_validated?: string | null
+          title: string
+          updated_at?: string
+          validation_status?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          cross_functional_relevance?: string[] | null
+          department_id?: string
+          expertise_level?: string | null
+          id?: string
+          knowledge_tags?: string[] | null
+          knowledge_type?: string
+          last_validated?: string | null
+          title?: string
+          updated_at?: string
+          validation_status?: string | null
+        }
+        Relationships: []
+      }
       deployments: {
         Row: {
           bundle_id: string | null
@@ -5857,6 +5905,57 @@ export type Database = {
         }
         Relationships: []
       }
+      institutional_memory: {
+        Row: {
+          accessibility_level: string | null
+          content: string
+          context_tags: string[] | null
+          created_at: string
+          id: string
+          importance_score: number | null
+          last_referenced: string | null
+          memory_type: string
+          preservation_priority: string | null
+          reference_count: number | null
+          related_entities: string[] | null
+          time_period: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          accessibility_level?: string | null
+          content: string
+          context_tags?: string[] | null
+          created_at?: string
+          id?: string
+          importance_score?: number | null
+          last_referenced?: string | null
+          memory_type: string
+          preservation_priority?: string | null
+          reference_count?: number | null
+          related_entities?: string[] | null
+          time_period?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          accessibility_level?: string | null
+          content?: string
+          context_tags?: string[] | null
+          created_at?: string
+          id?: string
+          importance_score?: number | null
+          last_referenced?: string | null
+          memory_type?: string
+          preservation_priority?: string | null
+          reference_count?: number | null
+          related_entities?: string[] | null
+          time_period?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       integration_templates: {
         Row: {
           agent_codes: string[]
@@ -6054,6 +6153,63 @@ export type Database = {
           source_agent?: string
           strength?: number | null
           target_agent?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      knowledge_transfers: {
+        Row: {
+          completed_date: string | null
+          completion_percentage: number | null
+          created_at: string
+          follow_up_actions: string[] | null
+          from_entity: string | null
+          gaps_identified: string[] | null
+          id: string
+          knowledge_assets: Json | null
+          knowledge_domains: string[] | null
+          quality_assessment: number | null
+          scheduled_date: string | null
+          to_entity: string
+          transfer_method: string[] | null
+          transfer_status: string | null
+          transfer_type: string
+          updated_at: string
+        }
+        Insert: {
+          completed_date?: string | null
+          completion_percentage?: number | null
+          created_at?: string
+          follow_up_actions?: string[] | null
+          from_entity?: string | null
+          gaps_identified?: string[] | null
+          id?: string
+          knowledge_assets?: Json | null
+          knowledge_domains?: string[] | null
+          quality_assessment?: number | null
+          scheduled_date?: string | null
+          to_entity: string
+          transfer_method?: string[] | null
+          transfer_status?: string | null
+          transfer_type: string
+          updated_at?: string
+        }
+        Update: {
+          completed_date?: string | null
+          completion_percentage?: number | null
+          created_at?: string
+          follow_up_actions?: string[] | null
+          from_entity?: string | null
+          gaps_identified?: string[] | null
+          id?: string
+          knowledge_assets?: Json | null
+          knowledge_domains?: string[] | null
+          quality_assessment?: number | null
+          scheduled_date?: string | null
+          to_entity?: string
+          transfer_method?: string[] | null
+          transfer_status?: string | null
+          transfer_type?: string
           updated_at?: string
         }
         Relationships: []
@@ -7257,6 +7413,111 @@ export type Database = {
           match_percentage?: string | null
           required_skills?: string | null
           required_tasks?: string | null
+        }
+        Relationships: []
+      }
+      organizational_changes: {
+        Row: {
+          actual_completion_date: string | null
+          actual_impact: Json | null
+          affected_entities: string[] | null
+          change_description: string
+          change_stage: string | null
+          change_title: string
+          change_type: string
+          communication_plan: Json | null
+          created_at: string
+          id: string
+          initiator: string
+          knowledge_impact_assessment: Json | null
+          lessons_learned: string | null
+          required_training: string[] | null
+          rollback_plan: string | null
+          start_date: string | null
+          success_criteria: string[] | null
+          target_completion_date: string | null
+          updated_at: string
+        }
+        Insert: {
+          actual_completion_date?: string | null
+          actual_impact?: Json | null
+          affected_entities?: string[] | null
+          change_description: string
+          change_stage?: string | null
+          change_title: string
+          change_type: string
+          communication_plan?: Json | null
+          created_at?: string
+          id?: string
+          initiator: string
+          knowledge_impact_assessment?: Json | null
+          lessons_learned?: string | null
+          required_training?: string[] | null
+          rollback_plan?: string | null
+          start_date?: string | null
+          success_criteria?: string[] | null
+          target_completion_date?: string | null
+          updated_at?: string
+        }
+        Update: {
+          actual_completion_date?: string | null
+          actual_impact?: Json | null
+          affected_entities?: string[] | null
+          change_description?: string
+          change_stage?: string | null
+          change_title?: string
+          change_type?: string
+          communication_plan?: Json | null
+          created_at?: string
+          id?: string
+          initiator?: string
+          knowledge_impact_assessment?: Json | null
+          lessons_learned?: string | null
+          required_training?: string[] | null
+          rollback_plan?: string | null
+          start_date?: string | null
+          success_criteria?: string[] | null
+          target_completion_date?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      organizational_health_metrics: {
+        Row: {
+          created_at: string
+          department_id: string | null
+          id: string
+          impact_level: string | null
+          measured_at: string
+          metadata: Json | null
+          metric_category: string
+          metric_name: string
+          metric_value: number
+          trend_direction: string | null
+        }
+        Insert: {
+          created_at?: string
+          department_id?: string | null
+          id?: string
+          impact_level?: string | null
+          measured_at?: string
+          metadata?: Json | null
+          metric_category: string
+          metric_name: string
+          metric_value: number
+          trend_direction?: string | null
+        }
+        Update: {
+          created_at?: string
+          department_id?: string | null
+          id?: string
+          impact_level?: string | null
+          measured_at?: string
+          metadata?: Json | null
+          metric_category?: string
+          metric_name?: string
+          metric_value?: number
+          trend_direction?: string | null
         }
         Relationships: []
       }
@@ -12233,6 +12494,54 @@ export type Database = {
           processed?: boolean | null
           project_requests?: number | null
           utilization_pct?: number
+        }
+        Relationships: []
+      }
+      strategic_decisions: {
+        Row: {
+          affected_departments: string[] | null
+          approval_status: string | null
+          created_at: string
+          decision_context: string
+          decision_maker: string
+          decision_title: string
+          decision_type: string
+          follow_up_required: boolean | null
+          id: string
+          impact_assessment: Json | null
+          implementation_date: string | null
+          knowledge_sources: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          affected_departments?: string[] | null
+          approval_status?: string | null
+          created_at?: string
+          decision_context: string
+          decision_maker: string
+          decision_title: string
+          decision_type: string
+          follow_up_required?: boolean | null
+          id?: string
+          impact_assessment?: Json | null
+          implementation_date?: string | null
+          knowledge_sources?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          affected_departments?: string[] | null
+          approval_status?: string | null
+          created_at?: string
+          decision_context?: string
+          decision_maker?: string
+          decision_title?: string
+          decision_type?: string
+          follow_up_required?: boolean | null
+          id?: string
+          impact_assessment?: Json | null
+          implementation_date?: string | null
+          knowledge_sources?: string[] | null
+          updated_at?: string
         }
         Relationships: []
       }
