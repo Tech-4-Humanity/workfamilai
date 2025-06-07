@@ -1,7 +1,8 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star, Users } from 'lucide-react';
-import { getLeaderImageUrl } from '@/utils/supabase-images';
-import { useState } from 'react';
+import { getLeaderImageFallbacks } from '@/utils/supabase-images';
+import { RobustImage } from '@/components/ui/robust-image';
 
 interface SupremeLeaderCardProps {
   totalDepartments: number;
@@ -9,16 +10,13 @@ interface SupremeLeaderCardProps {
 }
 
 export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLeaderCardProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  const ozImageUrl = getLeaderImageUrl('Trojan Oz');
+  const ozImageUrls = getLeaderImageFallbacks('Trojan Oz');
 
-  const handleImageLoad = () => setImageLoaded(true);
-  const handleImageError = () => {
-    console.log('Image failed to load:', ozImageUrl);
-    setImageError(true);
-    setImageLoaded(true);
-  };
+  const fallbackContent = (
+    <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-4xl border-4 border-yellow-400/50 shadow-2xl">
+      👑
+    </div>
+  );
 
   return (
     <Card className="max-w-md mx-auto mb-8 border-2 border-yellow-400/50 bg-gradient-to-br from-yellow-50/80 to-orange-50/80 backdrop-blur-lg shadow-2xl overflow-hidden group hover:scale-105 transition-all duration-500">
@@ -57,29 +55,17 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
       </CardHeader>
 
       <CardContent className="text-center relative z-10">
-        {/* Professional photo with crown effect and improved loading */}
+        {/* Professional photo with crown effect and robust loading */}
         <div className="relative mb-4">
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
           
-          {!imageLoaded && !imageError && (
-            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400/50 to-orange-500/50 rounded-full flex items-center justify-center border-4 border-yellow-400/50 shadow-2xl animate-pulse">
-              <div className="w-12 h-12 bg-white/30 rounded-full"></div>
-            </div>
-          )}
-          
-          <img
-            src={ozImageUrl}
+          <RobustImage
+            src={ozImageUrls}
             alt="Trojan Oz - AHC Cyborg Supreme Leader"
-            className={`relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl transition-opacity duration-300 ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0 absolute'}`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
+            className="relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl"
+            fallback={fallbackContent}
+            onError={(failedUrl) => console.log(`Failed to load Trojan Oz image: ${failedUrl}`)}
           />
-          
-          {imageError && (
-            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-4xl border-4 border-yellow-400/50 shadow-2xl">
-              👑
-            </div>
-          )}
           
           {/* Crown overlay */}
           <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
