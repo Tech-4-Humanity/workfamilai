@@ -2,7 +2,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Brain } from 'lucide-react';
+import { MessageCircle, Users } from 'lucide-react';
 import { EnhancedChatInterface } from './EnhancedChatInterface';
 
 interface EnhancedChatModalProps {
@@ -21,7 +21,7 @@ export const EnhancedChatModal = ({
   agentPersonality,
   agentBackground,
   agentColor = 'blue',
-  buttonText = 'Enhanced Chat',
+  buttonText = 'Holo-Org',
   buttonVariant = 'outline',
   buttonSize = 'default',
   triggerClassName = ''
@@ -36,7 +36,7 @@ export const EnhancedChatModal = ({
           size={buttonSize}
           className={`flex items-center gap-2 ${triggerClassName}`}
         >
-          <Brain className="h-4 w-4" />
+          <Users className="h-4 w-4" />
           {buttonText}
         </Button>
       </DialogTrigger>

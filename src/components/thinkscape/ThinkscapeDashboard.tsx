@@ -6,37 +6,37 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
-  Brain, 
+  Building, 
   Network, 
   Lightbulb, 
   Users, 
   TrendingUp,
   Activity,
-  Zap
+  Handshake
 } from 'lucide-react';
 import { useKnowledgeBase } from '@/hooks/useKnowledgeBase';
 
 export const ThinkscapeDashboard = () => {
-  const [knowledgeStats, setKnowledgeStats] = useState({
-    totalKnowledge: 0,
-    activeCollaborations: 0,
-    recentInsights: 0,
+  const [orgStats, setOrgStats] = useState({
+    totalExpertise: 0,
+    activePartnerships: 0,
+    businessInsights: 0,
     networkConnections: 0
   });
 
   const { getRelevantKnowledge, getCollaborationInsights } = useKnowledgeBase();
 
   useEffect(() => {
-    // Load dashboard statistics
-    loadDashboardStats();
+    // Load organizational statistics
+    loadOrgStats();
   }, []);
 
-  const loadDashboardStats = async () => {
+  const loadOrgStats = async () => {
     // This would be replaced with actual data fetching
-    setKnowledgeStats({
-      totalKnowledge: 156,
-      activeCollaborations: 23,
-      recentInsights: 8,
+    setOrgStats({
+      totalExpertise: 156,
+      activePartnerships: 23,
+      businessInsights: 8,
       networkConnections: 42
     });
   };
@@ -46,11 +46,11 @@ export const ThinkscapeDashboard = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-2">
-            <Brain className="w-8 h-8 text-blue-600" />
-            Thinkscape Dashboard
+            <Building className="w-8 h-8 text-blue-600" />
+            Holo-Org Dashboard
           </h1>
           <p className="text-muted-foreground">
-            Collaborative AI Intelligence Network
+            Organizational Intelligence & Partnership Network
           </p>
         </div>
         <Badge variant="secondary" className="px-3 py-1">
@@ -63,11 +63,11 @@ export const ThinkscapeDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Knowledge</CardTitle>
-            <Brain className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Total Expertise</CardTitle>
+            <Building className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{knowledgeStats.totalKnowledge}</div>
+            <div className="text-2xl font-bold">{orgStats.totalExpertise}</div>
             <p className="text-xs text-muted-foreground">
               +12 from last week
             </p>
@@ -76,11 +76,11 @@ export const ThinkscapeDashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Collaborations</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Active Partnerships</CardTitle>
+            <Handshake className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{knowledgeStats.activeCollaborations}</div>
+            <div className="text-2xl font-bold">{orgStats.activePartnerships}</div>
             <p className="text-xs text-muted-foreground">
               +3 sessions today
             </p>
@@ -89,11 +89,11 @@ export const ThinkscapeDashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Recent Insights</CardTitle>
+            <CardTitle className="text-sm font-medium">Business Insights</CardTitle>
             <Lightbulb className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{knowledgeStats.recentInsights}</div>
+            <div className="text-2xl font-bold">{orgStats.businessInsights}</div>
             <p className="text-xs text-muted-foreground">
               In the last 24h
             </p>
@@ -102,13 +102,13 @@ export const ThinkscapeDashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Network Connections</CardTitle>
+            <CardTitle className="text-sm font-medium">Network Value</CardTitle>
             <Network className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{knowledgeStats.networkConnections}</div>
+            <div className="text-2xl font-bold">{orgStats.networkConnections}</div>
             <p className="text-xs text-muted-foreground">
-              Cross-agent links
+              Cross-org connections
             </p>
           </CardContent>
         </Card>
@@ -117,22 +117,22 @@ export const ThinkscapeDashboard = () => {
       {/* Main Content */}
       <Tabs defaultValue="network" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="network">Knowledge Network</TabsTrigger>
-          <TabsTrigger value="insights">Live Insights</TabsTrigger>
-          <TabsTrigger value="collaborations">Active Sessions</TabsTrigger>
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          <TabsTrigger value="network">Partnership Network</TabsTrigger>
+          <TabsTrigger value="insights">Business Insights</TabsTrigger>
+          <TabsTrigger value="partnerships">Active Partnerships</TabsTrigger>
+          <TabsTrigger value="analytics">Value Analytics</TabsTrigger>
         </TabsList>
 
         <TabsContent value="network" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Family Knowledge Network</CardTitle>
+              <CardTitle>Organizational Partnership Network</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center py-12 text-muted-foreground">
                 <Network className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p>Interactive knowledge network visualization coming soon</p>
-                <p className="text-sm">Connect with family members to see collaboration patterns</p>
+                <p>Interactive partnership network visualization</p>
+                <p className="text-sm">Connect with partners, advisors, and customers to see collaboration patterns</p>
               </div>
             </CardContent>
           </Card>
@@ -141,27 +141,27 @@ export const ThinkscapeDashboard = () => {
         <TabsContent value="insights" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Live Learning Insights</CardTitle>
+              <CardTitle>Live Business Insights</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
                   <Lightbulb className="w-5 h-5 text-yellow-600 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Product-Marketing Synergy Detected</p>
+                    <p className="text-sm font-medium">Product-Marketing Partnership Opportunity</p>
                     <p className="text-xs text-muted-foreground">
-                      Dr. Amara Chen and Miguel Santos showed strong collaboration patterns in recent conversations
+                      Dr. Amara Chen and Miguel Santos showed strong collaboration potential for client projects
                     </p>
                     <Badge variant="outline" className="mt-1 text-xs">2 minutes ago</Badge>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <Zap className="w-5 h-5 text-blue-600 mt-0.5" />
+                  <Handshake className="w-5 h-5 text-blue-600 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Cross-Cultural Knowledge Sharing</p>
+                    <p className="text-sm font-medium">Cross-Cultural Business Intelligence</p>
                     <p className="text-xs text-muted-foreground">
-                      Cultural expertise from Asian markets being applied to Latin American strategies
+                      Cultural expertise from Asian markets being applied to client expansion strategies
                     </p>
                     <Badge variant="outline" className="mt-1 text-xs">15 minutes ago</Badge>
                   </div>
@@ -170,9 +170,9 @@ export const ThinkscapeDashboard = () => {
                 <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                   <TrendingUp className="w-5 h-5 text-green-600 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Innovation Pipeline Optimization</p>
+                    <p className="text-sm font-medium">Innovation Pipeline Value Creation</p>
                     <p className="text-xs text-muted-foreground">
-                      David Okafor's R&D insights enhanced product development workflows
+                      David Okafor's R&D insights enhanced client product development recommendations
                     </p>
                     <Badge variant="outline" className="mt-1 text-xs">1 hour ago</Badge>
                   </div>
@@ -182,10 +182,10 @@ export const ThinkscapeDashboard = () => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="collaborations" className="space-y-4">
+        <TabsContent value="partnerships" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Active Collaboration Sessions</CardTitle>
+              <CardTitle>Active Partnership Sessions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -193,39 +193,39 @@ export const ThinkscapeDashboard = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <div>
-                      <p className="text-sm font-medium">Product Launch Strategy</p>
+                      <p className="text-sm font-medium">Client Strategy Development</p>
                       <p className="text-xs text-muted-foreground">
                         Dr. Amara Chen, Miguel Santos, Sofia Rodriguez
                       </p>
                     </div>
                   </div>
-                  <Badge variant="secondary">Active</Badge>
+                  <Badge variant="secondary">Active Partner</Badge>
                 </div>
 
                 <div className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full" />
                     <div>
-                      <p className="text-sm font-medium">HR Process Optimization</p>
+                      <p className="text-sm font-medium">Organizational Optimization</p>
                       <p className="text-xs text-muted-foreground">
                         Priya Sharma, Dr. Yuna Kim
                       </p>
                     </div>
                   </div>
-                  <Badge variant="outline">Planning</Badge>
+                  <Badge variant="outline">Advisory Role</Badge>
                 </div>
 
                 <div className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full" />
                     <div>
-                      <p className="text-sm font-medium">Innovation Research</p>
+                      <p className="text-sm font-medium">Innovation Consulting</p>
                       <p className="text-xs text-muted-foreground">
                         David Okafor, Theo Williams, Marcus Bennett
                       </p>
                     </div>
                   </div>
-                  <Badge variant="secondary">Active</Badge>
+                  <Badge variant="secondary">Customer Success</Badge>
                 </div>
               </div>
             </CardContent>
@@ -236,7 +236,7 @@ export const ThinkscapeDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Knowledge Velocity</CardTitle>
+                <CardTitle className="text-lg">Partnership Value</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -267,25 +267,25 @@ export const ThinkscapeDashboard = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Collaboration Effectiveness</CardTitle>
+                <CardTitle className="text-lg">Business Impact</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-600">94%</div>
-                    <p className="text-sm text-muted-foreground">Overall effectiveness</p>
+                    <p className="text-sm text-muted-foreground">Overall partnership value</p>
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span>Problem Resolution</span>
+                      <span>Client Satisfaction</span>
                       <span className="font-medium">96%</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Knowledge Transfer</span>
+                      <span>Value Delivery</span>
                       <span className="font-medium">92%</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>User Satisfaction</span>
+                      <span>Partnership Growth</span>
                       <span className="font-medium">95%</span>
                     </div>
                   </div>

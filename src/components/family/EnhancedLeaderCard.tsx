@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ChatModal } from '@/components/chat/ChatModal';
 import { EnhancedChatModal } from '@/components/chat/EnhancedChatModal';
-import { Brain, MessageCircle, Users } from 'lucide-react';
+import { Users, MessageCircle, Network } from 'lucide-react';
 import { Leader } from '@/types/family';
 
 interface EnhancedLeaderCardProps {
@@ -61,7 +61,7 @@ export const EnhancedLeaderCard = ({ leader, agentCount, color = 'blue' }: Enhan
             agentPersonality={leader.personality}
             agentBackground={leader.background}
             agentColor={color}
-            buttonText="Thinkscape"
+            buttonText="Holo-Org"
             buttonVariant="default"
             buttonSize="sm"
             triggerClassName="flex-1"
@@ -69,8 +69,8 @@ export const EnhancedLeaderCard = ({ leader, agentCount, color = 'blue' }: Enhan
         </div>
         
         <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground pt-2 border-t">
-          <Brain className="w-3 h-3" />
-          <span>Enhanced with collaborative AI</span>
+          <Network className="w-3 h-3" />
+          <span>Enhanced organizational intelligence</span>
         </div>
       </CardContent>
     </Card>

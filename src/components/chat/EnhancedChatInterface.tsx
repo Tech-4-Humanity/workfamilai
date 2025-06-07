@@ -12,9 +12,9 @@ import {
   MicOff, 
   Volume2, 
   Users, 
-  Brain, 
+  Network, 
   Lightbulb,
-  Network
+  Building
 } from 'lucide-react';
 import { useEnhancedChat } from '@/hooks/useEnhancedChat';
 
@@ -35,7 +35,7 @@ export const EnhancedChatInterface = ({
 }: EnhancedChatInterfaceProps) => {
   const [inputMessage, setInputMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
-  const [showCollaborationPanel, setShowCollaborationPanel] = useState(false);
+  const [showOrgPanel, setShowOrgPanel] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
   const {
@@ -77,12 +77,12 @@ export const EnhancedChatInterface = ({
     }
   };
 
-  const handleCollaboration = async () => {
+  const handleOrgMode = async () => {
     if (!isCollaborativeMode) {
-      const sessionName = `Collaborative Session with ${agentName}`;
+      const sessionName = `Business Session with ${agentName}`;
       const participatingAgents = [agentName];
       
-      // Add suggested collaborators based on recent messages
+      // Add business collaborators based on recent messages
       const lastMessage = messages[messages.length - 1];
       if (lastMessage?.collaboration_suggestions) {
         lastMessage.collaboration_suggestions.forEach(suggestion => {
@@ -93,10 +93,10 @@ export const EnhancedChatInterface = ({
       }
 
       await startCollaborativeSession(sessionName, participatingAgents);
-      setShowCollaborationPanel(true);
+      setShowOrgPanel(true);
     } else {
       setIsCollaborativeMode(false);
-      setShowCollaborationPanel(false);
+      setShowOrgPanel(false);
     }
   };
 
@@ -113,8 +113,8 @@ export const EnhancedChatInterface = ({
                 {agentName}
                 {isCollaborativeMode && (
                   <Badge variant="secondary" className="ml-2">
-                    <Network className="w-3 h-3 mr-1" />
-                    Collaborative Mode
+                    <Building className="w-3 h-3 mr-1" />
+                    Org Mode
                   </Badge>
                 )}
               </CardTitle>
@@ -123,17 +123,17 @@ export const EnhancedChatInterface = ({
               <Button
                 variant={isCollaborativeMode ? "default" : "outline"}
                 size="sm"
-                onClick={handleCollaboration}
+                onClick={handleOrgMode}
               >
                 <Users className="w-4 h-4 mr-1" />
-                {isCollaborativeMode ? 'Active' : 'Collaborate'}
+                {isCollaborativeMode ? 'Active' : 'Org Mode'}
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setShowCollaborationPanel(!showCollaborationPanel)}
+                onClick={() => setShowOrgPanel(!showOrgPanel)}
               >
-                <Brain className="w-4 h-4" />
+                <Network className="w-4 h-4" />
               </Button>
               {onClose && (
                 <Button variant="ghost" size="sm" onClick={onClose}>
@@ -159,22 +159,22 @@ export const EnhancedChatInterface = ({
                     {message.content}
                   </div>
                   
-                  {/* Knowledge References */}
+                  {/* Expertise References */}
                   {message.knowledge_references && message.knowledge_references.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1">
                       {message.knowledge_references.slice(0, 3).map((ref, idx) => (
                         <Badge key={idx} variant="outline" className="text-xs">
-                          <Brain className="w-2 h-2 mr-1" />
-                          Knowledge
+                          <Network className="w-2 h-2 mr-1" />
+                          Expertise
                         </Badge>
                       ))}
                     </div>
                   )}
 
-                  {/* Collaboration Suggestions */}
+                  {/* Partnership Suggestions */}
                   {message.collaboration_suggestions && message.collaboration_suggestions.length > 0 && (
                     <div className="mt-2 space-y-1">
-                      <div className="text-xs opacity-70">Collaboration suggestions:</div>
+                      <div className="text-xs opacity-70">Partnership opportunities:</div>
                       {message.collaboration_suggestions.map((suggestion, idx) => (
                         <Badge key={idx} variant="secondary" className="text-xs mr-1">
                           <Users className="w-2 h-2 mr-1" />
@@ -184,10 +184,10 @@ export const EnhancedChatInterface = ({
                     </div>
                   )}
 
-                  {/* Insights Generated */}
+                  {/* Business Insights */}
                   {message.insights_generated && message.insights_generated.length > 0 && (
                     <div className="mt-2 space-y-1">
-                      <div className="text-xs opacity-70">Insights:</div>
+                      <div className="text-xs opacity-70">Business insights:</div>
                       {message.insights_generated.map((insight, idx) => (
                         <div key={idx} className="text-xs bg-yellow-100 dark:bg-yellow-900/20 rounded p-1 flex items-start gap-1">
                           <Lightbulb className="w-3 h-3 mt-0.5 text-yellow-600" />
@@ -232,46 +232,46 @@ export const EnhancedChatInterface = ({
         </div>
       </div>
 
-      {/* Knowledge & Collaboration Sidebar */}
-      {showCollaborationPanel && (
+      {/* Holo-Org Intelligence Sidebar */}
+      {showOrgPanel && (
         <>
           <Separator orientation="vertical" />
           <div className="w-80 p-4 bg-muted/30">
             <div className="space-y-4">
               <h3 className="font-semibold flex items-center gap-2">
-                <Brain className="w-4 h-4" />
-                Thinkscape
+                <Network className="w-4 h-4" />
+                Holo-Org Intelligence
               </h3>
               
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Active Knowledge</CardTitle>
+                  <CardTitle className="text-sm">Active Expertise</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="text-xs text-muted-foreground">
-                    Knowledge references from this conversation will appear here
+                    Organizational expertise being leveraged in this conversation
                   </div>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Collaboration Network</CardTitle>
+                  <CardTitle className="text-sm">Partnership Network</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="text-xs text-muted-foreground">
-                    Suggested collaborators based on conversation context
+                    Potential partners and advisors based on conversation context
                   </div>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm">Insights Generated</CardTitle>
+                  <CardTitle className="text-sm">Business Value</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="text-xs text-muted-foreground">
-                    Key insights and learnings from this session
+                    Key insights and value generated from this session
                   </div>
                 </CardContent>
               </Card>
