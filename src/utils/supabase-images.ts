@@ -10,7 +10,7 @@ export const getStorageImageUrl = (bucket: string, path: string): string => {
 export const getLeaderImageUrl = (leaderName: string): string => {
   // Map leader names to high-quality professional photos
   const imageMap: Record<string, string> = {
-    'Trojan Oz': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=600&fit=crop&crop=face&auto=format&q=90',
+    'Trojan Oz': '/lovable-uploads/4d1b5377-5288-4575-8000-bd5f463358b7.png',
     'Dr. Amara Chen': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&h=600&fit=crop&crop=face&auto=format&q=90',
     'Miguel Santos': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=face&auto=format&q=90',
     'Priya Sharma': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop&crop=face&auto=format&q=90',
