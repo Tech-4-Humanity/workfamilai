@@ -30,136 +30,179 @@ const getDepartmentName = (departmentId: string): string => {
     'marcus-bennett': 'Governance & Compliance',
     'aisha-al-farsi': 'External Relations',
     'miguel-santos': 'Marketing',
+    'theo-williams': 'Finance',
+    'yuna-kim': 'Customer Experience',
+    'sofia-rodriguez': 'Sales',
     'priya-sharma': 'Human Resources',
-    'theo-williams': 'Finance & Operations',
-    'yuna-kim': 'Customer Support',
-    'david-okafor': 'Innovation & R&D',
-    'sofia-rodriguez': 'Sales'
+    'elena-vasquez': 'Operations'
   };
-  return departmentMap[departmentId] || 'Unknown';
+  return departmentMap[departmentId] || 'Unknown Department';
 };
 
-const determineSFIALevel = (specialization: string): string => {
-  const seniorTerms = ['Lead', 'Senior', 'Chief', 'Director', 'Manager', 'Head', 'Principal'];
-  const expertTerms = ['Expert', 'Specialist', 'Architect'];
-  const midTerms = ['Analyst', 'Coordinator', 'Associate'];
+const generateTechStack = (specialization: string, division: string): string => {
+  const techStacks: Record<string, string> = {
+    // Software Engineering
+    'Full-Stack Development': 'React, Node.js, TypeScript, PostgreSQL, AWS',
+    'Frontend Engineering': 'React, Vue.js, TypeScript, CSS3, Webpack',
+    'Backend Systems': 'Node.js, Python, PostgreSQL, Redis, Docker',
+    'Mobile Development': 'React Native, Swift, Kotlin, Firebase',
+    'API Development': 'REST, GraphQL, Node.js, Express, OpenAPI',
+    'Database Engineering': 'PostgreSQL, MongoDB, Redis, Elasticsearch',
+    'DevOps Engineering': 'Docker, Kubernetes, AWS, CI/CD, Terraform',
+    'Quality Assurance': 'Jest, Cypress, Selenium, TestRail',
+    'Software Architecture': 'Microservices, Event-driven, Clean Architecture',
+    
+    // User Experience
+    'Interaction Design': 'Figma, Adobe XD, Principle, InVision',
+    'User Research': 'UserTesting, Hotjar, Analytics, Surveys',
+    'Design System Architecture': 'Figma, Storybook, Design Tokens',
+    'Usability Testing': 'UserTesting, Maze, Lookback, Analytics',
+    'Digital Accessibility': 'WCAG, ARIA, Screen Readers, axe-core',
+    'Motion and Micro-interactions': 'Framer, Principle, After Effects',
+    'Content Strategy and UX Writing': 'Content Management, Figma, Analytics',
+    'Design Research and Innovation': 'Design Thinking, Miro, Research Tools',
+    'Service Design and Customer Journey': 'Journey Mapping, Service Blueprints',
+    
+    // Product Engineering
+    'System Architecture': 'AWS, Microservices, Event-driven Architecture',
+    'Platform Infrastructure': 'Kubernetes, Docker, AWS, Terraform',
+    'Product Security': 'OAuth, JWT, Encryption, Security Scanning',
+    'Performance Optimization': 'Performance Monitoring, Caching, CDN',
+    'DevOps and Automation': 'CI/CD, Docker, Kubernetes, Monitoring',
+    'API Design and Integration': 'REST, GraphQL, OpenAPI, Postman',
+    'Data Architecture': 'PostgreSQL, Data Warehousing, ETL',
+    'Mobile Platform Development': 'React Native, iOS, Android, App Store',
+    'Quality Assurance and Testing': 'Automated Testing, CI/CD, Quality Gates',
+    
+    // Default fallback
+    'default': 'Modern Web Technologies, Cloud Platforms, Agile Tools'
+  };
   
-  if (seniorTerms.some(term => specialization.includes(term))) return '6';
-  if (expertTerms.some(term => specialization.includes(term))) return '5';
-  if (midTerms.some(term => specialization.includes(term))) return '4';
-  return '4'; // Default
+  return techStacks[specialization] || techStacks['default'];
 };
 
-const estimateCost = (specialization: string): number => {
-  const level = determineSFIALevel(specialization);
+const generateDeliveryType = (specialization: string): string => {
+  const strategicRoles = ['Strategy', 'Architecture', 'Leadership', 'Management'];
+  const operationalRoles = ['Development', 'Engineering', 'Testing', 'Support'];
+  
+  if (strategicRoles.some(role => specialization.includes(role))) {
+    return 'Consultative';
+  } else if (operationalRoles.some(role => specialization.includes(role))) {
+    return 'Augmented';
+  }
+  return 'Hybrid';
+};
+
+const generateCostAndRate = (sfia_level: string, delivery_type: string): { final_cost: string; consultant_hourly_rate: string } => {
   const baseCosts: Record<string, number> = {
-    '4': 85000,
-    '5': 140000,
-    '6': 180000,
-    '7': 220000
-  };
-  return baseCosts[level] || 85000;
-};
-
-const estimateHourlyRate = (specialization: string): number => {
-  const level = determineSFIALevel(specialization);
-  const baseRates: Record<string, number> = {
-    '4': 125,
-    '5': 190,
-    '6': 250,
-    '7': 300
-  };
-  return baseRates[level] || 125;
-};
-
-const determineTechStack = (specialization: string, domain: string): string => {
-  const techStackMap: Record<string, string> = {
-    'Product Development': 'Python, React, Node.js, AWS, TensorFlow',
-    'Governance & Compliance': 'Compliance Software, Legal Databases, Audit Tools, GRC Platforms',
-    'External Relations': 'CRM, Communication Platforms, Analytics, Social Media Tools',
-    'Marketing': 'Analytics Tools, Social Media Platforms, SEO Tools, Marketing Automation',
-    'Human Resources': 'HRIS, Assessment Tools, Learning Platforms, Recruitment Software',
-    'Finance & Operations': 'Financial Software, ERP, Analytics Platforms, Business Intelligence',
-    'Customer Support': 'CRM, Support Platforms, Analytics Tools, Helpdesk Software',
-    'Innovation & R&D': 'Research Tools, Statistical Software, Prototyping, Design Thinking',
-    'Sales': 'CRM, Sales Tools, Analytics Platforms, Proposal Software'
+    '1': 45000,
+    '2': 55000,
+    '3': 70000,
+    '4': 90000,
+    '5': 120000,
+    '6': 150000,
+    '7': 180000
   };
   
-  return techStackMap[domain] || 'Standard Business Tools';
-};
-
-const determineDeliveryType = (specialization: string): string => {
-  const automatedTerms = ['Bot', 'AI', 'Automated', 'Algorithm', 'System'];
-  const augmentedTerms = ['Analyst', 'Specialist', 'Coordinator', 'Engineer'];
-  
-  if (automatedTerms.some(term => specialization.includes(term))) return 'Automated';
-  if (augmentedTerms.some(term => specialization.includes(term))) return 'Augmented';
-  return 'Human';
-};
-
-const estimateTaskCoverage = (specialization: string): number => {
-  const deliveryType = determineDeliveryType(specialization);
-  const coverageMap: Record<string, number> = {
-    'Automated': 92,
-    'Augmented': 87,
-    'Human': 85
+  const deliveryMultipliers: Record<string, number> = {
+    'Automated': 0.3,
+    'Augmented': 0.7,
+    'Consultative': 1.2,
+    'Hybrid': 0.9
   };
-  return coverageMap[deliveryType] || 85;
+  
+  const baseAmount = baseCosts[sfia_level] || 70000;
+  const multiplier = deliveryMultipliers[delivery_type] || 1.0;
+  const finalCost = Math.round(baseAmount * multiplier);
+  const hourlyRate = Math.round(finalCost / (52 * 40)); // Annual to hourly
+  
+  return {
+    final_cost: `$${finalCost.toLocaleString()}`,
+    consultant_hourly_rate: `$${hourlyRate}`
+  };
+};
+
+const generateAgentCode = (familyMemberId: string, divisionIndex: number, agentIndex: number): string => {
+  const memberCodes: Record<string, string> = {
+    'amara-chen': 'AC',
+    'marcus-bennett': 'MB',
+    'aisha-al-farsi': 'AF',
+    'miguel-santos': 'MS',
+    'theo-williams': 'TW',
+    'yuna-kim': 'YK',
+    'sofia-rodriguez': 'SR',
+    'priya-sharma': 'PS',
+    'elena-vasquez': 'EV'
+  };
+  
+  const memberCode = memberCodes[familyMemberId] || 'XX';
+  const divisionCode = String(divisionIndex + 1).padStart(2, '0');
+  const agentCode = String(agentIndex + 1).padStart(2, '0');
+  
+  return `${memberCode}${divisionCode}${agentCode}`;
 };
 
 export const generateAllFamilyAgents = (): FamilyAgent[] => {
-  const agents: FamilyAgent[] = [];
-  let agentCounter = 10001;
-
-  Object.entries(familyMemberDetails).forEach(([familyMemberId, familyMemberData]) => {
-    const departmentName = getDepartmentName(familyMemberId);
+  const allAgents: FamilyAgent[] = [];
+  
+  console.log('Starting family agent generation...');
+  
+  familyMemberDetails.forEach((member, memberIndex) => {
+    console.log(`Processing member ${memberIndex + 1}: ${member.leader.name} with ${member.divisions.length} divisions`);
     
-    if (familyMemberData && familyMemberData.divisions) {
-      familyMemberData.divisions.forEach((division) => {
-        division.agents.forEach((agent: Agent) => {
-          const agentCode = `FA${agentCounter.toString().padStart(5, '0')}`;
-          
-          agents.push({
-            agent_code: agentCode,
-            persona: agent.name,
-            function: agent.specialization,
-            domain: departmentName,
-            sfia_level: determineSFIALevel(agent.specialization),
-            core_skills: `${agent.signature_method}, ${agent.cultural_expertise}`,
-            summary_bio: `${agent.background} ${agent.achievement}`,
-            final_cost: estimateCost(agent.specialization).toString(),
-            consultant_hourly_rate: estimateHourlyRate(agent.specialization).toString(),
-            tech_stack: determineTechStack(agent.specialization, departmentName),
-            delivery_type: determineDeliveryType(agent.specialization),
-            task_coverage_pct: estimateTaskCoverage(agent.specialization),
-            specialization: agent.specialization,
-            achievement: agent.achievement,
-            background: agent.background,
-            signature_method: agent.signature_method,
-            cultural_expertise: agent.cultural_expertise,
-            division_name: division.name,
-            family_member_id: familyMemberId
-          });
-          
-          agentCounter++;
-        });
+    member.divisions.forEach((division, divisionIndex) => {
+      console.log(`  Processing division ${divisionIndex + 1}: ${division.name} with ${division.agents.length} agents`);
+      
+      division.agents.forEach((agent, agentIndex) => {
+        const agentCode = generateAgentCode(member.id, divisionIndex, agentIndex);
+        const sfia_level = String(Math.floor(Math.random() * 4) + 3); // SFIA levels 3-6
+        const delivery_type = generateDeliveryType(agent.specialization);
+        const { final_cost, consultant_hourly_rate } = generateCostAndRate(sfia_level, delivery_type);
+        
+        const familyAgent: FamilyAgent = {
+          agent_code: agentCode,
+          persona: `${agent.name} - ${agent.specialization} Expert`,
+          function: agent.specialization,
+          domain: getDepartmentName(member.id),
+          sfia_level: sfia_level,
+          core_skills: agent.signature_method,
+          summary_bio: agent.background,
+          final_cost: final_cost,
+          consultant_hourly_rate: consultant_hourly_rate,
+          tech_stack: generateTechStack(agent.specialization, division.name),
+          delivery_type: delivery_type,
+          task_coverage_pct: Math.floor(Math.random() * 30) + 70, // 70-100%
+          specialization: agent.specialization,
+          achievement: agent.achievement,
+          background: agent.background,
+          signature_method: agent.signature_method,
+          cultural_expertise: agent.cultural_expertise,
+          division_name: division.name,
+          family_member_id: member.id
+        };
+        
+        allAgents.push(familyAgent);
       });
-    }
+    });
   });
-
-  console.log(`Generated ${agents.length} family agents`);
-  return agents;
+  
+  console.log(`Generated ${allAgents.length} family agents total`);
+  return allAgents;
 };
 
-export const getTotalAgentCount = (): number => {
-  // With 9 family members × 9 divisions × 9 agents each = 729 total agents
-  return 729;
-};
-
-export const getAgentsByDomain = (domain: string): FamilyAgent[] => {
-  return generateAllFamilyAgents().filter(agent => agent.domain === domain);
-};
-
-export const getAgentsByFamilyMember = (familyMemberId: string): FamilyAgent[] => {
-  return generateAllFamilyAgents().filter(agent => agent.family_member_id === familyMemberId);
+export const getFamilyAgentStats = () => {
+  const agents = generateAllFamilyAgents();
+  const memberStats = familyMemberDetails.map(member => ({
+    id: member.id,
+    name: member.leader.name,
+    divisionCount: member.divisions.length,
+    agentCount: member.divisions.reduce((sum, div) => sum + div.agents.length, 0)
+  }));
+  
+  return {
+    totalAgents: agents.length,
+    expectedAgents: 9 * 9 * 9, // 9 members × 9 divisions × 9 agents = 729
+    memberStats: memberStats,
+    isComplete: agents.length === 729
+  };
 };
