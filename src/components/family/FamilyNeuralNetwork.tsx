@@ -103,7 +103,7 @@ export const FamilyNeuralNetwork = () => {
       </CardHeader>
       
       <CardContent className="relative z-10">
-        {/* Enhanced Neural Network Visualization */}
+        {/* Enhanced Neural Network Visualization with Faces */}
         <NetworkVisualization familyMembers={familyMembers} />
         
         {/* Enhanced glassmorphism stats - updated member count */}

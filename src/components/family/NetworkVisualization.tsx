@@ -19,11 +19,27 @@ interface NetworkVisualizationProps {
 
 export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProps) => {
   return (
-    <div className="relative h-96 mb-8 bg-gradient-to-br from-black/30 to-blue-900/30 rounded-xl border border-cyan-400/30 overflow-hidden backdrop-blur-sm">
+    <div className="relative h-[500px] mb-8 bg-gradient-to-br from-black/30 to-blue-900/30 rounded-xl border border-cyan-400/30 overflow-hidden backdrop-blur-sm">
       {/* Advanced background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.1)_0%,transparent_70%)] animate-pulse"></div>
         <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent_0deg,rgba(6,182,212,0.05)_180deg,transparent_360deg)] animate-spin" style={{ animationDuration: '30s' }}></div>
+        
+        {/* Additional floating particles */}
+        <div className="absolute inset-0">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400/30 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Neural Network SVG */}
@@ -53,25 +69,27 @@ export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProp
                 x2={`${otherMember.x}%`}
                 y2={`${otherMember.y}%`}
                 stroke="url(#connectionGlow)"
-                strokeWidth={member.isPatron || otherMember.isPatron ? "2.5" : "1.5"}
-                opacity={member.isPatron || otherMember.isPatron ? "0.6" : "0.4"}
+                strokeWidth={member.isPatron || otherMember.isPatron ? "3" : "2"}
+                opacity={member.isPatron || otherMember.isPatron ? "0.7" : "0.5"}
                 filter="url(#glow)"
               >
                 <animate
                   attributeName="opacity"
-                  values={member.isPatron || otherMember.isPatron ? "0.4;0.8;0.4" : "0.2;0.6;0.2"}
+                  values={member.isPatron || otherMember.isPatron ? "0.5;0.9;0.5" : "0.3;0.7;0.3"}
                   dur={`${3 + (i + j) * 0.3}s`}
                   repeatCount="indefinite"
                 />
               </line>
-              {/* Data flow particles */}
-              <circle r="2" fill="rgba(6,182,212,0.8)">
+              
+              {/* Enhanced data flow particles */}
+              <circle r="3" fill="rgba(6,182,212,0.9)" opacity="0.8">
                 <animateMotion
                   dur={`${4 + (i + j) * 0.2}s`}
                   repeatCount="indefinite"
                 >
                   <mpath href={`#path-${i}-${j}`} />
                 </animateMotion>
+                <animate attributeName="r" values="2;4;2" dur="1s" repeatCount="indefinite" />
               </circle>
               <path
                 id={`path-${i}-${j}`}
@@ -83,13 +101,14 @@ export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProp
           ))
         )}
         
-        {/* Central neural hub - enhanced for Patron */}
-        <circle cx="50%" cy="50%" r="35" fill="url(#connectionGlow)" opacity="0.4">
-          <animate attributeName="r" values="30;40;30" dur="3s" repeatCount="indefinite" />
+        {/* Enhanced central neural hub for Patron */}
+        <circle cx="50%" cy="50%" r="40" fill="url(#connectionGlow)" opacity="0.5">
+          <animate attributeName="r" values="35;45;35" dur="4s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" />
         </circle>
       </svg>
       
-      {/* Enhanced Family Member Nodes */}
+      {/* Enhanced Family Member Nodes with Faces */}
       {familyMembers.map((member, index) => (
         <NetworkMember key={member.id} member={member} index={index} />
       ))}
