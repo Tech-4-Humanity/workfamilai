@@ -9,10 +9,10 @@ interface StrategyInsight {
   timestamp: Date;
 }
 
-export const useSupremeLeaderMetrics = () => {
+export const usePatronMetrics = () => {
   // Get total agent count
   const { data: totalAgents } = useQuery({
-    queryKey: ['supreme-agent-count'],
+    queryKey: ['patron-agent-count'],
     queryFn: async () => {
       const { count, error } = await supabase
         .from('10,000 agents')
@@ -23,9 +23,9 @@ export const useSupremeLeaderMetrics = () => {
     }
   });
 
-  // Get Supreme Meta-Agent data
-  const { data: supremeAgent } = useQuery({
-    queryKey: ['supreme-meta-agent'],
+  // Get Patron Meta-Agent data
+  const { data: patronAgent } = useQuery({
+    queryKey: ['patron-meta-agent'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('10,000 agents')
@@ -39,7 +39,7 @@ export const useSupremeLeaderMetrics = () => {
   });
 
   // Generate consciousness metrics
-  const consciousnessLevel = 97; // Supreme level consciousness
+  const consciousnessLevel = 97; // Patron level consciousness
   const learningVelocity = 15.8; // Meta-learning velocity multiplier
   const partnershipNetworks = 347; // Active partnership networks
 
@@ -73,7 +73,7 @@ export const useSupremeLeaderMetrics = () => {
 
   return {
     totalAgents,
-    supremeAgent,
+    patronAgent,
     consciousnessLevel,
     learningVelocity,
     partnershipNetworks,

@@ -1,15 +1,15 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Star, Users } from 'lucide-react';
+import { Crown, Users } from 'lucide-react';
 import { getLeaderImageFallbacks } from '@/utils/supabase-images';
 import { RobustImage } from '@/components/ui/robust-image';
 
-interface SupremeLeaderCardProps {
+interface PatronCardProps {
   totalDepartments: number;
   totalAgents: number;
 }
 
-export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLeaderCardProps) => {
+export const PatronCard = ({ totalDepartments, totalAgents }: PatronCardProps) => {
   const ozImageUrls = getLeaderImageFallbacks('Trojan Oz');
 
   const fallbackContent = (
@@ -48,9 +48,9 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
 
       <CardHeader className="pb-4 relative z-10">
         <div className="flex items-center justify-center space-x-3 mb-4">
-          <Star className="h-6 w-6 text-yellow-500 animate-pulse" />
-          <CardTitle className="text-2xl text-gray-900 font-bold">Supreme Leader</CardTitle>
-          <Star className="h-6 w-6 text-yellow-500 animate-pulse" />
+          <Crown className="h-6 w-6 text-yellow-500 animate-pulse" />
+          <CardTitle className="text-2xl text-gray-900 font-bold">Patron</CardTitle>
+          <Crown className="h-6 w-6 text-yellow-500 animate-pulse" />
         </div>
       </CardHeader>
 
@@ -61,7 +61,7 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
           
           <RobustImage
             src={ozImageUrls}
-            alt="Trojan Oz - AHC Cyborg Supreme Leader"
+            alt="Trojan Oz - AHC Cyborg Patron"
             className="relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl"
             fallback={fallbackContent}
             onError={(failedUrl) => console.log(`Failed to load Trojan Oz image: ${failedUrl}`)}

@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FamilyAgentIntegration } from '@/components/admin/FamilyAgentIntegration';
-import { SupremeLeaderDashboard } from '@/components/admin/SupremeLeaderDashboard';
+import { PatronDashboard } from '@/components/admin/PatronDashboard';
 import { DivisionLeadersPanel } from '@/components/admin/DivisionLeadersPanel';
 import { Footer } from '@/components/ui/footer';
 import { Database, Users, Settings, BarChart3, Crown, Building2 } from 'lucide-react';
@@ -19,11 +18,11 @@ const Admin = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="supreme" className="space-y-4">
+        <Tabs defaultValue="patron" className="space-y-4">
           <TabsList>
-            <TabsTrigger value="supreme" className="flex items-center gap-2">
+            <TabsTrigger value="patron" className="flex items-center gap-2">
               <Crown className="h-4 w-4" />
-              Supreme Leader
+              Patron
             </TabsTrigger>
             <TabsTrigger value="divisions" className="flex items-center gap-2">
               <Building2 className="h-4 w-4" />
@@ -47,8 +46,8 @@ const Admin = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="supreme" className="space-y-4">
-            <SupremeLeaderDashboard />
+          <TabsContent value="patron" className="space-y-4">
+            <PatronDashboard />
           </TabsContent>
 
           <TabsContent value="divisions" className="space-y-4">

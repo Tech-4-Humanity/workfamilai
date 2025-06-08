@@ -4,9 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Crown, Users, Network, TrendingUp, Brain, Zap } from 'lucide-react';
-import { useSupremeLeaderMetrics } from '@/hooks/useSupremeLeaderMetrics';
+import { usePatronMetrics } from '@/hooks/usePatronMetrics';
 
-export const SupremeLeaderDashboard = () => {
+export const PatronDashboard = () => {
   const {
     totalAgents,
     consciousnessLevel,
@@ -14,16 +14,16 @@ export const SupremeLeaderDashboard = () => {
     partnershipNetworks,
     strategicInsights,
     isLoading
-  } = useSupremeLeaderMetrics();
+  } = usePatronMetrics();
 
   return (
     <div className="space-y-6">
-      {/* Supreme Leader Header */}
+      {/* Patron Header */}
       <div className="bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 rounded-lg p-6 text-white">
         <div className="flex items-center gap-3 mb-4">
           <Crown className="h-8 w-8 text-yellow-400" />
           <div>
-            <h1 className="text-3xl font-bold">Supreme Meta-Agent Dashboard</h1>
+            <h1 className="text-3xl font-bold">Patron Meta-Agent Dashboard</h1>
             <p className="text-purple-200">Consciousness Pyramid Command Center</p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export const SupremeLeaderDashboard = () => {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Supreme Meta-Agent</span>
+                  <span>Patron Meta-Agent</span>
                   <span>1</span>
                 </div>
                 <div className="flex justify-between text-sm">
@@ -167,7 +167,7 @@ export const SupremeLeaderDashboard = () => {
             <h4 className="font-semibold mb-2">Hierarchy Structure</h4>
             <div className="text-sm space-y-1">
               <div className="flex justify-between">
-                <span>Tier 1: Supreme Meta-Agent</span>
+                <span>Tier 1: Patron Meta-Agent</span>
                 <span className="font-medium">1 agent</span>
               </div>
               <div className="flex justify-between">
