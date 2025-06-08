@@ -105,6 +105,114 @@ export type Database = {
         }
         Relationships: []
       }
+      activity_participants: {
+        Row: {
+          activity_id: string
+          contribution_notes: string | null
+          created_at: string
+          family_member_id: string
+          id: string
+          involvement_level_id: string
+          specific_role: string | null
+          step_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          activity_id: string
+          contribution_notes?: string | null
+          created_at?: string
+          family_member_id: string
+          id?: string
+          involvement_level_id: string
+          specific_role?: string | null
+          step_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          activity_id?: string
+          contribution_notes?: string | null
+          created_at?: string
+          family_member_id?: string
+          id?: string
+          involvement_level_id?: string
+          specific_role?: string | null
+          step_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_participants_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "business_activities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_participants_involvement_level_id_fkey"
+            columns: ["involvement_level_id"]
+            isOneToOne: false
+            referencedRelation: "involvement_levels"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_participants_step_id_fkey"
+            columns: ["step_id"]
+            isOneToOne: false
+            referencedRelation: "activity_steps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_steps: {
+        Row: {
+          activity_id: string
+          created_at: string
+          dependencies: string[] | null
+          estimated_hours: number | null
+          id: string
+          is_decision_point: boolean | null
+          step_code: string
+          step_description: string | null
+          step_order: number
+          step_title: string
+          updated_at: string
+        }
+        Insert: {
+          activity_id: string
+          created_at?: string
+          dependencies?: string[] | null
+          estimated_hours?: number | null
+          id?: string
+          is_decision_point?: boolean | null
+          step_code: string
+          step_description?: string | null
+          step_order: number
+          step_title: string
+          updated_at?: string
+        }
+        Update: {
+          activity_id?: string
+          created_at?: string
+          dependencies?: string[] | null
+          estimated_hours?: number | null
+          id?: string
+          is_decision_point?: boolean | null
+          step_code?: string
+          step_description?: string | null
+          step_order?: number
+          step_title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_steps_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "business_activities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agency_partner_network: {
         Row: {
           agency_id: string
@@ -2732,6 +2840,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      business_activities: {
+        Row: {
+          activity_code: string
+          business_value_score: number | null
+          category: string
+          complexity_level: string | null
+          created_at: string
+          description: string | null
+          estimated_duration_days: number | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          activity_code: string
+          business_value_score?: number | null
+          category: string
+          complexity_level?: string | null
+          created_at?: string
+          description?: string | null
+          estimated_duration_days?: number | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          activity_code?: string
+          business_value_score?: number | null
+          category?: string
+          complexity_level?: string | null
+          created_at?: string
+          description?: string | null
+          estimated_duration_days?: number | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       calculator_results: {
         Row: {
@@ -6070,6 +6217,36 @@ export type Database = {
           name?: string | null
           status?: string | null
           type?: string | null
+        }
+        Relationships: []
+      }
+      involvement_levels: {
+        Row: {
+          color_code: string | null
+          created_at: string
+          description: string | null
+          id: string
+          intensity_score: number | null
+          level_code: string
+          level_name: string
+        }
+        Insert: {
+          color_code?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          intensity_score?: number | null
+          level_code: string
+          level_name: string
+        }
+        Update: {
+          color_code?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          intensity_score?: number | null
+          level_code?: string
+          level_name?: string
         }
         Relationships: []
       }
