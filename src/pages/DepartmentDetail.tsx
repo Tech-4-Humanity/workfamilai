@@ -18,12 +18,12 @@ const DepartmentDetail = () => {
   const { getAgentsByFamilyMember } = useFamilyAgentQueries();
 
   // Get the family member details for this department
-  const enhancedData = departmentId ? familyMemberDetails[departmentId as keyof typeof familyMemberDetails] : null;
+  const familyMemberData = departmentId ? familyMemberDetails[departmentId as keyof typeof familyMemberDetails] : null;
 
   // Get agents for this family member from the database
   const { data: databaseAgents = [] } = departmentId ? getAgentsByFamilyMember(departmentId) : { data: [] };
 
-  if (!enhancedData || !departmentId) {
+  if (!familyMemberData || !departmentId) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-3xl font-bold mb-4">Family Member Not Found</h1>
@@ -38,30 +38,30 @@ const DepartmentDetail = () => {
     // Transform the leader data to match the expected structure
     const transformedLeader = {
       id: departmentId || '',
-      name: enhancedData.leader.name,
-      title: enhancedData.leader.title,
-      personality: enhancedData.leader.personality,
-      enneagramType: enhancedData.leader.enneagramType,
-      motto: enhancedData.leader.motto,
-      background: enhancedData.leader.background,
+      name: familyMemberData.leader.name,
+      title: familyMemberData.leader.title,
+      personality: familyMemberData.leader.personality,
+      enneagramType: familyMemberData.leader.enneagramType,
+      motto: familyMemberData.leader.motto,
+      background: familyMemberData.leader.background,
       domainOverview: '',
       color: 'blue',
-      agentCount: databaseAgents.length || enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
+      agentCount: databaseAgents.length || familyMemberData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
     };
 
     return (
       <EnhancedLeaderProfile
         leader={transformedLeader}
-        divisions={enhancedData.divisions}
+        divisions={familyMemberData.divisions}
         onBack={() => setShowEnhancedProfile(false)}
       />
     );
   }
 
-  // Use database agents if available, otherwise fallback to static data
+  // Use database agents if available, otherwise use static data count
   const totalAgents = databaseAgents.length > 0 
     ? databaseAgents.length 
-    : enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
+    : familyMemberData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
 
   // Show department detail view
   return (
@@ -79,8 +79,8 @@ const DepartmentDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-1">
             <LeaderProfilePreview 
-              leader={enhancedData.leader}
-              divisionsCount={enhancedData.divisions.length}
+              leader={familyMemberData.leader}
+              divisionsCount={familyMemberData.divisions.length}
               totalAgents={totalAgents}
               onViewProfile={() => setShowEnhancedProfile(true)}
             />
@@ -88,13 +88,13 @@ const DepartmentDetail = () => {
           
           <div className="lg:col-span-2">
             <DepartmentStats 
-              divisionsCount={enhancedData.divisions.length}
+              divisionsCount={familyMemberData.divisions.length}
               totalAgents={totalAgents}
-              leaderPersonality={enhancedData.leader.personality}
+              leaderPersonality={familyMemberData.leader.personality}
             />
             
             <DivisionsGrid 
-              divisions={enhancedData.divisions}
+              divisions={familyMemberData.divisions}
             />
           </div>
         </div>
@@ -103,7 +103,7 @@ const DepartmentDetail = () => {
           <div className="mt-8 p-4 bg-blue-50 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
             <p className="text-sm text-gray-600">
-              Showing {databaseAgents.length} agents from the family database for {enhancedData.leader.name}'s department.
+              Showing {databaseAgents.length} agents from the family database for {familyMemberData.leader.name}'s department.
             </p>
           </div>
         )}

@@ -111,11 +111,11 @@ export const generateAllFamilyAgents = (): FamilyAgent[] => {
   const agents: FamilyAgent[] = [];
   let agentCounter = 10001;
 
-  Object.entries(familyMemberDetails).forEach(([familyMemberId, familyMember]) => {
+  Object.entries(familyMemberDetails).forEach(([familyMemberId, familyMemberData]) => {
     const departmentName = getDepartmentName(familyMemberId);
     
-    if (familyMember && familyMember.divisions) {
-      familyMember.divisions.forEach((division) => {
+    if (familyMemberData && familyMemberData.divisions) {
+      familyMemberData.divisions.forEach((division) => {
         division.agents.forEach((agent: Agent) => {
           const agentCode = `FA${agentCounter.toString().padStart(5, '0')}`;
           

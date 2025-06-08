@@ -25,6 +25,13 @@ export interface FamilyLeader {
 
 export interface Leader extends FamilyLeader {}
 
+// This is the structure that the leader files use
+export interface FamilyMemberData {
+  leader: FamilyLeader;
+  divisions: Division[];
+}
+
+// This is the structure for the main family display
 export interface FamilyMember {
   id: string;
   name: string;
