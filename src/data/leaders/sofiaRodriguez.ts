@@ -1,3 +1,4 @@
+
 import { FamilyMemberData } from '@/types/family';
 
 export const sofiaRodriguezData: FamilyMemberData = {
@@ -15,7 +16,7 @@ export const sofiaRodriguezData: FamilyMemberData = {
       description: 'Generating and qualifying leads to build the sales pipeline.',
       agents: [
         {
-          name: 'Lead Generator Alex Thompson',
+          name: 'Alex Thompson',
           specialization: 'Outbound Prospecting',
           achievement: 'Generated 500+ qualified leads resulting in $10M+ pipeline value.',
           background: 'American sales development expert with expertise in B2B lead generation.',
@@ -23,7 +24,7 @@ export const sofiaRodriguezData: FamilyMemberData = {
           cultural_expertise: 'North American business development and networking culture'
         },
         {
-          name: 'Qualification Specialist Maria Gonzalez',
+          name: 'Maria Gonzalez',
           specialization: 'Lead Qualification',
           achievement: 'Improved lead quality scores by 40% through enhanced qualification processes.',
           background: 'Spanish sales professional with expertise in European market dynamics.',
@@ -37,7 +38,7 @@ export const sofiaRodriguezData: FamilyMemberData = {
       description: 'Managing existing client relationships and driving growth.',
       agents: [
         {
-          name: 'Account Manager Jean-Pierre Dubois',
+          name: 'Jean-Pierre Dubois',
           specialization: 'Enterprise Accounts',
           achievement: 'Grew enterprise accounts by 150% through strategic relationship management.',
           background: 'French account manager with expertise in luxury and enterprise markets.',
@@ -45,7 +46,7 @@ export const sofiaRodriguezData: FamilyMemberData = {
           cultural_expertise: 'French business etiquette and European enterprise sales culture'
         },
         {
-          name: 'Growth Specialist Priya Nair',
+          name: 'Priya Nair',
           specialization: 'Expansion Sales',
           achievement: 'Identified upselling opportunities resulting in 35% revenue growth from existing clients.',
           background: 'Indian sales specialist with expertise in technology adoption and growth strategies.',

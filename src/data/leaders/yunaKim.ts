@@ -1,3 +1,4 @@
+
 import { FamilyMemberData } from '@/types/family';
 
 export const yunaKimData: FamilyMemberData = {
@@ -15,7 +16,7 @@ export const yunaKimData: FamilyMemberData = {
       description: 'Providing exceptional support and resolving customer issues.',
       agents: [
         {
-          name: 'Support Specialist Emma Wilson',
+          name: 'Emma Wilson',
           specialization: 'Technical Support',
           achievement: 'Maintained 98% customer satisfaction score over 2 years.',
           background: 'British technical specialist with expertise in software troubleshooting.',
@@ -23,7 +24,7 @@ export const yunaKimData: FamilyMemberData = {
           cultural_expertise: 'European customer service standards and technical communication'
         },
         {
-          name: 'Resolution Expert Carlos Mendez',
+          name: 'Carlos Mendez',
           specialization: 'Escalation Management',
           achievement: 'Resolved 95% of escalated cases within 24 hours.',
           background: 'Mexican customer service expert with multilingual capabilities.',
@@ -37,7 +38,7 @@ export const yunaKimData: FamilyMemberData = {
       description: 'Ensuring customer satisfaction and driving long-term relationships.',
       agents: [
         {
-          name: 'Success Manager Rachel Chen',
+          name: 'Rachel Chen',
           specialization: 'Account Management',
           achievement: 'Increased customer retention rate by 35% through proactive engagement.',
           background: 'Chinese-Canadian specialist in relationship management and growth strategies.',
@@ -45,7 +46,7 @@ export const yunaKimData: FamilyMemberData = {
           cultural_expertise: 'North American and Asian business relationship dynamics'
         },
         {
-          name: 'Experience Analyst David Park',
+          name: 'David Park',
           specialization: 'Customer Analytics',
           achievement: 'Identified key satisfaction drivers leading to 25% improvement in NPS scores.',
           background: 'Korean data analyst with expertise in customer behavior and journey mapping.',

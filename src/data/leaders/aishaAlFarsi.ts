@@ -1,3 +1,4 @@
+
 import { FamilyMemberData } from '@/types/family';
 
 export const aishaAlFarsiData: FamilyMemberData = {
@@ -15,7 +16,7 @@ export const aishaAlFarsiData: FamilyMemberData = {
       description: 'Managing relationships with government entities and international organizations.',
       agents: [
         {
-          name: 'Ambassador Chen Wei',
+          name: 'Chen Wei',
           specialization: 'International Protocol',
           achievement: 'Facilitated 50+ international agreements with 98% satisfaction rate.',
           background: 'Former Chinese diplomat with 20 years of protocol experience.',
@@ -23,7 +24,7 @@ export const aishaAlFarsiData: FamilyMemberData = {
           cultural_expertise: 'East Asian diplomatic traditions and protocol nuances'
         },
         {
-          name: 'Consul Maria Rodriguez',
+          name: 'Maria Rodriguez',
           specialization: 'Bilateral Negotiations',
           achievement: 'Negotiated trade agreements worth $2B+ with zero diplomatic incidents.',
           background: 'Spanish trade negotiator with expertise in Latin American markets.',
@@ -37,7 +38,7 @@ export const aishaAlFarsiData: FamilyMemberData = {
       description: 'Building and maintaining key business partnerships and alliances.',
       agents: [
         {
-          name: 'Partnership Manager Alex Thompson',
+          name: 'Alex Thompson',
           specialization: 'Alliance Development',
           achievement: 'Built strategic partnerships generating $10M+ in annual revenue.',
           background: 'MBA from Wharton with 15 years in partnership development.',
@@ -45,7 +46,7 @@ export const aishaAlFarsiData: FamilyMemberData = {
           cultural_expertise: 'North American business networks and venture capital'
         },
         {
-          name: 'Relationship Coordinator Sarah Kim',
+          name: 'Sarah Kim',
           specialization: 'Stakeholder Management',
           achievement: 'Maintained 95% partner retention rate across 200+ relationships.',
           background: 'Korean-American specialist in cross-cultural business relationships.',

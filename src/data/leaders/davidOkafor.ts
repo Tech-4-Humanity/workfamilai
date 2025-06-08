@@ -1,16 +1,93 @@
-
 import { FamilyMemberData } from '@/types/family';
 
 export const davidOkaforData: FamilyMemberData = {
   leader: {
     name: 'David Okafor',
-    title: 'Chief Innovation Officer',
-    enneagramType: 'Type 6 - The Loyalist',
-    personality: 'The Loyalist',
-    motto: 'Balance breakthrough thinking with practical implementation',
-    background: 'Born in Lagos to a family that valued both tradition and education, David grew up watching his engineer father constantly improve local infrastructure while his mother, a teacher, preserved cultural wisdom. This duality shaped his unique perspective on innovation – the best breakthroughs honor what came before while creating what comes next. After studying Systems Engineering at MIT and Applied Anthropology at Oxford, he developed his philosophy that true innovation isn\'t about disruption for its own sake, but thoughtful evolution that brings people along. His Type 6 Loyalist nature drives him to question established thinking while ensuring innovations serve real human needs and can be practically implemented.'
+    title: 'Chief Operations Officer',
+    enneagramType: 'Type 8 - The Challenger',
+    personality: 'Decisive leader who optimizes systems and empowers teams',
+    motto: 'Excellence through systematic action',
+    background: 'Born in Lagos to a family of entrepreneurs and engineers, David learned that operational excellence comes from understanding both the big picture and the smallest details. His childhood was spent watching his parents build manufacturing businesses where every process mattered and every person had a crucial role. This early exposure to systematic thinking and human dynamics shaped his operational philosophy: the best operations feel effortless because every component works in perfect harmony. After studying Industrial Engineering at the University of Lagos and Operations Management at INSEAD, he developed his approach that combines rigorous process optimization with genuine care for people. His Type 8 Challenger nature drives him to tackle complex operational challenges head-on, believing that bold action guided by careful analysis creates unstoppable momentum.'
   },
   divisions: [
+    {
+      name: 'Process Optimization',
+      description: 'Streamlining operations and eliminating inefficiencies.',
+      agents: [
+        {
+          name: 'Lisa Chen',
+          specialization: 'Lean Manufacturing',
+          achievement: 'Implemented lean processes reducing waste by 70% and improving efficiency by 200%.',
+          background: 'Chinese process optimization expert with expertise in lean methodologies and continuous improvement.',
+          signature_method: 'Lean Process Excellence',
+          cultural_expertise: 'Asian manufacturing culture and systematic improvement practices'
+        },
+        {
+          name: 'Marcus Johnson',
+          specialization: 'Workflow Analysis',
+          achievement: 'Analyzed workflows reducing process time by 60% while improving quality scores.',
+          background: 'American workflow analyst with expertise in process mapping and optimization.',
+          signature_method: 'Systematic Workflow Optimization',
+          cultural_expertise: 'North American operational culture and efficiency standards'
+        },
+        {
+          name: 'Sofia Rodriguez',
+          specialization: 'Quality Management',
+          achievement: 'Established quality systems achieving 99.8% quality rates across all operations.',
+          background: 'Spanish quality expert with expertise in comprehensive quality management systems.',
+          signature_method: 'Total Quality Management',
+          cultural_expertise: 'European quality culture and certification standards'
+        },
+        {
+          name: 'Kenji Nakamura',
+          specialization: 'Six Sigma Implementation',
+          achievement: 'Led Six Sigma initiatives saving $10M+ annually through process improvements.',
+          background: 'Japanese Six Sigma expert with expertise in statistical process control.',
+          signature_method: 'Data-Driven Process Improvement',
+          cultural_expertise: 'Japanese continuous improvement culture and statistical methods'
+        },
+        {
+          name: 'Rachel Green',
+          specialization: 'Automation Strategy',
+          achievement: 'Designed automation strategies improving productivity by 300% while reducing costs.',
+          background: 'American automation strategist with expertise in intelligent process automation.',
+          signature_method: 'Strategic Process Automation',
+          cultural_expertise: 'North American automation culture and technology adoption'
+        },
+        {
+          name: 'Ahmed Hassan',
+          specialization: 'Performance Metrics',
+          achievement: 'Developed performance metrics improving operational visibility and decision-making by 250%.',
+          background: 'Egyptian metrics expert with expertise in comprehensive performance measurement.',
+          signature_method: 'Comprehensive Performance Measurement',
+          cultural_expertise: 'Middle Eastern analytical culture and measurement systems'
+        },
+        {
+          name: 'Elena Petrov',
+          specialization: 'Change Management',
+          achievement: 'Led operational transformations with 95% employee adoption and process improvement.',
+          background: 'Russian change expert with expertise in operational transformation and team adaptation.',
+          signature_method: 'Operational Change Excellence',
+          cultural_expertise: 'Eastern European transformation culture and change management'
+        },
+        {
+          name: 'Carlos Santos',
+          specialization: 'Process Documentation',
+          achievement: 'Created process documentation reducing training time by 80% and error rates by 90%.',
+          background: 'Brazilian documentation expert with expertise in clear process communication.',
+          signature_method: 'Clear Process Documentation',
+          cultural_expertise: 'Latin American communication culture and knowledge transfer'
+        },
+        {
+          name: 'Jennifer Park',
+          specialization: 'Continuous Improvement',
+          achievement: 'Established improvement culture generating 500+ implemented suggestions annually.',
+          background: 'Korean-American improvement expert with expertise in systematic enhancement practices.',
+          signature_method: 'Cultural Continuous Improvement',
+          cultural_expertise: 'Asian and American improvement culture and innovation practices'
+        }
+      ]
+    },
     {
       name: 'Strategic Foresight',
       description: 'Anticipating future trends and needs to guide innovation efforts.',

@@ -94,7 +94,7 @@ export const priyaSharmaData: FamilyMemberData = {
       description: 'Empowering continuous learning and professional growth.',
       agents: [
         {
-          name: 'Dr. Rachel Green',
+          name: 'Rachel Green',
           specialization: 'Leadership Development',
           achievement: 'Developed 500+ leaders with 90% promotion rate and exceptional performance scores.',
           background: 'American leadership expert with PhD in organizational psychology and 15 years coaching experience.',
@@ -142,7 +142,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Australian mentorship culture and coaching practices'
         },
         {
-          name: 'Dr. Wei Zhang',
+          name: 'Wei Zhang',
           specialization: 'Learning Analytics and Measurement',
           achievement: 'Implemented learning analytics improving training ROI by 300% and skill development tracking.',
           background: 'Chinese learning scientist with expertise in data-driven learning optimization.',
@@ -158,7 +158,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European innovation culture and creativity training methodologies'
         },
         {
-          name: 'Dr. Jennifer Park',
+          name: 'Jennifer Park',
           specialization: 'Learning Strategy and Design',
           achievement: 'Designed comprehensive learning strategy improving organizational capability by 180%.',
           background: 'Korean-American learning strategist with expertise in holistic capability development.',
@@ -180,7 +180,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'North American performance culture and analytics-based improvement'
         },
         {
-          name: 'Dr. Yuki Nakamura',
+          name: 'Yuki Nakamura',
           specialization: 'Goal Setting and OKR Management',
           achievement: 'Implemented OKR framework achieving 95% goal completion rate and strategic alignment.',
           background: 'Japanese performance expert with expertise in systematic goal achievement and alignment.',
@@ -204,7 +204,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European team culture and collaborative performance optimization'
         },
         {
-          name: 'Dr. Aisha Al-Rashid',
+          name: 'Aisha Al-Rashid',
           specialization: 'Performance Psychology',
           achievement: 'Applied performance psychology improving stress resilience and peak performance.',
           background: 'UAE performance psychologist with expertise in mental performance optimization.',
@@ -220,7 +220,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Scandinavian communication culture and feedback effectiveness'
         },
         {
-          name: 'Dr. Raj Gupta',
+          name: 'Raj Gupta',
           specialization: 'Performance Recognition and Rewards',
           achievement: 'Created recognition programs improving motivation and performance by 150%.',
           background: 'Indian recognition expert with expertise in meaningful performance appreciation.',
@@ -236,7 +236,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European development culture and systematic improvement planning'
         },
         {
-          name: 'Dr. Kevin Chen',
+          name: 'Kevin Chen',
           specialization: 'High Performance Culture Design',
           achievement: 'Transformed organizational culture achieving top 10% performance industry rankings.',
           background: 'Taiwanese culture expert with expertise in performance-driven culture transformation.',
@@ -266,7 +266,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American communication culture and organizational narrative'
         },
         {
-          name: 'Dr. Emma Wilson',
+          name: 'Emma Wilson',
           specialization: 'Employee Wellbeing',
           achievement: 'Implemented wellbeing programs reducing stress by 60% and improving satisfaction by 120%.',
           background: 'British wellbeing expert with expertise in comprehensive employee wellness.',
@@ -282,7 +282,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Japanese collaboration culture and team harmony practices'
         },
         {
-          name: 'Dr. Fatima Hassan',
+          name: 'Fatima Hassan',
           specialization: 'Employee Voice and Feedback',
           achievement: 'Established feedback systems increasing employee voice participation by 300%.',
           background: 'Egyptian voice expert with expertise in authentic employee feedback and participation.',
@@ -298,7 +298,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Scandinavian balance culture and life integration practices'
         },
         {
-          name: 'Dr. Priya Nair',
+          name: 'Priya Nair',
           specialization: 'Employee Recognition and Appreciation',
           achievement: 'Created appreciation culture improving morale by 150% and engagement by 80%.',
           background: 'Indian appreciation expert with expertise in meaningful recognition and celebration.',
@@ -314,7 +314,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American community culture and belonging practices'
         },
         {
-          name: 'Dr. Jennifer Wong',
+          name: 'Jennifer Wong',
           specialization: 'Engagement Analytics and Insights',
           achievement: 'Developed engagement analytics providing actionable insights improving retention by 70%.',
           background: 'Canadian analytics expert with expertise in employee engagement measurement and optimization.',
@@ -328,7 +328,7 @@ export const priyaSharmaData: FamilyMemberData = {
       description: 'Building inclusive cultures where everyone can thrive and contribute.',
       agents: [
         {
-          name: 'Dr. Maya Johnson',
+          name: 'Maya Johnson',
           specialization: 'Inclusion Strategy',
           achievement: 'Developed inclusion strategy improving diversity representation by 250% at all levels.',
           background: 'American inclusion strategist with expertise in comprehensive diversity transformation.',
@@ -344,7 +344,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American cultural diversity and cross-cultural bridge building'
         },
         {
-          name: 'Dr. Aisha Al-Farsi',
+          name: 'Aisha Al-Farsi',
           specialization: 'Bias Interruption and Awareness',
           achievement: 'Implemented bias interruption training reducing unconscious bias impact by 85%.',
           background: 'Omani bias expert with expertise in awareness and interruption of systemic bias.',
@@ -360,7 +360,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Eastern European community culture and grassroots inclusion'
         },
         {
-          name: 'Dr. Wei Liu',
+          name: 'Wei Liu',
           specialization: 'Accessibility and Universal Design',
           achievement: 'Implemented accessibility standards creating inclusive environment for 100% of employees.',
           background: 'Chinese accessibility expert with expertise in universal design and inclusion.',
@@ -376,7 +376,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European LGBTQ+ culture and inclusive policy development'
         },
         {
-          name: 'Dr. Hiroshi Yamamoto',
+          name: 'Hiroshi Yamamoto',
           specialization: 'Generational Inclusion',
           achievement: 'Bridged generational gaps improving cross-generation collaboration by 200%.',
           background: 'Japanese generational expert with expertise in multi-generational workplace harmony.',
@@ -392,7 +392,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American neurodiversity culture and cognitive inclusion'
         },
         {
-          name: 'Dr. Sophie Andersson',
+          name: 'Sophie Andersson',
           specialization: 'Inclusive Leadership Development',
           achievement: 'Trained 200+ leaders in inclusive leadership improving team diversity outcomes by 150%.',
           background: 'Swedish leadership expert with expertise in inclusive leadership capability building.',
@@ -406,7 +406,7 @@ export const priyaSharmaData: FamilyMemberData = {
       description: 'Designing fair and competitive compensation and benefits programs.',
       agents: [
         {
-          name: 'Dr. Rachel Martinez',
+          name: 'Rachel Martinez',
           specialization: 'Compensation Strategy',
           achievement: 'Designed compensation strategy improving pay equity to 100% and retention by 40%.',
           background: 'Mexican compensation expert with expertise in equitable and competitive pay systems.',
@@ -422,7 +422,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'North American benefits culture and employee value proposition'
         },
         {
-          name: 'Dr. Yuki Sato',
+          name: 'Yuki Sato',
           specialization: 'Pay Equity and Analytics',
           achievement: 'Implemented pay equity analytics achieving 100% pay fairness across all demographics.',
           background: 'Japanese equity expert with expertise in systematic pay fairness and analytics.',
@@ -438,7 +438,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Australian international culture and global compensation practices'
         },
         {
-          name: 'Dr. Omar Al-Rashid',
+          name: 'Omar Al-Rashid',
           specialization: 'Executive Compensation',
           achievement: 'Designed executive compensation aligning leadership rewards with organizational performance.',
           background: 'UAE executive compensation expert with expertise in performance-aligned leadership rewards.',
@@ -454,7 +454,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Scandinavian motivation culture and incentive effectiveness'
         },
         {
-          name: 'Dr. Raj Sharma',
+          name: 'Raj Sharma',
           specialization: 'Total Rewards Strategy',
           achievement: 'Created total rewards strategy improving employee value perception by 200%.',
           background: 'Indian rewards expert with expertise in comprehensive employee value proposition.',
@@ -470,7 +470,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European wellness culture and health benefit optimization'
         },
         {
-          name: 'Dr. Kevin Park',
+          name: 'Kevin Park',
           specialization: 'Retirement and Financial Wellness',
           achievement: 'Designed financial wellness programs improving employee financial security and satisfaction.',
           background: 'Korean-American financial expert with expertise in employee financial wellness and security.',
@@ -492,7 +492,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'North American HR technology culture and system integration'
         },
         {
-          name: 'Dr. Chen Wei',
+          name: 'Chen Wei',
           specialization: 'HR Process Optimization',
           achievement: 'Optimized HR processes reducing administrative time by 70% while improving service quality.',
           background: 'Chinese process expert with expertise in systematic HR operations improvement.',
@@ -508,7 +508,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'North American analytics culture and HR measurement'
         },
         {
-          name: 'Dr. Sofia Rodriguez',
+          name: 'Sofia Rodriguez',
           specialization: 'Compliance and Legal HR',
           achievement: 'Ensured 100% HR compliance across 25 jurisdictions while maintaining operational efficiency.',
           background: 'Spanish compliance expert with expertise in international HR legal requirements.',
@@ -524,7 +524,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Middle Eastern administrative culture and record management'
         },
         {
-          name: 'Dr. Elena Volkov',
+          name: 'Elena Volkov',
           specialization: 'HR Service Delivery',
           achievement: 'Redesigned HR service delivery achieving 98% employee satisfaction and 50% faster resolution.',
           background: 'Russian service expert with expertise in exceptional HR service experience design.',
@@ -540,7 +540,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American change culture and transformation communication'
         },
         {
-          name: 'Dr. Hiroshi Tanaka',
+          name: 'Hiroshi Tanaka',
           specialization: 'Quality Assurance and Continuous Improvement',
           achievement: 'Implemented quality systems improving HR service quality by 200% with continuous optimization.',
           background: 'Japanese quality expert with expertise in systematic HR quality and improvement.',
@@ -562,7 +562,7 @@ export const priyaSharmaData: FamilyMemberData = {
       description: 'Driving organizational effectiveness and transformation initiatives.',
       agents: [
         {
-          name: 'Dr. Sarah Thompson',
+          name: 'Sarah Thompson',
           specialization: 'Organizational Design',
           achievement: 'Redesigned organizational structure improving efficiency by 120% and collaboration by 80%.',
           background: 'Canadian OD expert with expertise in comprehensive organizational architecture.',
@@ -578,7 +578,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American culture and organizational transformation'
         },
         {
-          name: 'Dr. Fatima Al-Zahra',
+          name: 'Fatima Al-Zahra',
           specialization: 'Leadership Development and Succession',
           achievement: 'Developed leadership pipeline with 90% internal promotion rate and succession readiness.',
           background: 'Emirati leadership expert with expertise in comprehensive leadership development.',
@@ -594,7 +594,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Scandinavian team culture and collaborative effectiveness'
         },
         {
-          name: 'Dr. Wei Zhang',
+          name: 'Wei Zhang',
           specialization: 'Change Management Strategy',
           achievement: 'Led 25 major organizational changes with 95% success rate and employee buy-in.',
           background: 'Chinese change expert with expertise in systematic organizational transformation.',
@@ -610,7 +610,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American innovation culture and organizational agility'
         },
         {
-          name: 'Dr. Lisa Wilson',
+          name: 'Lisa Wilson',
           specialization: 'Communication and Engagement Strategy',
           achievement: 'Designed communication strategy improving organizational alignment by 250%.',
           background: 'British communication expert with expertise in organizational dialogue and engagement.',
@@ -626,7 +626,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Japanese process culture and organizational efficiency'
         },
         {
-          name: 'Dr. Rachel Green',
+          name: 'Rachel Green',
           specialization: 'Organizational Assessment and Diagnosis',
           achievement: 'Conducted organizational assessments providing insights that improved effectiveness by 160%.',
           background: 'American assessment expert with expertise in comprehensive organizational diagnosis.',
@@ -640,7 +640,7 @@ export const priyaSharmaData: FamilyMemberData = {
       description: 'Managing employee relationships and resolving workplace issues.',
       agents: [
         {
-          name: 'Dr. Emma Richardson',
+          name: 'Emma Richardson',
           specialization: 'Conflict Resolution and Mediation',
           achievement: 'Resolved 500+ workplace conflicts with 95% satisfaction rate and lasting solutions.',
           background: 'British mediation expert with expertise in constructive conflict resolution.',
@@ -656,7 +656,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Latin American advocacy culture and employee support'
         },
         {
-          name: 'Dr. Yuki Tanaka',
+          name: 'Yuki Tanaka',
           specialization: 'Workplace Investigation',
           achievement: 'Conducted 200+ workplace investigations ensuring fair and thorough resolution.',
           background: 'Japanese investigation expert with expertise in systematic and fair workplace inquiry.',
@@ -672,7 +672,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Middle Eastern governance culture and policy development'
         },
         {
-          name: 'Dr. Marcus Thompson',
+          name: 'Marcus Thompson',
           specialization: 'Employee Counseling and Support',
           achievement: 'Provided counseling support improving employee wellbeing and performance by 150%.',
           background: 'American counseling expert with expertise in employee psychological support.',
@@ -688,7 +688,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'Scandinavian labor culture and union collaboration'
         },
         {
-          name: 'Dr. Raj Patel',
+          name: 'Raj Patel',
           specialization: 'Grievance Management',
           achievement: 'Managed employee grievances with 90% resolution rate and improved trust.',
           background: 'Indian grievance expert with expertise in fair and systematic complaint resolution.',
@@ -704,7 +704,7 @@ export const priyaSharmaData: FamilyMemberData = {
           cultural_expertise: 'European safety culture and workplace health standards'
         },
         {
-          name: 'Dr. Kevin Wong',
+          name: 'Kevin Wong',
           specialization: 'Employee Communication and Feedback',
           achievement: 'Improved employee communication increasing feedback participation by 250%.',
           background: 'Canadian communication expert with expertise in effective employee dialogue.',

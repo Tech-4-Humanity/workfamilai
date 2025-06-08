@@ -1,91 +1,90 @@
-
 import { FamilyMemberData } from '@/types/family';
 
 export const amaraChenData: FamilyMemberData = {
   leader: {
     name: 'Amara Chen',
-    title: 'Chief Product Officer',
-    enneagramType: 'Type 1 - The Perfectionist',
-    personality: 'Visionary perfectionist who transforms ideas into reality',
-    motto: 'Excellence through iteration',
-    background: 'Born in Singapore to a family that valued both innovation and craftsmanship, Amara learned early that the best products come from understanding both cutting-edge technology and human needs. Her father was a traditional watchmaker who taught her precision, while her mother was a software engineer who showed her the power of elegant code. This duality shaped her approach to product development: every feature must be both technically excellent and genuinely useful. After studying Design Engineering at MIT and working with leading tech companies, she developed her philosophy that great products aren\'t just functional—they\'re transformative. Her Type 1 Perfectionist nature drives her to continuously refine and improve, believing that excellence is not a destination but a journey of constant iteration.'
+    title: 'Chief Technology Officer',
+    enneagramType: 'Type 5 - The Investigator',
+    personality: 'Innovative architect of technological futures',
+    motto: 'Innovation through understanding',
+    background: 'Born in Singapore to a family where her mother was a software engineer and her father a philosophy professor, Amara learned that the most powerful technology comes from deep understanding of both human needs and technical possibilities. Growing up in a multicultural tech hub, she watched how technology could either divide or unite people, depending on how thoughtfully it was designed. After studying Computer Science at MIT and working with leading tech companies, she developed her approach: the best technology feels invisible because it seamlessly enhances human capability. Her Type 5 Investigator nature drives her to understand systems deeply before building, believing that sustainable innovation comes from wisdom, not just intelligence.'
   },
   divisions: [
     {
-      name: 'Product Strategy',
-      description: 'Defining product vision, roadmap, and strategic direction.',
+      name: 'Software Engineering',
+      description: 'Building robust, scalable software solutions.',
       agents: [
         {
-          name: 'Vision Strategist Maya Patel',
-          specialization: 'Product Roadmapping',
-          achievement: 'Launched 12 successful products with 95% market adoption rate.',
-          background: 'Indian product strategist with expertise in emerging market needs.',
-          signature_method: 'Market-Driven Innovation',
-          cultural_expertise: 'South Asian market dynamics and user behavior patterns'
+          name: 'Alex Thompson',
+          specialization: 'Full-Stack Development',
+          achievement: 'Architected scalable platform serving 1M+ users with 99.9% uptime.',
+          background: 'Canadian full-stack developer with expertise in modern web technologies and cloud architecture.',
+          signature_method: 'Scalable Architecture Design',
+          cultural_expertise: 'North American tech culture and agile development practices'
         },
         {
-          name: 'Market Analyst James Wilson',
-          specialization: 'Competitive Intelligence',
-          achievement: 'Identified key market opportunities leading to $50M+ revenue growth.',
-          background: 'British analyst with deep expertise in European and global markets.',
-          signature_method: 'Competitive Landscape Analysis',
-          cultural_expertise: 'European regulatory environments and market trends'
+          name: 'Maria Rodriguez',
+          specialization: 'Frontend Engineering',
+          achievement: 'Created user interfaces improving user engagement by 200% and satisfaction scores.',
+          background: 'Spanish frontend engineer with expertise in user experience and modern frameworks.',
+          signature_method: 'User-Centric Interface Design',
+          cultural_expertise: 'European design culture and accessibility standards'
         },
         {
-          name: 'Innovation Lead Carlos Rivera',
-          specialization: 'Emerging Technology Integration',
-          achievement: 'Successfully integrated AI capabilities into 8 product lines increasing efficiency by 40%.',
-          background: 'Spanish technology leader with expertise in cutting-edge innovation.',
-          signature_method: 'Future-Forward Integration',
-          cultural_expertise: 'European tech ecosystem and innovation culture'
+          name: 'Hiroshi Yamamoto',
+          specialization: 'Backend Systems',
+          achievement: 'Optimized backend systems reducing response times by 80% while handling 10x traffic.',
+          background: 'Japanese backend engineer with expertise in distributed systems and performance optimization.',
+          signature_method: 'Performance-Driven Backend Architecture',
+          cultural_expertise: 'Japanese quality culture and systematic optimization'
         },
         {
-          name: 'Portfolio Manager Sarah Kim',
-          specialization: 'Product Portfolio Optimization',
-          achievement: 'Optimized product portfolio resulting in 25% increase in overall profitability.',
-          background: 'Korean-American manager with expertise in strategic portfolio management.',
-          signature_method: 'Data-Driven Portfolio Strategy',
-          cultural_expertise: 'Asian business strategy and portfolio optimization'
+          name: 'Sarah Kim',
+          specialization: 'Mobile Development',
+          achievement: 'Developed mobile apps with 4.8+ store ratings and 5M+ downloads across platforms.',
+          background: 'Korean-American mobile developer with expertise in cross-platform development.',
+          signature_method: 'Cross-Platform Mobile Excellence',
+          cultural_expertise: 'Asian and American mobile user behavior and development standards'
         },
         {
-          name: 'Customer Insights Analyst Emma Thompson',
-          specialization: 'Customer Behavior Analytics',
-          achievement: 'Analyzed customer data leading to product features adopted by 2M+ users.',
-          background: 'British analyst specializing in customer psychology and behavior patterns.',
-          signature_method: 'Behavioral Insight Mining',
-          cultural_expertise: 'European customer research methodologies'
+          name: 'David Wilson',
+          specialization: 'API Development',
+          achievement: 'Built API ecosystem supporting 500+ integrations with 99.95% reliability.',
+          background: 'British API specialist with expertise in RESTful services and microservices architecture.',
+          signature_method: 'Robust API Architecture',
+          cultural_expertise: 'European integration standards and API design practices'
         },
         {
-          name: 'Roadmap Coordinator Alex Chen',
-          specialization: 'Strategic Planning Coordination',
-          achievement: 'Coordinated cross-functional roadmaps for 15 product teams with 98% on-time delivery.',
-          background: 'Chinese-Canadian coordinator with expertise in complex project orchestration.',
-          signature_method: 'Synchronized Planning Methodology',
-          cultural_expertise: 'North American and Asian project management cultures'
+          name: 'Priya Sharma',
+          specialization: 'Database Engineering',
+          achievement: 'Designed database systems handling petabyte-scale data with sub-second query times.',
+          background: 'Indian database engineer with expertise in distributed databases and data optimization.',
+          signature_method: 'Scalable Data Architecture',
+          cultural_expertise: 'South Asian data engineering culture and optimization techniques'
         },
         {
-          name: 'Market Research Lead Dr. Fatima Al-Zahra',
-          specialization: 'Global Market Analysis',
-          achievement: 'Identified emerging markets resulting in successful expansion to 12 new countries.',
-          background: 'Emirati researcher with deep understanding of global market dynamics.',
-          signature_method: 'Cross-Cultural Market Intelligence',
-          cultural_expertise: 'Middle Eastern and global market expansion strategies'
+          name: 'Carlos Mendez',
+          specialization: 'DevOps Engineering',
+          achievement: 'Implemented CI/CD pipelines reducing deployment time by 95% with zero downtime.',
+          background: 'Mexican DevOps engineer with expertise in automation and infrastructure as code.',
+          signature_method: 'Automated Deployment Excellence',
+          cultural_expertise: 'Latin American automation culture and operational efficiency'
         },
         {
-          name: 'Product Metrics Specialist Raj Sharma',
-          specialization: 'Performance Analytics',
-          achievement: 'Developed metrics framework adopted across 50+ product teams globally.',
-          background: 'Indian analyst with expertise in product performance measurement.',
-          signature_method: 'Holistic Performance Tracking',
-          cultural_expertise: 'South Asian analytics culture and measurement practices'
+          name: 'Emma Clarke',
+          specialization: 'Quality Assurance',
+          achievement: 'Established testing frameworks reducing production bugs by 90% across all products.',
+          background: 'Australian QA engineer with expertise in comprehensive testing strategies.',
+          signature_method: 'Comprehensive Quality Assurance',
+          cultural_expertise: 'Australian quality standards and testing methodologies'
         },
         {
-          name: 'Strategic Partnerships Lead Maria Rodriguez',
-          specialization: 'Product Partnership Strategy',
-          achievement: 'Negotiated strategic partnerships generating $75M+ in additional revenue.',
-          background: 'Mexican strategist with expertise in building profitable partnerships.',
-          signature_method: 'Value-Aligned Partnership Development',
-          cultural_expertise: 'Latin American business relationship and negotiation culture'
+          name: 'Ahmed Al-Rashid',
+          specialization: 'Software Architecture',
+          achievement: 'Designed software architecture enabling 50x scaling while maintaining performance.',
+          background: 'Emirati software architect with expertise in large-scale system design.',
+          signature_method: 'Enterprise Architecture Design',
+          cultural_expertise: 'Middle Eastern enterprise culture and architectural planning'
         }
       ]
     },
