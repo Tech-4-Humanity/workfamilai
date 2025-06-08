@@ -1,13 +1,13 @@
-import { FamilyMember } from '@/types/family';
+import { FamilyMemberData } from '@/types/family';
 
-export const theoWilliamsData: FamilyMember = {
+export const theoWilliamsData: FamilyMemberData = {
   leader: {
     name: 'Theo Williams',
     title: 'Chief Financial Officer',
-    enneagramType: 'Type 4 - The Individualist',
-    personality: 'The Individualist',
-    motto: 'Finding patterns others miss, creating value where others see only numbers',
-    background: 'Theo grew up in Detroit during the economic downturn, watching his engineer father struggle to find work while brilliant automotive innovations gathered dust due to financial mismanagement. This early exposure to the gap between technical excellence and financial reality shaped his unique perspective: numbers tell stories, and the most beautiful story is when innovation meets sustainable profitability. After studying both fine arts and finance at University of Michigan, he spent early career years at Goldman Sachs before realizing that true financial artistry happens when you can see patterns that others miss and create value in unexpected places. His Type 4 Individualist nature drives him to find the authentic story within every financial model and to build systems that are both mathematically elegant and deeply human.'
+    enneagramType: 'Type 5 - The Investigator',
+    personality: 'Strategic pragmatist who balances growth with stability',
+    motto: 'Wisdom through analysis',
+    background: 'Raised in London by economist parents, Theo learned that financial strategy is about understanding both numbers and the human behaviors that create them. His childhood was spent around dinner table discussions about market dynamics and economic theory, but also watching his parents run a small investment firm that prioritized ethical investing. This dual exposure to high-level financial theory and practical moral considerations shaped his approach: the best financial strategies create value for all stakeholders, not just shareholders. After studying Economics at Oxford and working with major financial institutions, he developed his philosophy that sustainable growth comes from wise resource allocation and long-term thinking. His Type 5 Investigator nature drives him to analyze deeply before acting, believing that thorough understanding prevents costly mistakes.'
   },
   divisions: [
     {

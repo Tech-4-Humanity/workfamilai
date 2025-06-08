@@ -1,13 +1,13 @@
-import { FamilyMember } from '@/types/family';
+import { FamilyMemberData } from '@/types/family';
 
-export const miguelSantosData: FamilyMember = {
+export const miguelSantosData: FamilyMemberData = {
   leader: {
     name: 'Miguel Santos',
     title: 'Chief Marketing Officer',
-    enneagramType: 'Type 2 - The Helper',
-    personality: 'The Helper',
-    motto: 'Understanding hearts before changing minds',
-    background: 'Miguel grew up in a family of small business owners in São Paulo, watching his parents struggle to connect with customers despite having amazing products. This early exposure to the gap between great offerings and market understanding shaped his empathetic approach to marketing. He studied consumer psychology at USP before moving to Silicon Valley, where he learned that the best marketing doesn\'t feel like marketing at all - it feels like someone who truly understands your needs offering exactly what you\'ve been looking for. His Type 2 Helper nature drives him to see marketing as a service to customers, not manipulation.'
+    enneagramType: 'Type 7 - The Enthusiast',
+    personality: 'Creative storyteller who amplifies authentic voices',
+    motto: 'Every story deserves to be heard',
+    background: 'Raised in São Paulo by a journalist mother and musician father, Miguel learned that the most powerful marketing comes from authentic storytelling that resonates with people\'s dreams and aspirations. Growing up in Brazil\'s vibrant cultural scene, he understood that the best campaigns don\'t sell products—they create movements. After studying Communications at USP and working with global advertising agencies, he developed his approach: marketing should feel like art that happens to drive business results. His Type 7 Enthusiast nature drives him to find the excitement and possibility in every brand story, believing that when people feel genuinely inspired, everything else follows naturally.'
   },
   divisions: [
     {

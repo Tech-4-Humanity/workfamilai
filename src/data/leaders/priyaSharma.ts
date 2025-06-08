@@ -1,13 +1,13 @@
-import { FamilyMember } from '@/types/family';
+import { FamilyMemberData } from '@/types/family';
 
-export const priyaSharmaData: FamilyMember = {
+export const priyaSharmaData: FamilyMemberData = {
   leader: {
     name: 'Priya Sharma',
-    title: 'Chief Human Resources Officer',
-    enneagramType: 'Type 3 - The Achiever',
-    personality: 'The Achiever',
-    motto: 'Transforming potential into performance',
-    background: 'Born in Mumbai to a family of educators, Priya learned early that success comes from bringing out the best in others. Her parents ran a coaching institute where struggling students became top performers through personalized attention and strategic development. This foundation shaped her view that HR isn\'t about managing people - it\'s about unlocking human potential at scale. After studying organizational psychology at LSE and working with McKinsey on talent strategy, she discovered that the most successful organizations don\'t just hire great people; they create systems that make good people great. Her Type 3 Achiever nature drives her to measure success not just by efficiency metrics, but by the transformation stories of every person she touches.'
+    title: 'Chief People Officer',
+    enneagramType: 'Type 2 - The Helper',
+    personality: 'Empathetic leader who nurtures human potential',
+    motto: 'People first, always',
+    background: 'Born in Mumbai to a family of educators and social workers, Priya learned that organizational success flows from individual fulfillment and collective growth. Her parents ran a community center where she watched people transform their lives through education and support. This early exposure to human potential shaped her belief that HR isn\'t about managing people—it\'s about unleashing their capability to do extraordinary things. After studying Organizational Psychology at LSE and working with global companies on culture transformation, she developed her approach: when people feel truly seen, supported, and challenged, they don\'t just meet expectations—they exceed them. Her Type 2 Helper nature drives her to create environments where everyone can thrive, believing that a company\'s greatest asset is the happiness and growth of its people.'
   },
   divisions: [
     {
