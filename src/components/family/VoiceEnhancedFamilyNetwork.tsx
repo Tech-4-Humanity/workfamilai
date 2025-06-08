@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Mic, MicOff } from 'lucide-react';
 import { useVoiceQuery } from '@/hooks/useVoiceQuery';
-import FamilyNeuralNetwork from './FamilyNeuralNetwork';
+import { FamilyNeuralNetwork } from './FamilyNeuralNetwork';
 
 export const VoiceEnhancedFamilyNetwork = () => {
   const { isListening, lastQuery, lastResult, startListening, speakResult } = useVoiceQuery();

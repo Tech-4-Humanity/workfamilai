@@ -6,7 +6,7 @@ import { useFamilyAgentIntegration } from '@/hooks/useFamilyAgentIntegration';
 import { useAgentCounts } from '@/hooks/useAgentCounts';
 import { Button } from '@/components/ui/button';
 import { Shield, Building, BarChart3, Mic } from 'lucide-react';
-import FamilyNeuralNetwork from '@/components/family/FamilyNeuralNetwork';
+import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import {
   Card,
   CardContent,
