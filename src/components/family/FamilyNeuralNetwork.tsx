@@ -1,7 +1,10 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Zap, Users, Target } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 
 interface FamilyMember {
   id: string;
@@ -13,19 +16,25 @@ interface FamilyMember {
 }
 
 const familyMembers: FamilyMember[] = [
-  { id: 'trojan-oz', name: 'Trojan Oz', title: 'Supreme Leader', color: 'bg-yellow-400', x: 50, y: 10 },
-  { id: 'product-development', name: 'Dr. Amara Chen', title: 'Product Development', color: 'bg-blue-500', x: 20, y: 30 },
-  { id: 'marketing', name: 'Miguel Santos', title: 'Marketing', color: 'bg-green-500', x: 80, y: 30 },
-  { id: 'human-resources', name: 'Priya Sharma', title: 'Human Resources', color: 'bg-purple-500', x: 10, y: 60 },
-  { id: 'finance-operations', name: 'Theo Williams', title: 'Finance & Operations', color: 'bg-orange-500', x: 50, y: 50 },
-  { id: 'customer-support', name: 'Dr. Yuna Kim', title: 'Customer Support', color: 'bg-teal-500', x: 90, y: 60 },
-  { id: 'innovation-rd', name: 'David Okafor', title: 'Innovation & R&D', color: 'bg-indigo-500', x: 30, y: 80 },
-  { id: 'sales', name: 'Sofia Rodriguez', title: 'Sales', color: 'bg-red-500', x: 70, y: 80 },
-  { id: 'governance-compliance', name: 'Marcus Bennett', title: 'Governance & Compliance', color: 'bg-gray-700', x: 15, y: 45 },
-  { id: 'external-relations', name: 'Aisha Al-Farsi', title: 'External Relations', color: 'bg-pink-500', x: 85, y: 45 }
+  { id: 'amara-chen', name: 'Dr. Amara Chen', title: 'Product Development', color: 'bg-blue-500', x: 20, y: 30 },
+  { id: 'marcus-bennett', name: 'Marcus Bennett', title: 'Governance & Compliance', color: 'bg-gray-700', x: 15, y: 45 },
+  { id: 'aisha-al-farsi', name: 'Aisha Al-Farsi', title: 'External Relations', color: 'bg-pink-500', x: 85, y: 45 },
+  { id: 'miguel-santos', name: 'Miguel Santos', title: 'Marketing', color: 'bg-green-500', x: 80, y: 30 },
+  { id: 'priya-sharma', name: 'Priya Sharma', title: 'Human Resources', color: 'bg-purple-500', x: 10, y: 60 },
+  { id: 'theo-williams', name: 'Theo Williams', title: 'Finance & Operations', color: 'bg-orange-500', x: 50, y: 50 },
+  { id: 'yuna-kim', name: 'Dr. Yuna Kim', title: 'Customer Support', color: 'bg-teal-500', x: 90, y: 60 },
+  { id: 'david-okafor', name: 'David Okafor', title: 'Innovation & R&D', color: 'bg-indigo-500', x: 30, y: 80 },
+  { id: 'sofia-rodriguez', name: 'Sofia Rodriguez', title: 'Sales', color: 'bg-red-500', x: 70, y: 80 }
 ];
 
 export const FamilyNeuralNetwork = () => {
+  const navigate = useNavigate();
+  const { currentAgentCount } = useFamilyAgentQueries();
+
+  const handleMemberClick = (memberId: string) => {
+    navigate(`/department/${memberId}`);
+  };
+
   return (
     <Card className="w-full bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white border-none shadow-2xl">
       <CardHeader className="text-center pb-4">
@@ -79,6 +88,7 @@ export const FamilyNeuralNetwork = () => {
               key={member.id}
               className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${member.color} rounded-full p-1 border-2 border-white/30 shadow-lg hover:scale-110 transition-all duration-300 group cursor-pointer`}
               style={{ left: `${member.x}%`, top: `${member.y}%` }}
+              onClick={() => handleMemberClick(member.id)}
             >
               <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                 <span className="text-xs font-bold text-white">{member.name.split(' ')[0][0]}</span>
@@ -121,7 +131,7 @@ export const FamilyNeuralNetwork = () => {
           </div>
           <div className="text-center p-3 bg-green-500/20 rounded-lg border border-green-400/30">
             <Target className="h-6 w-6 mx-auto mb-2 text-green-400" />
-            <div className="text-2xl font-bold text-green-400">729</div>
+            <div className="text-2xl font-bold text-green-400">{currentAgentCount || 729}</div>
             <div className="text-xs text-gray-300">Core Agents</div>
           </div>
           <div className="text-center p-3 bg-purple-500/20 rounded-lg border border-purple-400/30">

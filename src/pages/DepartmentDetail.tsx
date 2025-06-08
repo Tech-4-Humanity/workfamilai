@@ -8,15 +8,19 @@ import { DepartmentStats } from '@/components/department/DepartmentStats';
 import { DivisionsGrid } from '@/components/department/DivisionsGrid';
 import { LeaderProfilePreview } from '@/components/department/LeaderProfilePreview';
 import { EnhancedLeaderProfile } from '@/components/family/EnhancedLeaderProfile';
-import { FamilyMember } from '@/types/family';
+import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 
 const DepartmentDetail = () => {
   const { departmentId } = useParams<{ departmentId: string }>();
   const navigate = useNavigate();
   const [showEnhancedProfile, setShowEnhancedProfile] = useState<boolean>(false);
+  const { getAgentsByFamilyMember } = useFamilyAgentQueries();
 
   // Get the family member details for this department
   const enhancedData = departmentId ? familyMemberDetails[departmentId as keyof typeof familyMemberDetails] : null;
+
+  // Get agents for this family member from the database
+  const { data: databaseAgents = [] } = departmentId ? getAgentsByFamilyMember(departmentId) : { data: [] };
 
   if (!enhancedData || !departmentId) {
     return (
@@ -39,9 +43,9 @@ const DepartmentDetail = () => {
       enneagramType: enhancedData.leader.enneagramType,
       motto: enhancedData.leader.motto,
       background: enhancedData.leader.background,
-      domainOverview: '', // This field exists in the expected type but not in our data
-      color: 'blue', // Default color
-      agentCount: enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
+      domainOverview: '',
+      color: 'blue',
+      agentCount: databaseAgents.length || enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
     };
 
     return (
@@ -53,7 +57,10 @@ const DepartmentDetail = () => {
     );
   }
 
-  const totalAgents = enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
+  // Use database agents if available, otherwise fallback to static data
+  const totalAgents = databaseAgents.length > 0 
+    ? databaseAgents.length 
+    : enhancedData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
 
   // Show department detail view
   return (
@@ -89,6 +96,15 @@ const DepartmentDetail = () => {
           />
         </div>
       </div>
+      
+      {databaseAgents.length > 0 && (
+        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+          <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
+          <p className="text-sm text-gray-600">
+            Showing {databaseAgents.length} agents from the family database for {enhancedData.leader.name}'s department.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

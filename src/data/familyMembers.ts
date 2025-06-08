@@ -1,94 +1,104 @@
 
-export interface FamilyMember {
-  id: string;
-  name: string;
-  title: string;
-  department: string;
-  expertise: string[];
-  avatar?: string;
-  color: string;
-}
-
-export const familyMembers: FamilyMember[] = [
-  {
-    id: 'trojan-oz',
-    name: 'Trojan Oz',
-    title: 'Supreme Leader',
-    department: 'Executive',
-    expertise: ['Strategic Leadership', 'Vision', 'Decision Making'],
-    color: 'bg-yellow-400'
-  },
+// Updated family member data with consistent IDs and expanded structure
+export const familyMembers = [
   {
     id: 'amara-chen',
     name: 'Dr. Amara Chen',
-    title: 'Product Development Leader',
-    department: 'Product Analytics Division',
-    expertise: ['Data Analysis', 'SQL', 'Product Strategy'],
-    color: 'bg-blue-500'
-  },
-  {
-    id: 'miguel-santos',
-    name: 'Miguel Santos',
-    title: 'Marketing Leader',
-    department: 'Digital Marketing Division',
-    expertise: ['Survey Design', 'Marketing', 'Content Creation'],
-    color: 'bg-green-500'
-  },
-  {
-    id: 'priya-sharma',
-    name: 'Priya Sharma',
-    title: 'Human Resources Leader',
-    department: 'Talent Acquisition Division',
-    expertise: ['Recruitment', 'Onboarding', 'HR Strategy'],
-    color: 'bg-purple-500'
-  },
-  {
-    id: 'theo-williams',
-    name: 'Theo Williams',
-    title: 'Finance & Operations Leader',
-    department: 'Logistics Division',
-    expertise: ['Logistics', 'Route Optimization', 'Supply Chain'],
-    color: 'bg-orange-500'
-  },
-  {
-    id: 'yuna-kim',
-    name: 'Dr. Yuna Kim',
-    title: 'Customer Support Leader',
-    department: 'Support Operations Division',
-    expertise: ['Technical Support', 'CRM', 'Customer Service'],
-    color: 'bg-teal-500'
-  },
-  {
-    id: 'david-okafor',
-    name: 'David Okafor',
-    title: 'Innovation & R&D Leader',
-    department: 'Innovation',
-    expertise: ['Research', 'Innovation', 'Technology'],
-    color: 'bg-indigo-500'
-  },
-  {
-    id: 'sofia-rodriguez',
-    name: 'Sofia Rodriguez',
-    title: 'Sales Leader',
-    department: 'Pre-Sales Division',
-    expertise: ['Sales', 'Proposal Writing', 'Government Relations'],
-    color: 'bg-red-500'
+    title: 'Product Development',
+    personality: 'The Innovator',
+    enneagramType: 'Type 7 - The Enthusiast',
+    description: 'Drives breakthrough innovations in AI and product development, leading teams that turn visionary concepts into market-ready solutions.',
+    color: 'bg-blue-500',
+    agentCount: 81,
+    avatar: 'AC'
   },
   {
     id: 'marcus-bennett',
     name: 'Marcus Bennett',
-    title: 'Governance & Compliance Leader',
-    department: 'Regulatory Affairs Division',
-    expertise: ['Compliance', 'Proposal Review', 'Legal'],
-    color: 'bg-gray-700'
+    title: 'Governance & Compliance',
+    personality: 'The Guardian',
+    enneagramType: 'Type 1 - The Perfectionist',
+    description: 'Ensures organizational integrity through comprehensive governance frameworks and compliance strategies.',
+    color: 'bg-gray-700',
+    agentCount: 81,
+    avatar: 'MB'
   },
   {
     id: 'aisha-al-farsi',
     name: 'Aisha Al-Farsi',
-    title: 'External Relations Leader',
-    department: 'External Relations',
-    expertise: ['Partnerships', 'External Relations', 'Strategy'],
-    color: 'bg-pink-500'
+    title: 'External Relations',
+    personality: 'The Diplomat',
+    enneagramType: 'Type 2 - The Helper',
+    description: 'Builds strategic partnerships and manages external stakeholder relationships with cultural intelligence.',
+    color: 'bg-pink-500',
+    agentCount: 81,
+    avatar: 'AA'
+  },
+  {
+    id: 'miguel-santos',
+    name: 'Miguel Santos',
+    title: 'Marketing',
+    personality: 'The Storyteller',
+    enneagramType: 'Type 3 - The Achiever',
+    description: 'Crafts compelling narratives that connect products with markets through innovative marketing strategies.',
+    color: 'bg-green-500',
+    agentCount: 81,
+    avatar: 'MS'
+  },
+  {
+    id: 'priya-sharma',
+    name: 'Priya Sharma',
+    title: 'Human Resources',
+    personality: 'The Nurturer',
+    enneagramType: 'Type 2 - The Helper',
+    description: 'Develops talent and organizational culture, fostering growth and well-being across all family members.',
+    color: 'bg-purple-500',
+    agentCount: 81,
+    avatar: 'PS'
+  },
+  {
+    id: 'theo-williams',
+    name: 'Theo Williams',
+    title: 'Finance & Operations',
+    personality: 'The Strategist',
+    enneagramType: 'Type 5 - The Investigator',
+    description: 'Optimizes financial performance and operational efficiency through data-driven strategic planning.',
+    color: 'bg-orange-500',
+    agentCount: 81,
+    avatar: 'TW'
+  },
+  {
+    id: 'yuna-kim',
+    name: 'Dr. Yuna Kim',
+    title: 'Customer Support',
+    personality: 'The Advocate',
+    enneagramType: 'Type 6 - The Loyalist',
+    description: 'Champions customer success through innovative support solutions and service excellence.',
+    color: 'bg-teal-500',
+    agentCount: 81,
+    avatar: 'YK'
+  },
+  {
+    id: 'david-okafor',
+    name: 'David Okafor',
+    title: 'Innovation & R&D',
+    personality: 'The Visionary',
+    enneagramType: 'Type 7 - The Enthusiast',
+    description: 'Explores emerging technologies and research opportunities that shape the future of the organization.',
+    color: 'bg-indigo-500',
+    agentCount: 81,
+    avatar: 'DO'
+  },
+  {
+    id: 'sofia-rodriguez',
+    name: 'Sofia Rodriguez',
+    title: 'Sales',
+    personality: 'The Connector',
+    enneagramType: 'Type 3 - The Achiever',
+    description: 'Builds lasting client relationships and drives revenue growth through strategic sales initiatives.',
+    color: 'bg-red-500',
+    agentCount: 81,
+    avatar: 'SR'
   }
 ];
 
