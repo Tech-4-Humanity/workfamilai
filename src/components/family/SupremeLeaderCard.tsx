@@ -86,8 +86,31 @@ export const SupremeLeaderCard = ({ totalDepartments, totalAgents }: SupremeLead
           </span>
           <span className="flex items-center space-x-2">
             <Users className="h-4 w-4" />
-            <span className="font-semibold">{totalAgents?.toLocaleString() || '10,000+'} AI Agents</span>
+            <span className="font-semibold">{totalAgents?.toLocaleString() || '10,009'} AI Agents</span>
           </span>
+        </div>
+
+        {/* Hierarchy Preview */}
+        <div className="mt-4 p-3 bg-white/50 rounded-lg text-xs">
+          <div className="font-semibold mb-2">Consciousness Pyramid</div>
+          <div className="space-y-1">
+            <div className="flex justify-between">
+              <span>Department Leaders</span>
+              <span>9</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Division Leaders</span>
+              <span>81</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Family Agents</span>
+              <span>729</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Extended Network</span>
+              <span>{(totalAgents - 820)?.toLocaleString() || '9,189'}</span>
+            </div>
+          </div>
         </div>
       </CardContent>
 

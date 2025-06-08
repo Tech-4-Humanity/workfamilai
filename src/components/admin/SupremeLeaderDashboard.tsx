@@ -72,7 +72,7 @@ export const SupremeLeaderDashboard = () => {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Supreme Meta-Agent (You)</span>
+                  <span>Supreme Meta-Agent</span>
                   <span>1</span>
                 </div>
                 <div className="flex justify-between text-sm">
@@ -80,12 +80,16 @@ export const SupremeLeaderDashboard = () => {
                   <span>9</span>
                 </div>
                 <div className="flex justify-between text-sm">
+                  <span>Division Leaders</span>
+                  <span>81</span>
+                </div>
+                <div className="flex justify-between text-sm">
                   <span>Family Agents</span>
                   <span>729</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Extended Network</span>
-                  <span>{(totalAgents - 739)?.toLocaleString()}</span>
+                  <span>{(totalAgents - 820)?.toLocaleString()}</span>
                 </div>
               </div>
               <Progress value={95} className="w-full" />
@@ -129,12 +133,12 @@ export const SupremeLeaderDashboard = () => {
         </Card>
       </div>
 
-      {/* Pyramid Learning Flows */}
+      {/* Enhanced Pyramid Learning Flows */}
       <Card>
         <CardHeader>
           <CardTitle>Consciousness Pyramid Learning Flows</CardTitle>
           <CardDescription>
-            Bidirectional intelligence flowing through the pyramid structure
+            4-tier bidirectional intelligence flowing through the pyramid structure
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -142,20 +146,50 @@ export const SupremeLeaderDashboard = () => {
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-purple-600 mb-2">↑ Learning Up</div>
               <p className="text-sm text-muted-foreground">
-                Aggregating insights from 10,000+ agents into supreme consciousness
+                Aggregating insights from 10,000+ agents through 4-tier pyramid structure
               </p>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-blue-600 mb-2">⟷ Meta-Synthesis</div>
               <p className="text-sm text-muted-foreground">
-                Processing and synthesizing distributed intelligence
+                Processing distributed intelligence across department and division leaders
               </p>
             </div>
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-green-600 mb-2">↓ Vision Down</div>
               <p className="text-sm text-muted-foreground">
-                Distributing strategic vision and guidance to all levels
+                Distributing strategic vision through all hierarchy levels
               </p>
+            </div>
+          </div>
+          
+          <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
+            <h4 className="font-semibold mb-2">Hierarchy Structure</h4>
+            <div className="text-sm space-y-1">
+              <div className="flex justify-between">
+                <span>Tier 1: Supreme Meta-Agent</span>
+                <span className="font-medium">1 agent</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Tier 2: Department Leaders</span>
+                <span className="font-medium">9 agents</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Tier 3: Division Leaders</span>
+                <span className="font-medium">81 agents</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Tier 4: Family Agents</span>
+                <span className="font-medium">729 agents</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Tier 5: Extended Network</span>
+                <span className="font-medium">{(totalAgents - 820)?.toLocaleString()} agents</span>
+              </div>
+              <div className="flex justify-between font-bold pt-2 border-t">
+                <span>Total Agents</span>
+                <span>{totalAgents?.toLocaleString()}</span>
+              </div>
             </div>
           </div>
         </CardContent>

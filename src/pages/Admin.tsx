@@ -1,10 +1,12 @@
+
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FamilyAgentIntegration } from '@/components/admin/FamilyAgentIntegration';
 import { SupremeLeaderDashboard } from '@/components/admin/SupremeLeaderDashboard';
+import { DivisionLeadersPanel } from '@/components/admin/DivisionLeadersPanel';
 import { Footer } from '@/components/ui/footer';
-import { Database, Users, Settings, BarChart3, Crown } from 'lucide-react';
+import { Database, Users, Settings, BarChart3, Crown, Building2 } from 'lucide-react';
 
 const Admin = () => {
   return (
@@ -22,6 +24,10 @@ const Admin = () => {
             <TabsTrigger value="supreme" className="flex items-center gap-2">
               <Crown className="h-4 w-4" />
               Supreme Leader
+            </TabsTrigger>
+            <TabsTrigger value="divisions" className="flex items-center gap-2">
+              <Building2 className="h-4 w-4" />
+              Division Leaders
             </TabsTrigger>
             <TabsTrigger value="integration" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
@@ -43,6 +49,10 @@ const Admin = () => {
 
           <TabsContent value="supreme" className="space-y-4">
             <SupremeLeaderDashboard />
+          </TabsContent>
+
+          <TabsContent value="divisions" className="space-y-4">
+            <DivisionLeadersPanel />
           </TabsContent>
 
           <TabsContent value="integration" className="space-y-4">
