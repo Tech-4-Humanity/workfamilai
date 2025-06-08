@@ -26,7 +26,7 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
   const [imageError, setImageError] = useState(false);
   const imageUrl = getLeaderImageUrl(leader.name);
 
-  // Each department leader manages 81 agents (9 divisions × 9 family agents each)
+  // Each department leader manages 81 agents (9 divisions × 9 agents each)
   const departmentAgentCount = 81;
 
   const handleImageLoad = () => setImageLoaded(true);
@@ -37,7 +37,7 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
 
   return (
     <Card 
-      className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20 overflow-hidden"
+      className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20 overflow-hidden h-full flex flex-col"
       onClick={onClick}
     >
       {/* Neural network background pattern */}
@@ -55,68 +55,74 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
       </div>
 
       <CardHeader className="pb-4 relative z-10">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <div className="flex items-center space-x-4 mb-4">
-              {/* Professional photo with improved error handling */}
-              <div className="relative">
-                <div className={`absolute inset-0 ${leader.color} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`} />
-                
-                {!imageLoaded && !imageError && (
-                  <div className={`w-16 h-16 ${leader.color} rounded-xl flex items-center justify-center text-white animate-pulse border-2 border-white/30 shadow-lg`}>
-                    <div className="w-8 h-8 bg-white/30 rounded-full"></div>
-                  </div>
-                )}
-                
-                {!imageError && (
-                  <img
-                    src={imageUrl}
-                    alt={leader.name}
-                    className={`relative w-16 h-16 rounded-xl object-cover border-2 border-white/30 shadow-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
-                    onLoad={handleImageLoad}
-                    onError={handleImageError}
-                  />
-                )}
-                
-                {imageError && (
-                  <div className={`w-16 h-16 ${leader.color} rounded-xl flex items-center justify-center text-white text-2xl font-bold border-2 border-white/30 shadow-lg`}>
-                    {leader.avatar}
-                  </div>
-                )}
+        <div className="flex items-start justify-between mb-4">
+          {/* Professional photo */}
+          <div className="relative">
+            <div className={`absolute inset-0 ${leader.color} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`} />
+            
+            {!imageLoaded && !imageError && (
+              <div className={`w-20 h-20 ${leader.color} rounded-xl flex items-center justify-center text-white animate-pulse border-2 border-white/30 shadow-lg`}>
+                <div className="w-10 h-10 bg-white/30 rounded-full"></div>
               </div>
-              <div>
-                <CardTitle className="text-xl text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                  {leader.name}
-                </CardTitle>
-                <p className="text-sm text-gray-600 font-medium">{leader.title}</p>
+            )}
+            
+            {!imageError && (
+              <img
+                src={imageUrl}
+                alt={leader.name}
+                className={`relative w-20 h-20 rounded-xl object-cover border-2 border-white/30 shadow-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+              />
+            )}
+            
+            {imageError && (
+              <div className={`w-20 h-20 ${leader.color} rounded-xl flex items-center justify-center text-white text-2xl font-bold border-2 border-white/30 shadow-lg`}>
+                {leader.avatar}
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <Badge variant="outline" className="text-xs backdrop-blur-sm bg-white/50">
-                {leader.enneagramType}
-              </Badge>
-              <Badge variant="secondary" className="text-xs backdrop-blur-sm bg-white/30">
-                {leader.personality}
-              </Badge>
-            </div>
+            )}
           </div>
-          <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+
+          <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+        </div>
+
+        {/* Name - Most Prominent */}
+        <CardTitle className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2 leading-tight">
+          {leader.name}
+        </CardTitle>
+        
+        {/* Title - Secondary prominence */}
+        <p className="text-lg font-semibold text-gray-700 mb-3">{leader.title}</p>
+
+        {/* Badges */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Badge variant="outline" className="text-xs backdrop-blur-sm bg-white/50">
+            {leader.enneagramType}
+          </Badge>
+          <Badge variant="secondary" className="text-xs backdrop-blur-sm bg-white/30">
+            {leader.personality}
+          </Badge>
         </div>
       </CardHeader>
 
-      <CardContent className="relative z-10">
-        <p className="text-gray-700 text-sm mb-4 leading-relaxed">
-          {leader.description}
-        </p>
-        <div className="flex items-center justify-between">
+      <CardContent className="relative z-10 flex-1 flex flex-col">
+        {/* Full Description - No truncation */}
+        <div className="flex-1">
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            {leader.description}
+          </p>
+        </div>
+        
+        {/* Agent count and action button */}
+        <div className="flex items-center justify-between mt-auto pt-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Users className="h-4 w-4" />
-            <span>{departmentAgentCount} AI Agents</span>
+            <Users className="h-4 w-4 flex-shrink-0" />
+            <span className="font-medium">{departmentAgentCount} AI Agents</span>
           </div>
           <Button 
             variant="outline" 
             size="sm" 
-            className="group-hover:bg-blue-50 group-hover:border-blue-200 backdrop-blur-sm bg-white/50 transition-all duration-300"
+            className="group-hover:bg-blue-50 group-hover:border-blue-200 backdrop-blur-sm bg-white/50 transition-all duration-300 flex-shrink-0"
           >
             Meet the Team
           </Button>

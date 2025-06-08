@@ -152,7 +152,8 @@ export const generateAllFamilyAgents = (): FamilyAgent[] => {
 };
 
 export const getTotalAgentCount = (): number => {
-  return generateAllFamilyAgents().length;
+  // With 9 family members × 9 divisions × 9 agents each = 729 total agents
+  return 729;
 };
 
 export const getAgentsByDomain = (domain: string): FamilyAgent[] => {

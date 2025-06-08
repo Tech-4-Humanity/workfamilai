@@ -6,36 +6,34 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
 import { familyMembers } from '@/data/familyMembers';
-import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
+import { getTotalAgentCount } from '@/utils/familyAgentGeneration';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const Index = () => {
   const navigate = useNavigate();
-  const { currentAgentCount, isLoading } = useFamilyAgentQueries();
+  const totalAgentCount = getTotalAgentCount(); // 729 agents
   const [animatedCount, setAnimatedCount] = useState(0);
 
   // Animated counter for agent count
   useEffect(() => {
-    if (currentAgentCount) {
-      const duration = 2000;
-      const startTime = Date.now();
+    const duration = 2000;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
       
-      const animate = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        
-        setAnimatedCount(Math.floor(currentAgentCount * easeOut));
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
+      setAnimatedCount(Math.floor(totalAgentCount * easeOut));
       
-      animate();
-    }
-  }, [currentAgentCount]);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    animate();
+  }, [totalAgentCount]);
 
   const handleLeaderClick = (leaderId: string) => {
     navigate(`/department/${leaderId}`);
@@ -60,7 +58,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
       {/* Hero Section */}
       <HeroSection 
-        currentAgentCount={currentAgentCount}
+        currentAgentCount={totalAgentCount}
         animatedCount={animatedCount}
         onExploreNetwork={handleExploreNetwork}
         onMeetFamily={handleMeetFamily}
@@ -95,7 +93,7 @@ const Index = () => {
       {/* Quick Stats */}
       <QuickStats 
         animatedCount={animatedCount}
-        currentAgentCount={currentAgentCount}
+        currentAgentCount={totalAgentCount}
       />
 
       {/* Navigation Section */}

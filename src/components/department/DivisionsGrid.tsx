@@ -30,47 +30,60 @@ export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
           </CardHeader>
           
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {division.agents.map((agent, agentIndex) => (
-                <Card key={agentIndex} className="border border-gray-200 hover:shadow-md transition-shadow">
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-3">
-                      <h4 className="font-semibold text-gray-900 text-lg">{agent.name}</h4>
-                      <Badge variant="secondary" className="text-xs">
+                <Card key={agentIndex} className="border border-gray-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <CardContent className="p-5 flex-1 flex flex-col">
+                    {/* Agent Name - Most Prominent */}
+                    <h4 className="font-bold text-gray-900 text-xl mb-2 leading-tight">
+                      {agent.name}
+                    </h4>
+                    
+                    {/* Specialization Badge */}
+                    <div className="mb-3">
+                      <Badge variant="secondary" className="text-sm font-medium">
                         {agent.specialization}
                       </Badge>
                     </div>
                     
-                    <p className="text-gray-600 text-sm mb-3 leading-relaxed">
-                      {agent.background}
-                    </p>
+                    {/* Full Background - No truncation */}
+                    <div className="flex-1 mb-4">
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {agent.background}
+                      </p>
+                    </div>
                     
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm">
-                        <Award className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700">{agent.achievement}</span>
+                    {/* Achievement and Method */}
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-start text-sm">
+                        <Award className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700 leading-relaxed">{agent.achievement}</span>
                       </div>
                       
-                      <div className="flex items-center text-sm">
-                        <Star className="h-4 w-4 text-yellow-600 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700">{agent.signature_method}</span>
-                      </div>
-                      
-                      <div className="text-xs text-gray-500 mt-2">
-                        <strong>Cultural Expertise:</strong> {agent.cultural_expertise}
+                      <div className="flex items-start text-sm">
+                        <Star className="h-4 w-4 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700 leading-relaxed">{agent.signature_method}</span>
                       </div>
                     </div>
+                    
+                    {/* Cultural Expertise */}
+                    <div className="text-xs text-gray-500 mb-4 p-2 bg-gray-50 rounded">
+                      <strong>Cultural Expertise:</strong> {agent.cultural_expertise}
+                    </div>
 
-                    <ChatModal
-                      agentName={agent.name}
-                      agentPersonality={agent.specialization}
-                      agentBackground={`${agent.background} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}.`}
-                      agentColor="indigo"
-                      buttonText={`Chat with ${agent.name.split(' ')[0]}`}
-                      buttonVariant="outline"
-                      buttonSize="sm"
-                      triggerClassName="w-full"
-                    />
+                    {/* Chat Button */}
+                    <div className="mt-auto">
+                      <ChatModal
+                        agentName={agent.name}
+                        agentPersonality={agent.specialization}
+                        agentBackground={`${agent.background} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}.`}
+                        agentColor="indigo"
+                        buttonText={`Chat with ${agent.name.split(' ')[0]}`}
+                        buttonVariant="outline"
+                        buttonSize="sm"
+                        triggerClassName="w-full"
+                      />
+                    </div>
                   </CardContent>
                 </Card>
               ))}
