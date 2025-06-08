@@ -1,4 +1,3 @@
-
 import { familyMemberDetails } from '@/data/familyMembers';
 
 export interface FamilyAgent {
@@ -112,34 +111,36 @@ export const generateAllFamilyAgents = (): FamilyAgent[] => {
   Object.entries(familyMemberDetails).forEach(([departmentId, familyMember]) => {
     const departmentName = getDepartmentName(departmentId);
     
-    familyMember.divisions.forEach((division) => {
-      division.agents.forEach((agent) => {
-        const agentCode = `A${agentCounter.toString().padStart(5, '0')}`;
-        
-        agents.push({
-          agent_code: agentCode,
-          persona: agent.name,
-          function: agent.specialization,
-          domain: departmentName,
-          sfia_level: determineSFIALevel(agent.specialization),
-          core_skills: `${agent.signature_method}, ${agent.cultural_expertise}`,
-          summary_bio: `${agent.background} ${agent.achievement}`,
-          final_cost: estimateCost(agent.specialization).toString(),
-          consultant_hourly_rate: estimateHourlyRate(agent.specialization).toString(),
-          tech_stack: determineTechStack(agent.specialization, departmentName),
-          delivery_type: determineDeliveryType(agent.specialization),
-          task_coverage_pct: estimateTaskCoverage(agent.specialization),
-          specialization: agent.specialization,
-          achievement: agent.achievement,
-          background: agent.background,
-          signature_method: agent.signature_method,
-          cultural_expertise: agent.cultural_expertise,
-          division_name: division.name
+    if (familyMember && familyMember.divisions) {
+      familyMember.divisions.forEach((division) => {
+        division.agents.forEach((agent) => {
+          const agentCode = `A${agentCounter.toString().padStart(5, '0')}`;
+          
+          agents.push({
+            agent_code: agentCode,
+            persona: agent.name,
+            function: agent.specialization,
+            domain: departmentName,
+            sfia_level: determineSFIALevel(agent.specialization),
+            core_skills: `${agent.signature_method}, ${agent.cultural_expertise}`,
+            summary_bio: `${agent.background} ${agent.achievement}`,
+            final_cost: estimateCost(agent.specialization).toString(),
+            consultant_hourly_rate: estimateHourlyRate(agent.specialization).toString(),
+            tech_stack: determineTechStack(agent.specialization, departmentName),
+            delivery_type: determineDeliveryType(agent.specialization),
+            task_coverage_pct: estimateTaskCoverage(agent.specialization),
+            specialization: agent.specialization,
+            achievement: agent.achievement,
+            background: agent.background,
+            signature_method: agent.signature_method,
+            cultural_expertise: agent.cultural_expertise,
+            division_name: division.name
+          });
+          
+          agentCounter++;
         });
-        
-        agentCounter++;
       });
-    });
+    }
   });
 
   return agents;

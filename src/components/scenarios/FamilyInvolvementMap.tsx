@@ -93,7 +93,7 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
                       </div>
                       <div>
                         <h4 className="font-semibold">{member.name}</h4>
-                        <p className="text-sm text-muted-foreground">{member.role}</p>
+                        <p className="text-sm text-muted-foreground">{member.title}</p>
                       </div>
                     </div>
                     
