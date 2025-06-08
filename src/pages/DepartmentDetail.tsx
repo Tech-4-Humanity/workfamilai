@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { DepartmentStats } from '@/components/department/DepartmentStats';
 import { DivisionsGrid } from '@/components/department/DivisionsGrid';
 import { LeaderProfilePreview } from '@/components/department/LeaderProfilePreview';
 import { EnhancedLeaderProfile } from '@/components/family/EnhancedLeaderProfile';
+import { Footer } from '@/components/ui/footer';
 import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 
 const DepartmentDetail = () => {
@@ -64,47 +64,50 @@ const DepartmentDetail = () => {
 
   // Show department detail view
   return (
-    <div className="container max-w-7xl mx-auto py-8 px-4">
-      <Button 
-        variant="ghost" 
-        onClick={() => navigate('/')} 
-        className="mb-8 flex items-center"
-      >
-        <ChevronLeft className="mr-2 h-4 w-4" />
-        Back to All Departments
-      </Button>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-        <div className="lg:col-span-1">
-          <LeaderProfilePreview 
-            leader={enhancedData.leader}
-            divisionsCount={enhancedData.divisions.length}
-            totalAgents={totalAgents}
-            onViewProfile={() => setShowEnhancedProfile(true)}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
+      <div className="container max-w-7xl mx-auto py-8 px-4 flex-grow">
+        <Button 
+          variant="ghost" 
+          onClick={() => navigate('/')} 
+          className="mb-8 flex items-center"
+        >
+          <ChevronLeft className="mr-2 h-4 w-4" />
+          Back to All Departments
+        </Button>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <div className="lg:col-span-1">
+            <LeaderProfilePreview 
+              leader={enhancedData.leader}
+              divisionsCount={enhancedData.divisions.length}
+              totalAgents={totalAgents}
+              onViewProfile={() => setShowEnhancedProfile(true)}
+            />
+          </div>
+          
+          <div className="lg:col-span-2">
+            <DepartmentStats 
+              divisionsCount={enhancedData.divisions.length}
+              totalAgents={totalAgents}
+              leaderPersonality={enhancedData.leader.personality}
+            />
+            
+            <DivisionsGrid 
+              divisions={enhancedData.divisions}
+            />
+          </div>
         </div>
         
-        <div className="lg:col-span-2">
-          <DepartmentStats 
-            divisionsCount={enhancedData.divisions.length}
-            totalAgents={totalAgents}
-            leaderPersonality={enhancedData.leader.personality}
-          />
-          
-          <DivisionsGrid 
-            divisions={enhancedData.divisions}
-          />
-        </div>
+        {databaseAgents.length > 0 && (
+          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
+            <p className="text-sm text-gray-600">
+              Showing {databaseAgents.length} agents from the family database for {enhancedData.leader.name}'s department.
+            </p>
+          </div>
+        )}
       </div>
-      
-      {databaseAgents.length > 0 && (
-        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
-          <p className="text-sm text-gray-600">
-            Showing {databaseAgents.length} agents from the family database for {enhancedData.leader.name}'s department.
-          </p>
-        </div>
-      )}
+      <Footer />
     </div>
   );
 };

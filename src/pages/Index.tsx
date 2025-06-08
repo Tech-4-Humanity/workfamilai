@@ -1,8 +1,8 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { LeaderCard } from '@/components/family/LeaderCard';
+import { Footer } from '@/components/ui/footer';
 import { familyMembers } from '@/data/familyMembers';
 import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white">
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -132,6 +132,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
