@@ -1,307 +1,208 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowLeft, Mic, BarChart3, Users, Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  AlertCircle, 
-  CheckCircle2, 
-  Users,
-  BrainCircuit,
-  Zap,
-  Target,
-  Home,
-  ArrowLeft
-} from 'lucide-react';
-import { useOrganizationalIntelligence } from '@/hooks/useOrganizationalIntelligence';
-import { useChangeManagement } from '@/hooks/useChangeManagement';
+import { VoiceQueryInterface } from './VoiceQueryInterface';
+import { organizationalData } from '@/data/organizationalData';
 
 export const OrganizationalDashboard = () => {
   const navigate = useNavigate();
-  const { getOrganizationalInsights, isLoading } = useOrganizationalIntelligence();
-  const { getActiveChanges, getChangeAnalytics } = useChangeManagement();
-  
-  const [insights, setInsights] = useState<any>({ healthMetrics: [], pendingDecisions: [], knowledgeStatus: [] });
-  const [activeChanges, setActiveChanges] = useState<any[]>([]);
-  const [analytics, setAnalytics] = useState<any>({ changes: [], transfers: [] });
+  const [activeTab, setActiveTab] = useState('voice-query');
 
-  useEffect(() => {
-    const loadDashboardData = async () => {
-      try {
-        const [insightsData, changesData, analyticsData] = await Promise.all([
-          getOrganizationalInsights(),
-          getActiveChanges(),
-          getChangeAnalytics()
-        ]);
-        
-        setInsights(insightsData);
-        setActiveChanges(changesData);
-        setAnalytics(analyticsData);
-      } catch (error) {
-        console.error('Error loading dashboard data:', error);
-      }
-    };
-
-    loadDashboardData();
-  }, [getOrganizationalInsights, getActiveChanges, getChangeAnalytics]);
-
-  const getMetricIcon = (category: string, trend?: string) => {
-    if (trend === 'up') return <TrendingUp className="h-4 w-4 text-green-500" />;
-    if (trend === 'down') return <TrendingDown className="h-4 w-4 text-red-500" />;
-    
-    switch (category) {
-      case 'operational': return <Zap className="h-4 w-4 text-blue-500" />;
-      case 'strategic': return <Target className="h-4 w-4 text-purple-500" />;
-      case 'knowledge': return <BrainCircuit className="h-4 w-4 text-orange-500" />;
-      default: return <AlertCircle className="h-4 w-4 text-gray-500" />;
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      case 'approved': return 'bg-green-100 text-green-800';
-      case 'implementation': return 'bg-blue-100 text-blue-800';
-      case 'completed': return 'bg-gray-100 text-gray-800';
-      case 'current': return 'bg-green-100 text-green-800';
-      case 'needs_review': return 'bg-orange-100 text-orange-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  if (isLoading) {
-    return (
-      <div className="p-6 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <Card key={i} className="animate-pulse">
-              <div className="h-32 bg-gray-200 rounded"></div>
-            </Card>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  const totalAgents = organizationalData.length;
+  const totalCost = organizationalData.reduce((sum, agent) => sum + agent.cost, 0);
+  const avgAvailability = organizationalData.reduce((sum, agent) => sum + agent.fte_availability, 0) / totalAgents;
+  const riskDistribution = organizationalData.reduce((acc, agent) => {
+    acc[agent.risk_level] = (acc[agent.risk_level] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
   return (
     <div className="p-6 space-y-6">
-      {/* Header with Navigation */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Button
             variant="outline"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/holo-org')}
             className="flex items-center space-x-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to Family</span>
+            <span>Back to Holo-Org</span>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Organizational Intelligence</h1>
-            <p className="text-gray-600">Real-time insights into organizational health and knowledge flow</p>
+            <h1 className="text-3xl font-bold flex items-center gap-2">
+              <Brain className="w-8 h-8 text-purple-600" />
+              Organizational Intelligence
+            </h1>
+            <p className="text-muted-foreground">
+              Voice-activated insights and thinkscape knowledge sharing
+            </p>
           </div>
         </div>
-        <div className="flex space-x-2">
-          <Button
-            variant="outline"
-            onClick={() => navigate('/holo-org')}
-          >
-            <Home className="h-4 w-4 mr-2" />
-            Holo-Org Dashboard
-          </Button>
-          <Button>
-            <BrainCircuit className="h-4 w-4 mr-2" />
-            Generate Insights
-          </Button>
+        <div className="flex items-center space-x-2">
+          <Badge variant="secondary" className="px-3 py-1">
+            <Mic className="w-3 h-3 mr-1" />
+            Voice Enabled
+          </Badge>
         </div>
       </div>
 
-      {/* Key Metrics Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* Overview Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Health Metrics</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Agents</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{insights.healthMetrics.length}</div>
-            <div className="flex items-center space-x-2 mt-2">
-              {insights.healthMetrics.filter((m: any) => m.trend_direction === 'up').length > 0 && (
-                <TrendingUp className="h-4 w-4 text-green-500" />
-              )}
-              <span className="text-sm text-gray-600">Active monitoring</span>
-            </div>
+            <div className="text-2xl font-bold">{totalAgents}</div>
+            <p className="text-xs text-muted-foreground">Active in organization</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Pending Decisions</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Cost</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{insights.pendingDecisions.length}</div>
-            <div className="flex items-center space-x-2 mt-2">
-              <AlertCircle className="h-4 w-4 text-yellow-500" />
-              <span className="text-sm text-gray-600">Awaiting approval</span>
-            </div>
+            <div className="text-2xl font-bold">${totalCost.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground">Combined resource cost</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Active Changes</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Avg Availability</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{activeChanges.length}</div>
-            <div className="flex items-center space-x-2 mt-2">
-              <Users className="h-4 w-4 text-blue-500" />
-              <span className="text-sm text-gray-600">In progress</span>
-            </div>
+            <div className="text-2xl font-bold">{Math.round(avgAvailability * 100)}%</div>
+            <p className="text-xs text-muted-foreground">FTE availability</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600">Knowledge Status</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Risk Profile</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {insights.knowledgeStatus.filter((k: any) => k.validation_status === 'current').length}
-            </div>
-            <div className="flex items-center space-x-2 mt-2">
-              <CheckCircle2 className="h-4 w-4 text-green-500" />
-              <span className="text-sm text-gray-600">Validated items</span>
+            <div className="flex gap-1">
+              {Object.entries(riskDistribution).map(([level, count]) => (
+                <Badge 
+                  key={level} 
+                  variant={level === 'High' ? 'destructive' : level === 'Medium' ? 'default' : 'secondary'}
+                  className="text-xs"
+                >
+                  {level}: {count}
+                </Badge>
+              ))}
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Detailed Sections */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Organizational Health Metrics */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <BrainCircuit className="h-5 w-5" />
-              <span>Health Metrics</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {insights.healthMetrics.slice(0, 5).map((metric: any) => (
-                <div key={metric.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    {getMetricIcon(metric.metric_category, metric.trend_direction)}
-                    <div>
-                      <p className="font-medium">{metric.metric_name}</p>
-                      <p className="text-sm text-gray-600 capitalize">{metric.metric_category}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-bold">{metric.metric_value}</p>
-                    <Badge className={`text-xs ${getStatusColor(metric.impact_level)}`}>
-                      {metric.impact_level}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="voice-query" className="flex items-center gap-2">
+            <Mic className="h-4 w-4" />
+            Voice Query
+          </TabsTrigger>
+          <TabsTrigger value="analytics" className="flex items-center gap-2">
+            <BarChart3 className="h-4 w-4" />
+            Analytics
+          </TabsTrigger>
+          <TabsTrigger value="knowledge" className="flex items-center gap-2">
+            <Brain className="h-4 w-4" />
+            Knowledge Base
+          </TabsTrigger>
+        </TabsList>
 
-        {/* Strategic Decisions */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Target className="h-5 w-5" />
-              <span>Strategic Decisions</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {insights.pendingDecisions.slice(0, 5).map((decision: any) => (
-                <div key={decision.id} className="p-3 border rounded-lg">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <p className="font-medium">{decision.decision_title}</p>
-                      <p className="text-sm text-gray-600 capitalize">{decision.decision_type}</p>
-                      <div className="flex items-center space-x-2 mt-2">
-                        <span className="text-xs text-gray-500">Affected:</span>
-                        {decision.affected_departments.slice(0, 2).map((dept: string) => (
-                          <Badge key={dept} variant="outline" className="text-xs">
-                            {dept}
-                          </Badge>
-                        ))}
+        <TabsContent value="voice-query" className="space-y-4">
+          <VoiceQueryInterface />
+        </TabsContent>
+
+        <TabsContent value="analytics" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Resource Analytics</CardTitle>
+              <CardDescription>
+                Detailed breakdown of organizational capabilities and resource allocation
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Cost Distribution</h4>
+                  <div className="space-y-2">
+                    {organizationalData.map((agent, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span className="text-sm">{agent.persona}</span>
+                        <span className="text-sm font-medium">${agent.cost.toLocaleString()}</span>
                       </div>
-                    </div>
-                    <Badge className={`${getStatusColor(decision.approval_status)} ml-2`}>
-                      {decision.approval_status}
-                    </Badge>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                <div>
+                  <h4 className="font-semibold mb-2">Capability Coverage</h4>
+                  <div className="space-y-2">
+                    {organizationalData.map((agent, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span className="text-sm">{agent.persona}</span>
+                        <span className="text-sm">{agent.capability_tags}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-        {/* Active Changes */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Users className="h-5 w-5" />
-              <span>Active Changes</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {activeChanges.slice(0, 5).map((change: any) => (
-                <div key={change.id} className="p-3 border rounded-lg">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <p className="font-medium">{change.change_title}</p>
-                      <p className="text-sm text-gray-600 capitalize">{change.change_type.replace('_', ' ')}</p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Initiated by: {change.initiator}
-                      </p>
+        <TabsContent value="knowledge" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Thinkscape Knowledge Sharing</CardTitle>
+              <CardDescription>
+                Interconnected knowledge patterns and collaborative insights
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Sample Voice Queries</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className="p-2 bg-muted rounded text-sm">
+                      "List agents for cloud migration"
                     </div>
-                    <Badge className={`${getStatusColor(change.change_stage)} ml-2`}>
-                      {change.change_stage}
-                    </Badge>
+                    <div className="p-2 bg-muted rounded text-sm">
+                      "Show costs for survey design"
+                    </div>
+                    <div className="p-2 bg-muted rounded text-sm">
+                      "What's the risk for RFT management"
+                    </div>
+                    <div className="p-2 bg-muted rounded text-sm">
+                      "Who handles CRM training"
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Knowledge Status */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <CheckCircle2 className="h-5 w-5" />
-              <span>Knowledge Status</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {insights.knowledgeStatus.slice(0, 5).map((knowledge: any, index: number) => (
-                <div key={index} className="p-3 border rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium capitalize">{knowledge.department_id.replace('-', ' ')}</p>
-                      <p className="text-sm text-gray-600 capitalize">{knowledge.expertise_level} level</p>
-                    </div>
-                    <Badge className={`${getStatusColor(knowledge.validation_status)}`}>
-                      {knowledge.validation_status.replace('_', ' ')}
-                    </Badge>
-                  </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Knowledge Integration Points</h4>
+                  <ul className="text-sm space-y-1 text-muted-foreground">
+                    <li>• Voice queries automatically cross-reference family member capabilities</li>
+                    <li>• Real-time cost and risk analysis across all activities</li>
+                    <li>• Skills-based resource matching with availability tracking</li>
+                    <li>• Interactive visualizations responsive to voice commands</li>
+                    <li>• Integration with business scenario workflows</li>
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

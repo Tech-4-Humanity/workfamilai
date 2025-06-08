@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useFamilyAgentIntegration } from '@/hooks/useFamilyAgentIntegration';
 import { useAgentCounts } from '@/hooks/useAgentCounts';
 import { Button } from '@/components/ui/button';
-import { Shield, Building, BarChart3 } from 'lucide-react';
+import { Shield, Building, BarChart3, Mic } from 'lucide-react';
 import FamilyNeuralNetwork from '@/components/family/FamilyNeuralNetwork';
 import {
   Card,
@@ -91,8 +91,7 @@ const Index = () => {
             Neural Ennead Family
           </h1>
           <p className="text-lg text-gray-600">
-            Visualize the interconnectedness of our family's expertise and
-            collaborations.
+            Voice-activated insights and collaborative intelligence network
           </p>
         </div>
 
@@ -114,6 +113,14 @@ const Index = () => {
             >
               <Building className="h-4 w-4" />
               <span>Holo-Org Dashboard</span>
+            </Button>
+            <Button
+              onClick={() => navigate('/organizational-intelligence')}
+              variant="outline"
+              className="flex items-center space-x-2"
+            >
+              <Mic className="h-4 w-4" />
+              <span>Voice Intelligence</span>
             </Button>
             <Button
               onClick={() => navigate('/scenarios')}
