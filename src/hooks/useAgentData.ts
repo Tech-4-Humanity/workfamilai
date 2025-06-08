@@ -14,11 +14,12 @@ interface DomainCount {
 }
 
 export const useAgentData = () => {
+  // Query function counts from family_agents table
   const { data: functionCounts } = useQuery({
-    queryKey: ['agent-function-counts'],
+    queryKey: ['family-agent-function-counts'],
     queryFn: async (): Promise<AgentCount[]> => {
       const { data, error } = await supabase
-        .from('10,000 agents')
+        .from('family_agents')
         .select('function')
         .not('function', 'is', null);
       
@@ -39,11 +40,12 @@ export const useAgentData = () => {
     }
   });
 
+  // Query domain counts from family_agents table
   const { data: domainCounts } = useQuery({
-    queryKey: ['agent-domain-counts'],
+    queryKey: ['family-agent-domain-counts'],
     queryFn: async (): Promise<DomainCount[]> => {
       const { data, error } = await supabase
-        .from('10,000 agents')
+        .from('family_agents')
         .select('domain')
         .not('domain', 'is', null);
       
@@ -64,11 +66,12 @@ export const useAgentData = () => {
     }
   });
 
+  // Query total family agents
   const { data: totalAgents } = useQuery({
-    queryKey: ['total-agents'],
+    queryKey: ['total-family-agents'],
     queryFn: async (): Promise<number> => {
       const { count, error } = await supabase
-        .from('10,000 agents')
+        .from('family_agents')
         .select('*', { count: 'exact', head: true });
       
       if (error) throw error;

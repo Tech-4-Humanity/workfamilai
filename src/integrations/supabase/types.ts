@@ -5652,6 +5652,81 @@ export type Database = {
         }
         Relationships: []
       }
+      family_agents: {
+        Row: {
+          achievement: string | null
+          agent_code: string
+          background: string | null
+          consultant_hourly_rate: number | null
+          core_skills: string | null
+          created_at: string | null
+          cultural_expertise: string | null
+          delivery_type: string | null
+          division_name: string
+          domain: string
+          family_member_id: string
+          final_cost: number | null
+          function: string
+          id: string
+          persona: string
+          sfia_level: string
+          signature_method: string | null
+          specialization: string | null
+          summary_bio: string | null
+          task_coverage_pct: number | null
+          tech_stack: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          achievement?: string | null
+          agent_code: string
+          background?: string | null
+          consultant_hourly_rate?: number | null
+          core_skills?: string | null
+          created_at?: string | null
+          cultural_expertise?: string | null
+          delivery_type?: string | null
+          division_name: string
+          domain: string
+          family_member_id: string
+          final_cost?: number | null
+          function: string
+          id?: string
+          persona: string
+          sfia_level: string
+          signature_method?: string | null
+          specialization?: string | null
+          summary_bio?: string | null
+          task_coverage_pct?: number | null
+          tech_stack?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          achievement?: string | null
+          agent_code?: string
+          background?: string | null
+          consultant_hourly_rate?: number | null
+          core_skills?: string | null
+          created_at?: string | null
+          cultural_expertise?: string | null
+          delivery_type?: string | null
+          division_name?: string
+          domain?: string
+          family_member_id?: string
+          final_cost?: number | null
+          function?: string
+          id?: string
+          persona?: string
+          sfia_level?: string
+          signature_method?: string | null
+          specialization?: string | null
+          summary_bio?: string | null
+          task_coverage_pct?: number | null
+          tech_stack?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       featureflags: {
         Row: {
           created_at: string | null

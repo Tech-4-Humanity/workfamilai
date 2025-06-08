@@ -20,7 +20,7 @@ export const useFamilyAgentMutation = () => {
       
       for (const batch of batches) {
         const { data, error } = await supabase
-          .from('10,000 agents')
+          .from('family_agents')
           .insert(batch.map(agent => ({
             agent_code: agent.agent_code,
             persona: agent.persona,
@@ -29,12 +29,18 @@ export const useFamilyAgentMutation = () => {
             sfia_level: agent.sfia_level,
             core_skills: agent.core_skills,
             summary_bio: agent.summary_bio,
-            final_cost: agent.final_cost,
-            consultant_hourly_rate: agent.consultant_hourly_rate,
+            final_cost: parseFloat(agent.final_cost),
+            consultant_hourly_rate: parseFloat(agent.consultant_hourly_rate),
             tech_stack: agent.tech_stack,
             delivery_type: agent.delivery_type,
             task_coverage_pct: agent.task_coverage_pct,
-            input_source: 'family_integration_2024'
+            specialization: agent.specialization,
+            achievement: agent.achievement,
+            background: agent.background,
+            signature_method: agent.signature_method,
+            cultural_expertise: agent.cultural_expertise,
+            division_name: agent.division_name,
+            family_member_id: agent.family_member_id
           })));
         
         if (error) {
@@ -52,17 +58,39 @@ export const useFamilyAgentMutation = () => {
       return { totalInserted, totalAgents: agents.length };
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['family-agents-integration'] });
-      queryClient.invalidateQueries({ queryKey: ['current-agent-count'] });
-      queryClient.invalidateQueries({ queryKey: ['agent-function-counts'] });
-      queryClient.invalidateQueries({ queryKey: ['agent-domain-counts'] });
+      queryClient.invalidateQueries({ queryKey: ['family-agents'] });
+      queryClient.invalidateQueries({ queryKey: ['current-family-agent-count'] });
+      queryClient.invalidateQueries({ queryKey: ['family-agents-by-member'] });
+      queryClient.invalidateQueries({ queryKey: ['family-agents-by-domain'] });
+    }
+  });
+
+  const clearFamilyAgents = useMutation({
+    mutationFn: async () => {
+      const { error } = await supabase
+        .from('family_agents')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all records
+      
+      if (error) throw error;
+      return { success: true };
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['family-agents'] });
+      queryClient.invalidateQueries({ queryKey: ['current-family-agent-count'] });
+      queryClient.invalidateQueries({ queryKey: ['family-agents-by-member'] });
+      queryClient.invalidateQueries({ queryKey: ['family-agents-by-domain'] });
     }
   });
 
   return {
     insertFamilyAgents,
+    clearFamilyAgents,
     isIntegrating: insertFamilyAgents.isPending,
+    isClearing: clearFamilyAgents.isPending,
     integrationError: insertFamilyAgents.error,
-    integrationSuccess: insertFamilyAgents.isSuccess
+    integrationSuccess: insertFamilyAgents.isSuccess,
+    clearError: clearFamilyAgents.error,
+    clearSuccess: clearFamilyAgents.isSuccess
   };
 };

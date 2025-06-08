@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useActivityParticipants } from '@/hooks/useBusinessActivities';
 import { familyMembers } from '@/data/familyMembers';
+import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 
 interface FamilyInvolvementMapProps {
   activityId: string;
@@ -11,6 +12,7 @@ interface FamilyInvolvementMapProps {
 
 export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ activityId }) => {
   const { data: participants = [], isLoading } = useActivityParticipants(activityId);
+  const { familyAgents } = useFamilyAgentQueries();
 
   if (isLoading) {
     return (
@@ -39,6 +41,11 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
     return familyMembers.find(m => m.id === memberId);
   };
 
+  const getFamilyAgentCount = (memberId: string) => {
+    if (!familyAgents) return 0;
+    return familyAgents.filter(agent => agent.family_member_id === memberId).length;
+  };
+
   const getInvolvementColor = (levelCode: string) => {
     switch (levelCode) {
       case 'lead': return 'bg-red-500';
@@ -48,10 +55,6 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
       case 'inform': return 'bg-gray-500';
       default: return 'bg-gray-300';
     }
-  };
-
-  const getIntensityOpacity = (score: number) => {
-    return `opacity-${Math.max(20, Math.min(100, score * 10))}`;
   };
 
   const calculateMemberInvolvement = (memberParticipants: typeof participants) => {
@@ -74,6 +77,7 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
               const memberParticipants = participantsByMember[member.id] || [];
               const avgInvolvement = calculateMemberInvolvement(memberParticipants);
               const isInvolved = memberParticipants.length > 0;
+              const agentCount = getFamilyAgentCount(member.id);
               
               return (
                 <Card 
@@ -91,9 +95,12 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
                       >
                         {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h4 className="font-semibold">{member.name}</h4>
                         <p className="text-sm text-muted-foreground">{member.title}</p>
+                        <Badge variant="outline" className="text-xs mt-1">
+                          {agentCount} agents
+                        </Badge>
                       </div>
                     </div>
                     
@@ -135,6 +142,9 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
                     ) : (
                       <div className="text-center py-4">
                         <p className="text-sm text-muted-foreground">Not involved</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {agentCount} agents available
+                        </p>
                       </div>
                     )}
                   </CardContent>
