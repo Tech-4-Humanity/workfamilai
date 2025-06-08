@@ -26,6 +26,9 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
   const [imageError, setImageError] = useState(false);
   const imageUrl = getLeaderImageUrl(leader.name);
 
+  // Each department leader manages 81 agents (9 divisions × 9 family agents each)
+  const departmentAgentCount = 81;
+
   const handleImageLoad = () => setImageLoaded(true);
   const handleImageError = () => {
     setImageError(true);
@@ -108,7 +111,7 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Users className="h-4 w-4" />
-            <span>{leader.agentCount?.toLocaleString() || '0'} AI Agents</span>
+            <span>{departmentAgentCount} AI Agents</span>
           </div>
           <Button 
             variant="outline" 

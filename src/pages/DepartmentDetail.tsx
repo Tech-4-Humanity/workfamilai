@@ -46,7 +46,7 @@ const DepartmentDetail = () => {
       background: familyMemberData.leader.background,
       domainOverview: '',
       color: 'blue',
-      agentCount: databaseAgents.length || familyMemberData.divisions.reduce((sum, division) => sum + division.agents.length, 0)
+      agentCount: 81 // Each department leader manages 81 agents (9 divisions × 9 family agents)
     };
 
     return (
@@ -58,10 +58,8 @@ const DepartmentDetail = () => {
     );
   }
 
-  // Use database agents if available, otherwise use static data count
-  const totalAgents = databaseAgents.length > 0 
-    ? databaseAgents.length 
-    : familyMemberData.divisions.reduce((sum, division) => sum + division.agents.length, 0);
+  // Each department leader manages 81 agents (9 divisions × 9 family agents each)
+  const totalAgents = 81;
 
   // Show department detail view
   return (
@@ -103,7 +101,7 @@ const DepartmentDetail = () => {
           <div className="mt-8 p-4 bg-blue-50 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
             <p className="text-sm text-gray-600">
-              Showing {databaseAgents.length} agents from the family database for {familyMemberData.leader.name}'s department.
+              Showing {databaseAgents.length} sample agents from the family database. Each department manages 81 agents total in the consciousness pyramid.
             </p>
           </div>
         )}
