@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
@@ -151,8 +150,7 @@ const Index = () => {
               </Button>
               <Button 
                 onClick={handleMeetFamily}
-                variant="outline" 
-                className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm group"
+                className="bg-white/20 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/30 hover:border-white/60 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 group"
                 size="lg"
               >
                 <Users className="mr-2 h-5 w-5 group-hover:text-cyan-400 transition-colors" />
@@ -160,9 +158,8 @@ const Index = () => {
                 <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
-                onClick={() => navigate('/scenarios')}
-                variant="outline" 
-                className="border-2 border-purple-400/50 text-purple-200 hover:bg-purple-500/20 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm group"
+                onClick={() => navigate('/demo')}
+                className="bg-purple-600/80 backdrop-blur-sm border-2 border-purple-400/60 text-white hover:bg-purple-600 hover:border-purple-400 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 group"
                 size="lg"
               >
                 <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin transition-all" />

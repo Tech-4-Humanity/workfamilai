@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Scenarios from "./pages/Scenarios";
 import ScenarioDetail from "./pages/ScenarioDetail";
+import DemoComingSoon from "./pages/DemoComingSoon";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           <Route path="/scenarios" element={<Scenarios />} />
           <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
+          <Route path="/demo" element={<DemoComingSoon />} />
           <Route path="/holo-org" element={<HoloOrgDashboard />} />
           <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
