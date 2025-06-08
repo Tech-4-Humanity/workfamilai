@@ -206,3 +206,7 @@ export const getFamilyAgentStats = () => {
     isComplete: agents.length === 729
   };
 };
+
+export const getTotalAgentCount = (): number => {
+  return 729; // 9 family members × 9 divisions × 9 agents each
+};

@@ -18,7 +18,7 @@ const DepartmentDetail = () => {
   const { getAgentsByFamilyMember } = useFamilyAgentQueries();
 
   // Get the family member details for this department
-  const familyMemberData = departmentId ? familyMemberDetails[departmentId as keyof typeof familyMemberDetails] : null;
+  const familyMemberData = departmentId ? familyMemberDetails.find(member => member.id === departmentId) : null;
 
   // Get agents for this family member from the database
   const { data: databaseAgents = [] } = departmentId ? getAgentsByFamilyMember(departmentId) : { data: [] };

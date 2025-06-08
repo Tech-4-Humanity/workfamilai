@@ -1,5 +1,5 @@
 
-import { FamilyMemberData } from '@/types/family';
+import { FamilyMemberData, FamilyMember } from '@/types/family';
 import { amaraChenData } from './leaders/amaraChen';
 import { priyaSharmaData } from './leaders/priyaSharma';
 import { aishaAlFarsiData } from './leaders/aishaAlFarsi';
@@ -48,6 +48,23 @@ export const familyMemberDetails: Array<FamilyMemberData & { id: string }> = [
     ...elenaVasquezData
   }
 ];
+
+// Transform detailed data into simple family member format for display
+export const familyMembers: FamilyMember[] = familyMemberDetails.map((member) => ({
+  id: member.id,
+  name: member.leader.name,
+  title: member.leader.title,
+  personality: member.leader.personality,
+  enneagramType: member.leader.enneagramType,
+  motto: member.leader.motto,
+  background: member.leader.background,
+  domainOverview: '', // Will be populated as needed
+  color: 'blue', // Default color, can be customized
+  icon: null,
+  description: member.leader.background,
+  agentCount: 81, // Each department has 9 divisions × 9 agents = 81
+  avatar: member.leader.name.split(' ').map(n => n[0]).join('')
+}));
 
 // Verify data integrity
 export const verifyFamilyData = () => {
