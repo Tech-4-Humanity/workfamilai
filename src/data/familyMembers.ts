@@ -1,8 +1,8 @@
 
-import { FamilyMember } from '@/types/family';
+import { FamilyMember, FamilyMemberDetails } from '@/types/family';
 import { Shield, Users, Globe, Megaphone, Heart, Calculator, Headphones, Lightbulb, TrendingUp } from 'lucide-react';
 
-// Calculate actual agent counts from leader data
+// Import all leader data
 import { amaraChenData } from './leaders/amaraChen';
 import { marcusBennettData } from './leaders/marcusBennett';
 import { aishaAlFarsiData } from './leaders/aishaAlFarsi';
@@ -156,7 +156,7 @@ export const familyMembers: FamilyMember[] = [
   }
 ];
 
-export const familyMemberDetails = {
+export const familyMemberDetails: FamilyMemberDetails = {
   'amara-chen': amaraChenData,
   'marcus-bennett': marcusBennettData,
   'aisha-al-farsi': aishaAlFarsiData,

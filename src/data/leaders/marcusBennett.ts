@@ -1,6 +1,7 @@
-import { FamilyMember } from '@/types/family';
 
-export const marcusBennettData: FamilyMember = {
+import { FamilyMemberData } from '@/types/family';
+
+export const marcusBennettData: FamilyMemberData = {
   leader: {
     name: "Marcus Bennett",
     title: "Chief of Governance & Compliance",

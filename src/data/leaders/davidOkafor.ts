@@ -1,6 +1,6 @@
-import { FamilyMember } from '@/types/family';
+import { FamilyMemberData } from '@/types/family';
 
-export const davidOkaforData: FamilyMember = {
+export const davidOkaforData: FamilyMemberData = {
   leader: {
     name: 'David Okafor',
     title: 'Chief Innovation Officer',
