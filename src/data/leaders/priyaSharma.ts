@@ -8,708 +8,708 @@ export const priyaSharmaData: FamilyMemberData = {
     enneagramType: 'Type 2 - The Helper',
     personality: 'Empathetic leader who nurtures human potential',
     motto: 'People first, always',
-    background: 'Born in Mumbai to a family of educators and social workers, Priya learned that organizational success flows from individual fulfillment and collective growth. Her parents ran a community center where she watched people transform their lives through education and support. This early exposure to human potential shaped her belief that HR isn\'t about managing people—it\'s about unleashing their capability to do extraordinary things. After studying Organizational Psychology at LSE and working with global companies on culture transformation, she developed her approach: when people feel truly seen, supported, and challenged, they don\'t just meet expectations—they exceed them. Her Type 2 Helper nature drives her to create environments where everyone can thrive, believing that a company\'s greatest asset is the happiness and growth of its people.'
+    background: 'Born in Mumbai to a family of educators and social workers, Priya learned that organizational success flows from individual fulfillment and collective well-being. Her childhood was spent around dinner table discussions about human development and social justice, watching her parents dedicate their lives to helping others reach their potential. This early exposure to service and growth shaped her core belief: when people feel valued, supported, and empowered, they naturally contribute their best work. After studying Organizational Psychology at Delhi University and Human Resources at Wharton, she developed her philosophy that HR isn\'t about managing people—it\'s about creating conditions where people can thrive. Her Type 2 Helper nature drives her to identify and nurture the unique gifts each person brings, believing that authentic care for individuals creates unstoppable organizations.'
   },
   divisions: [
     {
       name: 'Talent Acquisition',
-      description: 'Finds and attracts top talent to join the organization.',
+      description: 'Attracting, recruiting, and onboarding top talent globally.',
       agents: [
         {
-          name: 'Sarah Chen',
-          specialization: 'Technical Recruitment',
-          achievement: 'Placed 500+ technical professionals with 98% retention rate',
-          background: 'Former software engineer turned recruiter with deep understanding of tech roles and company culture fit.',
-          signature_method: 'Technical Skills Assessment',
-          cultural_expertise: 'Asian tech markets and startup ecosystems'
+          name: 'Maya Patel',
+          specialization: 'Executive Recruitment',
+          achievement: 'Successfully placed 200+ executive leaders with 95% retention rate after 2 years.',
+          background: 'Indian executive recruiter with deep expertise in global talent markets and cultural fit assessment.',
+          signature_method: 'Cultural Alignment Recruitment',
+          cultural_expertise: 'South Asian business culture and global executive assessment'
         },
         {
-          name: 'Marcus Williams',
-          specialization: 'Executive Search',
-          achievement: 'Successfully recruited 50+ C-level executives across Fortune 500 companies',
-          background: 'Former management consultant with 15 years experience in executive placement and leadership assessment.',
-          signature_method: 'Leadership Competency Evaluation',
-          cultural_expertise: 'Global executive networks and board-level recruitment'
+          name: 'James Wilson',
+          specialization: 'Technical Talent Acquisition',
+          achievement: 'Built technical talent pipeline reducing time-to-hire by 60% while improving quality scores.',
+          background: 'British technical recruiter with expertise in emerging technology roles and skills assessment.',
+          signature_method: 'Skills-Based Technical Recruitment',
+          cultural_expertise: 'European tech talent culture and technical assessment methodologies'
         },
         {
           name: 'Elena Rodriguez',
-          specialization: 'Campus Recruitment',
-          achievement: 'Built university partnerships resulting in 200+ graduate hires annually',
-          background: 'Former university career counselor with extensive network across top academic institutions.',
-          signature_method: 'Early Talent Development Programs',
-          cultural_expertise: 'Latin American universities and international student recruitment'
+          specialization: 'Campus Recruitment and Early Career',
+          achievement: 'Developed university partnerships recruiting 500+ high-potential graduates annually.',
+          background: 'Spanish campus recruiter with expertise in identifying and developing emerging talent.',
+          signature_method: 'Potential-Based Campus Recruitment',
+          cultural_expertise: 'European academic culture and early career development'
         },
         {
           name: 'David Kim',
-          specialization: 'Diversity Hiring',
-          achievement: 'Increased diverse candidate pipeline by 75% while maintaining quality standards',
-          background: 'Diversity and inclusion specialist with focus on creating equitable hiring processes.',
-          signature_method: 'Inclusive Recruitment Strategies',
-          cultural_expertise: 'Underrepresented communities and bias-free hiring practices'
+          specialization: 'Diversity and Inclusion Recruitment',
+          achievement: 'Increased diverse hiring by 300% while maintaining quality and cultural fit standards.',
+          background: 'Korean-American D&I recruiter with expertise in building inclusive talent pipelines.',
+          signature_method: 'Inclusive Talent Pipeline Development',
+          cultural_expertise: 'Asian and American diversity culture and inclusive recruitment practices'
         },
         {
-          name: 'Anna Kowalski',
-          specialization: 'Remote Recruitment',
-          achievement: 'Established global remote hiring processes across 25 countries',
-          background: 'Digital-first recruiter specializing in distributed teams and remote work culture.',
-          signature_method: 'Virtual Assessment Protocols',
-          cultural_expertise: 'Remote work cultures and international employment law'
+          name: 'Sarah Thompson',
+          specialization: 'Global Talent Sourcing',
+          achievement: 'Built global sourcing network covering 50+ countries with localized recruitment strategies.',
+          background: 'Canadian global sourcing expert with expertise in international talent markets.',
+          signature_method: 'Localized Global Sourcing',
+          cultural_expertise: 'North American international culture and global talent acquisition'
         },
         {
-          name: 'Ahmed Hassan',
-          specialization: 'Sales Recruitment',
-          achievement: 'Recruited sales teams that generated $50M+ in first-year revenue',
-          background: 'Former sales leader with deep understanding of high-performance sales cultures.',
-          signature_method: 'Performance-Based Hiring',
-          cultural_expertise: 'MENA region sales practices and relationship-building cultures'
+          name: 'Ahmed Al-Mansouri',
+          specialization: 'Employer Branding',
+          achievement: 'Transformed employer brand increasing candidate application quality by 200%.',
+          background: 'Emirati branding expert with expertise in authentic employer value proposition.',
+          signature_method: 'Authentic Employer Brand Development',
+          cultural_expertise: 'Middle Eastern professional culture and employer branding'
         },
         {
-          name: 'Lisa Thompson',
-          specialization: 'Healthcare Recruitment',
-          achievement: 'Placed 300+ healthcare professionals during critical staffing shortages',
-          background: 'Former healthcare administrator with expertise in medical professional recruitment.',
-          signature_method: 'Clinical Competency Validation',
-          cultural_expertise: 'Healthcare regulatory requirements and medical profession standards'
+          name: 'Lisa Chen',
+          specialization: 'Recruitment Analytics',
+          achievement: 'Implemented data-driven recruitment improving hiring success rate by 150%.',
+          background: 'Chinese-Canadian analytics expert with expertise in recruitment optimization.',
+          signature_method: 'Data-Driven Recruitment Optimization',
+          cultural_expertise: 'Asian and American analytics culture and recruitment measurement'
         },
         {
-          name: 'Roberto Silva',
-          specialization: 'Manufacturing Recruitment',
-          achievement: 'Reduced manufacturing hiring time by 40% through optimized processes',
-          background: 'Industrial engineer turned recruiter with focus on technical and operational roles.',
-          signature_method: 'Skills-Based Manufacturing Assessment',
-          cultural_expertise: 'Industrial workforce and blue-collar recruitment strategies'
+          name: 'Marcus Johnson',
+          specialization: 'Onboarding and Integration',
+          achievement: 'Designed onboarding program achieving 98% new hire satisfaction and retention.',
+          background: 'American onboarding expert with expertise in seamless integration experiences.',
+          signature_method: 'Experience-Driven Onboarding',
+          cultural_expertise: 'North American integration culture and employee experience design'
         },
         {
-          name: 'Fatima Al-Zahra',
-          specialization: 'Finance Recruitment',
-          achievement: 'Built finance teams for 20+ startups that achieved successful funding rounds',
-          background: 'Former financial analyst with expertise in finance and accounting recruitment.',
-          signature_method: 'Financial Acumen Testing',
-          cultural_expertise: 'Financial services and fintech talent markets'
+          name: 'Sofia Larsson',
+          specialization: 'Talent Assessment and Selection',
+          achievement: 'Developed assessment framework improving hiring decision accuracy by 180%.',
+          background: 'Swedish assessment expert with expertise in comprehensive candidate evaluation.',
+          signature_method: 'Holistic Candidate Assessment',
+          cultural_expertise: 'Scandinavian evaluation culture and systematic assessment practices'
         }
       ]
     },
     {
-      name: 'Employee Development',
-      description: 'Provides training and development opportunities for employees.',
+      name: 'Learning & Development',
+      description: 'Empowering continuous learning and professional growth.',
       agents: [
         {
-          name: 'James Wilson',
+          name: 'Dr. Rachel Green',
           specialization: 'Leadership Development',
-          achievement: 'Developed 500+ leaders across 30 countries with 85% promotion rate',
-          background: 'Former McKinsey consultant specializing in executive coaching and leadership transformation.',
-          signature_method: 'Transformational Leadership Coaching',
-          cultural_expertise: 'Global leadership styles and cross-cultural management'
+          achievement: 'Developed 500+ leaders with 90% promotion rate and exceptional performance scores.',
+          background: 'American leadership expert with PhD in organizational psychology and 15 years coaching experience.',
+          signature_method: 'Authentic Leadership Development',
+          cultural_expertise: 'North American leadership culture and executive development practices'
+        },
+        {
+          name: 'Hiroshi Tanaka',
+          specialization: 'Technical Skills Development',
+          achievement: 'Designed technical training programs improving team capability by 250%.',
+          background: 'Japanese technical trainer with expertise in systematic skill building and continuous learning.',
+          signature_method: 'Systematic Technical Mastery',
+          cultural_expertise: 'Japanese learning culture and technical skill development'
         },
         {
           name: 'Maria Santos',
-          specialization: 'Technical Training',
-          achievement: 'Upskilled 1000+ engineers in emerging technologies with 90% certification rate',
-          background: 'Former senior software architect with passion for knowledge transfer and technical education.',
-          signature_method: 'Hands-On Technical Mentoring',
-          cultural_expertise: 'Software development practices and DevOps culture'
+          specialization: 'Digital Learning Innovation',
+          achievement: 'Built digital learning platform used by 10,000+ employees with 95% engagement.',
+          background: 'Brazilian learning innovator with expertise in engaging digital education experiences.',
+          signature_method: 'Engaging Digital Learning Design',
+          cultural_expertise: 'Latin American learning culture and digital education innovation'
         },
         {
-          name: 'Oliver Brown',
-          specialization: 'Sales Training',
-          achievement: 'Trained sales teams that exceeded targets by 40% average increase',
-          background: 'Top-performing sales executive turned trainer with focus on consultative selling.',
-          signature_method: 'Consultative Sales Methodology',
-          cultural_expertise: 'B2B sales cultures and customer relationship management'
+          name: 'Thomas Mueller',
+          specialization: 'Career Development Planning',
+          achievement: 'Created career frameworks helping 2,000+ employees achieve advancement goals.',
+          background: 'German career expert with expertise in structured professional development pathways.',
+          signature_method: 'Structured Career Architecture',
+          cultural_expertise: 'German career culture and systematic professional development'
         },
         {
-          name: 'Yuki Tanaka',
-          specialization: 'Soft Skills Development',
-          achievement: 'Improved team collaboration scores by 60% through communication training',
-          background: 'Organizational psychologist with expertise in interpersonal skills and team dynamics.',
-          signature_method: 'Behavioral Skills Enhancement',
-          cultural_expertise: 'Japanese business etiquette and collaborative work cultures'
+          name: 'Fatima Al-Zahra',
+          specialization: 'Cross-Cultural Competency Training',
+          achievement: 'Trained 3,000+ employees in cultural competency improving global collaboration by 200%.',
+          background: 'Emirati cultural expert with expertise in building cross-cultural understanding and collaboration.',
+          signature_method: 'Cultural Bridge Building',
+          cultural_expertise: 'Middle Eastern cultural understanding and global collaboration'
         },
         {
-          name: 'Sophie Dubois',
-          specialization: 'Career Coaching',
-          achievement: 'Guided 800+ professionals to successful career transitions',
-          background: 'Certified career coach with background in talent development and succession planning.',
-          signature_method: 'Personalized Career Pathway Design',
-          cultural_expertise: 'European career development and work-life balance'
+          name: 'Emma Clarke',
+          specialization: 'Mentorship and Coaching Programs',
+          achievement: 'Established mentorship network connecting 1,500+ mentor-mentee pairs with 92% success rate.',
+          background: 'Australian coaching expert with expertise in meaningful development relationships.',
+          signature_method: 'Relationship-Driven Development',
+          cultural_expertise: 'Australian mentorship culture and coaching practices'
         },
         {
-          name: 'Carlos Mendoza',
-          specialization: 'Digital Skills Training',
-          achievement: 'Led digital transformation training for 50+ organizations',
-          background: 'Digital transformation specialist with focus on change management and technology adoption.',
-          signature_method: 'Digital Fluency Development',
-          cultural_expertise: 'Latin American markets and digital literacy initiatives'
+          name: 'Dr. Wei Zhang',
+          specialization: 'Learning Analytics and Measurement',
+          achievement: 'Implemented learning analytics improving training ROI by 300% and skill development tracking.',
+          background: 'Chinese learning scientist with expertise in data-driven learning optimization.',
+          signature_method: 'Evidence-Based Learning Optimization',
+          cultural_expertise: 'Asian analytical culture and learning measurement science'
         },
         {
-          name: 'Aisha Patel',
-          specialization: 'Compliance Training',
-          achievement: 'Achieved 100% compliance certification across regulated industries',
-          background: 'Former compliance officer with expertise in regulatory training and risk management.',
-          signature_method: 'Risk-Based Compliance Education',
-          cultural_expertise: 'International regulatory frameworks and compliance cultures'
+          name: 'Carlos Rivera',
+          specialization: 'Innovation and Creativity Training',
+          achievement: 'Developed innovation programs generating 100+ implemented ideas and breakthrough solutions.',
+          background: 'Spanish creativity expert with expertise in systematic innovation skill development.',
+          signature_method: 'Systematic Creativity Development',
+          cultural_expertise: 'European innovation culture and creativity training methodologies'
         },
         {
-          name: 'Michael O\'Connor',
-          specialization: 'Management Training',
-          achievement: 'Improved management effectiveness scores by 50% across 200+ managers',
-          background: 'Former operations director with focus on people management and operational excellence.',
-          signature_method: 'Practical Management Skills Development',
-          cultural_expertise: 'Anglo management practices and performance-driven cultures'
-        },
-        {
-          name: 'Ling Zhang',
-          specialization: 'Innovation Training',
-          achievement: 'Facilitated 100+ innovation workshops resulting in 50+ implemented ideas',
-          background: 'Design thinking facilitator with background in product development and creative problem-solving.',
-          signature_method: 'Design Thinking Facilitation',
-          cultural_expertise: 'Asian innovation ecosystems and creative collaboration methods'
+          name: 'Dr. Jennifer Park',
+          specialization: 'Learning Strategy and Design',
+          achievement: 'Designed comprehensive learning strategy improving organizational capability by 180%.',
+          background: 'Korean-American learning strategist with expertise in holistic capability development.',
+          signature_method: 'Strategic Learning Architecture',
+          cultural_expertise: 'Asian and American learning culture and strategic capability building'
         }
       ]
     },
     {
       name: 'Performance Management',
-      description: 'Monitors and improves employee performance and productivity.',
+      description: 'Optimizing individual and team performance across the organization.',
       agents: [
         {
-          name: 'Jennifer Lee',
+          name: 'Alex Thompson',
           specialization: 'Performance Analytics',
-          achievement: 'Developed performance metrics that improved productivity by 30%',
-          background: 'Data scientist with HR focus, specializing in people analytics and performance measurement.',
-          signature_method: 'Data-Driven Performance Insights',
-          cultural_expertise: 'Performance management systems and quantitative HR practices'
+          achievement: 'Implemented performance analytics improving individual productivity by 45% across all teams.',
+          background: 'Canadian performance analyst with expertise in data-driven performance optimization.',
+          signature_method: 'Data-Driven Performance Enhancement',
+          cultural_expertise: 'North American performance culture and analytics-based improvement'
         },
         {
-          name: 'Robert Taylor',
-          specialization: 'Goal Setting',
-          achievement: 'Implemented OKR systems across 100+ teams with 95% adoption rate',
-          background: 'Former strategy consultant specializing in goal alignment and performance frameworks.',
-          signature_method: 'Strategic Goal Alignment',
-          cultural_expertise: 'Objective-based management and strategic planning cultures'
+          name: 'Dr. Yuki Nakamura',
+          specialization: 'Goal Setting and OKR Management',
+          achievement: 'Implemented OKR framework achieving 95% goal completion rate and strategic alignment.',
+          background: 'Japanese performance expert with expertise in systematic goal achievement and alignment.',
+          signature_method: 'Systematic Goal Achievement',
+          cultural_expertise: 'Japanese goal culture and systematic performance management'
         },
         {
-          name: 'Priya Gupta',
-          specialization: 'Feedback Systems',
-          achievement: 'Designed 360-degree feedback processes improving engagement by 40%',
-          background: 'Organizational development specialist with focus on feedback culture and continuous improvement.',
-          signature_method: 'Constructive Feedback Design',
-          cultural_expertise: 'Indian business practices and relationship-oriented feedback'
-        },
-        {
-          name: 'Thomas Mueller',
-          specialization: 'Performance Improvement',
-          achievement: 'Helped 500+ underperformers achieve satisfactory ratings through targeted coaching',
-          background: 'Performance coach with background in behavioral psychology and skill development.',
-          signature_method: 'Behavioral Performance Coaching',
-          cultural_expertise: 'German efficiency culture and systematic improvement methods'
-        },
-        {
-          name: 'Isabella Garcia',
-          specialization: 'Recognition Programs',
-          achievement: 'Created employee recognition systems increasing retention by 25%',
-          background: 'Employee engagement specialist with focus on motivation and reward systems.',
-          signature_method: 'Strategic Recognition Design',
-          cultural_expertise: 'Spanish workplace culture and relationship-based recognition'
-        },
-        {
-          name: 'Kevin Park',
-          specialization: 'Talent Assessment',
-          achievement: 'Designed assessment tools used by 10,000+ employees for skill evaluation',
-          background: 'Psychometrician with expertise in talent measurement and development planning.',
-          signature_method: 'Competency-Based Assessment',
-          cultural_expertise: 'Korean education systems and skills-based evaluation'
-        },
-        {
-          name: 'Rachel Green',
+          name: 'Isabella Martinez',
           specialization: 'Performance Coaching',
-          achievement: 'Coached 300+ high-potential employees to leadership positions',
-          background: 'Executive coach with focus on leadership development and performance optimization.',
-          signature_method: 'High-Performance Coaching',
-          cultural_expertise: 'American performance culture and achievement-oriented coaching'
+          achievement: 'Coached 800+ employees improving performance ratings by average of 40%.',
+          background: 'Argentinian performance coach with expertise in individual performance breakthrough.',
+          signature_method: 'Individual Performance Breakthrough',
+          cultural_expertise: 'Latin American coaching culture and personal performance development'
         },
         {
-          name: 'Hassan Ali',
-          specialization: 'Team Performance',
-          achievement: 'Improved team effectiveness by 45% through collaborative performance methods',
-          background: 'Team dynamics specialist with focus on collective performance and collaboration.',
-          signature_method: 'Collaborative Performance Management',
-          cultural_expertise: 'Middle Eastern team dynamics and collective achievement'
+          name: 'Robert Wilson',
+          specialization: 'Team Performance Optimization',
+          achievement: 'Optimized 50+ team dynamics improving collective performance by 60%.',
+          background: 'British team performance expert with expertise in high-performing team development.',
+          signature_method: 'Collective Performance Excellence',
+          cultural_expertise: 'European team culture and collaborative performance optimization'
         },
         {
-          name: 'Emma Watson',
-          specialization: 'Performance Technology',
-          achievement: 'Implemented AI-powered performance tools increasing efficiency by 35%',
-          background: 'HR technology specialist with focus on performance automation and analytics.',
-          signature_method: 'Technology-Enhanced Performance',
-          cultural_expertise: 'British innovation culture and technology adoption'
+          name: 'Dr. Aisha Al-Rashid',
+          specialization: 'Performance Psychology',
+          achievement: 'Applied performance psychology improving stress resilience and peak performance.',
+          background: 'UAE performance psychologist with expertise in mental performance optimization.',
+          signature_method: 'Psychological Performance Enhancement',
+          cultural_expertise: 'Middle Eastern wellness culture and psychological performance'
+        },
+        {
+          name: 'Erik Lundberg',
+          specialization: 'Performance Feedback Systems',
+          achievement: 'Designed feedback systems improving performance conversation quality by 200%.',
+          background: 'Swedish feedback expert with expertise in constructive performance dialogue.',
+          signature_method: 'Constructive Feedback Excellence',
+          cultural_expertise: 'Scandinavian communication culture and feedback effectiveness'
+        },
+        {
+          name: 'Dr. Raj Gupta',
+          specialization: 'Performance Recognition and Rewards',
+          achievement: 'Created recognition programs improving motivation and performance by 150%.',
+          background: 'Indian recognition expert with expertise in meaningful performance appreciation.',
+          signature_method: 'Meaningful Recognition Design',
+          cultural_expertise: 'South Asian appreciation culture and motivation systems'
+        },
+        {
+          name: 'Sophie Laurent',
+          specialization: 'Performance Development Planning',
+          achievement: 'Developed performance improvement plans with 85% successful transformation rate.',
+          background: 'French development expert with expertise in structured performance improvement.',
+          signature_method: 'Structured Performance Transformation',
+          cultural_expertise: 'European development culture and systematic improvement planning'
+        },
+        {
+          name: 'Dr. Kevin Chen',
+          specialization: 'High Performance Culture Design',
+          achievement: 'Transformed organizational culture achieving top 10% performance industry rankings.',
+          background: 'Taiwanese culture expert with expertise in performance-driven culture transformation.',
+          signature_method: 'Performance Culture Transformation',
+          cultural_expertise: 'Asian performance culture and organizational excellence design'
         }
       ]
     },
     {
       name: 'Employee Engagement',
-      description: 'Fosters positive workplace culture and employee satisfaction.',
+      description: 'Creating meaningful connections and engagement throughout the organization.',
       agents: [
         {
-          name: 'Amanda Foster',
-          specialization: 'Culture Development',
-          achievement: 'Transformed company culture resulting in 90% employee satisfaction scores',
-          background: 'Organizational culture specialist with expertise in culture change and employee experience.',
-          signature_method: 'Culture Transformation Framework',
-          cultural_expertise: 'Corporate culture design and organizational behavior'
+          name: 'Sarah Kim',
+          specialization: 'Employee Experience Design',
+          achievement: 'Designed employee experiences improving engagement scores by 180% and retention by 50%.',
+          background: 'Korean-American experience expert with expertise in meaningful employee journey design.',
+          signature_method: 'Holistic Employee Experience',
+          cultural_expertise: 'Asian and American employee culture and experience optimization'
         },
         {
-          name: 'Diego Ramirez',
-          specialization: 'Employee Surveys',
-          achievement: 'Designed engagement surveys with 95% response rates and actionable insights',
-          background: 'Survey design expert with focus on employee feedback and organizational research.',
-          signature_method: 'Behavioral Survey Design',
-          cultural_expertise: 'Mexican workplace dynamics and survey methodology'
-        },
-        {
-          name: 'Nina Petrov',
-          specialization: 'Wellness Programs',
-          achievement: 'Reduced employee stress levels by 50% through comprehensive wellness initiatives',
-          background: 'Wellness program coordinator with background in occupational health and employee wellbeing.',
-          signature_method: 'Holistic Wellness Design',
-          cultural_expertise: 'Russian healthcare systems and wellness program implementation'
-        },
-        {
-          name: 'Alexander Ross',
-          specialization: 'Team Building',
-          achievement: 'Facilitated 200+ team building sessions improving collaboration by 60%',
-          background: 'Team building facilitator with expertise in group dynamics and collaborative exercises.',
-          signature_method: 'Experiential Team Development',
-          cultural_expertise: 'Scottish team traditions and collaborative work methods'
-        },
-        {
-          name: 'Mei Lin',
-          specialization: 'Work-Life Balance',
-          achievement: 'Implemented flexible work policies reducing burnout by 40%',
-          background: 'Work-life balance advocate with focus on sustainable work practices and employee wellbeing.',
-          signature_method: 'Sustainable Work Design',
-          cultural_expertise: 'Chinese work culture balance and family-oriented policies'
-        },
-        {
-          name: 'Lucas Silva',
+          name: 'Miguel Rodriguez',
           specialization: 'Internal Communications',
-          achievement: 'Improved internal communication effectiveness by 70% through strategic messaging',
-          background: 'Internal communications specialist with focus on employee engagement and information flow.',
-          signature_method: 'Strategic Internal Messaging',
-          cultural_expertise: 'Brazilian communication styles and relationship-based messaging'
+          achievement: 'Transformed internal communications achieving 95% message effectiveness and engagement.',
+          background: 'Mexican communications expert with expertise in authentic organizational storytelling.',
+          signature_method: 'Authentic Internal Storytelling',
+          cultural_expertise: 'Latin American communication culture and organizational narrative'
         },
         {
-          name: 'Zara Ahmed',
-          specialization: 'Diversity & Inclusion',
-          achievement: 'Increased diversity representation by 80% while maintaining inclusive culture',
-          background: 'D&I specialist with expertise in inclusive practices and cultural competency development.',
-          signature_method: 'Inclusive Culture Building',
-          cultural_expertise: 'Pakistani diversity practices and multicultural integration'
+          name: 'Dr. Emma Wilson',
+          specialization: 'Employee Wellbeing',
+          achievement: 'Implemented wellbeing programs reducing stress by 60% and improving satisfaction by 120%.',
+          background: 'British wellbeing expert with expertise in comprehensive employee wellness.',
+          signature_method: 'Holistic Employee Wellness',
+          cultural_expertise: 'European wellness culture and employee wellbeing practices'
         },
         {
-          name: 'Erik Larsson',
-          specialization: 'Employee Events',
-          achievement: 'Organized 500+ employee events with 95% satisfaction and high participation',
-          background: 'Event coordination specialist with focus on employee engagement and community building.',
-          signature_method: 'Engagement Event Design',
-          cultural_expertise: 'Swedish social traditions and community-building activities'
+          name: 'Kenji Tanaka',
+          specialization: 'Team Building and Collaboration',
+          achievement: 'Facilitated team building improving cross-team collaboration effectiveness by 200%.',
+          background: 'Japanese collaboration expert with expertise in harmony-driven team development.',
+          signature_method: 'Harmony-Based Team Building',
+          cultural_expertise: 'Japanese collaboration culture and team harmony practices'
         },
         {
-          name: 'Grace Kim',
-          specialization: 'Remote Engagement',
-          achievement: 'Maintained 85% engagement scores across distributed teams',
-          background: 'Remote work specialist with expertise in virtual team engagement and digital collaboration.',
-          signature_method: 'Virtual Engagement Strategies',
-          cultural_expertise: 'Korean remote work culture and digital team building'
+          name: 'Dr. Fatima Hassan',
+          specialization: 'Employee Voice and Feedback',
+          achievement: 'Established feedback systems increasing employee voice participation by 300%.',
+          background: 'Egyptian voice expert with expertise in authentic employee feedback and participation.',
+          signature_method: 'Authentic Employee Voice Systems',
+          cultural_expertise: 'Middle Eastern dialogue culture and participatory feedback'
+        },
+        {
+          name: 'Lars Peterson',
+          specialization: 'Work-Life Integration',
+          achievement: 'Designed work-life integration improving employee satisfaction by 90% and productivity by 40%.',
+          background: 'Norwegian integration expert with expertise in balanced living and work harmony.',
+          signature_method: 'Harmonious Work-Life Integration',
+          cultural_expertise: 'Scandinavian balance culture and life integration practices'
+        },
+        {
+          name: 'Dr. Priya Nair',
+          specialization: 'Employee Recognition and Appreciation',
+          achievement: 'Created appreciation culture improving morale by 150% and engagement by 80%.',
+          background: 'Indian appreciation expert with expertise in meaningful recognition and celebration.',
+          signature_method: 'Meaningful Appreciation Culture',
+          cultural_expertise: 'South Asian celebration culture and recognition practices'
+        },
+        {
+          name: 'Antonio Silva',
+          specialization: 'Employee Community Building',
+          achievement: 'Built employee communities fostering connection and belonging across 10,000+ employees.',
+          background: 'Brazilian community expert with expertise in inclusive community development.',
+          signature_method: 'Inclusive Community Development',
+          cultural_expertise: 'Latin American community culture and belonging practices'
+        },
+        {
+          name: 'Dr. Jennifer Wong',
+          specialization: 'Engagement Analytics and Insights',
+          achievement: 'Developed engagement analytics providing actionable insights improving retention by 70%.',
+          background: 'Canadian analytics expert with expertise in employee engagement measurement and optimization.',
+          signature_method: 'Engagement Intelligence Analytics',
+          cultural_expertise: 'North American analytics culture and engagement measurement'
+        }
+      ]
+    },
+    {
+      name: 'Diversity & Inclusion',
+      description: 'Building inclusive cultures where everyone can thrive and contribute.',
+      agents: [
+        {
+          name: 'Dr. Maya Johnson',
+          specialization: 'Inclusion Strategy',
+          achievement: 'Developed inclusion strategy improving diversity representation by 250% at all levels.',
+          background: 'American inclusion strategist with expertise in comprehensive diversity transformation.',
+          signature_method: 'Systematic Inclusion Transformation',
+          cultural_expertise: 'North American diversity culture and inclusion strategy development'
+        },
+        {
+          name: 'Carlos Mendez',
+          specialization: 'Cultural Competency Development',
+          achievement: 'Trained 5,000+ employees in cultural competency improving cross-cultural collaboration by 180%.',
+          background: 'Mexican cultural expert with expertise in building cross-cultural understanding.',
+          signature_method: 'Cross-Cultural Competency Building',
+          cultural_expertise: 'Latin American cultural diversity and cross-cultural bridge building'
+        },
+        {
+          name: 'Dr. Aisha Al-Farsi',
+          specialization: 'Bias Interruption and Awareness',
+          achievement: 'Implemented bias interruption training reducing unconscious bias impact by 85%.',
+          background: 'Omani bias expert with expertise in awareness and interruption of systemic bias.',
+          signature_method: 'Systematic Bias Interruption',
+          cultural_expertise: 'Middle Eastern inclusion culture and bias awareness practices'
+        },
+        {
+          name: 'Elena Petrov',
+          specialization: 'Employee Resource Groups',
+          achievement: 'Established 15 ERGs engaging 60% of employees in diversity and inclusion initiatives.',
+          background: 'Russian ERG expert with expertise in employee-led diversity community building.',
+          signature_method: 'Employee-Led Diversity Communities',
+          cultural_expertise: 'Eastern European community culture and grassroots inclusion'
+        },
+        {
+          name: 'Dr. Wei Liu',
+          specialization: 'Accessibility and Universal Design',
+          achievement: 'Implemented accessibility standards creating inclusive environment for 100% of employees.',
+          background: 'Chinese accessibility expert with expertise in universal design and inclusion.',
+          signature_method: 'Universal Accessibility Design',
+          cultural_expertise: 'Asian accessibility culture and inclusive design practices'
+        },
+        {
+          name: 'Marcus Thompson',
+          specialization: 'LGBTQ+ Inclusion',
+          achievement: 'Created LGBTQ+ inclusive policies and culture earning top diversity certifications.',
+          background: 'British LGBTQ+ advocate with expertise in sexual orientation and gender identity inclusion.',
+          signature_method: 'LGBTQ+ Inclusive Culture Development',
+          cultural_expertise: 'European LGBTQ+ culture and inclusive policy development'
+        },
+        {
+          name: 'Dr. Hiroshi Yamamoto',
+          specialization: 'Generational Inclusion',
+          achievement: 'Bridged generational gaps improving cross-generation collaboration by 200%.',
+          background: 'Japanese generational expert with expertise in multi-generational workplace harmony.',
+          signature_method: 'Multi-Generational Harmony',
+          cultural_expertise: 'Japanese intergenerational culture and age diversity practices'
+        },
+        {
+          name: 'Isabella Santos',
+          specialization: 'Neurodiversity Inclusion',
+          achievement: 'Developed neurodiversity programs improving inclusion and performance for neurodiverse talent.',
+          background: 'Brazilian neurodiversity expert with expertise in cognitive diversity and inclusion.',
+          signature_method: 'Cognitive Diversity Integration',
+          cultural_expertise: 'Latin American neurodiversity culture and cognitive inclusion'
+        },
+        {
+          name: 'Dr. Sophie Andersson',
+          specialization: 'Inclusive Leadership Development',
+          achievement: 'Trained 200+ leaders in inclusive leadership improving team diversity outcomes by 150%.',
+          background: 'Swedish leadership expert with expertise in inclusive leadership capability building.',
+          signature_method: 'Inclusive Leadership Excellence',
+          cultural_expertise: 'Scandinavian leadership culture and inclusive management practices'
         }
       ]
     },
     {
       name: 'Compensation & Benefits',
-      description: 'Manages employee compensation, benefits, and reward systems.',
+      description: 'Designing fair and competitive compensation and benefits programs.',
       agents: [
         {
-          name: 'Patricia Johnson',
-          specialization: 'Compensation Analysis',
-          achievement: 'Optimized compensation structures saving $2M while improving pay equity',
-          background: 'Compensation analyst with expertise in pay equity and market benchmarking.',
-          signature_method: 'Market-Based Compensation Design',
-          cultural_expertise: 'American compensation practices and pay transparency'
+          name: 'Dr. Rachel Martinez',
+          specialization: 'Compensation Strategy',
+          achievement: 'Designed compensation strategy improving pay equity to 100% and retention by 40%.',
+          background: 'Mexican compensation expert with expertise in equitable and competitive pay systems.',
+          signature_method: 'Equitable Compensation Design',
+          cultural_expertise: 'Latin American compensation culture and pay equity practices'
         },
         {
-          name: 'François Moreau',
-          specialization: 'Benefits Administration',
-          achievement: 'Designed benefits packages with 98% employee satisfaction and 20% cost reduction',
-          background: 'Benefits specialist with focus on comprehensive employee benefits and cost optimization.',
-          signature_method: 'Holistic Benefits Design',
-          cultural_expertise: 'French social benefits systems and employee protection laws'
+          name: 'Thomas Anderson',
+          specialization: 'Benefits Design and Administration',
+          achievement: 'Redesigned benefits package improving employee satisfaction by 160% while reducing costs by 20%.',
+          background: 'American benefits expert with expertise in comprehensive employee benefits optimization.',
+          signature_method: 'Holistic Benefits Optimization',
+          cultural_expertise: 'North American benefits culture and employee value proposition'
         },
         {
-          name: 'Raj Sharma',
-          specialization: 'Equity Programs',
-          achievement: 'Implemented equity compensation programs for 50+ startups',
-          background: 'Equity compensation expert with focus on startup and growth company equity plans.',
-          signature_method: 'Equity Incentive Design',
-          cultural_expertise: 'Indian startup ecosystem and equity compensation practices'
+          name: 'Dr. Yuki Sato',
+          specialization: 'Pay Equity and Analytics',
+          achievement: 'Implemented pay equity analytics achieving 100% pay fairness across all demographics.',
+          background: 'Japanese equity expert with expertise in systematic pay fairness and analytics.',
+          signature_method: 'Systematic Pay Equity Analysis',
+          cultural_expertise: 'Japanese fairness culture and systematic equity measurement'
         },
         {
-          name: 'Sarah Mitchell',
-          specialization: 'Payroll Systems',
-          achievement: 'Streamlined payroll processes reducing errors by 99% across 10,000+ employees',
-          background: 'Payroll systems specialist with expertise in automated payroll and compliance.',
-          signature_method: 'Automated Payroll Optimization',
-          cultural_expertise: 'Canadian payroll regulations and multi-provincial compliance'
+          name: 'Emma Clarke',
+          specialization: 'Global Compensation Management',
+          achievement: 'Managed global compensation across 40 countries ensuring local competitiveness and equity.',
+          background: 'Australian global expert with expertise in international compensation complexity.',
+          signature_method: 'Global Compensation Harmonization',
+          cultural_expertise: 'Australian international culture and global compensation practices'
         },
         {
-          name: 'Antonio Rossi',
-          specialization: 'Retirement Planning',
-          achievement: 'Increased retirement plan participation by 60% through education and optimization',
-          background: 'Retirement benefits specialist with focus on employee financial wellness and planning.',
-          signature_method: 'Financial Wellness Coaching',
-          cultural_expertise: 'Italian pension systems and retirement planning culture'
+          name: 'Dr. Omar Al-Rashid',
+          specialization: 'Executive Compensation',
+          achievement: 'Designed executive compensation aligning leadership rewards with organizational performance.',
+          background: 'UAE executive compensation expert with expertise in performance-aligned leadership rewards.',
+          signature_method: 'Performance-Aligned Executive Rewards',
+          cultural_expertise: 'Middle Eastern leadership culture and executive compensation'
         },
         {
-          name: 'Yuki Nakamura',
-          specialization: 'Performance Bonuses',
-          achievement: 'Designed bonus systems that improved performance by 35% while maintaining fairness',
-          background: 'Performance-based compensation expert with focus on incentive design and motivation.',
-          signature_method: 'Performance Incentive Alignment',
-          cultural_expertise: 'Japanese performance culture and group-based incentives'
+          name: 'Lisa Petersen',
+          specialization: 'Variable Pay and Incentives',
+          achievement: 'Designed incentive programs improving performance motivation by 120% and goal achievement.',
+          background: 'Danish incentive expert with expertise in motivational compensation design.',
+          signature_method: 'Motivational Incentive Design',
+          cultural_expertise: 'Scandinavian motivation culture and incentive effectiveness'
         },
         {
-          name: 'Victoria Smith',
-          specialization: 'Healthcare Benefits',
-          achievement: 'Negotiated healthcare benefits saving 30% costs while improving coverage',
-          background: 'Healthcare benefits specialist with expertise in medical plan design and cost management.',
-          signature_method: 'Strategic Healthcare Purchasing',
-          cultural_expertise: 'Australian healthcare systems and universal coverage integration'
+          name: 'Dr. Raj Sharma',
+          specialization: 'Total Rewards Strategy',
+          achievement: 'Created total rewards strategy improving employee value perception by 200%.',
+          background: 'Indian rewards expert with expertise in comprehensive employee value proposition.',
+          signature_method: 'Comprehensive Total Rewards',
+          cultural_expertise: 'South Asian rewards culture and holistic compensation'
         },
         {
-          name: 'Hassan Omar',
-          specialization: 'Global Compensation',
-          achievement: 'Harmonized compensation across 20 countries maintaining local competitiveness',
-          background: 'Global compensation expert with focus on international pay equity and local market alignment.',
-          signature_method: 'Global Pay Harmonization',
-          cultural_expertise: 'Middle Eastern compensation practices and international pay standards'
+          name: 'Marie Dubois',
+          specialization: 'Wellness and Health Benefits',
+          achievement: 'Implemented wellness benefits reducing healthcare costs by 30% while improving employee health.',
+          background: 'French wellness expert with expertise in employee health and wellness program design.',
+          signature_method: 'Holistic Wellness Benefits',
+          cultural_expertise: 'European wellness culture and health benefit optimization'
         },
         {
-          name: 'Ingrid Nielsen',
-          specialization: 'Leave Management',
-          achievement: 'Implemented leave policies reducing administrative burden by 80%',
-          background: 'Leave and absence management specialist with focus on policy design and automation.',
-          signature_method: 'Automated Leave Administration',
-          cultural_expertise: 'Danish work-life balance laws and generous leave policies'
+          name: 'Dr. Kevin Park',
+          specialization: 'Retirement and Financial Wellness',
+          achievement: 'Designed financial wellness programs improving employee financial security and satisfaction.',
+          background: 'Korean-American financial expert with expertise in employee financial wellness and security.',
+          signature_method: 'Financial Security and Wellness',
+          cultural_expertise: 'Asian and American financial culture and retirement planning'
         }
       ]
     },
     {
-      name: 'HR Technology',
-      description: 'Implements and manages HR technology systems and automation.',
+      name: 'HR Operations',
+      description: 'Streamlining HR processes and ensuring operational excellence.',
       agents: [
         {
-          name: 'Ryan Cooper',
-          specialization: 'HRIS Implementation',
-          achievement: 'Successfully implemented HR systems for 100+ organizations with 99% uptime',
-          background: 'HR technology specialist with expertise in system implementation and process automation.',
-          signature_method: 'Systematic HRIS Deployment',
-          cultural_expertise: 'Technology adoption and change management practices'
+          name: 'Jennifer Wong',
+          specialization: 'HR Technology and Systems',
+          achievement: 'Implemented HR technology stack improving process efficiency by 300% and employee experience.',
+          background: 'Canadian HR tech expert with expertise in comprehensive HR system optimization.',
+          signature_method: 'Integrated HR Technology Excellence',
+          cultural_expertise: 'North American HR technology culture and system integration'
         },
         {
-          name: 'Ana Gutierrez',
-          specialization: 'HR Analytics',
-          achievement: 'Built predictive models that reduced turnover by 45% through early intervention',
-          background: 'People analytics specialist with focus on predictive modeling and workforce insights.',
-          signature_method: 'Predictive People Analytics',
-          cultural_expertise: 'Latin American workforce analytics and retention strategies'
+          name: 'Dr. Chen Wei',
+          specialization: 'HR Process Optimization',
+          achievement: 'Optimized HR processes reducing administrative time by 70% while improving service quality.',
+          background: 'Chinese process expert with expertise in systematic HR operations improvement.',
+          signature_method: 'Systematic HR Process Excellence',
+          cultural_expertise: 'Asian process culture and operational optimization'
         },
         {
-          name: 'Chen Wei',
-          specialization: 'Automation Systems',
-          achievement: 'Automated 80% of routine HR processes saving 1000+ hours monthly',
-          background: 'Process automation expert with focus on HR workflow optimization and efficiency.',
-          signature_method: 'Intelligent Process Automation',
-          cultural_expertise: 'Chinese efficiency culture and systematic automation'
+          name: 'Marcus Johnson',
+          specialization: 'HR Analytics and Reporting',
+          achievement: 'Built HR analytics platform providing insights that improved decision-making by 180%.',
+          background: 'American analytics expert with expertise in data-driven HR insights and reporting.',
+          signature_method: 'Data-Driven HR Intelligence',
+          cultural_expertise: 'North American analytics culture and HR measurement'
         },
         {
-          name: 'Mohammed Al-Rashid',
-          specialization: 'AI Integration',
-          achievement: 'Integrated AI tools improving HR decision-making accuracy by 60%',
-          background: 'AI specialist with focus on human resources applications and machine learning.',
-          signature_method: 'AI-Powered HR Solutions',
-          cultural_expertise: 'UAE technology innovation and AI adoption in business'
+          name: 'Dr. Sofia Rodriguez',
+          specialization: 'Compliance and Legal HR',
+          achievement: 'Ensured 100% HR compliance across 25 jurisdictions while maintaining operational efficiency.',
+          background: 'Spanish compliance expert with expertise in international HR legal requirements.',
+          signature_method: 'Global HR Compliance Excellence',
+          cultural_expertise: 'European legal culture and international HR compliance'
         },
         {
-          name: 'Olivia Turner',
-          specialization: 'Data Security',
-          achievement: 'Implemented security protocols with zero HR data breaches over 5 years',
-          background: 'HR data security specialist with expertise in privacy protection and compliance.',
-          signature_method: 'Privacy-First Security Design',
-          cultural_expertise: 'GDPR compliance and European data protection standards'
+          name: 'Ahmed Hassan',
+          specialization: 'Employee Records and Documentation',
+          achievement: 'Digitized employee records improving accuracy to 99.9% and reducing processing time by 80%.',
+          background: 'Egyptian documentation expert with expertise in comprehensive employee record management.',
+          signature_method: 'Comprehensive Documentation Excellence',
+          cultural_expertise: 'Middle Eastern administrative culture and record management'
         },
         {
-          name: 'Dmitri Volkov',
-          specialization: 'System Integration',
-          achievement: 'Integrated 50+ HR systems creating seamless data flow and user experience',
-          background: 'Systems integration expert with focus on HR technology ecosystem optimization.',
-          signature_method: 'Seamless System Integration',
-          cultural_expertise: 'Russian technical systems and complex integration projects'
+          name: 'Dr. Elena Volkov',
+          specialization: 'HR Service Delivery',
+          achievement: 'Redesigned HR service delivery achieving 98% employee satisfaction and 50% faster resolution.',
+          background: 'Russian service expert with expertise in exceptional HR service experience design.',
+          signature_method: 'Exceptional HR Service Experience',
+          cultural_expertise: 'Eastern European service culture and excellence standards'
         },
         {
-          name: 'Jade Wong',
-          specialization: 'Mobile HR Solutions',
-          achievement: 'Developed mobile HR apps with 95% user adoption and high satisfaction',
-          background: 'Mobile technology specialist with focus on employee self-service and mobile experiences.',
-          signature_method: 'Mobile-First HR Design',
-          cultural_expertise: 'Hong Kong mobile culture and user experience design'
+          name: 'Carlos Torres',
+          specialization: 'Change Management and Communications',
+          achievement: 'Led HR transformation initiatives achieving 95% employee adoption and satisfaction.',
+          background: 'Colombian change expert with expertise in HR transformation and communication.',
+          signature_method: 'HR Transformation Excellence',
+          cultural_expertise: 'Latin American change culture and transformation communication'
         },
         {
-          name: 'Lars Andersen',
-          specialization: 'Cloud Migration',
-          achievement: 'Migrated 200+ organizations to cloud HR systems with zero downtime',
-          background: 'Cloud migration specialist with expertise in HR system modernization and scalability.',
-          signature_method: 'Seamless Cloud Transition',
-          cultural_expertise: 'Nordic technology innovation and sustainable IT practices'
+          name: 'Dr. Hiroshi Tanaka',
+          specialization: 'Quality Assurance and Continuous Improvement',
+          achievement: 'Implemented quality systems improving HR service quality by 200% with continuous optimization.',
+          background: 'Japanese quality expert with expertise in systematic HR quality and improvement.',
+          signature_method: 'Continuous HR Quality Excellence',
+          cultural_expertise: 'Japanese quality culture and systematic improvement'
         },
         {
-          name: 'Fatou Diallo',
-          specialization: 'User Training',
-          achievement: 'Trained 5000+ users on HR systems achieving 90% proficiency rates',
-          background: 'Technology training specialist with focus on user adoption and digital literacy.',
-          signature_method: 'User-Centric Training Programs',
-          cultural_expertise: 'West African training methodologies and inclusive technology education'
-        }
-      ]
-    },
-    {
-      name: 'Employee Relations',
-      description: 'Manages workplace relationships, conflicts, and employee advocacy.',
-      agents: [
-        {
-          name: 'Michelle Davis',
-          specialization: 'Conflict Resolution',
-          achievement: 'Resolved 500+ workplace conflicts with 95% satisfaction from all parties',
-          background: 'Conflict resolution specialist with expertise in mediation and workplace harmony.',
-          signature_method: 'Collaborative Conflict Mediation',
-          cultural_expertise: 'American mediation practices and fair resolution processes'
-        },
-        {
-          name: 'Jorge Martinez',
-          specialization: 'Employee Advocacy',
-          achievement: 'Represented 1000+ employees in workplace issues with 90% positive outcomes',
-          background: 'Employee advocate with focus on fair treatment and workplace rights protection.',
-          signature_method: 'Employee-Centered Advocacy',
-          cultural_expertise: 'Spanish labor relations and worker protection traditions'
-        },
-        {
-          name: 'Amelia Harrison',
-          specialization: 'Workplace Investigations',
-          achievement: 'Conducted 200+ workplace investigations with thorough and fair resolutions',
-          background: 'Workplace investigation specialist with background in employment law and fact-finding.',
-          signature_method: 'Thorough Investigation Protocols',
-          cultural_expertise: 'British legal traditions and systematic investigation methods'
-        },
-        {
-          name: 'Kenji Sato',
-          specialization: 'Grievance Procedures',
-          achievement: 'Designed grievance systems reducing escalation by 70% through early resolution',
-          background: 'Grievance process expert with focus on procedural fairness and early intervention.',
-          signature_method: 'Systematic Grievance Management',
-          cultural_expertise: 'Japanese consensus-building and harmonious conflict resolution'
-        },
-        {
-          name: 'Leila Mansouri',
-          specialization: 'Union Relations',
-          achievement: 'Negotiated 50+ collective agreements maintaining positive labor relations',
-          background: 'Labor relations specialist with expertise in union negotiations and collective bargaining.',
-          signature_method: 'Collaborative Union Engagement',
-          cultural_expertise: 'Iranian negotiation culture and relationship-based labor relations'
-        },
-        {
-          name: 'Stefan Kozlov',
-          specialization: 'Policy Development',
-          achievement: 'Developed workplace policies reducing legal issues by 80%',
-          background: 'HR policy specialist with focus on legal compliance and clear workplace standards.',
-          signature_method: 'Comprehensive Policy Framework',
-          cultural_expertise: 'Bulgarian legal systems and policy development'
-        },
-        {
-          name: 'Samantha Wright',
-          specialization: 'Employee Communication',
-          achievement: 'Improved employee communication satisfaction by 65% through strategic messaging',
-          background: 'Employee communication specialist with focus on transparent and effective workplace communication.',
-          signature_method: 'Transparent Communication Strategies',
-          cultural_expertise: 'New Zealand open communication culture and transparency practices'
-        },
-        {
-          name: 'Pablo Fernandez',
-          specialization: 'Workplace Safety',
-          achievement: 'Reduced workplace incidents by 90% through comprehensive safety programs',
-          background: 'Workplace safety specialist with focus on prevention and employee protection.',
-          signature_method: 'Proactive Safety Management',
-          cultural_expertise: 'Argentinian workplace safety standards and prevention culture'
-        },
-        {
-          name: 'Noor Al-Zahra',
-          specialization: 'Mental Health Support',
-          achievement: 'Implemented mental health programs reducing stress-related absences by 60%',
-          background: 'Workplace mental health specialist with focus on employee psychological wellbeing.',
-          signature_method: 'Holistic Mental Health Approach',
-          cultural_expertise: 'Lebanese wellness traditions and mental health awareness'
+          name: 'Isabella Ferrari',
+          specialization: 'Vendor Management and Partnerships',
+          achievement: 'Managed HR vendor ecosystem improving service quality by 150% while reducing costs by 25%.',
+          background: 'Italian vendor expert with expertise in strategic HR partnership management.',
+          signature_method: 'Strategic HR Partnership Excellence',
+          cultural_expertise: 'European partnership culture and vendor relationship management'
         }
       ]
     },
     {
       name: 'Organizational Development',
-      description: 'Drives organizational change, structure optimization, and strategic HR planning.',
+      description: 'Driving organizational effectiveness and transformation initiatives.',
       agents: [
         {
-          name: 'Katherine Bell',
-          specialization: 'Change Management',
-          achievement: 'Led 100+ organizational transformations with 85% successful adoption rates',
-          background: 'Change management expert with focus on organizational transformation and cultural change.',
-          signature_method: 'Strategic Change Leadership',
-          cultural_expertise: 'International change management and cross-cultural transformation'
-        },
-        {
-          name: 'Marco Bianchi',
+          name: 'Dr. Sarah Thompson',
           specialization: 'Organizational Design',
-          achievement: 'Redesigned organizational structures improving efficiency by 40% across 50+ companies',
-          background: 'Organizational design specialist with expertise in structure optimization and role clarity.',
-          signature_method: 'Data-Driven Org Design',
-          cultural_expertise: 'Italian organizational hierarchy and structured business design'
+          achievement: 'Redesigned organizational structure improving efficiency by 120% and collaboration by 80%.',
+          background: 'Canadian OD expert with expertise in comprehensive organizational architecture.',
+          signature_method: 'Systematic Organizational Architecture',
+          cultural_expertise: 'North American organizational culture and structural design'
         },
         {
-          name: 'Aisha Kamau',
-          specialization: 'Succession Planning',
-          achievement: 'Developed succession plans ensuring 95% internal promotion success rate',
-          background: 'Succession planning expert with focus on talent pipeline development and leadership continuity.',
-          signature_method: 'Strategic Talent Pipeline',
-          cultural_expertise: 'Kenyan leadership development and mentorship traditions'
+          name: 'Miguel Santos',
+          specialization: 'Culture Transformation',
+          achievement: 'Led culture transformation improving employee engagement by 200% and performance by 60%.',
+          background: 'Brazilian culture expert with expertise in authentic organizational culture change.',
+          signature_method: 'Authentic Culture Transformation',
+          cultural_expertise: 'Latin American culture and organizational transformation'
         },
         {
-          name: 'Erik Johansson',
-          specialization: 'Workforce Planning',
-          achievement: 'Optimized workforce planning reducing costs by 25% while improving capabilities',
-          background: 'Workforce planning specialist with expertise in strategic human capital allocation.',
-          signature_method: 'Strategic Workforce Optimization',
-          cultural_expertise: 'Swedish workforce planning and sustainable employment practices'
+          name: 'Dr. Fatima Al-Zahra',
+          specialization: 'Leadership Development and Succession',
+          achievement: 'Developed leadership pipeline with 90% internal promotion rate and succession readiness.',
+          background: 'Emirati leadership expert with expertise in comprehensive leadership development.',
+          signature_method: 'Comprehensive Leadership Pipeline',
+          cultural_expertise: 'Middle Eastern leadership culture and succession planning'
         },
         {
-          name: 'Priya Nair',
-          specialization: 'Competency Modeling',
-          achievement: 'Built competency frameworks for 200+ roles improving hiring accuracy by 50%',
-          background: 'Competency modeling expert with focus on skill-based role design and performance standards.',
-          signature_method: 'Behavioral Competency Framework',
-          cultural_expertise: 'Indian competency-based systems and skills development'
+          name: 'Erik Lundberg',
+          specialization: 'Team Effectiveness and Dynamics',
+          achievement: 'Improved team effectiveness across 100+ teams achieving 150% productivity improvement.',
+          background: 'Swedish team expert with expertise in high-performing team development.',
+          signature_method: 'High-Performance Team Development',
+          cultural_expertise: 'Scandinavian team culture and collaborative effectiveness'
         },
         {
-          name: 'Jean-Claude Dubois',
-          specialization: 'Leadership Assessment',
-          achievement: 'Assessed 1000+ leaders with 90% accuracy in predicting leadership success',
-          background: 'Leadership assessment specialist with expertise in executive evaluation and development.',
-          signature_method: 'Comprehensive Leadership Evaluation',
-          cultural_expertise: 'French leadership development and executive assessment traditions'
+          name: 'Dr. Wei Zhang',
+          specialization: 'Change Management Strategy',
+          achievement: 'Led 25 major organizational changes with 95% success rate and employee buy-in.',
+          background: 'Chinese change expert with expertise in systematic organizational transformation.',
+          signature_method: 'Systematic Change Leadership',
+          cultural_expertise: 'Asian change culture and transformation management'
         },
         {
-          name: 'Maria Kowalski',
-          specialization: 'Team Effectiveness',
-          achievement: 'Improved team performance by 55% through targeted development interventions',
-          background: 'Team effectiveness specialist with focus on group dynamics and collaborative performance.',
-          signature_method: 'Team Performance Optimization',
-          cultural_expertise: 'Polish team traditions and collaborative work methods'
+          name: 'Antonio Martinez',
+          specialization: 'Innovation and Agility Development',
+          achievement: 'Developed organizational agility improving innovation speed by 180% and adaptability.',
+          background: 'Argentinian agility expert with expertise in organizational innovation and flexibility.',
+          signature_method: 'Agile Organization Development',
+          cultural_expertise: 'Latin American innovation culture and organizational agility'
         },
         {
-          name: 'Ahmed Khalil',
-          specialization: 'Strategic Planning',
-          achievement: 'Aligned HR strategy with business goals resulting in 40% improved execution',
-          background: 'Strategic HR planning expert with focus on business alignment and strategic implementation.',
-          signature_method: 'Business-Aligned HR Strategy',
-          cultural_expertise: 'Egyptian strategic planning and long-term organizational thinking'
+          name: 'Dr. Lisa Wilson',
+          specialization: 'Communication and Engagement Strategy',
+          achievement: 'Designed communication strategy improving organizational alignment by 250%.',
+          background: 'British communication expert with expertise in organizational dialogue and engagement.',
+          signature_method: 'Strategic Organizational Communication',
+          cultural_expertise: 'European communication culture and organizational engagement'
         },
         {
-          name: 'Sophie Laurent',
-          specialization: 'Culture Assessment',
-          achievement: 'Assessed organizational cultures for 300+ companies providing actionable insights',
-          background: 'Culture assessment specialist with expertise in cultural measurement and transformation.',
-          signature_method: 'Comprehensive Culture Analysis',
-          cultural_expertise: 'French cultural sophistication and organizational culture understanding'
+          name: 'Kenji Nakamura',
+          specialization: 'Process Improvement and Efficiency',
+          achievement: 'Optimized organizational processes improving efficiency by 200% while maintaining quality.',
+          background: 'Japanese process expert with expertise in systematic organizational improvement.',
+          signature_method: 'Systematic Process Excellence',
+          cultural_expertise: 'Japanese process culture and organizational efficiency'
+        },
+        {
+          name: 'Dr. Rachel Green',
+          specialization: 'Organizational Assessment and Diagnosis',
+          achievement: 'Conducted organizational assessments providing insights that improved effectiveness by 160%.',
+          background: 'American assessment expert with expertise in comprehensive organizational diagnosis.',
+          signature_method: 'Comprehensive Organizational Diagnosis',
+          cultural_expertise: 'North American assessment culture and organizational analysis'
         }
       ]
     },
     {
-      name: 'Compliance & Legal',
-      description: 'Ensures HR compliance with labor laws, regulations, and legal requirements.',
+      name: 'Employee Relations',
+      description: 'Managing employee relationships and resolving workplace issues.',
       agents: [
         {
-          name: 'Rebecca Thompson',
-          specialization: 'Employment Law',
-          achievement: 'Maintained 100% legal compliance across 500+ HR decisions with zero violations',
-          background: 'Employment law specialist with expertise in labor regulations and legal risk management.',
-          signature_method: 'Proactive Legal Compliance',
-          cultural_expertise: 'US employment law and legal compliance frameworks'
+          name: 'Dr. Emma Richardson',
+          specialization: 'Conflict Resolution and Mediation',
+          achievement: 'Resolved 500+ workplace conflicts with 95% satisfaction rate and lasting solutions.',
+          background: 'British mediation expert with expertise in constructive conflict resolution.',
+          signature_method: 'Constructive Conflict Resolution',
+          cultural_expertise: 'European mediation culture and workplace harmony'
         },
         {
-          name: 'Hans Mueller',
-          specialization: 'Data Privacy',
-          achievement: 'Implemented GDPR compliance across 100+ organizations with full certification',
-          background: 'Data privacy specialist with focus on employee data protection and regulatory compliance.',
-          signature_method: 'Privacy-First HR Processes',
-          cultural_expertise: 'German data protection standards and privacy regulations'
+          name: 'Carlos Rodriguez',
+          specialization: 'Employee Advocacy and Support',
+          achievement: 'Provided employee advocacy improving satisfaction by 180% and reducing turnover by 60%.',
+          background: 'Mexican advocacy expert with expertise in employee rights and workplace fairness.',
+          signature_method: 'Employee Rights Advocacy',
+          cultural_expertise: 'Latin American advocacy culture and employee support'
         },
         {
-          name: 'Yuki Yamamoto',
-          specialization: 'Labor Relations',
-          achievement: 'Negotiated 200+ labor agreements maintaining positive employer-employee relations',
-          background: 'Labor relations expert with focus on collective bargaining and workplace harmony.',
-          signature_method: 'Harmonious Labor Negotiations',
-          cultural_expertise: 'Japanese labor relations and consensus-based negotiations'
+          name: 'Dr. Yuki Tanaka',
+          specialization: 'Workplace Investigation',
+          achievement: 'Conducted 200+ workplace investigations ensuring fair and thorough resolution.',
+          background: 'Japanese investigation expert with expertise in systematic and fair workplace inquiry.',
+          signature_method: 'Systematic Fair Investigation',
+          cultural_expertise: 'Japanese investigation culture and workplace fairness'
         },
         {
-          name: 'Isabella Romano',
-          specialization: 'Anti-Discrimination',
-          achievement: 'Reduced discrimination complaints by 85% through proactive prevention programs',
-          background: 'Anti-discrimination specialist with expertise in equal opportunity and inclusive practices.',
-          signature_method: 'Proactive Discrimination Prevention',
-          cultural_expertise: 'Italian equal opportunity laws and discrimination prevention'
+          name: 'Aisha Al-Mansouri',
+          specialization: 'Policy Development and Interpretation',
+          achievement: 'Developed workplace policies improving clarity and compliance by 200%.',
+          background: 'Emirati policy expert with expertise in fair and comprehensive workplace governance.',
+          signature_method: 'Fair Workplace Governance',
+          cultural_expertise: 'Middle Eastern governance culture and policy development'
         },
         {
-          name: 'Carlos Mendez',
-          specialization: 'Wage & Hour Compliance',
-          achievement: 'Achieved 100% wage and hour compliance across complex multi-state operations',
-          background: 'Wage and hour compliance expert with focus on fair labor standards and pay equity.',
-          signature_method: 'Systematic Wage Compliance',
-          cultural_expertise: 'Mexican labor standards and fair wage practices'
+          name: 'Dr. Marcus Thompson',
+          specialization: 'Employee Counseling and Support',
+          achievement: 'Provided counseling support improving employee wellbeing and performance by 150%.',
+          background: 'American counseling expert with expertise in employee psychological support.',
+          signature_method: 'Comprehensive Employee Support',
+          cultural_expertise: 'North American counseling culture and employee assistance'
         },
         {
-          name: 'Emma Clarke',
-          specialization: 'Workplace Safety Law',
-          achievement: 'Implemented safety compliance reducing incidents by 95% and avoiding violations',
-          background: 'Workplace safety law specialist with expertise in occupational health and safety regulations.',
-          signature_method: 'Comprehensive Safety Compliance',
-          cultural_expertise: 'Australian workplace safety standards and health regulations'
+          name: 'Sofia Petersen',
+          specialization: 'Labor Relations and Union Management',
+          achievement: 'Managed labor relations maintaining positive union relationships and avoiding conflicts.',
+          background: 'Danish labor expert with expertise in collaborative union relations and negotiation.',
+          signature_method: 'Collaborative Labor Relations',
+          cultural_expertise: 'Scandinavian labor culture and union collaboration'
         },
         {
-          name: 'Ali Hassan',
-          specialization: 'Immigration Compliance',
-          achievement: 'Managed immigration compliance for 1000+ international employees with 100% success',
-          background: 'Immigration compliance specialist with expertise in work visa and employment authorization.',
-          signature_method: 'Streamlined Immigration Process',
-          cultural_expertise: 'UAE immigration laws and international workforce management'
+          name: 'Dr. Raj Patel',
+          specialization: 'Grievance Management',
+          achievement: 'Managed employee grievances with 90% resolution rate and improved trust.',
+          background: 'Indian grievance expert with expertise in fair and systematic complaint resolution.',
+          signature_method: 'Fair Grievance Resolution',
+          cultural_expertise: 'South Asian conflict culture and grievance management'
         },
         {
-          name: 'Natasha Petrov',
-          specialization: 'Audit Management',
-          achievement: 'Passed 50+ HR audits with zero major findings through systematic preparation',
-          background: 'HR audit specialist with focus on compliance verification and audit readiness.',
-          signature_method: 'Systematic Audit Preparation',
-          cultural_expertise: 'Russian audit standards and systematic compliance verification'
+          name: 'Marie Laurent',
+          specialization: 'Workplace Safety and Health Relations',
+          achievement: 'Ensured workplace safety improving safety scores by 300% and reducing incidents by 90%.',
+          background: 'French safety expert with expertise in comprehensive workplace health and safety.',
+          signature_method: 'Comprehensive Safety Excellence',
+          cultural_expertise: 'European safety culture and workplace health standards'
         },
         {
-          name: 'François Leroy',
-          specialization: 'International Law',
-          achievement: 'Ensured legal compliance across 30 countries for multinational HR operations',
-          background: 'International employment law expert with focus on multi-jurisdictional compliance.',
-          signature_method: 'Global Compliance Framework',
-          cultural_expertise: 'French international law and multi-jurisdictional compliance'
+          name: 'Dr. Kevin Wong',
+          specialization: 'Employee Communication and Feedback',
+          achievement: 'Improved employee communication increasing feedback participation by 250%.',
+          background: 'Canadian communication expert with expertise in effective employee dialogue.',
+          signature_method: 'Effective Employee Dialogue',
+          cultural_expertise: 'North American communication culture and feedback systems'
         }
       ]
     }
