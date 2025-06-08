@@ -1,5 +1,6 @@
 
 import { familyMemberDetails } from '@/data/familyMembers';
+import { Agent } from '@/types/family';
 
 export interface FamilyAgent {
   agent_code: string;
@@ -108,14 +109,14 @@ const estimateTaskCoverage = (specialization: string): number => {
 
 export const generateAllFamilyAgents = (): FamilyAgent[] => {
   const agents: FamilyAgent[] = [];
-  let agentCounter = 10001; // Starting fresh
+  let agentCounter = 10001;
 
   Object.entries(familyMemberDetails).forEach(([familyMemberId, familyMember]) => {
     const departmentName = getDepartmentName(familyMemberId);
     
     if (familyMember && familyMember.divisions) {
       familyMember.divisions.forEach((division) => {
-        division.agents.forEach((agent) => {
+        division.agents.forEach((agent: Agent) => {
           const agentCode = `FA${agentCounter.toString().padStart(5, '0')}`;
           
           agents.push({

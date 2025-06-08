@@ -3,21 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Users, Star, Award } from 'lucide-react';
 import { ChatModal } from '@/components/chat/ChatModal';
-
-interface Agent {
-  name: string;
-  specialization: string;
-  achievement: string;
-  background: string;
-  signature_method: string;
-  cultural_expertise: string;
-}
-
-interface Division {
-  name: string;
-  description: string;
-  agents: Agent[];
-}
+import { Division } from '@/types/family';
 
 interface DivisionsGridProps {
   divisions: Division[];

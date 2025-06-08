@@ -26,10 +26,26 @@ export interface FamilyLeader {
 export interface Leader extends FamilyLeader {}
 
 export interface FamilyMember {
+  id: string;
+  name: string;
+  title: string;
+  personality: string;
+  enneagramType: string;
+  motto: string;
+  background: string;
+  domainOverview: string;
+  color: string;
+  icon: any;
+  description: string;
+  agentCount: number;
+  avatar?: string;
+}
+
+export interface FamilyMemberDetail {
   leader: FamilyLeader;
   divisions: Division[];
 }
 
 export interface FamilyMemberDetails {
-  [key: string]: FamilyMember;
+  [key: string]: FamilyMemberDetail;
 }
