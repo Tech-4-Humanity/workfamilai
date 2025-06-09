@@ -134,6 +134,19 @@ export const familyCulturalProfiles: Record<string, CulturalProfile> = {
     culturalHolidays: ['Independence Day', 'Democracy Day', 'Christmas'],
     preferredGreeting: 'Warm handshake with cultural acknowledgment',
     formalityLevel: 'medium'
+  },
+  // Add Trojan Oz as separate governance system
+  'trojan-oz': {
+    primaryLanguage: 'en',
+    secondaryLanguages: ['fr', 'de', 'es', 'zh'],
+    culturalBackground: 'International governance and investment culture with global perspective',
+    communicationStyle: 'Strategic, authoritative, with focus on long-term value creation',
+    businessEtiquette: 'Values strategic thinking, governance excellence, and stakeholder alignment',
+    timeZone: 'UTC',
+    workingHours: '24/7 Global Operations',
+    culturalHolidays: ['Global Strategic Planning Days'],
+    preferredGreeting: 'Formal acknowledgment with strategic context',
+    formalityLevel: 'high'
   }
 };
 

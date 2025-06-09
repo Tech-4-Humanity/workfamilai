@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { NetworkMember } from './NetworkMember';
+import { getCulturalProfile } from '@/data/culturalProfiles';
+import { supportedLanguages } from '@/i18n/config';
 
 interface FamilyMember {
   id: string;
@@ -18,6 +20,12 @@ interface NetworkVisualizationProps {
 }
 
 export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProps) => {
+  const getLanguageFlag = (memberId: string) => {
+    const profile = getCulturalProfile(memberId);
+    const primaryLang = profile?.primaryLanguage || 'en';
+    return supportedLanguages[primaryLang as keyof typeof supportedLanguages]?.flag || '🌐';
+  };
+
   return (
     <div className="relative h-[500px] mb-8 bg-gradient-to-br from-black/30 to-blue-900/30 rounded-xl border border-cyan-400/30 overflow-hidden backdrop-blur-sm">
       {/* Advanced background effects */}
@@ -108,9 +116,24 @@ export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProp
         </circle>
       </svg>
       
-      {/* Enhanced Family Member Nodes with Faces */}
+      {/* Enhanced Family Member Nodes with Faces and Language Indicators */}
       {familyMembers.map((member, index) => (
-        <NetworkMember key={member.id} member={member} index={index} />
+        <div key={member.id}>
+          <NetworkMember member={member} index={index} />
+          {/* Language flag overlay */}
+          <div 
+            className="absolute transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20"
+            style={{ 
+              left: `${member.x}%`, 
+              top: `${member.y}%`,
+              transform: 'translate(-50%, -50%) translate(20px, -20px)'
+            }}
+          >
+            <div className="bg-white/90 backdrop-blur-sm rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-lg border border-white/50">
+              {getLanguageFlag(member.id)}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );

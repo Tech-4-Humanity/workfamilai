@@ -4,6 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Users } from 'lucide-react';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
+import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
+import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { useState } from 'react';
 
 interface LeaderCardProps {
@@ -25,6 +27,11 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const imageUrl = getLeaderImageUrl(leader.name);
+
+  // Get language capabilities for this leader
+  const supportedLanguages = getSupportedLanguagesForMember(leader.id);
+  const culturalProfile = getCulturalProfile(leader.id);
+  const primaryLanguage = culturalProfile?.primaryLanguage || 'en';
 
   // Each department leader manages 81 agents (9 divisions × 9 agents each)
   const departmentAgentCount = 81;
@@ -102,6 +109,17 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
           <Badge variant="secondary" className="text-xs backdrop-blur-sm bg-white/30">
             {leader.personality}
           </Badge>
+        </div>
+
+        {/* Language Indicators */}
+        <div className="mb-4">
+          <LanguageIndicator 
+            languages={supportedLanguages}
+            primaryLanguage={primaryLanguage}
+            variant="compact"
+            showPopover={true}
+            className="justify-start"
+          />
         </div>
       </CardHeader>
 
