@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "الشبكة العائلية",
+    "admin": "الإدارة",
+    "scenarios": "السيناريوهات",
+    "demo": "عرض توضيحي",
+    "holoOrg": "المنظمة الشاملة",
+    "orgIntelligence": "الذكاء التنظيمي"
+  },
+  "family": {
+    "title": "شبكة الوعي العائلي للذكاء الاصطناعي",
+    "subtitle": "تعرف على 10 قادة تنفيذيين يديرون 810 وكيل ذكاء اصطناعي متخصص",
+    "totalAgents": "إجمالي وكلاء الذكاء الاصطناعي",
+    "activeDepartments": "الأقسام النشطة",
+    "neuralConnections": "الاتصالات العصبية",
+    "consciousnessLayers": "طبقات الوعي",
+    "viewProfile": "عرض الملف الشخصي",
+    "chatWith": "المحادثة مع {{name}}",
+    "backToFamily": "العودة إلى الشبكة العائلية"
+  },
+  "department": {
+    "divisions": "الأقسام",
+    "agents": "الوكلاء",
+    "totalAgents": "إجمالي الوكلاء",
+    "divisionsCount": "{{count}} أقسام",
+    "agentsCount": "{{count}} وكلاء",
+    "leaderPersonality": "أسلوب القيادة",
+    "viewEnhancedProfile": "عرض الملف المحسن",
+    "loadingProfile": "جارٍ تحميل الملف المحسن...",
+    "notFound": "القسم غير موجود",
+    "notFoundMessage": "القسم الذي تبحث عنه غير موجود في شبكتنا العائلية.",
+    "databaseIntegration": "تكامل قاعدة البيانات نشط",
+    "databaseMessage": "عرض {{count}} وكلاء عينة من قاعدة البيانات العائلية. كل قسم يدير 81 وكيل متخصص في هرم الوعي الكامل."
+  },
+  "chat": {
+    "startConversation": "بدء محادثة مع {{name}}",
+    "typeMessage": "اكتب رسالتك...",
+    "send": "إرسال",
+    "recording": "جارٍ التسجيل...",
+    "listening": "جارٍ الاستماع...",
+    "speaking": "جارٍ التحدث...",
+    "orgMode": "الوضع التجاري",
+    "collaborativeMode": "جلسة تعاونية",
+    "businessInsights": "رؤى الأعمال",
+    "partnershipOpportunities": "فرص الشراكة",
+    "expertise": "الخبرة"
+  },
+  "voice": {
+    "askAboutFamily": "اسأل عن العائلة",
+    "listening": "جارٍ الاستماع...",
+    "speakResults": "نتائج صوتية",
+    "foundAgents": "تم العثور على {{count}} أعضاء عائلة ذوي صلة",
+    "lastQuery": "الاستعلام الأخير: \"{{query}}\""
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "close": "إغلاق",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة"
+  }
+}

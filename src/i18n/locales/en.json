@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "Family Network",
+    "admin": "Admin",
+    "scenarios": "Scenarios",
+    "demo": "Demo",
+    "holoOrg": "Holo-Org",
+    "orgIntelligence": "Organizational Intelligence"
+  },
+  "family": {
+    "title": "AI Family Consciousness Network",
+    "subtitle": "Meet the 10 executive leaders managing 810 specialized AI agents",
+    "totalAgents": "Total AI Agents",
+    "activeDepartments": "Active Departments",
+    "neuralConnections": "Neural Connections",
+    "consciousnessLayers": "Consciousness Layers",
+    "viewProfile": "View Profile",
+    "chatWith": "Chat with {{name}}",
+    "backToFamily": "Back to Family Network"
+  },
+  "department": {
+    "divisions": "Divisions",
+    "agents": "Agents",
+    "totalAgents": "Total Agents",
+    "divisionsCount": "{{count}} Divisions",
+    "agentsCount": "{{count}} Agents",
+    "leaderPersonality": "Leadership Style",
+    "viewEnhancedProfile": "View Enhanced Profile",
+    "loadingProfile": "Loading enhanced profile...",
+    "notFound": "Department Not Found",
+    "notFoundMessage": "The department you are looking for does not exist in our family network.",
+    "databaseIntegration": "Database Integration Active",
+    "databaseMessage": "Showing {{count}} sample agents from the family database. Each department manages 81 specialized agents in the complete consciousness pyramid."
+  },
+  "chat": {
+    "startConversation": "Start a conversation with {{name}}",
+    "typeMessage": "Type your message...",
+    "send": "Send",
+    "recording": "Recording...",
+    "listening": "Listening...",
+    "speaking": "Speaking...",
+    "orgMode": "Business Mode",
+    "collaborativeMode": "Collaborative Session",
+    "businessInsights": "Business insights",
+    "partnershipOpportunities": "Partnership opportunities",
+    "expertise": "Expertise"
+  },
+  "voice": {
+    "askAboutFamily": "Ask About Family",
+    "listening": "Listening...",
+    "speakResults": "Speak Results",
+    "foundAgents": "Found {{count}} relevant family members",
+    "lastQuery": "Last Query: \"{{query}}\""
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "language": "Language",
+    "selectLanguage": "Select Language"
+  }
+}

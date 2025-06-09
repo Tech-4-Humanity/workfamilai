@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n/config";
 import Index from "./pages/Index";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
@@ -13,6 +15,7 @@ import ScenarioDetail from "./pages/ScenarioDetail";
 import DemoComingSoon from "./pages/DemoComingSoon";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
+import { LanguageSwitcher } from "./components/ui/language-switcher";
 
 // Optimized query client for production
 const queryClient = new QueryClient({
@@ -26,26 +29,31 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/department/:departmentId" element={<DepartmentDetail />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/scenarios" element={<Scenarios />} />
-          <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
-          <Route path="/demo" element={<DemoComingSoon />} />
-          <Route path="/holo-org" element={<HoloOrgDashboard />} />
-          <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
-          {/* Catch-all route for 404 handling - MUST be last */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <I18nextProvider i18n={i18n}>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="fixed top-4 right-4 z-50">
+            <LanguageSwitcher />
+          </div>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/department/:departmentId" element={<DepartmentDetail />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/scenarios" element={<Scenarios />} />
+            <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
+            <Route path="/demo" element={<DemoComingSoon />} />
+            <Route path="/holo-org" element={<HoloOrgDashboard />} />
+            <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
+            {/* Catch-all route for 404 handling - MUST be last */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </I18nextProvider>
 );
 
 export default App;

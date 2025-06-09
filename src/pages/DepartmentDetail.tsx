@@ -1,6 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, Loader2 } from 'lucide-react';
 import { familyMemberDetails } from '@/data/familyMembers';
@@ -14,6 +15,7 @@ import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 const DepartmentDetail = () => {
   const { departmentId } = useParams<{ departmentId: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [showEnhancedProfile, setShowEnhancedProfile] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { getAgentsByFamilyMember } = useFamilyAgentQueries();
@@ -31,13 +33,13 @@ const DepartmentDetail = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col items-center justify-center">
         <div className="text-center max-w-md mx-auto p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Department Not Found</h1>
-          <p className="text-gray-600 mb-8">The department you are looking for does not exist in our family network.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">{t('department.notFound')}</h1>
+          <p className="text-gray-600 mb-8">{t('department.notFoundMessage')}</p>
           <Button 
             onClick={() => navigate('/')}
             className="px-6 py-3"
           >
-            Return to Family Network
+            {t('family.backToFamily')}
           </Button>
         </div>
       </div>
@@ -92,7 +94,7 @@ const DepartmentDetail = () => {
           className="mb-8 flex items-center hover:bg-blue-50 transition-colors"
         >
           <ChevronLeft className="mr-2 h-4 w-4" />
-          Back to Family Network
+          {t('family.backToFamily')}
         </Button>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -120,10 +122,9 @@ const DepartmentDetail = () => {
         
         {databaseAgents.length > 0 && (
           <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <h3 className="text-lg font-semibold mb-2 text-blue-900">🔗 Database Integration Active</h3>
+            <h3 className="text-lg font-semibold mb-2 text-blue-900">🔗 {t('department.databaseIntegration')}</h3>
             <p className="text-sm text-blue-700">
-              Showing {databaseAgents.length} sample agents from the family database. 
-              Each department manages 81 specialized agents in the complete consciousness pyramid.
+              {t('department.databaseMessage', { count: databaseAgents.length })}
             </p>
           </div>
         )}
@@ -134,7 +135,7 @@ const DepartmentDetail = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 flex items-center space-x-3">
             <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
-            <span className="text-gray-700">Loading enhanced profile...</span>
+            <span className="text-gray-700">{t('department.loadingProfile')}</span>
           </div>
         </div>
       )}

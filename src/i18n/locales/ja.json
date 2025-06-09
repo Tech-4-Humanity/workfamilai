@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "ファミリーネットワーク",
+    "admin": "管理",
+    "scenarios": "シナリオ",
+    "demo": "デモ",
+    "holoOrg": "ホロ組織",
+    "orgIntelligence": "組織インテリジェンス"
+  },
+  "family": {
+    "title": "AI家族意識ネットワーク",
+    "subtitle": "810人の専門AIエージェントを管理する10人の経営幹部に会う",
+    "totalAgents": "総AIエージェント",
+    "activeDepartments": "アクティブ部門",
+    "neuralConnections": "神経接続",
+    "consciousnessLayers": "意識層",
+    "viewProfile": "プロフィール表示",
+    "chatWith": "{{name}}とチャット",
+    "backToFamily": "ファミリーネットワークに戻る"
+  },
+  "department": {
+    "divisions": "部門",
+    "agents": "エージェント",
+    "totalAgents": "総エージェント",
+    "divisionsCount": "{{count}}部門",
+    "agentsCount": "{{count}}エージェント",
+    "leaderPersonality": "リーダーシップスタイル",
+    "viewEnhancedProfile": "拡張プロフィール表示",
+    "loadingProfile": "拡張プロフィールを読み込み中...",
+    "notFound": "部門が見つかりません",
+    "notFoundMessage": "お探しの部門は、私たちのファミリーネットワークに存在しません。",
+    "databaseIntegration": "データベース統合アクティブ",
+    "databaseMessage": "ファミリーデータベースから{{count}}のサンプルエージェントを表示。各部門は完全な意識ピラミッドで81の専門エージェントを管理します。"
+  },
+  "chat": {
+    "startConversation": "{{name}}との会話を開始",
+    "typeMessage": "メッセージを入力...",
+    "send": "送信",
+    "recording": "録音中...",
+    "listening": "聞いています...",
+    "speaking": "話しています...",
+    "orgMode": "ビジネスモード",
+    "collaborativeMode": "コラボレーションセッション",
+    "businessInsights": "ビジネス洞察",
+    "partnershipOpportunities": "パートナーシップの機会",
+    "expertise": "専門知識"
+  },
+  "voice": {
+    "askAboutFamily": "ファミリーについて質問",
+    "listening": "聞いています...",
+    "speakResults": "結果を話す",
+    "foundAgents": "関連するファミリーメンバー{{count}}人を発見",
+    "lastQuery": "最後のクエリ：\"{{query}}\""
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "close": "閉じる",
+    "language": "言語",
+    "selectLanguage": "言語を選択"
+  }
+}

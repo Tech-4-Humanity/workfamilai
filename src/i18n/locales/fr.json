@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "Réseau Familial",
+    "admin": "Administration",
+    "scenarios": "Scénarios",
+    "demo": "Démo",
+    "holoOrg": "Holo-Org",
+    "orgIntelligence": "Intelligence Organisationnelle"
+  },
+  "family": {
+    "title": "Réseau de Conscience Familiale IA",
+    "subtitle": "Rencontrez les 10 dirigeants exécutifs gérant 810 agents IA spécialisés",
+    "totalAgents": "Agents IA Totaux",
+    "activeDepartments": "Départements Actifs",
+    "neuralConnections": "Connexions Neuronales",
+    "consciousnessLayers": "Couches de Conscience",
+    "viewProfile": "Voir le Profil",
+    "chatWith": "Discuter avec {{name}}",
+    "backToFamily": "Retour au Réseau Familial"
+  },
+  "department": {
+    "divisions": "Divisions",
+    "agents": "Agents",
+    "totalAgents": "Agents Totaux",
+    "divisionsCount": "{{count}} Divisions",
+    "agentsCount": "{{count}} Agents",
+    "leaderPersonality": "Style de Leadership",
+    "viewEnhancedProfile": "Voir le Profil Amélioré",
+    "loadingProfile": "Chargement du profil amélioré...",
+    "notFound": "Département Introuvable",
+    "notFoundMessage": "Le département que vous recherchez n'existe pas dans notre réseau familial.",
+    "databaseIntegration": "Intégration Base de Données Active",
+    "databaseMessage": "Affichage de {{count}} agents échantillons de la base de données familiale. Chaque département gère 81 agents spécialisés dans la pyramide de conscience complète."
+  },
+  "chat": {
+    "startConversation": "Commencer une conversation avec {{name}}",
+    "typeMessage": "Tapez votre message...",
+    "send": "Envoyer",
+    "recording": "Enregistrement...",
+    "listening": "Écoute...",
+    "speaking": "Parole...",
+    "orgMode": "Mode Entreprise",
+    "collaborativeMode": "Session Collaborative",
+    "businessInsights": "Perspectives d'affaires",
+    "partnershipOpportunities": "Opportunités de partenariat",
+    "expertise": "Expertise"
+  },
+  "voice": {
+    "askAboutFamily": "Demander à Propos de la Famille",
+    "listening": "Écoute...",
+    "speakResults": "Résultats Vocaux",
+    "foundAgents": "Trouvé {{count}} membres de famille pertinents",
+    "lastQuery": "Dernière Requête : \"{{query}}\""
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "close": "Fermer",
+    "language": "Langue",
+    "selectLanguage": "Sélectionner la Langue"
+  }
+}

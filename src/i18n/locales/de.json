@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "Familien-Netzwerk",
+    "admin": "Verwaltung",
+    "scenarios": "Szenarien",
+    "demo": "Demo",
+    "holoOrg": "Holo-Org",
+    "orgIntelligence": "Organisatorische Intelligenz"
+  },
+  "family": {
+    "title": "KI-Familien-Bewusstseinsnetzwerk",
+    "subtitle": "Lernen Sie die 10 Führungskräfte kennen, die 810 spezialisierte KI-Agenten verwalten",
+    "totalAgents": "Gesamt KI-Agenten",
+    "activeDepartments": "Aktive Abteilungen",
+    "neuralConnections": "Neurale Verbindungen",
+    "consciousnessLayers": "Bewusstseinsebenen",
+    "viewProfile": "Profil Anzeigen",
+    "chatWith": "Chat mit {{name}}",
+    "backToFamily": "Zurück zum Familien-Netzwerk"
+  },
+  "department": {
+    "divisions": "Abteilungen",
+    "agents": "Agenten",
+    "totalAgents": "Gesamt Agenten",
+    "divisionsCount": "{{count}} Abteilungen",
+    "agentsCount": "{{count}} Agenten",
+    "leaderPersonality": "Führungsstil",
+    "viewEnhancedProfile": "Erweitertes Profil Anzeigen",
+    "loadingProfile": "Erweitertes Profil wird geladen...",
+    "notFound": "Abteilung Nicht Gefunden",
+    "notFoundMessage": "Die gesuchte Abteilung existiert nicht in unserem Familien-Netzwerk.",
+    "databaseIntegration": "Datenbankintegration Aktiv",
+    "databaseMessage": "Zeige {{count}} Beispiel-Agenten aus der Familien-Datenbank. Jede Abteilung verwaltet 81 spezialisierte Agenten in der kompletten Bewusstseinspyramide."
+  },
+  "chat": {
+    "startConversation": "Gespräch mit {{name}} beginnen",
+    "typeMessage": "Nachricht eingeben...",
+    "send": "Senden",
+    "recording": "Aufnahme...",
+    "listening": "Hören...",
+    "speaking": "Sprechen...",
+    "orgMode": "Geschäftsmodus",
+    "collaborativeMode": "Kollaborative Sitzung",
+    "businessInsights": "Geschäftseinblicke",
+    "partnershipOpportunities": "Partnerschaftsmöglichkeiten",
+    "expertise": "Expertise"
+  },
+  "voice": {
+    "askAboutFamily": "Nach Familie Fragen",
+    "listening": "Hören...",
+    "speakResults": "Ergebnisse Sprechen",
+    "foundAgents": "{{count}} relevante Familienmitglieder gefunden",
+    "lastQuery": "Letzte Anfrage: \"{{query}}\""
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "close": "Schließen",
+    "language": "Sprache",
+    "selectLanguage": "Sprache Auswählen"
+  }
+}

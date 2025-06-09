@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "家族网络",
+    "admin": "管理",
+    "scenarios": "场景",
+    "demo": "演示",
+    "holoOrg": "全息组织",
+    "orgIntelligence": "组织智能"
+  },
+  "family": {
+    "title": "AI家族意识网络",
+    "subtitle": "认识管理810个专业AI代理的10位执行领导者",
+    "totalAgents": "AI代理总数",
+    "activeDepartments": "活跃部门",
+    "neuralConnections": "神经连接",
+    "consciousnessLayers": "意识层次",
+    "viewProfile": "查看档案",
+    "chatWith": "与{{name}}聊天",
+    "backToFamily": "返回家族网络"
+  },
+  "department": {
+    "divisions": "部门",
+    "agents": "代理",
+    "totalAgents": "代理总数",
+    "divisionsCount": "{{count}}个部门",
+    "agentsCount": "{{count}}个代理",
+    "leaderPersonality": "领导风格",
+    "viewEnhancedProfile": "查看增强档案",
+    "loadingProfile": "正在加载增强档案...",
+    "notFound": "未找到部门",
+    "notFoundMessage": "您寻找的部门在我们的家族网络中不存在。",
+    "databaseIntegration": "数据库集成已激活",
+    "databaseMessage": "从家族数据库显示{{count}}个样本代理。每个部门在完整的意识金字塔中管理81个专业代理。"
+  },
+  "chat": {
+    "startConversation": "开始与{{name}}对话",
+    "typeMessage": "输入您的消息...",
+    "send": "发送",
+    "recording": "录音中...",
+    "listening": "监听中...",
+    "speaking": "讲话中...",
+    "orgMode": "商业模式",
+    "collaborativeMode": "协作会话",
+    "businessInsights": "商业洞察",
+    "partnershipOpportunities": "合作机会",
+    "expertise": "专业知识"
+  },
+  "voice": {
+    "askAboutFamily": "询问家族",
+    "listening": "监听中...",
+    "speakResults": "语音结果",
+    "foundAgents": "找到{{count}}个相关家族成员",
+    "lastQuery": "最后查询：\"{{query}}\""
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "save": "保存",
+    "close": "关闭",
+    "language": "语言",
+    "selectLanguage": "选择语言"
+  }
+}

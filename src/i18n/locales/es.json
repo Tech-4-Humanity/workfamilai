@@ -1,0 +1,66 @@
+
+{
+  "navigation": {
+    "home": "Red Familiar",
+    "admin": "Administración",
+    "scenarios": "Escenarios",
+    "demo": "Demo",
+    "holoOrg": "Holo-Org",
+    "orgIntelligence": "Inteligencia Organizacional"
+  },
+  "family": {
+    "title": "Red de Conciencia Familiar IA",
+    "subtitle": "Conoce a los 10 líderes ejecutivos que gestionan 810 agentes IA especializados",
+    "totalAgents": "Agentes IA Totales",
+    "activeDepartments": "Departamentos Activos",
+    "neuralConnections": "Conexiones Neuronales",
+    "consciousnessLayers": "Capas de Conciencia",
+    "viewProfile": "Ver Perfil",
+    "chatWith": "Chatear con {{name}}",
+    "backToFamily": "Volver a la Red Familiar"
+  },
+  "department": {
+    "divisions": "Divisiones",
+    "agents": "Agentes",
+    "totalAgents": "Agentes Totales",
+    "divisionsCount": "{{count}} Divisiones",
+    "agentsCount": "{{count}} Agentes",
+    "leaderPersonality": "Estilo de Liderazgo",
+    "viewEnhancedProfile": "Ver Perfil Mejorado",
+    "loadingProfile": "Cargando perfil mejorado...",
+    "notFound": "Departamento No Encontrado",
+    "notFoundMessage": "El departamento que buscas no existe en nuestra red familiar.",
+    "databaseIntegration": "Integración de Base de Datos Activa",
+    "databaseMessage": "Mostrando {{count}} agentes de muestra de la base de datos familiar. Cada departamento gestiona 81 agentes especializados en la pirámide de conciencia completa."
+  },
+  "chat": {
+    "startConversation": "Iniciar conversación con {{name}}",
+    "typeMessage": "Escribe tu mensaje...",
+    "send": "Enviar",
+    "recording": "Grabando...",
+    "listening": "Escuchando...",
+    "speaking": "Hablando...",
+    "orgMode": "Modo Empresarial",
+    "collaborativeMode": "Sesión Colaborativa",
+    "businessInsights": "Perspectivas empresariales",
+    "partnershipOpportunities": "Oportunidades de asociación",
+    "expertise": "Experiencia"
+  },
+  "voice": {
+    "askAboutFamily": "Preguntar Sobre Familia",
+    "listening": "Escuchando...",
+    "speakResults": "Hablar Resultados",
+    "foundAgents": "Encontrados {{count}} miembros familiares relevantes",
+    "lastQuery": "Última Consulta: \"{{query}}\""
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar Idioma"
+  }
+}
