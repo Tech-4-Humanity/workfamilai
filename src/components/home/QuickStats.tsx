@@ -17,29 +17,29 @@ export const QuickStats = ({ animatedCount, currentAgentCount }: QuickStatsProps
       icon: Users,
       labelKey: 'family.totalAgents',
       value: animatedCount,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50'
+      color: 'text-blue-700',
+      bgColor: 'bg-blue-100 border-blue-200'
     },
     {
       icon: Brain,
       labelKey: 'family.activeDepartments',
       value: 10,
-      color: 'text-green-600',
-      bgColor: 'bg-green-50'
+      color: 'text-green-700',
+      bgColor: 'bg-green-100 border-green-200'
     },
     {
       icon: Network,
       labelKey: 'family.neuralConnections',
       value: Math.floor(currentAgentCount * 1.2),
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50'
+      color: 'text-purple-700',
+      bgColor: 'bg-purple-100 border-purple-200'
     },
     {
       icon: Layers,
       labelKey: 'family.consciousnessLayers',
       value: 9,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50'
+      color: 'text-orange-700',
+      bgColor: 'bg-orange-100 border-orange-200'
     }
   ];
 
@@ -49,15 +49,15 @@ export const QuickStats = ({ animatedCount, currentAgentCount }: QuickStatsProps
         {stats.map((stat) => {
           const IconComponent = stat.icon;
           return (
-            <Card key={stat.labelKey} className="text-center hover:shadow-lg transition-shadow duration-300">
+            <Card key={stat.labelKey} className="text-center hover:shadow-lg transition-shadow duration-300 border-2">
               <CardContent className="p-6">
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${stat.bgColor} mb-4`}>
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${stat.bgColor} border-2 mb-4`}>
                   <IconComponent className={`h-6 w-6 ${stat.color}`} />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-3xl font-bold text-foreground mb-2">
                   {stat.value.toLocaleString()}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">
+                <div className="text-sm text-muted-foreground font-medium">
                   {t(stat.labelKey)}
                 </div>
               </CardContent>
