@@ -69,6 +69,7 @@ export const familyMembers: FamilyMember[] = familyMemberDetails.map((member) =>
 // Verify data integrity
 export const verifyFamilyData = () => {
   console.log('=== Family Data Verification ===');
+  console.log('CRITICAL: Data completion in progress - implementing 729-agent architecture');
   
   let totalAgents = 0;
   let totalDivisions = 0;
@@ -81,26 +82,43 @@ export const verifyFamilyData = () => {
     totalAgents += agentCount;
     
     console.log(`${index + 1}. ${member.leader.name}:`);
-    console.log(`   - Divisions: ${divisionCount}`);
-    console.log(`   - Agents: ${agentCount}`);
+    console.log(`   - Divisions: ${divisionCount} ${divisionCount === 9 ? '✓' : '❌ INCOMPLETE'}`);
+    console.log(`   - Agents: ${agentCount} ${agentCount === 81 ? '✓' : '❌ INCOMPLETE'}`);
+    
+    if (divisionCount < 9 || agentCount < 81) {
+      console.log(`   - STATUS: REQUIRES COMPLETION`);
+      console.log(`   - MISSING: ${9 - divisionCount} divisions, ${81 - agentCount} agents`);
+    }
     
     member.divisions.forEach((division, divIndex) => {
-      console.log(`     ${divIndex + 1}. ${division.name}: ${division.agents.length} agents`);
+      const agentsInDiv = division.agents.length;
+      console.log(`     ${divIndex + 1}. ${division.name}: ${agentsInDiv} agents ${agentsInDiv === 9 ? '✓' : '❌'}`);
     });
   });
   
-  console.log(`\nTotals:`);
-  console.log(`- Family Members: ${familyMemberDetails.length}`);
-  console.log(`- Total Divisions: ${totalDivisions}`);
-  console.log(`- Total Agents: ${totalAgents}`);
-  console.log(`- Expected (9×9×9): ${9 * 9 * 9} agents`);
-  console.log(`- Data Complete: ${totalAgents === 9 * 9 * 9 ? 'YES' : 'NO'}`);
+  const expectedTotal = 729; // 9 members × 9 divisions × 9 agents
+  const completionPercentage = Math.round((totalAgents / expectedTotal) * 100);
+  
+  console.log(`\n=== COMPLETION STATUS ===`);
+  console.log(`- Family Members: ${familyMemberDetails.length}/9 ✓`);
+  console.log(`- Total Divisions: ${totalDivisions}/81 ${totalDivisions === 81 ? '✓' : '❌'}`);
+  console.log(`- Total Agents: ${totalAgents}/${expectedTotal} (${completionPercentage}%)`);
+  console.log(`- Architecture Complete: ${totalAgents === expectedTotal ? 'YES ✓' : 'NO ❌ - IN PROGRESS'}`);
+  
+  if (totalAgents < expectedTotal) {
+    console.log(`\n=== ACTION REQUIRED ===`);
+    console.log(`- Missing: ${expectedTotal - totalAgents} agents`);
+    console.log(`- Phase: Data completion implementation`);
+    console.log(`- Next: Complete remaining divisions and agents`);
+  }
   
   return {
     memberCount: familyMemberDetails.length,
     totalDivisions,
     totalAgents,
-    expectedAgents: 9 * 9 * 9,
-    isComplete: totalAgents === 9 * 9 * 9
+    expectedAgents: expectedTotal,
+    isComplete: totalAgents === expectedTotal,
+    completionPercentage,
+    missingAgents: expectedTotal - totalAgents
   };
 };

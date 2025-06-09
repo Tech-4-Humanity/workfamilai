@@ -1,5 +1,12 @@
 
 import { FamilyMemberData } from '@/types/family';
+import { budgetingForecastingDivision } from './theoWilliams/budgetingForecasting';
+import { treasuryManagementDivision } from './theoWilliams/treasuryManagement';
+import { corporateFinanceDivision } from './theoWilliams/corporateFinance';
+import { taxComplianceDivision } from './theoWilliams/taxCompliance';
+import { financialReportingDivision } from './theoWilliams/financialReporting';
+import { costManagementDivision } from './theoWilliams/costManagement';
+import { investorRelationsDivision } from './theoWilliams/investorRelations';
 
 export const theoWilliamsData: FamilyMemberData = {
   leader: {
@@ -54,6 +61,13 @@ export const theoWilliamsData: FamilyMemberData = {
           cultural_expertise: 'Cybersecurity Threat Analysis'
         }
       ]
-    }
+    },
+    budgetingForecastingDivision,
+    treasuryManagementDivision,
+    corporateFinanceDivision,
+    taxComplianceDivision,
+    financialReportingDivision,
+    costManagementDivision,
+    investorRelationsDivision
   ]
 };
