@@ -11,7 +11,6 @@ import { organizationalDevelopmentDivision } from './priyaSharma/organizationalD
 import { employeeRelationsDivision } from './priyaSharma/employeeRelations';
 
 export const priyaSharmaData: FamilyMemberData = {
-  id: 'priya-sharma',
   leader: {
     name: 'Priya Sharma',
     title: 'Chief People Officer',
