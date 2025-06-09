@@ -48,6 +48,18 @@ export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
     return profile?.primaryLanguage || 'en';
   };
 
+  // Improved sentence structure for agent descriptions
+  const improveAgentDescription = (background: string): string => {
+    // Fix common sentence structure issues
+    return background
+      .replace(/\s+/g, ' ') // Remove extra spaces
+      .replace(/\.\s*([a-z])/g, '. $1') // Ensure proper spacing after periods
+      .replace(/([a-z])\s*\./g, '$1.') // Remove spaces before periods
+      .replace(/^([a-z])/, (match) => match.toUpperCase()) // Capitalize first letter
+      .replace(/\s+([.!?])/g, '$1') // Remove spaces before punctuation
+      .trim();
+  };
+
   // Filter divisions and agents based on language selection
   const filteredDivisions = useMemo(() => {
     if (languageFilter.length === 0) return divisions;
@@ -128,46 +140,62 @@ export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
                   <Card key={agentIndex} className="border border-gray-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                     <CardContent className="p-5 flex-1 flex flex-col">
                       {/* Agent Name - Most Prominent */}
-                      <h4 className="font-bold text-gray-900 text-xl mb-2 leading-tight">
+                      <h4 className="font-bold text-gray-900 text-xl mb-3 leading-tight">
                         {agent.name}
                       </h4>
                       
-                      {/* Specialization Badge and Language Indicators */}
-                      <div className="mb-3 space-y-2">
-                        <Badge variant="secondary" className="text-sm font-medium">
-                          {agent.specialization}
-                        </Badge>
+                      {/* Enhanced Language Indicators - More Prominent */}
+                      <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-blue-800">Language Capabilities</span>
+                          <span className="text-xs text-blue-600">{agentLanguages.length} languages</span>
+                        </div>
                         <LanguageIndicator 
                           languages={agentLanguages}
                           primaryLanguage={primaryLanguage}
                           variant="compact"
                           showPopover={true}
+                          className="justify-start"
                         />
                       </div>
                       
-                      {/* Full Background - No truncation */}
+                      {/* Specialization Badge */}
+                      <div className="mb-3">
+                        <Badge variant="secondary" className="text-sm font-medium px-3 py-1">
+                          {agent.specialization}
+                        </Badge>
+                      </div>
+                      
+                      {/* Improved Background Description */}
                       <div className="flex-1 mb-4">
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          {agent.background}
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                          {improveAgentDescription(agent.background)}
                         </p>
                       </div>
                       
-                      {/* Achievement and Method */}
+                      {/* Achievement and Method with Better Spacing */}
                       <div className="space-y-3 mb-4">
-                        <div className="flex items-start text-sm">
-                          <Award className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700 leading-relaxed">{agent.achievement}</span>
+                        <div className="flex items-start text-sm bg-green-50 p-3 rounded-lg border border-green-100">
+                          <Award className="h-4 w-4 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-medium text-green-800 block mb-1">Key Achievement</span>
+                            <span className="text-gray-700 leading-relaxed">{agent.achievement}</span>
+                          </div>
                         </div>
                         
-                        <div className="flex items-start text-sm">
-                          <Star className="h-4 w-4 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700 leading-relaxed">{agent.signature_method}</span>
+                        <div className="flex items-start text-sm bg-yellow-50 p-3 rounded-lg border border-yellow-100">
+                          <Star className="h-4 w-4 text-yellow-600 mr-3 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="font-medium text-yellow-800 block mb-1">Signature Method</span>
+                            <span className="text-gray-700 leading-relaxed">{agent.signature_method}</span>
+                          </div>
                         </div>
                       </div>
                       
-                      {/* Cultural Expertise */}
-                      <div className="text-xs text-gray-500 mb-4 p-2 bg-gray-50 rounded">
-                        <strong>Cultural Expertise:</strong> {agent.cultural_expertise}
+                      {/* Cultural Expertise with Better Formatting */}
+                      <div className="text-xs mb-4 p-3 bg-purple-50 rounded-lg border border-purple-100">
+                        <span className="font-semibold text-purple-800 block mb-1">Cultural Expertise:</span>
+                        <span className="text-gray-700 leading-relaxed">{agent.cultural_expertise}</span>
                       </div>
 
                       {/* Chat Button */}
@@ -175,7 +203,7 @@ export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
                         <ChatModal
                           agentName={agent.name}
                           agentPersonality={agent.specialization}
-                          agentBackground={`${agent.background} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}. I can communicate fluently in: ${agentLanguages.join(', ')}.`}
+                          agentBackground={`${improveAgentDescription(agent.background)} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}. I can communicate fluently in: ${agentLanguages.join(', ')}.`}
                           agentColor="indigo"
                           buttonText={`Chat with ${agent.name.split(' ')[0]}`}
                           buttonVariant="outline"
