@@ -36,7 +36,6 @@ export const HeroSection = ({
           </p>
           
           <NetworkStats 
-            currentAgentCount={currentAgentCount}
             animatedCount={animatedCount}
           />
           
@@ -46,7 +45,7 @@ export const HeroSection = ({
               onClick={onExploreNetwork}
               className="px-8 py-4 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              Explore Network
+              {t('family.exploreNetwork')}
             </Button>
             <Button 
               variant="outline" 
@@ -54,7 +53,7 @@ export const HeroSection = ({
               onClick={onMeetFamily}
               className="px-8 py-4 text-lg font-semibold border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              Meet the Family
+              {t('family.meetFamily')}
             </Button>
           </div>
         </div>
