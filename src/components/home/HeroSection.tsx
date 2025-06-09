@@ -32,12 +32,12 @@ export const HeroSection = ({
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            {t('family.subtitle')}
+            Meet the 9 executive leaders managing 729 specialized AI agents
           </p>
           
           <NetworkStats 
             animatedCounts={{
-              members: 11,
+              members: 10,
               agents: animatedCount,
               capabilities: currentAgentCount * 12
             }}

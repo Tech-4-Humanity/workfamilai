@@ -3,6 +3,7 @@ import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { LeaderCard } from '@/components/family/LeaderCard';
 import { Footer } from '@/components/ui/footer';
 import { HeroSection } from '@/components/home/HeroSection';
+import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
 import { familyMembers } from '@/data/familyMembers';
@@ -56,6 +57,10 @@ const Index = () => {
     scrollToSection('family-members');
   };
 
+  const handleGetStarted = () => {
+    scrollToSection('family-members');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
       {/* Hero Section */}
@@ -65,6 +70,11 @@ const Index = () => {
         onExploreNetwork={handleExploreNetwork}
         onMeetFamily={handleMeetFamily}
       />
+
+      {/* Welcome Section with Interactive Elements */}
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <WelcomeSection onGetStarted={handleGetStarted} />
+      </div>
 
       {/* Neural Network Section */}
       <div id="neural-network" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
@@ -79,6 +89,12 @@ const Index = () => {
             Each family member brings unique expertise and personality, leading specialized teams 
             of AI agents that work together to solve complex organizational challenges.
           </p>
+          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-sm text-blue-700">
+              <strong>Note:</strong> Trojan Oz represents the Board and Investment Community as a separate oversight system, 
+              managing governance and strategic direction independent of operational departments.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
