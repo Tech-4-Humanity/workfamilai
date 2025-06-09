@@ -9,9 +9,11 @@ import { familyMembers } from '@/data/familyMembers';
 import { getTotalAgentCount } from '@/utils/familyAgentGeneration';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const totalAgentCount = getTotalAgentCount(); // 729 agents
   const [animatedCount, setAnimatedCount] = useState(0);
 
