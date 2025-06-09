@@ -17,7 +17,9 @@
     "consciousnessLayers": "Consciousness Layers",
     "viewProfile": "View Profile",
     "chatWith": "Chat with {{name}}",
-    "backToFamily": "Back to Family Network"
+    "backToFamily": "Back to Family Network",
+    "exploreNetwork": "Explore Network",
+    "meetFamily": "Meet the Family"
   },
   "department": {
     "divisions": "Divisions",

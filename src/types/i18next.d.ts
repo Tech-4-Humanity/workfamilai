@@ -12,3 +12,12 @@ declare module 'i18next' {
     returnNull: false;
   }
 }
+
+// Fix ReactI18NextChildren type conflicts
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any;
+    }
+  }
+}

@@ -36,7 +36,11 @@ export const HeroSection = ({
           </p>
           
           <NetworkStats 
-            animatedCount={animatedCount}
+            animatedCounts={{
+              members: 11,
+              agents: animatedCount,
+              capabilities: currentAgentCount * 12
+            }}
           />
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
