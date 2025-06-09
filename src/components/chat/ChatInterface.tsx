@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -252,10 +251,10 @@ export const ChatInterface = ({
             key={message.id}
             className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
           >
-            <Card className={`max-w-[80%] ${
+            <Card className={`${
               message.type === 'user' 
-                ? `bg-${agentColor}-100 border-${agentColor}-200` 
-                : 'bg-gray-100 border-gray-200'
+                ? `max-w-[80%] bg-${agentColor}-100 border-${agentColor}-200` 
+                : 'w-full bg-gray-100 border-gray-200'
             }`}>
               <CardContent className="p-3">
                 <p className="text-sm">{message.content}</p>
@@ -280,7 +279,7 @@ export const ChatInterface = ({
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <Card className="bg-gray-100 border-gray-200">
+            <Card className="w-full bg-gray-100 border-gray-200">
               <CardContent className="p-3">
                 <div className="flex items-center space-x-2">
                   <div className="flex space-x-1">

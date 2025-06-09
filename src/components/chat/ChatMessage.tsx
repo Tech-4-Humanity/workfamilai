@@ -23,14 +23,20 @@ interface ChatMessageProps {
 export const ChatMessage = ({ message }: ChatMessageProps) => {
   return (
     <div className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-      <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'} rounded-lg p-3`}>
+      <div className={`${
+        message.type === 'user' 
+          ? 'max-w-[80%] bg-primary text-primary-foreground' 
+          : 'w-full bg-muted'
+      } rounded-lg p-3`}>
         <div className="text-sm mb-1">
           {message.type === 'agent' && message.agent_name && (
             <div className="font-medium text-xs opacity-70 mb-1">
               {message.agent_name}
             </div>
           )}
-          {message.content}
+          <div className="whitespace-pre-wrap break-words">
+            {message.content}
+          </div>
         </div>
         
         {/* Expertise References */}
@@ -64,8 +70,8 @@ export const ChatMessage = ({ message }: ChatMessageProps) => {
             <div className="text-xs opacity-70">Business insights:</div>
             {message.insights_generated.map((insight, idx) => (
               <div key={idx} className="text-xs bg-yellow-100 dark:bg-yellow-900/20 rounded p-1 flex items-start gap-1">
-                <Lightbulb className="w-3 h-3 mt-0.5 text-yellow-600" />
-                {insight}
+                <Lightbulb className="w-3 h-3 mt-0.5 text-yellow-600 flex-shrink-0" />
+                <span className="break-words">{insight}</span>
               </div>
             ))}
           </div>
