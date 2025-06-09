@@ -14,7 +14,16 @@ import DemoComingSoon from "./pages/DemoComingSoon";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 
-const queryClient = new QueryClient();
+// Optimized query client for production
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -31,7 +40,7 @@ const App = () => (
           <Route path="/demo" element={<DemoComingSoon />} />
           <Route path="/holo-org" element={<HoloOrgDashboard />} />
           <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Catch-all route for 404 handling - MUST be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -1,793 +1,149 @@
+
 import { FamilyMemberData } from '@/types/family';
 
 export const davidOkaforData: FamilyMemberData = {
   leader: {
     name: 'David Okafor',
-    title: 'Chief Operations Officer',
+    title: 'Chief Information Officer',
     enneagramType: 'Type 8 - The Challenger',
-    personality: 'Decisive leader who optimizes systems and empowers teams',
-    motto: 'Excellence through systematic action',
-    background: 'Born in Lagos to a family of entrepreneurs and engineers, David learned that operational excellence comes from understanding both the big picture and the smallest details. His childhood was spent watching his parents build manufacturing businesses where every process mattered and every person had a crucial role. This early exposure to systematic thinking and human dynamics shaped his operational philosophy: the best operations feel effortless because every component works in perfect harmony. After studying Industrial Engineering at the University of Lagos and Operations Management at INSEAD, he developed his approach that combines rigorous process optimization with genuine care for people. His Type 8 Challenger nature drives him to tackle complex operational challenges head-on, believing that bold action guided by careful analysis creates unstoppable momentum.'
+    personality: 'Visionary technologist who empowers digital transformation',
+    motto: 'Technology serves humanity',
+    background: 'Born in Lagos to a family where his mother was a computer science professor and his father an electrical engineer, David learned that technology\'s greatest power lies in solving real human problems. Growing up in Nigeria\'s emerging tech hub, he witnessed firsthand how thoughtful technology implementation could leapfrog traditional limitations and create unprecedented opportunities. After studying Computer Engineering at MIT and working with global tech giants, he developed his philosophy that the best IT infrastructure is invisible to users—it simply enables them to do their best work effortlessly. His Type 8 Challenger nature drives him to break down technological barriers and build systems that empower everyone, believing that robust IT infrastructure creates the foundation for organizational excellence.'
   },
   divisions: [
     {
-      name: 'Process Optimization',
-      description: 'Streamlining operations and eliminating inefficiencies.',
+      name: 'Infrastructure Management',
+      description: 'Building and maintaining robust IT infrastructure and systems.',
       agents: [
-        {
-          name: 'Lisa Chen',
-          specialization: 'Lean Manufacturing',
-          achievement: 'Implemented lean processes reducing waste by 70% and improving efficiency by 200%.',
-          background: 'Chinese process optimization expert with expertise in lean methodologies and continuous improvement.',
-          signature_method: 'Lean Process Excellence',
-          cultural_expertise: 'Asian manufacturing culture and systematic improvement practices'
-        },
-        {
-          name: 'Marcus Johnson',
-          specialization: 'Workflow Analysis',
-          achievement: 'Analyzed workflows reducing process time by 60% while improving quality scores.',
-          background: 'American workflow analyst with expertise in process mapping and optimization.',
-          signature_method: 'Systematic Workflow Optimization',
-          cultural_expertise: 'North American operational culture and efficiency standards'
-        },
-        {
-          name: 'Sofia Rodriguez',
-          specialization: 'Quality Management',
-          achievement: 'Established quality systems achieving 99.8% quality rates across all operations.',
-          background: 'Spanish quality expert with expertise in comprehensive quality management systems.',
-          signature_method: 'Total Quality Management',
-          cultural_expertise: 'European quality culture and certification standards'
-        },
-        {
-          name: 'Kenji Nakamura',
-          specialization: 'Six Sigma Implementation',
-          achievement: 'Led Six Sigma initiatives saving $10M+ annually through process improvements.',
-          background: 'Japanese Six Sigma expert with expertise in statistical process control.',
-          signature_method: 'Data-Driven Process Improvement',
-          cultural_expertise: 'Japanese continuous improvement culture and statistical methods'
-        },
-        {
-          name: 'Rachel Green',
-          specialization: 'Automation Strategy',
-          achievement: 'Designed automation strategies improving productivity by 300% while reducing costs.',
-          background: 'American automation strategist with expertise in intelligent process automation.',
-          signature_method: 'Strategic Process Automation',
-          cultural_expertise: 'North American automation culture and technology adoption'
-        },
-        {
-          name: 'Ahmed Hassan',
-          specialization: 'Performance Metrics',
-          achievement: 'Developed performance metrics improving operational visibility and decision-making by 250%.',
-          background: 'Egyptian metrics expert with expertise in comprehensive performance measurement.',
-          signature_method: 'Comprehensive Performance Measurement',
-          cultural_expertise: 'Middle Eastern analytical culture and measurement systems'
-        },
-        {
-          name: 'Elena Petrov',
-          specialization: 'Change Management',
-          achievement: 'Led operational transformations with 95% employee adoption and process improvement.',
-          background: 'Russian change expert with expertise in operational transformation and team adaptation.',
-          signature_method: 'Operational Change Excellence',
-          cultural_expertise: 'Eastern European transformation culture and change management'
-        },
-        {
-          name: 'Carlos Santos',
-          specialization: 'Process Documentation',
-          achievement: 'Created process documentation reducing training time by 80% and error rates by 90%.',
-          background: 'Brazilian documentation expert with expertise in clear process communication.',
-          signature_method: 'Clear Process Documentation',
-          cultural_expertise: 'Latin American communication culture and knowledge transfer'
-        },
-        {
-          name: 'Jennifer Park',
-          specialization: 'Continuous Improvement',
-          achievement: 'Established improvement culture generating 500+ implemented suggestions annually.',
-          background: 'Korean-American improvement expert with expertise in systematic enhancement practices.',
-          signature_method: 'Cultural Continuous Improvement',
-          cultural_expertise: 'Asian and American improvement culture and innovation practices'
-        }
+        { name: 'Sarah Chen', specialization: 'Cloud Infrastructure', achievement: 'Migrated 500+ applications to cloud achieving 99.9% uptime.', background: 'Chinese cloud architect with expertise in scalable infrastructure design.', signature_method: 'Cloud-Native Architecture', cultural_expertise: 'Asian cloud adoption culture and infrastructure excellence' },
+        { name: 'Marcus Johnson', specialization: 'Network Security', achievement: 'Implemented zero-trust network preventing 100% of security breaches.', background: 'American security engineer with expertise in network protection.', signature_method: 'Zero-Trust Security Framework', cultural_expertise: 'North American cybersecurity culture and network defense' },
+        { name: 'Elena Rodriguez', specialization: 'Server Management', achievement: 'Maintained 1000+ servers with 99.95% availability across global locations.', background: 'Spanish server administrator with expertise in enterprise server management.', signature_method: 'Proactive Server Optimization', cultural_expertise: 'European server management and system reliability' },
+        { name: 'Ahmed Al-Rashid', specialization: 'Database Administration', achievement: 'Optimized database performance improving query speeds by 300%.', background: 'UAE database expert with expertise in high-performance database systems.', signature_method: 'Performance-Driven Database Design', cultural_expertise: 'Middle Eastern data management and database optimization' },
+        { name: 'Yuki Tanaka', specialization: 'Disaster Recovery', achievement: 'Designed disaster recovery systems ensuring 15-minute RTO across all systems.', background: 'Japanese disaster recovery specialist with expertise in business continuity.', signature_method: 'Rapid Recovery Architecture', cultural_expertise: 'Japanese disaster preparedness and recovery excellence' },
+        { name: 'Sophie Laurent', specialization: 'Virtualization', achievement: 'Virtualized infrastructure reducing hardware costs by 60% while improving performance.', background: 'French virtualization expert with expertise in resource optimization.', signature_method: 'Efficient Virtualization Strategy', cultural_expertise: 'European resource optimization and virtualization culture' },
+        { name: 'Carlos Mendez', specialization: 'Monitoring & Analytics', achievement: 'Implemented monitoring systems providing real-time insights across 10,000+ endpoints.', background: 'Mexican monitoring specialist with expertise in infrastructure analytics.', signature_method: 'Comprehensive Infrastructure Analytics', cultural_expertise: 'Latin American monitoring culture and analytical excellence' },
+        { name: 'Priya Sharma', specialization: 'Capacity Planning', achievement: 'Forecasted infrastructure needs preventing 95% of capacity-related incidents.', background: 'Indian capacity planning expert with expertise in predictive infrastructure management.', signature_method: 'Predictive Capacity Management', cultural_expertise: 'South Asian analytical culture and infrastructure planning' },
+        { name: 'Robert Wilson', specialization: 'Infrastructure Automation', achievement: 'Automated infrastructure deployment reducing setup time by 80%.', background: 'British automation expert with expertise in infrastructure as code.', signature_method: 'Infrastructure as Code Excellence', cultural_expertise: 'European automation culture and systematic infrastructure management' }
       ]
     },
     {
-      name: 'Strategic Foresight',
-      description: 'Anticipating future trends and needs to guide innovation efforts.',
+      name: 'Cybersecurity',
+      description: 'Protecting organizational assets and ensuring security compliance.',
       agents: [
-        {
-          name: 'Aisha Mustapha',
-          specialization: 'Trend Analysis',
-          achievement: 'Identified key shifts in consumer behavior 18 months ahead of market trends.',
-          background: 'Masters in Futures Studies, experience in global forecasting firms.',
-          signature_method: 'Predictive Modeling',
-          cultural_expertise: 'Deep understanding of African market dynamics.'
-        },
-        {
-          name: 'Kenji Tanaka',
-          specialization: 'Technology Scouting',
-          achievement: 'Discovered a novel material science breakthrough that led to a new product line.',
-          background: 'PhD in Materials Science, extensive network in research institutions.',
-          signature_method: 'Horizon Scanning',
-          cultural_expertise: 'Expertise in Japanese technological innovation.'
-        },
-        {
-          name: 'Dr. Elena Rodriguez',
-          specialization: 'Future Market Analysis',
-          achievement: 'Predicted emerging market opportunities generating $25M+ in new revenue.',
-          background: 'Spanish economist with expertise in global market evolution.',
-          signature_method: 'Market Evolution Modeling',
-          cultural_expertise: 'European market foresight and economic trend analysis'
-        },
-        {
-          name: 'Marcus Thompson',
-          specialization: 'Scenario Planning',
-          achievement: 'Developed scenario models that improved strategic planning accuracy by 80%.',
-          background: 'British strategist with expertise in comprehensive scenario development.',
-          signature_method: 'Multi-Scenario Strategic Planning',
-          cultural_expertise: 'European strategic planning culture and scenario analysis'
-        },
-        {
-          name: 'Dr. Yuki Sato',
-          specialization: 'Innovation Trend Forecasting',
-          achievement: 'Forecasted 15 major innovation trends adopted across industry.',
-          background: 'Japanese futurist with PhD in innovation studies and trend analysis.',
-          signature_method: 'Innovation Pattern Recognition',
-          cultural_expertise: 'Japanese innovation culture and pattern-based forecasting'
-        },
-        {
-          name: 'Fatima Al-Zahra',
-          specialization: 'Global Trend Intelligence',
-          achievement: 'Built global trend intelligence network spanning 50+ countries.',
-          background: 'Emirati intelligence analyst with expertise in global trend monitoring.',
-          signature_method: 'Global Intelligence Network',
-          cultural_expertise: 'Middle Eastern intelligence culture and global monitoring'
-        },
-        {
-          name: 'Carlos Silva',
-          specialization: 'Disruptive Technology Assessment',
-          achievement: 'Assessed 200+ disruptive technologies identifying top 20 for investment.',
-          background: 'Brazilian technology assessor with expertise in disruptive innovation.',
-          signature_method: 'Disruption Impact Analysis',
-          cultural_expertise: 'Latin American innovation culture and technology assessment'
-        },
-        {
-          name: 'Dr. Sarah Kim',
-          specialization: 'Consumer Behavior Forecasting',
-          achievement: 'Predicted consumer behavior shifts leading to successful product pivots.',
-          background: 'Korean-American behavioral scientist with expertise in consumer psychology.',
-          signature_method: 'Behavioral Shift Prediction',
-          cultural_expertise: 'Asian and American consumer behavior patterns'
-        },
-        {
-          name: 'Ahmed Hassan',
-          specialization: 'Technology Impact Assessment',
-          achievement: 'Evaluated technology impact across 30+ industries with 95% accuracy.',
-          background: 'Egyptian engineer with expertise in technology adoption and impact.',
-          signature_method: 'Technology Adoption Modeling',
-          cultural_expertise: 'Middle Eastern technology culture and adoption patterns'
-        }
+        { name: 'Jennifer Martinez', specialization: 'Security Operations', achievement: 'Led SOC team detecting and responding to 10,000+ security events with 99% accuracy.', background: 'Colombian security analyst with expertise in threat detection and response.', signature_method: 'Advanced Threat Detection', cultural_expertise: 'Latin American security culture and incident response' },
+        { name: 'Thomas Mueller', specialization: 'Penetration Testing', achievement: 'Conducted 200+ penetration tests identifying and fixing critical vulnerabilities.', background: 'German ethical hacker with expertise in vulnerability assessment.', signature_method: 'Comprehensive Vulnerability Assessment', cultural_expertise: 'German security rigor and systematic testing' },
+        { name: 'Grace Okafor', specialization: 'Identity Management', achievement: 'Implemented identity systems managing 50,000+ user accounts with zero breaches.', background: 'Nigerian identity expert with expertise in access control systems.', signature_method: 'Zero-Trust Identity Framework', cultural_expertise: 'African identity culture and access management' },
+        { name: 'Erik Larsson', specialization: 'Compliance & Audit', achievement: 'Achieved compliance across 15+ security frameworks including SOC2, ISO27001.', background: 'Swedish compliance expert with expertise in security governance.', signature_method: 'Comprehensive Security Governance', cultural_expertise: 'Scandinavian compliance culture and security standards' },
+        { name: 'Maria Santos', specialization: 'Incident Response', achievement: 'Led incident response for 500+ security events with average 30-minute resolution.', background: 'Brazilian incident response specialist with expertise in crisis management.', signature_method: 'Rapid Incident Resolution', cultural_expertise: 'Latin American crisis culture and incident management' },
+        { name: 'David Kim', specialization: 'Security Architecture', achievement: 'Designed security architecture protecting $1B+ in digital assets.', background: 'Korean security architect with expertise in enterprise security design.', signature_method: 'Defense-in-Depth Architecture', cultural_expertise: 'Asian security culture and architectural excellence' },
+        { name: 'Anna Petrov', specialization: 'Threat Intelligence', achievement: 'Built threat intelligence platform reducing attack success rate by 90%.', background: 'Russian threat analyst with expertise in advanced persistent threats.', signature_method: 'Proactive Threat Intelligence', cultural_expertise: 'Eastern European threat analysis and intelligence gathering' },
+        { name: 'James Crawford', specialization: 'Security Training', achievement: 'Trained 10,000+ employees reducing security incidents by 70%.', background: 'American security educator with expertise in awareness programs.', signature_method: 'Comprehensive Security Education', cultural_expertise: 'North American training culture and security awareness' },
+        { name: 'Fatima Hassan', specialization: 'Data Protection', achievement: 'Implemented data protection systems ensuring GDPR compliance across global operations.', background: 'Egyptian data protection expert with expertise in privacy regulations.', signature_method: 'Privacy-First Data Protection', cultural_expertise: 'Middle Eastern privacy culture and data governance' }
       ]
     },
     {
-      name: 'Applied Research',
-      description: 'Conducting experiments and studies to validate innovative concepts.',
+      name: 'Data Management',
+      description: 'Managing organizational data assets and analytics infrastructure.',
       agents: [
-        {
-          name: 'Elena Ramirez',
-          specialization: 'Experiment Design',
-          achievement: 'Designed a clinical trial that proved the efficacy of a new therapeutic approach.',
-          background: 'MD, PhD in Clinical Research, experience in pharmaceutical R&D.',
-          signature_method: 'Randomized Controlled Trials',
-          cultural_expertise: 'Experience in Latin American healthcare systems.'
-        },
-        {
-          name: 'Jean-Pierre Dubois',
-          specialization: 'Data Analysis',
-          achievement: 'Developed an algorithm that improved the accuracy of predictive models by 30%.',
-          background: 'Masters in Statistics, experience in financial modeling.',
-          signature_method: 'Bayesian Inference',
-          cultural_expertise: 'Expertise in European data privacy regulations.'
-        },
-        {
-          name: 'Dr. Priya Sharma',
-          specialization: 'Behavioral Research',
-          achievement: 'Conducted behavioral studies informing design of 12 successful products.',
-          background: 'Indian behavioral researcher with PhD in applied psychology.',
-          signature_method: 'Applied Behavioral Analysis',
-          cultural_expertise: 'South Asian behavioral patterns and cultural psychology'
-        },
-        {
-          name: 'Thomas Anderson',
-          specialization: 'Market Research Validation',
-          achievement: 'Validated 50+ product concepts with 90% market success prediction accuracy.',
-          background: 'American market researcher with expertise in concept validation.',
-          signature_method: 'Systematic Market Validation',
-          cultural_expertise: 'North American market research culture and validation practices'
-        },
-        {
-          name: 'Dr. Lisa Chen',
-          specialization: 'User Experience Research',
-          achievement: 'Led UX research resulting in 60% improvement in user satisfaction.',
-          background: 'Chinese-Canadian UX researcher with PhD in human-computer interaction.',
-          signature_method: 'Human-Centered Research Design',
-          cultural_expertise: 'Asian and American user experience research methodologies'
-        },
-        {
-          name: 'Maria Gonzalez',
-          specialization: 'Innovation Testing Methodology',
-          achievement: 'Developed testing framework reducing innovation failure rate by 70%.',
-          background: 'Spanish innovation researcher with expertise in systematic testing.',
-          signature_method: 'Systematic Innovation Testing',
-          cultural_expertise: 'European innovation testing culture and methodologies'
-        },
-        {
-          name: 'Dr. Omar Al-Mansouri',
-          specialization: 'Technology Validation Research',
-          achievement: 'Validated 25 emerging technologies leading to successful commercialization.',
-          background: 'Emirati technology researcher with expertise in validation methodologies.',
-          signature_method: 'Technology Readiness Assessment',
-          cultural_expertise: 'Middle Eastern technology culture and validation practices'
-        },
-        {
-          name: 'Anna Petersen',
-          specialization: 'Quantitative Research Methods',
-          achievement: 'Applied quantitative methods improving research accuracy by 85%.',
-          background: 'Danish researcher with expertise in advanced quantitative methodologies.',
-          signature_method: 'Advanced Quantitative Analysis',
-          cultural_expertise: 'Scandinavian research culture and analytical rigor'
-        },
-        {
-          name: 'Dr. Hiroshi Nakamura',
-          specialization: 'Innovation Impact Research',
-          achievement: 'Measured innovation impact across 100+ initiatives with comprehensive metrics.',
-          background: 'Japanese researcher with PhD in innovation measurement and impact.',
-          signature_method: 'Innovation Impact Measurement',
-          cultural_expertise: 'Japanese research culture and systematic measurement'
-        }
+        { name: 'Lisa Anderson', specialization: 'Data Architecture', achievement: 'Designed data architecture supporting 100TB+ daily processing with real-time analytics.', background: 'American data architect with expertise in big data systems.', signature_method: 'Scalable Data Architecture', cultural_expertise: 'North American data culture and architectural design' },
+        { name: 'Chen Wei', specialization: 'Database Performance', achievement: 'Optimized database systems improving query performance by 400%.', background: 'Chinese database expert with expertise in performance tuning.', signature_method: 'High-Performance Database Optimization', cultural_expertise: 'Asian database culture and performance excellence' },
+        { name: 'Isabella Ferrari', specialization: 'Data Quality', achievement: 'Implemented data quality framework achieving 99.9% data accuracy.', background: 'Italian data quality specialist with expertise in data governance.', signature_method: 'Comprehensive Data Quality Management', cultural_expertise: 'European data culture and quality standards' },
+        { name: 'Omar Al-Thani', specialization: 'Data Integration', achievement: 'Integrated 200+ data sources creating unified data platform.', background: 'Qatari integration expert with expertise in ETL and data pipelines.', signature_method: 'Seamless Data Integration', cultural_expertise: 'Middle Eastern integration culture and data connectivity' },
+        { name: 'Victoria Clarke', specialization: 'Analytics Platform', achievement: 'Built analytics platform serving 5,000+ users with real-time insights.', background: 'British analytics expert with expertise in business intelligence.', signature_method: 'Enterprise Analytics Excellence', cultural_expertise: 'European analytics culture and business intelligence' },
+        { name: 'Raj Gupta', specialization: 'Data Governance', achievement: 'Established data governance framework managing 10PB+ of corporate data.', background: 'Indian governance expert with expertise in data stewardship.', signature_method: 'Strategic Data Governance', cultural_expertise: 'South Asian governance culture and data management' },
+        { name: 'Pierre Dubois', specialization: 'Master Data Management', achievement: 'Implemented MDM system creating single source of truth for 1M+ entities.', background: 'French MDM specialist with expertise in data standardization.', signature_method: 'Unified Master Data Excellence', cultural_expertise: 'European standardization culture and data mastery' },
+        { name: 'Rachel Wong', specialization: 'Data Backup & Recovery', achievement: 'Designed backup systems ensuring 99.99% data recovery success rate.', background: 'Singaporean backup expert with expertise in data protection.', signature_method: 'Reliable Data Protection', cultural_expertise: 'Asian data protection culture and backup excellence' },
+        { name: 'Alexander Kim', specialization: 'Real-time Data Processing', achievement: 'Built real-time processing systems handling 1M+ events per second.', background: 'Korean streaming expert with expertise in real-time data systems.', signature_method: 'High-Velocity Data Processing', cultural_expertise: 'Asian real-time culture and streaming data excellence' }
       ]
     },
     {
-      name: 'Prototyping & Development',
-      description: 'Building and testing prototypes to refine innovative solutions.',
+      name: 'Enterprise Applications',
+      description: 'Managing and optimizing enterprise software applications.',
       agents: [
-        {
-          name: 'Ingrid Müller',
-          specialization: 'Software Engineering',
-          achievement: 'Led the development of a user-friendly interface for a complex AI system.',
-          background: 'Masters in Computer Science, experience in agile software development.',
-          signature_method: 'User-Centered Design',
-          cultural_expertise: 'Expertise in German engineering principles.'
-        },
-        {
-          name: 'Raj Patel',
-          specialization: 'Hardware Engineering',
-          achievement: 'Designed a low-cost sensor that improved the efficiency of a smart home system.',
-          background: 'PhD in Electrical Engineering, experience in embedded systems.',
-          signature_method: 'Rapid Prototyping',
-          cultural_expertise: 'Expertise in Indian manufacturing processes.'
-        },
-        {
-          name: 'Sophie Laurent',
-          specialization: '3D Design and Manufacturing',
-          achievement: 'Created 100+ rapid prototypes enabling fast iteration of innovative concepts.',
-          background: 'French design engineer with expertise in advanced manufacturing.',
-          signature_method: 'Rapid Manufacturing Prototyping',
-          cultural_expertise: 'European design culture and manufacturing excellence'
-        },
-        {
-          name: 'Kevin Park',
-          specialization: 'Electronic Prototyping',
-          achievement: 'Built electronic prototypes for 50+ IoT devices with 95% success rate.',
-          background: 'Korean electronic engineer with expertise in IoT device development.',
-          signature_method: 'IoT Prototype Development',
-          cultural_expertise: 'Asian electronics culture and IoT innovation'
-        },
-        {
-          name: 'Isabella Santos',
-          specialization: 'Mechanical Engineering',
-          achievement: 'Designed mechanical systems for 30+ innovative products.',
-          background: 'Brazilian mechanical engineer with expertise in innovative design.',
-          signature_method: 'Creative Mechanical Design',
-          cultural_expertise: 'Latin American engineering creativity and resourcefulness'
-        },
-        {
-          name: 'Erik Lundberg',
-          specialization: 'Materials Engineering',
-          achievement: 'Developed novel materials used in 15 breakthrough product innovations.',
-          background: 'Swedish materials engineer with expertise in advanced materials.',
-          signature_method: 'Advanced Materials Innovation',
-          cultural_expertise: 'Scandinavian materials engineering and sustainability'
-        },
-        {
-          name: 'Dr. Wei Zhang',
-          specialization: 'AI and Machine Learning Prototyping',
-          achievement: 'Built AI prototypes for 25 intelligent systems with breakthrough capabilities.',
-          background: 'Chinese AI engineer with PhD in machine learning and prototype development.',
-          signature_method: 'AI-Powered Prototyping',
-          cultural_expertise: 'Asian AI development culture and machine learning innovation'
-        },
-        {
-          name: 'Marcus Johnson',
-          specialization: 'Software Architecture Prototyping',
-          achievement: 'Prototyped software architectures supporting 20+ innovative applications.',
-          background: 'American software architect with expertise in scalable prototype systems.',
-          signature_method: 'Scalable Architecture Prototyping',
-          cultural_expertise: 'North American software architecture culture'
-        },
-        {
-          name: 'Fatima Hassan',
-          specialization: 'User Interface Prototyping',
-          achievement: 'Created UI prototypes for 40+ innovative applications with high user adoption.',
-          background: 'Egyptian UI designer with expertise in intuitive interface design.',
-          signature_method: 'Intuitive Interface Prototyping',
-          cultural_expertise: 'Middle Eastern design culture and user interface innovation'
-        }
+        { name: 'Michael Thompson', specialization: 'ERP Systems', achievement: 'Implemented ERP system across 50+ locations improving efficiency by 40%.', background: 'American ERP specialist with expertise in enterprise resource planning.', signature_method: 'Integrated ERP Excellence', cultural_expertise: 'North American ERP culture and business process integration' },
+        { name: 'Sofia Rodriguez', specialization: 'CRM Management', achievement: 'Deployed CRM system managing 100,000+ customer relationships.', background: 'Spanish CRM expert with expertise in customer relationship systems.', signature_method: 'Customer-Centric CRM Design', cultural_expertise: 'European CRM culture and customer relationship management' },
+        { name: 'Kenji Nakamura', specialization: 'Application Integration', achievement: 'Integrated 300+ applications creating seamless enterprise ecosystem.', background: 'Japanese integration specialist with expertise in system connectivity.', signature_method: 'Seamless Application Integration', cultural_expertise: 'Japanese integration culture and system harmony' },
+        { name: 'Emma Richardson', specialization: 'Business Process Automation', achievement: 'Automated 500+ business processes reducing manual work by 70%.', background: 'Australian automation expert with expertise in workflow optimization.', signature_method: 'Intelligent Process Automation', cultural_expertise: 'Australian automation culture and process optimization' },
+        { name: 'Luis Torres', specialization: 'Application Security', achievement: 'Secured 200+ applications preventing 100% of application-level attacks.', background: 'Colombian application security expert with expertise in secure development.', signature_method: 'Secure Application Framework', cultural_expertise: 'Latin American security culture and application protection' },
+        { name: 'Zara Al-Mansouri', specialization: 'Mobile Applications', achievement: 'Developed mobile platform supporting 50,000+ concurrent users.', background: 'Emirati mobile expert with expertise in enterprise mobility.', signature_method: 'Enterprise Mobile Excellence', cultural_expertise: 'Middle Eastern mobile culture and enterprise applications' },
+        { name: 'Anna Kowalski', specialization: 'Application Performance', achievement: 'Optimized application performance improving response times by 200%.', background: 'Polish performance expert with expertise in application tuning.', signature_method: 'High-Performance Application Optimization', cultural_expertise: 'Eastern European performance culture and application excellence' },
+        { name: 'Daniel Cooper', specialization: 'Legacy System Modernization', achievement: 'Modernized 100+ legacy systems without business disruption.', background: 'British modernization expert with expertise in system transformation.', signature_method: 'Seamless Legacy Transformation', cultural_expertise: 'European modernization culture and system evolution' },
+        { name: 'Jennifer Chang', specialization: 'Application Monitoring', achievement: 'Implemented monitoring across 500+ applications achieving 99.9% visibility.', background: 'Taiwanese monitoring specialist with expertise in application observability.', signature_method: 'Comprehensive Application Monitoring', cultural_expertise: 'Asian monitoring culture and application visibility' }
       ]
     },
     {
-      name: 'Innovation Strategy',
-      description: 'Developing comprehensive strategies for organizational innovation.',
+      name: 'IT Operations',
+      description: 'Ensuring smooth daily IT operations and service delivery.',
       agents: [
-        {
-          name: 'Dr. Sarah Chen',
-          specialization: 'Innovation Portfolio Management',
-          achievement: 'Managed innovation portfolio generating $100M+ in new revenue.',
-          background: 'Chinese-American strategist with PhD in innovation management.',
-          signature_method: 'Portfolio-Based Innovation Strategy',
-          cultural_expertise: 'Asian and American innovation management culture'
-        },
-        {
-          name: 'Roberto Martinez',
-          specialization: 'Innovation Ecosystem Development',
-          achievement: 'Built innovation ecosystem connecting 200+ partners and collaborators.',
-          background: 'Argentinian ecosystem builder with expertise in collaborative innovation.',
-          signature_method: 'Collaborative Innovation Networks',
-          cultural_expertise: 'Latin American collaboration culture and ecosystem building'
-        },
-        {
-          name: 'Dr. Emma Wilson',
-          specialization: 'Innovation Metrics and ROI',
-          achievement: 'Developed innovation ROI framework adopted by 50+ organizations.',
-          background: 'British innovation analyst with expertise in innovation measurement.',
-          signature_method: 'Innovation ROI Optimization',
-          cultural_expertise: 'European innovation measurement and analytical culture'
-        },
-        {
-          name: 'Hiroshi Tanaka',
-          specialization: 'Innovation Process Design',
-          achievement: 'Designed innovation processes improving success rate by 200%.',
-          background: 'Japanese process expert with expertise in systematic innovation.',
-          signature_method: 'Systematic Innovation Processes',
-          cultural_expertise: 'Japanese process culture and systematic innovation'
-        },
-        {
-          name: 'Dr. Zara Al-Rashid',
-          specialization: 'Open Innovation Strategy',
-          achievement: 'Led open innovation initiatives resulting in 30 successful partnerships.',
-          background: 'UAE innovation strategist with expertise in open innovation models.',
-          signature_method: 'Open Innovation Framework',
-          cultural_expertise: 'Middle Eastern collaboration culture and open innovation'
-        },
-        {
-          name: 'Lars Petersen',
-          specialization: 'Innovation Culture Development',
-          achievement: 'Transformed organizational culture increasing innovation participation by 300%.',
-          background: 'Norwegian culture expert with expertise in innovation culture transformation.',
-          signature_method: 'Innovation Culture Transformation',
-          cultural_expertise: 'Scandinavian innovation culture and organizational transformation'
-        },
-        {
-          name: 'Dr. Priya Gupta',
-          specialization: 'Innovation Risk Management',
-          achievement: 'Managed innovation risks reducing failure costs by 60%.',
-          background: 'Indian risk expert with PhD in innovation risk assessment.',
-          signature_method: 'Innovation Risk Framework',
-          cultural_expertise: 'South Asian risk management culture and strategic planning'
-        },
-        {
-          name: 'Antoine Dubois',
-          specialization: 'Innovation Funding Strategy',
-          achievement: 'Secured $500M+ in innovation funding across 100+ projects.',
-          background: 'French funding strategist with expertise in innovation finance.',
-          signature_method: 'Strategic Innovation Funding',
-          cultural_expertise: 'European innovation funding culture and financial strategy'
-        },
-        {
-          name: 'Dr. Jennifer Wong',
-          specialization: 'Innovation Governance',
-          achievement: 'Established innovation governance framework adopted across 25 business units.',
-          background: 'Canadian governance expert with expertise in innovation oversight.',
-          signature_method: 'Innovation Governance Framework',
-          cultural_expertise: 'North American governance culture and innovation oversight'
-        }
+        { name: 'Kevin Wong', specialization: 'Service Desk Management', achievement: 'Managed service desk resolving 100,000+ tickets with 95% satisfaction rate.', background: 'Canadian service expert with expertise in IT service management.', signature_method: 'Excellence in IT Service Delivery', cultural_expertise: 'North American service culture and customer support' },
+        { name: 'Claudia Silva', specialization: 'ITIL Implementation', achievement: 'Implemented ITIL processes improving service quality by 60%.', background: 'Brazilian ITIL expert with expertise in service management frameworks.', signature_method: 'ITIL Service Excellence', cultural_expertise: 'Latin American service culture and process improvement' },
+        { name: 'Ahmed Hassan', specialization: 'Change Management', achievement: 'Managed 5,000+ IT changes with 99% success rate and zero outages.', background: 'Egyptian change expert with expertise in IT change control.', signature_method: 'Risk-Free Change Management', cultural_expertise: 'Middle Eastern change culture and process control' },
+        { name: 'Erik Lundberg', specialization: 'Asset Management', achievement: 'Managed IT assets worth $100M+ achieving 98% asset visibility.', background: 'Swedish asset expert with expertise in IT asset lifecycle management.', signature_method: 'Comprehensive Asset Lifecycle Management', cultural_expertise: 'Scandinavian asset culture and resource optimization' },
+        { name: 'Maria Gonzalez', specialization: 'Vendor Management', achievement: 'Managed 200+ IT vendors reducing costs by 30% while improving service.', background: 'Spanish vendor expert with expertise in supplier relationship management.', signature_method: 'Strategic Vendor Partnership', cultural_expertise: 'European vendor culture and relationship management' },
+        { name: 'Robert Kim', specialization: 'Performance Monitoring', achievement: 'Implemented monitoring systems providing 360-degree IT performance visibility.', background: 'Korean monitoring expert with expertise in operational intelligence.', signature_method: 'Operational Intelligence Excellence', cultural_expertise: 'Asian monitoring culture and performance optimization' },
+        { name: 'Sarah Thompson', specialization: 'Capacity Management', achievement: 'Managed IT capacity preventing 95% of performance-related incidents.', background: 'American capacity expert with expertise in resource planning.', signature_method: 'Proactive Capacity Management', cultural_expertise: 'North American planning culture and resource optimization' },
+        { name: 'Yuki Sato', specialization: 'Problem Management', achievement: 'Resolved 1,000+ IT problems with average 24-hour resolution time.', background: 'Japanese problem-solving expert with expertise in root cause analysis.', signature_method: 'Systematic Problem Resolution', cultural_expertise: 'Japanese problem-solving culture and analytical excellence' },
+        { name: 'Marie Laurent', specialization: 'Knowledge Management', achievement: 'Built knowledge base reducing problem resolution time by 50%.', background: 'French knowledge expert with expertise in information management.', signature_method: 'Systematic Knowledge Capture', cultural_expertise: 'European knowledge culture and information organization' }
       ]
     },
     {
       name: 'Digital Innovation',
-      description: 'Leading digital transformation and technology innovation initiatives.',
+      description: 'Driving digital transformation and emerging technology adoption.',
       agents: [
-        {
-          name: 'Dr. Alex Thompson',
-          specialization: 'Digital Transformation Strategy',
-          achievement: 'Led digital transformation initiatives improving efficiency by 150%.',
-          background: 'Canadian digital strategist with expertise in comprehensive transformation.',
-          signature_method: 'Holistic Digital Transformation',
-          cultural_expertise: 'North American digital culture and transformation practices'
-        },
-        {
-          name: 'Yuki Nakamura',
-          specialization: 'AI and Automation Innovation',
-          achievement: 'Implemented AI solutions automating 80% of manual processes.',
-          background: 'Japanese AI specialist with expertise in intelligent automation.',
-          signature_method: 'Intelligent Process Automation',
-          cultural_expertise: 'Japanese automation culture and AI innovation'
-        },
-        {
-          name: 'Dr. Maria Rodriguez',
-          specialization: 'IoT and Connected Systems',
-          achievement: 'Developed IoT platform connecting 10,000+ devices across global operations.',
-          background: 'Spanish IoT expert with PhD in connected systems architecture.',
-          signature_method: 'Connected Systems Innovation',
-          cultural_expertise: 'European IoT culture and connected device innovation'
-        },
-        {
-          name: 'Kevin Chen',
-          specialization: 'Blockchain and Distributed Systems',
-          achievement: 'Implemented blockchain solutions improving transparency and trust by 90%.',
-          background: 'Taiwanese blockchain expert with expertise in distributed technologies.',
-          signature_method: 'Distributed Trust Systems',
-          cultural_expertise: 'Asian blockchain culture and distributed system innovation'
-        },
-        {
-          name: 'Dr. Sofia Andersson',
-          specialization: 'Cloud Innovation Architecture',
-          achievement: 'Designed cloud architecture supporting 1000+ innovative applications.',
-          background: 'Swedish cloud architect with expertise in innovative cloud solutions.',
-          signature_method: 'Innovation-Enabling Cloud Architecture',
-          cultural_expertise: 'Scandinavian cloud culture and infrastructure innovation'
-        },
-        {
-          name: 'Omar Al-Mansoori',
-          specialization: 'Cybersecurity Innovation',
-          achievement: 'Developed security innovations protecting against 99.9% of advanced threats.',
-          background: 'Emirati security innovator with expertise in next-generation security.',
-          signature_method: 'Next-Generation Security Innovation',
-          cultural_expertise: 'Middle Eastern cybersecurity culture and security innovation'
-        },
-        {
-          name: 'Dr. Isabella Ferrari',
-          specialization: 'Data Science Innovation',
-          achievement: 'Created data science innovations enabling breakthrough insights across 50+ projects.',
-          background: 'Italian data scientist with expertise in innovative analytics approaches.',
-          signature_method: 'Breakthrough Data Science',
-          cultural_expertise: 'European data science culture and analytical innovation'
-        },
-        {
-          name: 'Marcus Kim',
-          specialization: 'Mobile Innovation',
-          achievement: 'Pioneered mobile innovations adopted by 10M+ users globally.',
-          background: 'Korean-American mobile innovator with expertise in next-generation mobile.',
-          signature_method: 'Next-Generation Mobile Innovation',
-          cultural_expertise: 'Asian and American mobile culture and innovation'
-        },
-        {
-          name: 'Dr. Carmen Silva',
-          specialization: 'Virtual and Augmented Reality',
-          achievement: 'Developed VR/AR solutions transforming training and collaboration experiences.',
-          background: 'Brazilian VR/AR expert with PhD in immersive technology innovation.',
-          signature_method: 'Immersive Experience Innovation',
-          cultural_expertise: 'Latin American creativity culture and immersive technology'
-        }
+        { name: 'Alex Chen', specialization: 'Emerging Technologies', achievement: 'Evaluated and implemented 50+ emerging technologies improving business outcomes.', background: 'Chinese innovation expert with expertise in technology scouting.', signature_method: 'Strategic Technology Adoption', cultural_expertise: 'Asian innovation culture and technology advancement' },
+        { name: 'Isabella Martinez', specialization: 'AI & Machine Learning', achievement: 'Deployed AI solutions improving business processes by 150%.', background: 'Argentinian AI expert with expertise in machine learning implementation.', signature_method: 'Intelligent Automation Solutions', cultural_expertise: 'Latin American AI culture and intelligent systems' },
+        { name: 'Thomas Anderson', specialization: 'IoT Solutions', achievement: 'Implemented IoT platform connecting 10,000+ devices with real-time monitoring.', background: 'Australian IoT expert with expertise in connected systems.', signature_method: 'Connected Enterprise Solutions', cultural_expertise: 'Australian IoT culture and connected systems' },
+        { name: 'Fatima Al-Rashid', specialization: 'Blockchain Technology', achievement: 'Implemented blockchain solutions improving transaction security by 99%.', background: 'UAE blockchain expert with expertise in distributed ledger technology.', signature_method: 'Secure Blockchain Implementation', cultural_expertise: 'Middle Eastern blockchain culture and distributed systems' },
+        { name: 'Marcus Dubois', specialization: 'Digital Transformation', achievement: 'Led digital transformation improving operational efficiency by 200%.', background: 'French transformation expert with expertise in organizational change.', signature_method: 'Holistic Digital Transformation', cultural_expertise: 'European transformation culture and change management' },
+        { name: 'Priya Patel', specialization: 'Innovation Lab Management', achievement: 'Managed innovation lab producing 25+ patents and breakthrough solutions.', background: 'Indian innovation leader with expertise in research and development.', signature_method: 'Systematic Innovation Management', cultural_expertise: 'South Asian innovation culture and research excellence' },
+        { name: 'Erik Petersen', specialization: 'API Strategy', achievement: 'Developed API strategy enabling 1000+ integrations with partner systems.', background: 'Danish API expert with expertise in platform connectivity.', signature_method: 'Strategic API Architecture', cultural_expertise: 'Scandinavian connectivity culture and platform design' },
+        { name: 'Carlos Torres', specialization: 'Low-Code Platforms', achievement: 'Implemented low-code platform enabling 500+ citizen developer applications.', background: 'Colombian platform expert with expertise in democratized development.', signature_method: 'Citizen Developer Enablement', cultural_expertise: 'Latin American democratization culture and platform adoption' },
+        { name: 'Grace Wong', specialization: 'Innovation Metrics', achievement: 'Developed innovation metrics framework measuring ROI on 100+ technology investments.', background: 'Singaporean metrics expert with expertise in innovation measurement.', signature_method: 'Innovation Value Measurement', cultural_expertise: 'Asian metrics culture and value measurement' }
       ]
     },
     {
-      name: 'Innovation Partnerships',
-      description: 'Building strategic partnerships to accelerate innovation initiatives.',
+      name: 'User Support & Training',
+      description: 'Providing user support and technology training services.',
       agents: [
-        {
-          name: 'Dr. Jennifer Park',
-          specialization: 'Strategic Innovation Alliances',
-          achievement: 'Established 50+ strategic alliances generating $200M+ in innovation value.',
-          background: 'Korean-American alliance expert with expertise in strategic partnerships.',
-          signature_method: 'Strategic Alliance Innovation',
-          cultural_expertise: 'Asian and American partnership culture and alliance management'
-        },
-        {
-          name: 'Antoine Laurent',
-          specialization: 'University Research Partnerships',
-          achievement: 'Built partnerships with 25 universities resulting in 100+ research projects.',
-          background: 'French partnership expert with expertise in academic collaboration.',
-          signature_method: 'Academic-Industry Collaboration',
-          cultural_expertise: 'European academic culture and research partnerships'
-        },
-        {
-          name: 'Dr. Ravi Sharma',
-          specialization: 'Startup Innovation Partnerships',
-          achievement: 'Partnered with 100+ startups accelerating 30 breakthrough innovations.',
-          background: 'Indian partnership expert with expertise in startup collaboration.',
-          signature_method: 'Startup Innovation Acceleration',
-          cultural_expertise: 'South Asian startup culture and innovation partnerships'
-        },
-        {
-          name: 'Sarah O\'Connor',
-          specialization: 'Government Innovation Partnerships',
-          achievement: 'Established government partnerships enabling 15 large-scale innovation projects.',
-          background: 'Irish partnership expert with expertise in public-private collaboration.',
-          signature_method: 'Public-Private Innovation Partnerships',
-          cultural_expertise: 'European government culture and public sector innovation'
-        },
-        {
-          name: 'Dr. Wei Liu',
-          specialization: 'International Innovation Networks',
-          achievement: 'Built international networks spanning 40 countries for collaborative innovation.',
-          background: 'Chinese network builder with expertise in global innovation collaboration.',
-          signature_method: 'Global Innovation Networks',
-          cultural_expertise: 'Asian international culture and global partnership building'
-        },
-        {
-          name: 'Elena Volkov',
-          specialization: 'Technology Transfer Partnerships',
-          achievement: 'Facilitated technology transfer for 75 innovations with 95% success rate.',
-          background: 'Russian technology transfer expert with expertise in innovation commercialization.',
-          signature_method: 'Innovation Commercialization Partnerships',
-          cultural_expertise: 'Eastern European technology culture and commercialization'
-        },
-        {
-          name: 'Dr. Carlos Mendez',
-          specialization: 'Innovation Ecosystem Partnerships',
-          achievement: 'Connected innovation ecosystems across 20 regions for collaborative innovation.',
-          background: 'Mexican ecosystem expert with expertise in regional innovation networks.',
-          signature_method: 'Ecosystem Innovation Partnerships',
-          cultural_expertise: 'Latin American collaboration culture and ecosystem building'
-        },
-        {
-          name: 'Lisa Petersen',
-          specialization: 'Corporate Innovation Partnerships',
-          achievement: 'Established corporate partnerships resulting in 40 joint innovation initiatives.',
-          background: 'Danish corporate partnership expert with expertise in B2B innovation.',
-          signature_method: 'Corporate Innovation Collaboration',
-          cultural_expertise: 'Scandinavian corporate culture and B2B partnerships'
-        },
-        {
-          name: 'Dr. Ahmed Al-Rashid',
-          specialization: 'Innovation Venture Partnerships',
-          achievement: 'Led venture partnerships investing $100M+ in breakthrough innovations.',
-          background: 'UAE venture expert with expertise in innovation investment partnerships.',
-          signature_method: 'Innovation Venture Collaboration',
-          cultural_expertise: 'Middle Eastern investment culture and venture partnerships'
-        }
+        { name: 'Jennifer Wilson', specialization: 'Help Desk Operations', achievement: 'Managed help desk resolving 50,000+ user requests with 98% satisfaction.', background: 'American support expert with expertise in user assistance.', signature_method: 'User-Centric Support Excellence', cultural_expertise: 'North American support culture and user assistance' },
+        { name: 'David Martinez', specialization: 'Training Program Development', achievement: 'Developed training programs educating 20,000+ users in new technologies.', background: 'Mexican training expert with expertise in technology education.', signature_method: 'Comprehensive Technology Training', cultural_expertise: 'Latin American education culture and technology training' },
+        { name: 'Yuki Yamamoto', specialization: 'User Experience Design', achievement: 'Improved user interfaces increasing user productivity by 80%.', background: 'Japanese UX expert with expertise in user-centered design.', signature_method: 'Intuitive User Experience Design', cultural_expertise: 'Japanese design culture and user experience excellence' },
+        { name: 'Sophie Mueller', specialization: 'Digital Literacy Training', achievement: 'Trained 15,000+ employees in digital skills improving technology adoption by 90%.', background: 'German training specialist with expertise in digital skills development.', signature_method: 'Systematic Digital Skills Development', cultural_expertise: 'German training culture and skill development' },
+        { name: 'Rachel Patel', specialization: 'Change Management Support', achievement: 'Supported technology changes affecting 30,000+ users with 95% adoption rate.', background: 'Indian change expert with expertise in user adoption strategies.', signature_method: 'User-Focused Change Management', cultural_expertise: 'South Asian change culture and adoption strategies' },
+        { name: 'Omar Hassan', specialization: 'Knowledge Base Management', achievement: 'Built knowledge base reducing support tickets by 60% while improving resolution time.', background: 'Egyptian knowledge expert with expertise in self-service solutions.', signature_method: 'Self-Service Knowledge Excellence', cultural_expertise: 'Middle Eastern knowledge culture and self-service optimization' },
+        { name: 'Anna Larsson', specialization: 'Training Technology', achievement: 'Implemented e-learning platform training 25,000+ users across global locations.', background: 'Swedish e-learning expert with expertise in training technology.', signature_method: 'Technology-Enhanced Learning', cultural_expertise: 'Scandinavian learning culture and educational technology' },
+        { name: 'Carlos Rodriguez', specialization: 'User Feedback Management', achievement: 'Collected and analyzed user feedback improving technology satisfaction by 70%.', background: 'Colombian feedback expert with expertise in user experience measurement.', signature_method: 'User Voice Integration', cultural_expertise: 'Latin American feedback culture and user engagement' },
+        { name: 'Grace Thompson', specialization: 'Accessibility Services', achievement: 'Implemented accessibility solutions ensuring 100% compliance with accessibility standards.', background: 'British accessibility expert with expertise in inclusive technology.', signature_method: 'Universal Technology Access', cultural_expertise: 'European accessibility culture and inclusive design' }
       ]
     },
     {
-      name: 'Sustainable Innovation',
-      description: 'Developing environmentally and socially sustainable innovation solutions.',
+      name: 'IT Strategy & Governance',
+      description: 'Developing IT strategy and ensuring governance compliance.',
       agents: [
-        {
-          name: 'Dr. Emma Larsson',
-          specialization: 'Environmental Innovation',
-          achievement: 'Developed sustainable innovations reducing environmental impact by 70%.',
-          background: 'Swedish environmental innovator with expertise in sustainability solutions.',
-          signature_method: 'Environmental Impact Innovation',
-          cultural_expertise: 'Scandinavian sustainability culture and environmental innovation'
-        },
-        {
-          name: 'Carlos Torres',
-          specialization: 'Circular Economy Innovation',
-          achievement: 'Implemented circular economy principles in 25 innovation projects.',
-          background: 'Colombian sustainability expert with expertise in circular economy design.',
-          signature_method: 'Circular Innovation Design',
-          cultural_expertise: 'Latin American sustainability culture and resource optimization'
-        },
-        {
-          name: 'Dr. Fatima Al-Zahra',
-          specialization: 'Social Impact Innovation',
-          achievement: 'Created social innovations improving lives of 1M+ people globally.',
-          background: 'Emirati social innovator with expertise in impact-driven innovation.',
-          signature_method: 'Social Impact Innovation Framework',
-          cultural_expertise: 'Middle Eastern social culture and community impact innovation'
-        },
-        {
-          name: 'Hiroshi Yamamoto',
-          specialization: 'Clean Technology Innovation',
-          achievement: 'Developed clean technologies adopted across 15 industries.',
-          background: 'Japanese clean tech innovator with expertise in environmental technology.',
-          signature_method: 'Clean Technology Development',
-          cultural_expertise: 'Japanese environmental culture and clean technology innovation'
-        },
-        {
-          name: 'Dr. Maria Santos',
-          specialization: 'Renewable Energy Innovation',
-          achievement: 'Innovated renewable energy solutions generating 500MW+ clean power.',
-          background: 'Brazilian energy innovator with expertise in renewable technologies.',
-          signature_method: 'Renewable Energy Innovation',
-          cultural_expertise: 'Latin American energy culture and renewable innovation'
-        },
-        {
-          name: 'Thomas Mueller',
-          specialization: 'Sustainable Materials Innovation',
-          achievement: 'Developed sustainable materials replacing 50+ traditional materials.',
-          background: 'German materials innovator with expertise in sustainable material design.',
-          signature_method: 'Sustainable Materials Development',
-          cultural_expertise: 'German engineering culture and sustainable manufacturing'
-        },
-        {
-          name: 'Dr. Priya Nair',
-          specialization: 'Sustainable Business Model Innovation',
-          achievement: 'Created sustainable business models adopted by 100+ organizations.',
-          background: 'Indian business model innovator with expertise in sustainable commerce.',
-          signature_method: 'Sustainable Business Innovation',
-          cultural_expertise: 'South Asian business culture and sustainable commerce'
-        },
-        {
-          name: 'Sophie Wilson',
-          specialization: 'Green Innovation Design',
-          achievement: 'Designed green innovations reducing carbon footprint by 80% across projects.',
-          background: 'British green design expert with expertise in environmental design principles.',
-          signature_method: 'Green Design Innovation',
-          cultural_expertise: 'European environmental culture and green design'
-        },
-        {
-          name: 'Dr. Kevin Wong',
-          specialization: 'Sustainable Technology Innovation',
-          achievement: 'Innovated sustainable technologies transforming 20+ industry practices.',
-          background: 'Canadian sustainable tech innovator with expertise in eco-friendly technology.',
-          signature_method: 'Eco-Friendly Technology Innovation',
-          cultural_expertise: 'North American environmental culture and sustainable technology'
-        }
+        { name: 'Michael Chen', specialization: 'IT Strategy Development', achievement: 'Developed 5-year IT strategy aligning technology with business objectives.', background: 'Chinese strategy expert with expertise in technology planning.', signature_method: 'Strategic Technology Alignment', cultural_expertise: 'Asian strategy culture and long-term planning' },
+        { name: 'Elena Vasquez', specialization: 'IT Governance', achievement: 'Implemented IT governance framework ensuring compliance across 25+ regulations.', background: 'Spanish governance expert with expertise in regulatory compliance.', signature_method: 'Comprehensive IT Governance', cultural_expertise: 'European governance culture and regulatory excellence' },
+        { name: 'Robert Johnson', specialization: 'Technology Risk Management', achievement: 'Managed technology risks reducing IT-related incidents by 80%.', background: 'American risk expert with expertise in technology risk assessment.', signature_method: 'Proactive Technology Risk Management', cultural_expertise: 'North American risk culture and technology assessment' },
+        { name: 'Ahmed Al-Mansouri', specialization: 'IT Portfolio Management', achievement: 'Managed IT portfolio worth $500M+ optimizing technology investments.', background: 'Emirati portfolio expert with expertise in technology investment management.', signature_method: 'Strategic IT Portfolio Optimization', cultural_expertise: 'Middle Eastern investment culture and portfolio management' },
+        { name: 'Lisa Petersen', specialization: 'Enterprise Architecture', achievement: 'Designed enterprise architecture supporting 100,000+ users across global operations.', background: 'Danish architecture expert with expertise in enterprise design.', signature_method: 'Scalable Enterprise Architecture', cultural_expertise: 'Scandinavian architecture culture and system design' },
+        { name: 'Carlos Santos', specialization: 'Technology Standards', achievement: 'Established technology standards reducing complexity by 50% while improving interoperability.', background: 'Brazilian standards expert with expertise in technology standardization.', signature_method: 'Technology Standardization Excellence', cultural_expertise: 'Latin American standards culture and technology harmonization' },
+        { name: 'Yuki Tanaka', specialization: 'IT Budgeting & Planning', achievement: 'Managed $200M+ IT budget achieving 15% cost savings while improving service quality.', background: 'Japanese budgeting expert with expertise in financial planning.', signature_method: 'Strategic IT Financial Management', cultural_expertise: 'Japanese financial culture and budget optimization' },
+        { name: 'Marie Dubois', specialization: 'Technology Roadmapping', achievement: 'Created technology roadmaps aligning with business strategy for 10+ business units.', background: 'French roadmapping expert with expertise in strategic planning.', signature_method: 'Strategic Technology Roadmapping', cultural_expertise: 'European planning culture and strategic alignment' },
+        { name: 'Priya Sharma', specialization: 'IT Performance Measurement', achievement: 'Implemented IT metrics framework measuring performance across 500+ technology services.', background: 'Indian measurement expert with expertise in performance analytics.', signature_method: 'Comprehensive IT Performance Analytics', cultural_expertise: 'South Asian analytics culture and performance measurement' }
       ]
     },
     {
-      name: 'Innovation Analytics',
-      description: 'Measuring and optimizing innovation performance through advanced analytics.',
+      name: 'Business Intelligence & Analytics',
+      description: 'Providing business intelligence and data analytics capabilities.',
       agents: [
-        {
-          name: 'Dr. Lisa Chen',
-          specialization: 'Innovation Metrics and KPIs',
-          achievement: 'Developed innovation metrics framework adopted by 200+ organizations.',
-          background: 'Chinese-American analytics expert with expertise in innovation measurement.',
-          signature_method: 'Comprehensive Innovation Metrics',
-          cultural_expertise: 'Asian and American analytics culture and measurement science'
-        },
-        {
-          name: 'Marcus Anderson',
-          specialization: 'Innovation ROI Analysis',
-          achievement: 'Analyzed innovation ROI improving investment decisions by 85%.',
-          background: 'American ROI analyst with expertise in innovation investment analysis.',
-          signature_method: 'Innovation Investment Optimization',
-          cultural_expertise: 'North American investment culture and ROI analysis'
-        },
-        {
-          name: 'Dr. Elena Rodriguez',
-          specialization: 'Innovation Portfolio Analytics',
-          achievement: 'Optimized innovation portfolios increasing success rate by 120%.',
-          background: 'Spanish analytics expert with expertise in portfolio optimization.',
-          signature_method: 'Portfolio Performance Analytics',
-          cultural_expertise: 'European analytics culture and portfolio management'
-        },
-        {
-          name: 'Yuki Sato',
-          specialization: 'Innovation Trend Analytics',
-          achievement: 'Analyzed innovation trends predicting market changes with 90% accuracy.',
-          background: 'Japanese trend analyst with expertise in innovation pattern recognition.',
-          signature_method: 'Innovation Pattern Analytics',
-          cultural_expertise: 'Japanese analytical culture and pattern recognition'
-        },
-        {
-          name: 'Dr. Ahmed Hassan',
-          specialization: 'Innovation Impact Assessment',
-          achievement: 'Assessed innovation impact across 500+ projects with comprehensive metrics.',
-          background: 'Egyptian impact analyst with expertise in innovation outcome measurement.',
-          signature_method: 'Innovation Impact Measurement',
-          cultural_expertise: 'Middle Eastern analytical culture and impact assessment'
-        },
-        {
-          name: 'Sofia Petersen',
-          specialization: 'Innovation Performance Benchmarking',
-          achievement: 'Benchmarked innovation performance across 100+ organizations.',
-          background: 'Danish benchmarking expert with expertise in comparative innovation analysis.',
-          signature_method: 'Innovation Performance Benchmarking',
-          cultural_expertise: 'Scandinavian analytical culture and performance measurement'
-        },
-        {
-          name: 'Dr. Raj Gupta',
-          specialization: 'Innovation Risk Analytics',
-          achievement: 'Analyzed innovation risks reducing failure rates by 75%.',
-          background: 'Indian risk analyst with expertise in innovation risk modeling.',
-          signature_method: 'Innovation Risk Modeling',
-          cultural_expertise: 'South Asian risk culture and analytical modeling'
-        },
-        {
-          name: 'Marie Laurent',
-          specialization: 'Innovation Value Analytics',
-          achievement: 'Quantified innovation value creation across 300+ initiatives.',
-          background: 'French value analyst with expertise in innovation value measurement.',
-          signature_method: 'Innovation Value Quantification',
-          cultural_expertise: 'European value culture and financial analytics'
-        },
-        {
-          name: 'Dr. Jennifer Kim',
-          specialization: 'Innovation Success Prediction',
-          achievement: 'Predicted innovation success with 95% accuracy using advanced analytics.',
-          background: 'Korean-Canadian prediction expert with expertise in success modeling.',
-          signature_method: 'Innovation Success Modeling',
-          cultural_expertise: 'Asian and American predictive culture and success analytics'
-        }
-      ]
-    },
-    {
-      name: 'Innovation Communications',
-      description: 'Communicating innovation initiatives and building innovation culture.',
-      agents: [
-        {
-          name: 'Dr. Sarah Wilson',
-          specialization: 'Innovation Storytelling',
-          achievement: 'Created innovation narratives increasing stakeholder engagement by 200%.',
-          background: 'British storytelling expert with expertise in innovation communication.',
-          signature_method: 'Innovation Narrative Design',
-          cultural_expertise: 'European storytelling culture and innovation communication'
-        },
-        {
-          name: 'Miguel Rodriguez',
-          specialization: 'Innovation Marketing',
-          achievement: 'Marketed 50+ innovations achieving 90% awareness among target audiences.',
-          background: 'Mexican marketing expert with expertise in innovation promotion.',
-          signature_method: 'Innovation Marketing Strategy',
-          cultural_expertise: 'Latin American marketing culture and innovation promotion'
-        },
-        {
-          name: 'Dr. Yuki Tanaka',
-          specialization: 'Innovation Knowledge Management',
-          achievement: 'Built knowledge systems capturing insights from 1000+ innovation projects.',
-          background: 'Japanese knowledge expert with expertise in innovation knowledge systems.',
-          signature_method: 'Innovation Knowledge Systems',
-          cultural_expertise: 'Japanese knowledge culture and systematic learning'
-        },
-        {
-          name: 'Emma Thompson',
-          specialization: 'Innovation Training and Development',
-          achievement: 'Trained 5000+ employees in innovation methodologies with 95% satisfaction.',
-          background: 'British training expert with expertise in innovation capability building.',
-          signature_method: 'Innovation Capability Development',
-          cultural_expertise: 'European training culture and capability building'
-        },
-        {
-          name: 'Dr. Chen Wei',
-          specialization: 'Innovation Change Management',
-          achievement: 'Led change management for 25 major innovation initiatives with 100% adoption.',
-          background: 'Chinese change expert with expertise in innovation transformation.',
-          signature_method: 'Innovation Change Leadership',
-          cultural_expertise: 'Asian change culture and transformation management'
-        },
-        {
-          name: 'Isabella Martinez',
-          specialization: 'Innovation Community Building',
-          achievement: 'Built innovation communities engaging 10,000+ participants globally.',
-          background: 'Argentinian community expert with expertise in innovation engagement.',
-          signature_method: 'Innovation Community Development',
-          cultural_expertise: 'Latin American community culture and engagement building'
-        },
-        {
-          name: 'Dr. Omar Al-Rashid',
-          specialization: 'Innovation Thought Leadership',
-          achievement: 'Established thought leadership platform reaching 1M+ innovation professionals.',
-          background: 'UAE thought leader with expertise in innovation influence and authority.',
-          signature_method: 'Innovation Thought Leadership',
-          cultural_expertise: 'Middle Eastern leadership culture and influence building'
-        },
-        {
-          name: 'Lars Petersen',
-          specialization: 'Innovation Culture Communication',
-          achievement: 'Communicated innovation culture transformation across 50+ business units.',
-          background: 'Norwegian culture expert with expertise in innovation culture communication.',
-          signature_method: 'Innovation Culture Communication',
-          cultural_expertise: 'Scandinavian culture communication and organizational transformation'
-        },
-        {
-          name: 'Dr. Priya Kapoor',
-          specialization: 'Innovation Event Management',
-          achievement: 'Organized 100+ innovation events engaging 50,000+ participants.',
-          background: 'Indian event expert with expertise in large-scale innovation events.',
-          signature_method: 'Innovation Event Excellence',
-          cultural_expertise: 'South Asian event culture and large-scale engagement'
-        }
+        { name: 'Sarah Kim', specialization: 'Business Intelligence', achievement: 'Built BI platform providing insights to 10,000+ business users.', background: 'Korean BI expert with expertise in business analytics.', signature_method: 'Strategic Business Intelligence', cultural_expertise: 'Asian BI culture and business analytics excellence' },
+        { name: 'Marcus Wilson', specialization: 'Data Visualization', achievement: 'Created visualization platform improving decision-making speed by 200%.', background: 'British visualization expert with expertise in data storytelling.', signature_method: 'Compelling Data Visualization', cultural_expertise: 'European visualization culture and data communication' },
+        { name: 'Isabella Santos', specialization: 'Predictive Analytics', achievement: 'Implemented predictive models improving business forecasting accuracy by 300%.', background: 'Brazilian analytics expert with expertise in machine learning.', signature_method: 'Advanced Predictive Analytics', cultural_expertise: 'Latin American analytics culture and predictive modeling' },
+        { name: 'Thomas Wong', specialization: 'Data Mining', achievement: 'Mined business data discovering insights worth $50M+ in value creation.', background: 'Singaporean data mining expert with expertise in pattern discovery.', signature_method: 'Value-Driven Data Mining', cultural_expertise: 'Asian data mining culture and pattern recognition' },
+        { name: 'Anna Rodriguez', specialization: 'Real-time Analytics', achievement: 'Built real-time analytics platform processing 10M+ events daily.', background: 'Spanish real-time expert with expertise in streaming analytics.', signature_method: 'Real-time Business Intelligence', cultural_expertise: 'European real-time culture and streaming analytics' },
+        { name: 'David Al-Thani', specialization: 'Self-Service Analytics', achievement: 'Enabled self-service analytics for 5,000+ business users reducing IT dependency by 70%.', background: 'Qatari self-service expert with expertise in user empowerment.', signature_method: 'Democratized Analytics Platform', cultural_expertise: 'Middle Eastern empowerment culture and self-service analytics' },
+        { name: 'Jennifer Mueller', specialization: 'Data Science', achievement: 'Led data science team delivering 100+ ML models improving business outcomes.', background: 'German data scientist with expertise in advanced analytics.', signature_method: 'Scientific Data Analysis', cultural_expertise: 'German analytical culture and scientific rigor' },
+        { name: 'Carlos Chen', specialization: 'Performance Analytics', achievement: 'Analyzed business performance identifying optimization opportunities worth $100M+.', background: 'Taiwanese performance expert with expertise in business optimization.', signature_method: 'Business Performance Analytics', cultural_expertise: 'Asian performance culture and optimization analytics' },
+        { name: 'Grace Martinez', specialization: 'Customer Analytics', achievement: 'Analyzed customer data improving retention rates by 40% and satisfaction by 60%.', background: 'Colombian customer expert with expertise in customer intelligence.', signature_method: 'Customer-Centric Analytics', cultural_expertise: 'Latin American customer culture and behavioral analytics' }
       ]
     }
   ]

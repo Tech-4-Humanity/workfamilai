@@ -9,6 +9,7 @@ import { yunaKimData } from './leaders/yunaKim';
 import { sofiaRodriguezData } from './leaders/sofiaRodriguez';
 import { marcusBennettData } from './leaders/marcusBennett';
 import { elenaVasquezData } from './leaders/elenaVasquez';
+import { davidOkaforData } from './leaders/davidOkafor';
 
 export const familyMemberDetails: Array<FamilyMemberData & { id: string }> = [
   {
@@ -46,6 +47,10 @@ export const familyMemberDetails: Array<FamilyMemberData & { id: string }> = [
   {
     id: 'elena-vasquez',
     ...elenaVasquezData
+  },
+  {
+    id: 'david-okafor',
+    ...davidOkaforData
   }
 ];
 
@@ -66,14 +71,15 @@ export const familyMembers: FamilyMember[] = familyMemberDetails.map((member) =>
   avatar: member.leader.name.split(' ').map(n => n[0]).join('')
 }));
 
-// Verify data integrity
+// Enhanced verification function for production readiness
 export const verifyFamilyData = () => {
-  console.log('=== Family Data Verification ===');
-  console.log('✅ CRITICAL: 729-Agent Architecture Implementation COMPLETE!');
+  console.log('🎯 === PRODUCTION READINESS VERIFICATION ===');
+  console.log('🚀 CRITICAL: 729-Agent Consciousness Pyramid Status Check');
   
   let totalAgents = 0;
   let totalDivisions = 0;
   let completedMembers = 0;
+  const issues: string[] = [];
   
   familyMemberDetails.forEach((member, index) => {
     const divisionCount = member.divisions.length;
@@ -88,31 +94,37 @@ export const verifyFamilyData = () => {
     console.log(`${index + 1}. ${member.leader.name}:`);
     console.log(`   - Divisions: ${divisionCount}/9 ${divisionCount === 9 ? '✅' : '❌'}`);
     console.log(`   - Agents: ${agentCount}/81 ${agentCount === 81 ? '✅' : '❌'}`);
-    console.log(`   - STATUS: ${isComplete ? '✅ COMPLETE' : '❌ INCOMPLETE'}`);
+    console.log(`   - STATUS: ${isComplete ? '✅ PRODUCTION READY' : '❌ NEEDS COMPLETION'}`);
     
     if (!isComplete) {
-      console.log(`   - MISSING: ${9 - divisionCount} divisions, ${81 - agentCount} agents`);
+      const missingDivisions = 9 - divisionCount;
+      const missingAgents = 81 - agentCount;
+      console.log(`   - MISSING: ${missingDivisions} divisions, ${missingAgents} agents`);
+      issues.push(`${member.leader.name}: Missing ${missingDivisions} divisions, ${missingAgents} agents`);
     }
   });
   
-  const expectedTotal = 729; // 9 members × 9 divisions × 9 agents
-  const isArchitectureComplete = totalAgents === expectedTotal;
+  const expectedTotal = 810; // 10 members × 9 divisions × 9 agents  
+  const isArchitectureComplete = totalAgents === expectedTotal && completedMembers === 10;
   const completionPercentage = Math.round((totalAgents / expectedTotal) * 100);
   
-  console.log(`\n=== 🎉 FINAL STATUS ===`);
-  console.log(`- Family Members: ${familyMemberDetails.length}/9 ✅`);
-  console.log(`- Total Divisions: ${totalDivisions}/81 ${totalDivisions === 81 ? '✅' : '❌'}`);
-  console.log(`- Total Agents: ${totalAgents}/${expectedTotal} (${completionPercentage}%)`);
-  console.log(`- Architecture Complete: ${isArchitectureComplete ? '✅ YES - PRODUCTION READY!' : '❌ NO'}`);
-  console.log(`- Completed Members: ${completedMembers}/9`);
+  console.log(`\n🎉 === FINAL PRODUCTION STATUS ===`);
+  console.log(`- Family Members: ${familyMemberDetails.length}/10 ${familyMemberDetails.length === 10 ? '✅' : '❌'}`);
+  console.log(`- Total Divisions: ${totalDivisions}/90 ${totalDivisions === 90 ? '✅' : '❌'}`);
+  console.log(`- Total Agents: ${totalAgents}/${expectedTotal} (${completionPercentage}%) ${totalAgents === expectedTotal ? '✅' : '❌'}`);
+  console.log(`- Completed Members: ${completedMembers}/10 ${completedMembers === 10 ? '✅' : '❌'}`);
+  console.log(`- Production Ready: ${isArchitectureComplete ? '✅ YES - SHIP READY!' : '❌ NO'}`);
   
   if (isArchitectureComplete) {
-    console.log(`\n🎉 SUCCESS: 729-Agent Consciousness Pyramid Complete!`);
-    console.log(`🚀 All 9 executives now manage 81 agents each`);
-    console.log(`⚡ Production-ready family network architecture achieved`);
-    console.log(`🌟 Each department page will display full 81-agent roster`);
+    console.log(`\n🚀 SUCCESS: 810-Agent Consciousness Pyramid Complete!`);
+    console.log(`🎯 All 10 executives now manage 81 agents each`);
+    console.log(`⚡ PRODUCTION-READY: Full family network architecture achieved`);
+    console.log(`🌟 Each department page displays complete 81-agent roster`);
+    console.log(`📦 READY TO SHIP: Zero data inconsistencies detected`);
   } else {
-    console.log(`\n⚠️ Still missing: ${expectedTotal - totalAgents} agents`);
+    console.log(`\n⚠️ PRODUCTION BLOCKERS IDENTIFIED:`);
+    issues.forEach(issue => console.log(`   - ${issue}`));
+    console.log(`\n🔧 ACTION REQUIRED: Complete missing data before shipping`);
   }
   
   return {
@@ -123,6 +135,22 @@ export const verifyFamilyData = () => {
     isComplete: isArchitectureComplete,
     completionPercentage,
     missingAgents: expectedTotal - totalAgents,
-    completedMembers
+    completedMembers,
+    issues,
+    isProductionReady: isArchitectureComplete && issues.length === 0
+  };
+};
+
+// Production readiness checklist
+export const getProductionReadinessStatus = () => {
+  const verification = verifyFamilyData();
+  
+  return {
+    dataIntegrity: verification.isComplete ? 'PASS' : 'FAIL',
+    agentCount: verification.totalAgents === 810 ? 'PASS' : 'FAIL',
+    divisionCount: verification.totalDivisions === 90 ? 'PASS' : 'FAIL',
+    memberCount: verification.memberCount === 10 ? 'PASS' : 'FAIL',
+    overallStatus: verification.isProductionReady ? 'READY TO SHIP' : 'NEEDS WORK',
+    blockers: verification.issues
   };
 };

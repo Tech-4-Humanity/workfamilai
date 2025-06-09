@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Loader2 } from 'lucide-react';
 import { familyMemberDetails } from '@/data/familyMembers';
 import { DepartmentStats } from '@/components/department/DepartmentStats';
 import { DivisionsGrid } from '@/components/department/DivisionsGrid';
@@ -15,23 +15,44 @@ const DepartmentDetail = () => {
   const { departmentId } = useParams<{ departmentId: string }>();
   const navigate = useNavigate();
   const [showEnhancedProfile, setShowEnhancedProfile] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { getAgentsByFamilyMember } = useFamilyAgentQueries();
 
-  // Get the family member details for this department
-  const familyMemberData = departmentId ? familyMemberDetails.find(member => member.id === departmentId) : null;
+  // Memoize family member data for performance
+  const familyMemberData = useMemo(() => {
+    return departmentId ? familyMemberDetails.find(member => member.id === departmentId) : null;
+  }, [departmentId]);
 
-  // Get agents for this family member from the database
+  // Get agents for this family member from the database (optional integration)
   const { data: databaseAgents = [] } = departmentId ? getAgentsByFamilyMember(departmentId) : { data: [] };
 
+  // Error boundary for missing family member
   if (!familyMemberData || !departmentId) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-3xl font-bold mb-4">Family Member Not Found</h1>
-        <p className="mb-8">The family member you are looking for does not exist in our database.</p>
-        <Button onClick={() => navigate('/')}>Return Home</Button>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col items-center justify-center">
+        <div className="text-center max-w-md mx-auto p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Department Not Found</h1>
+          <p className="text-gray-600 mb-8">The department you are looking for does not exist in our family network.</p>
+          <Button 
+            onClick={() => navigate('/')}
+            className="px-6 py-3"
+          >
+            Return to Family Network
+          </Button>
+        </div>
       </div>
     );
   }
+
+  // Handle enhanced profile view with loading state
+  const handleViewProfile = async () => {
+    setIsLoading(true);
+    // Simulate brief loading for enhanced experience
+    setTimeout(() => {
+      setShowEnhancedProfile(true);
+      setIsLoading(false);
+    }, 300);
+  };
 
   // Show enhanced family experience
   if (showEnhancedProfile) {
@@ -46,7 +67,7 @@ const DepartmentDetail = () => {
       background: familyMemberData.leader.background,
       domainOverview: '',
       color: 'blue',
-      agentCount: 81 // Each department leader manages 81 agents (9 divisions × 9 family agents)
+      agentCount: 81 // Each department leader manages 81 agents (9 divisions × 9 agents)
     };
 
     return (
@@ -58,20 +79,20 @@ const DepartmentDetail = () => {
     );
   }
 
-  // Each department leader manages 81 agents (9 divisions × 9 family agents each)
+  // Each department leader manages 81 agents (9 divisions × 9 agents each)
   const totalAgents = 81;
 
-  // Show department detail view
+  // Show department detail view with optimized performance
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
       <div className="container max-w-7xl mx-auto py-8 px-4 flex-grow">
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')} 
-          className="mb-8 flex items-center"
+          className="mb-8 flex items-center hover:bg-blue-50 transition-colors"
         >
           <ChevronLeft className="mr-2 h-4 w-4" />
-          Back to All Departments
+          Back to Family Network
         </Button>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -80,7 +101,7 @@ const DepartmentDetail = () => {
               leader={familyMemberData.leader}
               divisionsCount={familyMemberData.divisions.length}
               totalAgents={totalAgents}
-              onViewProfile={() => setShowEnhancedProfile(true)}
+              onViewProfile={handleViewProfile}
             />
           </div>
           
@@ -98,14 +119,26 @@ const DepartmentDetail = () => {
         </div>
         
         {databaseAgents.length > 0 && (
-          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">Database Integration Active</h3>
-            <p className="text-sm text-gray-600">
-              Showing {databaseAgents.length} sample agents from the family database. Each department manages 81 agents total in the consciousness pyramid.
+          <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 className="text-lg font-semibold mb-2 text-blue-900">🔗 Database Integration Active</h3>
+            <p className="text-sm text-blue-700">
+              Showing {databaseAgents.length} sample agents from the family database. 
+              Each department manages 81 specialized agents in the complete consciousness pyramid.
             </p>
           </div>
         )}
       </div>
+      
+      {/* Loading overlay for enhanced profile */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 flex items-center space-x-3">
+            <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
+            <span className="text-gray-700">Loading enhanced profile...</span>
+          </div>
+        </div>
+      )}
+      
       <Footer />
     </div>
   );
