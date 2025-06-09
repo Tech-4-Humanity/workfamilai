@@ -1,6 +1,13 @@
 
 import { FamilyMemberData } from '@/types/family';
 import { contentMarketingDivision } from './miguelSantos/contentMarketing';
+import { brandManagementDivision } from './miguelSantos/brandManagement';
+import { publicRelationsDivision } from './miguelSantos/publicRelations';
+import { socialMediaMarketingDivision } from './miguelSantos/socialMediaMarketing';
+import { eventMarketingDivision } from './miguelSantos/eventMarketing';
+import { partnershipMarketingDivision } from './miguelSantos/partnershipMarketing';
+import { productMarketingDivision } from './miguelSantos/productMarketing';
+import { marketingTechnologyDivision } from './miguelSantos/marketingTechnology';
 
 export const miguelSantosData: FamilyMemberData = {
   leader: {
@@ -169,7 +176,12 @@ export const miguelSantosData: FamilyMemberData = {
       ]
     },
     contentMarketingDivision,
-    // Additional 6 divisions would be added here to reach 9 total divisions
-    // For brevity, I'm showing the pattern - each executive needs 9 divisions with 9 agents each
+    brandManagementDivision,
+    publicRelationsDivision,
+    socialMediaMarketingDivision,
+    eventMarketingDivision,
+    partnershipMarketingDivision,
+    productMarketingDivision,
+    marketingTechnologyDivision
   ]
 };
