@@ -2,6 +2,7 @@
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { getAgentInitials } from '@/utils/agent-images';
 
 interface ChatHeaderProps {
@@ -11,10 +12,9 @@ interface ChatHeaderProps {
   agentImageUrl?: string;
   agentLanguages: string[];
   primaryLanguage: string;
-  onClose?: () => void; // Make optional since we're not using it
 }
 
-export const ChatHeader = ({
+const ChatHeaderContent = ({
   agentName,
   agentPersonality,
   agentColor,
@@ -49,17 +49,26 @@ export const ChatHeader = ({
   return (
     <div className={`${getHeaderColorClass(agentColor)} text-white p-4 rounded-t-lg`}>
       <div className="flex items-center gap-4">
-        <Avatar className="w-12 h-12 border-2 border-white/20">
-          <AvatarImage 
-            src={agentImageUrl} 
-            alt={agentName}
-            onLoad={() => console.log('Avatar image loaded successfully:', agentImageUrl)}
-            onError={() => console.log('Avatar image failed to load:', agentImageUrl)}
-          />
-          <AvatarFallback className="bg-white/20 text-white font-semibold">
-            {getAgentInitials(agentName)}
-          </AvatarFallback>
-        </Avatar>
+        <ErrorBoundary fallback={
+          <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+            <span className="text-white font-semibold text-sm">
+              {getAgentInitials(agentName)}
+            </span>
+          </div>
+        }>
+          <Avatar className="w-12 h-12 border-2 border-white/20">
+            <AvatarImage 
+              src={agentImageUrl} 
+              alt={agentName}
+              onLoad={() => console.log('Avatar image loaded successfully:', agentImageUrl)}
+              onError={() => console.log('Avatar image failed to load:', agentImageUrl)}
+            />
+            <AvatarFallback className="bg-white/20 text-white font-semibold">
+              {getAgentInitials(agentName)}
+            </AvatarFallback>
+          </Avatar>
+        </ErrorBoundary>
+        
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{agentName}</h3>
           <p className="text-sm opacity-90 mb-2">{agentPersonality}</p>
@@ -72,12 +81,34 @@ export const ChatHeader = ({
                 className="opacity-90"
               />
               <span className="text-xs ml-2 opacity-75">
-                Speaks {agentLanguages.length} languages
+                Speaks {agentLanguages.length} language{agentLanguages.length !== 1 ? 's' : ''}
               </span>
             </div>
           )}
         </div>
       </div>
     </div>
+  );
+};
+
+export const ChatHeader = (props: ChatHeaderProps) => {
+  return (
+    <ErrorBoundary fallback={
+      <div className="bg-blue-600 text-white p-4 rounded-t-lg">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+            <span className="text-white font-semibold text-sm">
+              {getAgentInitials(props.agentName)}
+            </span>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold">{props.agentName}</h3>
+            <p className="text-sm opacity-90">Agent Assistant</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <ChatHeaderContent {...props} />
+    </ErrorBoundary>
   );
 };

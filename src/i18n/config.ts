@@ -3,53 +3,67 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Import language packs
-import en from './locales/en.json';
-import es from './locales/es.json';
-import zh from './locales/zh.json';
-import ar from './locales/ar.json';
-import fr from './locales/fr.json';
-import de from './locales/de.json';
-import ja from './locales/ja.json';
-import ko from './locales/ko.json';
+// Import translation files
+import enTranslations from './locales/en.json';
+import esTranslations from './locales/es.json';
+import frTranslations from './locales/fr.json';
+import deTranslations from './locales/de.json';
+import zhTranslations from './locales/zh.json';
+import jaTranslations from './locales/ja.json';
+import koTranslations from './locales/ko.json';
+import arTranslations from './locales/ar.json';
 
+// Enhanced supported languages with additional language codes
 export const supportedLanguages = {
-  en: { name: 'English', flag: '🇺🇸', rtl: false },
-  es: { name: 'Español', flag: '🇪🇸', rtl: false },
-  zh: { name: '中文', flag: '🇨🇳', rtl: false },
-  ar: { name: 'العربية', flag: '🇸🇦', rtl: true },
-  fr: { name: 'Français', flag: '🇫🇷', rtl: false },
-  de: { name: 'Deutsch', flag: '🇩🇪', rtl: false },
-  ja: { name: '日本語', flag: '🇯🇵', rtl: false },
-  ko: { name: '한국어', flag: '🇰🇷', rtl: false }
+  en: { name: 'English', flag: '🇺🇸', nativeName: 'English' },
+  es: { name: 'Spanish', flag: '🇪🇸', nativeName: 'Español' },
+  fr: { name: 'French', flag: '🇫🇷', nativeName: 'Français' },
+  de: { name: 'German', flag: '🇩🇪', nativeName: 'Deutsch' },
+  zh: { name: 'Chinese', flag: '🇨🇳', nativeName: '中文' },
+  ja: { name: 'Japanese', flag: '🇯🇵', nativeName: '日本語' },
+  ko: { name: 'Korean', flag: '🇰🇷', nativeName: '한국어' },
+  ar: { name: 'Arabic', flag: '🇸🇦', nativeName: 'العربية' },
+  // Additional language codes that might be used in cultural profiles
+  hi: { name: 'Hindi', flag: '🇮🇳', nativeName: 'हिन्दी' },
+  ur: { name: 'Urdu', flag: '🇵🇰', nativeName: 'اردو' },
+  pt: { name: 'Portuguese', flag: '🇵🇹', nativeName: 'Português' },
+  ru: { name: 'Russian', flag: '🇷🇺', nativeName: 'Русский' },
+  it: { name: 'Italian', flag: '🇮🇹', nativeName: 'Italiano' },
+  nl: { name: 'Dutch', flag: '🇳🇱', nativeName: 'Nederlands' },
+  pl: { name: 'Polish', flag: '🇵🇱', nativeName: 'Polski' },
+  tr: { name: 'Turkish', flag: '🇹🇷', nativeName: 'Türkçe' },
+  sv: { name: 'Swedish', flag: '🇸🇪', nativeName: 'Svenska' },
+  no: { name: 'Norwegian', flag: '🇳🇴', nativeName: 'Norsk' },
+  da: { name: 'Danish', flag: '🇩🇰', nativeName: 'Dansk' },
+  fi: { name: 'Finnish', flag: '🇫🇮', nativeName: 'Suomi' }
+} as const;
+
+const resources = {
+  en: { translation: enTranslations },
+  es: { translation: esTranslations },
+  fr: { translation: frTranslations },
+  de: { translation: deTranslations },
+  zh: { translation: zhTranslations },
+  ja: { translation: jaTranslations },
+  ko: { translation: koTranslations },
+  ar: { translation: arTranslations }
 };
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {
-      en: { translation: en },
-      es: { translation: es },
-      zh: { translation: zh },
-      ar: { translation: ar },
-      fr: { translation: fr },
-      de: { translation: de },
-      ja: { translation: ja },
-      ko: { translation: ko }
-    },
+    resources,
     fallbackLng: 'en',
     debug: false,
-    react: {
-      useSuspense: false
-    },
+    
     interpolation: {
       escapeValue: false
     },
+    
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
-      lookupLocalStorage: 'i18nextLng',
-      caches: ['localStorage']
+      caches: ['localStorage'],
     }
   });
 

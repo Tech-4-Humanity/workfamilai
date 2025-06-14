@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Globe } from 'lucide-react';
 import { supportedLanguages } from '@/i18n/config';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 
 interface LanguageIndicatorProps {
   languages: string[];
@@ -14,14 +15,13 @@ interface LanguageIndicatorProps {
   className?: string;
 }
 
-export const LanguageIndicator = ({ 
+const LanguageIndicatorContent = ({ 
   languages, 
   primaryLanguage,
   variant = 'compact',
   showPopover = false,
   className = ''
 }: LanguageIndicatorProps) => {
-  // Debug logging
   console.log('LanguageIndicator Debug:', {
     languages,
     primaryLanguage,
@@ -40,14 +40,15 @@ export const LanguageIndicator = ({
     return supportedLanguages[langCode as keyof typeof supportedLanguages]?.name || langCode.toUpperCase();
   };
 
-  // Filter valid languages and ensure we have at least English
+  // Enhanced language validation with better fallbacks
   const validLanguages = languages.filter(lang => {
+    if (!lang || typeof lang !== 'string') return false;
     const isValid = supportedLanguages[lang as keyof typeof supportedLanguages] !== undefined;
     console.log(`Language ${lang} is valid:`, isValid);
     return isValid;
   });
 
-  // If no valid languages, default to English
+  // If no valid languages, ensure we have English as fallback
   if (validLanguages.length === 0) {
     console.log('No valid languages found, defaulting to English');
     validLanguages.push('en');
@@ -56,14 +57,17 @@ export const LanguageIndicator = ({
   console.log('Final valid languages:', validLanguages);
 
   if (variant === 'minimal') {
-    const primaryLang = primaryLanguage || validLanguages[0];
     return (
       <div className={`flex items-center space-x-1 ${className}`}>
-        {validLanguages.map(lang => (
-          <span key={lang} className="text-lg">{getLanguageFlag(lang)}</span>
+        {validLanguages.slice(0, 3).map(lang => (
+          <span key={lang} className="text-lg" title={getLanguageName(lang)}>
+            {getLanguageFlag(lang)}
+          </span>
         ))}
         {validLanguages.length > 3 && (
-          <span className="text-xs opacity-75">+{validLanguages.length - 3}</span>
+          <span className="text-xs opacity-75" title={`${validLanguages.length - 3} more languages`}>
+            +{validLanguages.length - 3}
+          </span>
         )}
       </div>
     );
@@ -128,4 +132,19 @@ export const LanguageIndicator = ({
   }
 
   return content;
+};
+
+export const LanguageIndicator = (props: LanguageIndicatorProps) => {
+  return (
+    <ErrorBoundary 
+      fallback={
+        <div className="flex items-center space-x-1 text-sm text-gray-500">
+          <Globe className="h-4 w-4" />
+          <span>Languages</span>
+        </div>
+      }
+    >
+      <LanguageIndicatorContent {...props} />
+    </ErrorBoundary>
+  );
 };

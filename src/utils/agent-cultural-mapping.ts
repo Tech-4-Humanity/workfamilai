@@ -1,7 +1,21 @@
 
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
 
-// Map agent names to their department leaders for cultural profile inheritance
+// Comprehensive agent name aliases and standardization
+const agentNameAliases: Record<string, string[]> = {
+  'aisha-al-farsi': ['Aisha Al-Farsi', 'Dr. Aisha Al-Farsi', 'Aisha Al Farsi'],
+  'amara-chen': ['Amara Chen', 'Dr. Amara Chen', 'Dr Amara Chen'],
+  'yuna-kim': ['Yuna Kim', 'Dr. Yuna Kim', 'Dr Yuna Kim'],
+  'priya-sharma': ['Priya Sharma', 'Dr. Priya Sharma'],
+  'miguel-santos': ['Miguel Santos', 'Dr. Miguel Santos'],
+  'sofia-rodriguez': ['Sofia Rodriguez', 'Dr. Sofia Rodriguez'],
+  'marcus-bennett': ['Marcus Bennett', 'Dr. Marcus Bennett'],
+  'theo-williams': ['Theo Williams', 'Dr. Theo Williams'],
+  'david-okafor': ['David Okafor', 'Dr. David Okafor'],
+  'elena-vasquez': ['Elena Vasquez', 'Dr. Elena Vasquez']
+};
+
+// Enhanced agent to department mapping with better coverage
 const agentToDepartmentMapping: Record<string, string> = {
   // External Relations Department (Aisha Al-Farsi)
   'Ahmed Hassan': 'aisha-al-farsi',
@@ -26,60 +40,115 @@ const agentToDepartmentMapping: Record<string, string> = {
   'Dr. Yuna Kim': 'yuna-kim',
   'Yuna Kim': 'yuna-kim',
   
-  // Add more mappings as needed for other departments
+  // Department leaders themselves
+  'Aisha Al-Farsi': 'aisha-al-farsi',
+  'Dr. Aisha Al-Farsi': 'aisha-al-farsi',
   'Priya Sharma': 'priya-sharma',
+  'Dr. Priya Sharma': 'priya-sharma',
   'Miguel Santos': 'miguel-santos',
+  'Dr. Miguel Santos': 'miguel-santos',
   'Sofia Rodriguez': 'sofia-rodriguez',
+  'Dr. Sofia Rodriguez': 'sofia-rodriguez',
   'Marcus Bennett': 'marcus-bennett',
+  'Dr. Marcus Bennett': 'marcus-bennett',
   'Theo Williams': 'theo-williams',
+  'Dr. Theo Williams': 'theo-williams',
   'David Okafor': 'david-okafor',
-  'Elena Vasquez': 'elena-vasquez'
+  'Dr. David Okafor': 'david-okafor',
+  'Elena Vasquez': 'elena-vasquez',
+  'Dr. Elena Vasquez': 'elena-vasquez'
+};
+
+const normalizeAgentName = (agentName: string): string => {
+  if (!agentName || typeof agentName !== 'string') {
+    console.warn('Invalid agent name provided:', agentName);
+    return '';
+  }
+  
+  // Try to find exact match first
+  const directMatch = agentName.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '');
+  
+  // Check if this matches any known aliases
+  for (const [standardId, aliases] of Object.entries(agentNameAliases)) {
+    if (aliases.some(alias => alias.toLowerCase() === agentName.toLowerCase())) {
+      return standardId;
+    }
+  }
+  
+  return directMatch;
 };
 
 export const getAgentCulturalProfile = (agentName: string) => {
-  console.log('Getting cultural profile for agent:', agentName);
-  
-  // First try to get direct profile for the agent
-  const agentId = agentName.toLowerCase().replace(/\s+/g, '-');
-  let profile = getCulturalProfile(agentId);
-  
-  if (!profile) {
-    // If no direct profile, try to map to department leader
-    const departmentLeaderId = agentToDepartmentMapping[agentName];
-    if (departmentLeaderId) {
-      profile = getCulturalProfile(departmentLeaderId);
-      console.log(`Mapped ${agentName} to department leader ${departmentLeaderId}:`, profile);
+  try {
+    console.log('Getting cultural profile for agent:', agentName);
+    
+    if (!agentName) {
+      console.warn('No agent name provided to getAgentCulturalProfile');
+      return null;
     }
+    
+    // Normalize and try direct lookup
+    const normalizedName = normalizeAgentName(agentName);
+    let profile = getCulturalProfile(normalizedName);
+    
+    if (!profile) {
+      // Try department mapping
+      const departmentLeaderId = agentToDepartmentMapping[agentName];
+      if (departmentLeaderId) {
+        profile = getCulturalProfile(departmentLeaderId);
+        console.log(`Mapped ${agentName} to department leader ${departmentLeaderId}:`, !!profile);
+      } else {
+        console.log(`No department mapping found for ${agentName}`);
+      }
+    }
+    
+    return profile;
+  } catch (error) {
+    console.error('Error getting cultural profile for agent:', agentName, error);
+    return null;
   }
-  
-  return profile;
 };
 
 export const getAgentSupportedLanguages = (agentName: string): string[] => {
-  console.log('Getting supported languages for agent:', agentName);
-  
-  // First try direct lookup
-  const agentId = agentName.toLowerCase().replace(/\s+/g, '-');
-  let languages = getSupportedLanguagesForMember(agentId);
-  
-  // If no languages found, try department mapping
-  if (!languages || languages.length === 0 || (languages.length === 1 && languages[0] === 'en')) {
-    const departmentLeaderId = agentToDepartmentMapping[agentName];
-    if (departmentLeaderId) {
-      languages = getSupportedLanguagesForMember(departmentLeaderId);
-      console.log(`Mapped ${agentName} languages to department leader ${departmentLeaderId}:`, languages);
+  try {
+    console.log('Getting supported languages for agent:', agentName);
+    
+    if (!agentName) {
+      console.warn('No agent name provided to getAgentSupportedLanguages');
+      return ['en'];
     }
+    
+    // Try normalized direct lookup
+    const normalizedName = normalizeAgentName(agentName);
+    let languages = getSupportedLanguagesForMember(normalizedName);
+    
+    // If not found or only English, try department mapping
+    if (!languages || languages.length === 0 || (languages.length === 1 && languages[0] === 'en')) {
+      const departmentLeaderId = agentToDepartmentMapping[agentName];
+      if (departmentLeaderId) {
+        languages = getSupportedLanguagesForMember(departmentLeaderId);
+        console.log(`Mapped ${agentName} languages to department leader ${departmentLeaderId}:`, languages);
+      }
+    }
+    
+    // Ensure we always return valid array with at least English
+    const result = Array.isArray(languages) && languages.length > 0 ? languages : ['en'];
+    console.log(`Final languages for ${agentName}:`, result);
+    return result;
+  } catch (error) {
+    console.error('Error getting supported languages for agent:', agentName, error);
+    return ['en'];
   }
-  
-  // Fallback to English if still no languages
-  const result = languages && languages.length > 0 ? languages : ['en'];
-  console.log(`Final languages for ${agentName}:`, result);
-  return result;
 };
 
 export const getAgentPrimaryLanguage = (agentName: string): string => {
-  const profile = getAgentCulturalProfile(agentName);
-  const primaryLang = profile?.primaryLanguage || 'en';
-  console.log(`Primary language for ${agentName}:`, primaryLang);
-  return primaryLang;
+  try {
+    const profile = getAgentCulturalProfile(agentName);
+    const primaryLang = profile?.primaryLanguage || 'en';
+    console.log(`Primary language for ${agentName}:`, primaryLang);
+    return primaryLang;
+  } catch (error) {
+    console.error('Error getting primary language for agent:', agentName, error);
+    return 'en';
+  }
 };
