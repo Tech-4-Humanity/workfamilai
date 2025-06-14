@@ -10,6 +10,9 @@ interface ChatModalProps {
   agentPersonality: string;
   agentBackground: string;
   agentColor?: string;
+  agentImageUrl?: string;
+  agentLanguages?: string[];
+  primaryLanguage?: string;
   buttonText?: string;
   buttonVariant?: 'default' | 'outline' | 'secondary' | 'ghost';
   buttonSize?: 'sm' | 'default' | 'lg';
@@ -21,6 +24,9 @@ export const ChatModal = ({
   agentPersonality,
   agentBackground,
   agentColor = 'blue',
+  agentImageUrl,
+  agentLanguages = [],
+  primaryLanguage = 'en',
   buttonText = 'Chat',
   buttonVariant = 'outline',
   buttonSize = 'default',
@@ -46,6 +52,9 @@ export const ChatModal = ({
           agentPersonality={agentPersonality}
           agentBackground={agentBackground}
           agentColor={agentColor}
+          agentImageUrl={agentImageUrl}
+          agentLanguages={agentLanguages}
+          primaryLanguage={primaryLanguage}
           onClose={() => setOpen(false)}
         />
       </DialogContent>

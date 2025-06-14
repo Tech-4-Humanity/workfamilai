@@ -2,8 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { Mic, MicOff, Send, Volume2, VolumeX } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { getAgentInitials } from '@/utils/agent-images';
 
 interface Message {
   id: string;
@@ -18,6 +21,9 @@ interface ChatInterfaceProps {
   agentPersonality: string;
   agentBackground: string;
   agentColor?: string;
+  agentImageUrl?: string;
+  agentLanguages?: string[];
+  primaryLanguage?: string;
   onClose?: () => void;
 }
 
@@ -26,6 +32,9 @@ export const ChatInterface = ({
   agentPersonality, 
   agentBackground, 
   agentColor = 'blue',
+  agentImageUrl,
+  agentLanguages = [],
+  primaryLanguage = 'en',
   onClose 
 }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -231,17 +240,40 @@ export const ChatInterface = ({
 
   return (
     <div className="flex flex-col h-full max-h-[80vh] bg-white rounded-lg shadow-lg">
-      {/* Chat Header */}
-      <div className={`bg-${agentColor}-600 text-white p-4 rounded-t-lg flex justify-between items-center`}>
-        <div>
-          <h3 className="text-lg font-semibold">{agentName}</h3>
-          <p className="text-sm opacity-90">{agentPersonality}</p>
+      {/* Enhanced Chat Header with Agent Image and Languages */}
+      <div className={`bg-${agentColor}-600 text-white p-4 rounded-t-lg`}>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <Avatar className="w-12 h-12 border-2 border-white/20">
+              <AvatarImage src={agentImageUrl} alt={agentName} />
+              <AvatarFallback className="bg-white/20 text-white font-semibold">
+                {getAgentInitials(agentName)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold">{agentName}</h3>
+              <p className="text-sm opacity-90 mb-2">{agentPersonality}</p>
+              {agentLanguages.length > 0 && (
+                <div className="flex items-center">
+                  <LanguageIndicator 
+                    languages={agentLanguages}
+                    primaryLanguage={primaryLanguage}
+                    variant="minimal"
+                    className="opacity-90"
+                  />
+                  <span className="text-xs ml-2 opacity-75">
+                    Speaks {agentLanguages.length} languages
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          {onClose && (
+            <Button variant="ghost" size="sm" onClick={onClose} className="text-white hover:bg-white/20">
+              ×
+            </Button>
+          )}
         </div>
-        {onClose && (
-          <Button variant="ghost" size="sm" onClick={onClose} className="text-white hover:bg-white/20">
-            ×
-          </Button>
-        )}
       </div>
 
       {/* Messages Container */}

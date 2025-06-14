@@ -6,6 +6,7 @@ import { ChatModal } from '@/components/chat/ChatModal';
 import { AgentLanguageSection } from './AgentLanguageSection';
 import { AgentDetailsSection } from './AgentDetailsSection';
 import { Agent } from '@/types/family';
+import { getAgentImageUrl } from '@/utils/agent-images';
 
 interface AgentCardProps {
   agent: Agent;
@@ -26,6 +27,7 @@ export const AgentCard = ({ agent, agentLanguages, primaryLanguage }: AgentCardP
   };
 
   const improvedBackground = improveAgentDescription(agent.background);
+  const agentImageUrl = getAgentImageUrl(agent.name, agent.specialization);
 
   return (
     <Card className="border border-gray-200 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
@@ -69,6 +71,9 @@ export const AgentCard = ({ agent, agentLanguages, primaryLanguage }: AgentCardP
             agentPersonality={agent.specialization}
             agentBackground={`${improvedBackground} I specialize in ${agent.specialization} and my signature method is ${agent.signature_method}. My greatest achievement is ${agent.achievement}. I can communicate fluently in: ${agentLanguages.join(', ')}.`}
             agentColor="indigo"
+            agentImageUrl={agentImageUrl}
+            agentLanguages={agentLanguages}
+            primaryLanguage={primaryLanguage}
             buttonText={`Chat with ${agent.name.split(' ')[0]}`}
             buttonVariant="outline"
             buttonSize="sm"

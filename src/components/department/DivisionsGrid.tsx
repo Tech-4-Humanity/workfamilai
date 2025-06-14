@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { LanguageFilter } from '@/components/ui/language-filter';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
@@ -13,31 +12,82 @@ interface DivisionsGridProps {
 export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
   const [languageFilter, setLanguageFilter] = useState<string[]>([]);
 
-  // Generate language capabilities for agents based on their leader
+  // Enhanced language assignment based on agent names and specializations
   const getAgentLanguages = (divisionIndex: number, agentIndex: number) => {
-    // For now, inherit from department leader (Priya Sharma in this case)
-    // In a real system, each agent could have unique language capabilities
     const baseLanguages = getSupportedLanguagesForMember('priya-sharma');
+    const agent = divisions[divisionIndex]?.agents[agentIndex];
     
-    // Add some variation based on agent specialization
-    const additionalLanguages: Record<string, string[]> = {
-      'Cultural Integration': ['hi', 'ur', 'ar'],
-      'Global Talent': ['zh', 'ja', 'ko'],
-      'International Relations': ['fr', 'de', 'es'],
-      'Cross-Cultural': ['ar', 'zh', 'ja'],
-      'Diversity': ['es', 'fr', 'ar'],
+    if (!agent) return baseLanguages;
+
+    // Name-based language assignment
+    const nameLanguageMap: Record<string, string[]> = {
+      // Japanese names
+      'Yuki': ['ja', 'en'],
+      'Akira': ['ja', 'en'], 
+      'Kenji': ['ja', 'en'],
+      'Sakura': ['ja', 'en'],
+      'Hiroshi': ['ja', 'en'],
+      // Chinese names
+      'Wei': ['zh', 'en'],
+      'Li': ['zh', 'en'],
+      'Chen': ['zh', 'en'],
+      'Zhang': ['zh', 'en'],
+      'Wang': ['zh', 'en'],
+      // Korean names
+      'Jin': ['ko', 'en'],
+      'Park': ['ko', 'en'],
+      'Kim': ['ko', 'en'],
+      'Lee': ['ko', 'en'],
+      // Arabic names
+      'Ahmed': ['ar', 'en'],
+      'Fatma': ['ar', 'en'],
+      'Omar': ['ar', 'en'],
+      'Layla': ['ar', 'en'],
+      // Spanish names
+      'Carlos': ['es', 'en'],
+      'Maria': ['es', 'en'],
+      'Diego': ['es', 'en'],
+      'Sofia': ['es', 'en'],
+      // French names
+      'Pierre': ['fr', 'en'],
+      'Marie': ['fr', 'en'],
+      'Antoine': ['fr', 'en'],
+      'Camille': ['fr', 'en'],
+      // German names
+      'Hans': ['de', 'en'],
+      'Greta': ['de', 'en'],
+      'Klaus': ['de', 'en'],
+      'Ingrid': ['de', 'en']
     };
 
-    const agent = divisions[divisionIndex]?.agents[agentIndex];
-    if (agent) {
-      const extraLangs = Object.entries(additionalLanguages)
-        .filter(([key]) => agent.specialization.includes(key) || agent.name.includes(key))
-        .flatMap(([, langs]) => langs);
-      
-      return [...new Set([...baseLanguages, ...extraLangs])];
-    }
+    // Check if agent name matches cultural language patterns
+    const agentFirstName = agent.name.split(' ')[0];
+    const nameBasedLanguages = nameLanguageMap[agentFirstName];
     
-    return baseLanguages;
+    if (nameBasedLanguages) {
+      return [...new Set([...baseLanguages, ...nameBasedLanguages])];
+    }
+
+    // Specialization-based language assignment
+    const specializationLanguages: Record<string, string[]> = {
+      'Cultural Integration': ['hi', 'ur', 'ar', 'zh'],
+      'Global Talent': ['zh', 'ja', 'ko', 'hi'],
+      'International Relations': ['fr', 'de', 'es', 'ar'],
+      'Cross-Cultural': ['ar', 'zh', 'ja', 'ko'],
+      'Diversity': ['es', 'fr', 'ar', 'hi'],
+      'Japanese Market': ['ja', 'en'],
+      'Asian Markets': ['zh', 'ja', 'ko'],
+      'European Markets': ['fr', 'de', 'es'],
+      'MENA Region': ['ar', 'fr'],
+      'Latin America': ['es', 'en'],
+      'Multilingual': ['fr', 'de', 'es', 'zh', 'ja']
+    };
+
+    const extraLangs = Object.entries(specializationLanguages)
+      .filter(([key]) => agent.specialization.includes(key) || agent.background.includes(key))
+      .flatMap(([, langs]) => langs);
+    
+    return [...new Set([...baseLanguages, ...extraLangs])];
   };
 
   const getPrimaryLanguage = () => {
