@@ -11,6 +11,7 @@ interface ChatHeaderProps {
   agentImageUrl?: string;
   agentLanguages: string[];
   primaryLanguage: string;
+  onClose?: () => void; // Make optional since we're not using it
 }
 
 export const ChatHeader = ({

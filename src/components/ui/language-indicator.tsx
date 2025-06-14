@@ -26,13 +26,13 @@ export const LanguageIndicator = ({
     languages,
     primaryLanguage,
     variant,
-    supportedLanguages: Object.keys(supportedLanguages)
+    availableLanguages: Object.keys(supportedLanguages)
   });
 
   const getLanguageFlag = (langCode: string) => {
     const languageConfig = supportedLanguages[langCode as keyof typeof supportedLanguages];
     const flag = languageConfig?.flag || '🌐';
-    console.log('Flag for', langCode, ':', flag, 'from config:', languageConfig);
+    console.log('Flag for', langCode, ':', flag);
     return flag;
   };
 
@@ -40,28 +40,30 @@ export const LanguageIndicator = ({
     return supportedLanguages[langCode as keyof typeof supportedLanguages]?.name || langCode.toUpperCase();
   };
 
-  // Ensure we have valid languages and filter properly
+  // Filter valid languages and ensure we have at least English
   const validLanguages = languages.filter(lang => {
     const isValid = supportedLanguages[lang as keyof typeof supportedLanguages] !== undefined;
     console.log(`Language ${lang} is valid:`, isValid);
     return isValid;
   });
 
-  console.log('Valid languages after filtering:', validLanguages);
-
+  // If no valid languages, default to English
   if (validLanguages.length === 0) {
-    console.log('No valid languages found, using fallback [en]');
-    // Fallback to English if no valid languages
+    console.log('No valid languages found, defaulting to English');
     validLanguages.push('en');
   }
+
+  console.log('Final valid languages:', validLanguages);
 
   if (variant === 'minimal') {
     const primaryLang = primaryLanguage || validLanguages[0];
     return (
       <div className={`flex items-center space-x-1 ${className}`}>
-        <span className="text-lg">{getLanguageFlag(primaryLang)}</span>
-        {validLanguages.length > 1 && (
-          <span className="text-xs opacity-75">+{validLanguages.length - 1}</span>
+        {validLanguages.map(lang => (
+          <span key={lang} className="text-lg">{getLanguageFlag(lang)}</span>
+        ))}
+        {validLanguages.length > 3 && (
+          <span className="text-xs opacity-75">+{validLanguages.length - 3}</span>
         )}
       </div>
     );
