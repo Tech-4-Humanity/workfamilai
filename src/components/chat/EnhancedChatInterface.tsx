@@ -40,12 +40,35 @@ export const EnhancedChatInterface = ({
     setIsCollaborativeMode
   } = useEnhancedChat();
 
-  // Get language capabilities for agent
+  // Get language capabilities for agent - improved ID generation and debugging
   const agentId = agentName.toLowerCase().replace(/\s+/g, '-');
-  const supportedLanguages = getSupportedLanguagesForMember(agentId) || ['en'];
-  const culturalProfile = getCulturalProfile(agentId);
+  console.log('Agent ID generated:', agentId, 'for agent name:', agentName);
+  
+  let supportedLanguages = getSupportedLanguagesForMember(agentId) || ['en'];
+  let culturalProfile = getCulturalProfile(agentId);
+  
+  // Fallback for main department leaders if cultural profile lookup fails
+  if (!culturalProfile && agentName === 'Amara Chen') {
+    console.log('Using fallback cultural profile for Amara Chen');
+    culturalProfile = {
+      primaryLanguage: 'zh',
+      secondaryLanguages: ['en', 'ja'],
+      culturalBackground: 'East Asian business culture with emphasis on innovation and harmony',
+      communicationStyle: 'Indirect, consensus-building, respectful of hierarchy',
+      businessEtiquette: 'Values patience, long-term relationships, and face-saving',
+      timeZone: 'Asia/Shanghai',
+      workingHours: '9:00 AM - 6:00 PM CST',
+      culturalHolidays: ['Chinese New Year', 'Mid-Autumn Festival'],
+      preferredGreeting: 'Respectful bow or handshake with business card exchange',
+      formalityLevel: 'high' as const
+    };
+    supportedLanguages = ['zh', 'en', 'ja'];
+  }
+  
   const primaryLanguage = culturalProfile?.primaryLanguage || 'en';
   const agentImageUrl = getAgentImageUrl(agentName, 'General');
+  
+  console.log('Language data:', { agentId, supportedLanguages, primaryLanguage, culturalProfile });
 
   useEffect(() => {
     if (scrollAreaRef.current) {

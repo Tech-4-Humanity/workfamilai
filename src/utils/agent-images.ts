@@ -3,6 +3,18 @@
 export const getAgentImageUrl = (agentName: string, specialization: string): string => {
   // Map based on agent names and characteristics
   const imageMap: Record<string, string> = {
+    // Main Department Leaders
+    'Amara Chen': 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Priya Sharma': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Aisha Al-Farsi': 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Miguel Santos': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Theo Williams': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Yuna Kim': 'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Sofia Rodriguez': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Marcus Bennett': 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'Elena Vasquez': 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    'David Okafor': 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
+    
     // Japanese agents
     'Yuki Tanaka': 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
     'Akira Suzuki': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face&auto=format&q=90',
