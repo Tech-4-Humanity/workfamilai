@@ -13,29 +13,32 @@ import jaTranslations from './locales/ja.json';
 import koTranslations from './locales/ko.json';
 import arTranslations from './locales/ar.json';
 
-// Enhanced supported languages with additional language codes
+// Enhanced supported languages with additional language codes and rtl support
 export const supportedLanguages = {
-  en: { name: 'English', flag: '🇺🇸', nativeName: 'English' },
-  es: { name: 'Spanish', flag: '🇪🇸', nativeName: 'Español' },
-  fr: { name: 'French', flag: '🇫🇷', nativeName: 'Français' },
-  de: { name: 'German', flag: '🇩🇪', nativeName: 'Deutsch' },
-  zh: { name: 'Chinese', flag: '🇨🇳', nativeName: '中文' },
-  ja: { name: 'Japanese', flag: '🇯🇵', nativeName: '日本語' },
-  ko: { name: 'Korean', flag: '🇰🇷', nativeName: '한국어' },
-  ar: { name: 'Arabic', flag: '🇸🇦', nativeName: 'العربية' },
+  en: { name: 'English', flag: '🇺🇸', nativeName: 'English', rtl: false },
+  es: { name: 'Spanish', flag: '🇪🇸', nativeName: 'Español', rtl: false },
+  fr: { name: 'French', flag: '🇫🇷', nativeName: 'Français', rtl: false },
+  de: { name: 'German', flag: '🇩🇪', nativeName: 'Deutsch', rtl: false },
+  zh: { name: 'Chinese', flag: '🇨🇳', nativeName: '中文', rtl: false },
+  ja: { name: 'Japanese', flag: '🇯🇵', nativeName: '日本語', rtl: false },
+  ko: { name: 'Korean', flag: '🇰🇷', nativeName: '한국어', rtl: false },
+  ar: { name: 'Arabic', flag: '🇸🇦', nativeName: 'العربية', rtl: true },
   // Additional language codes that might be used in cultural profiles
-  hi: { name: 'Hindi', flag: '🇮🇳', nativeName: 'हिन्दी' },
-  ur: { name: 'Urdu', flag: '🇵🇰', nativeName: 'اردو' },
-  pt: { name: 'Portuguese', flag: '🇵🇹', nativeName: 'Português' },
-  ru: { name: 'Russian', flag: '🇷🇺', nativeName: 'Русский' },
-  it: { name: 'Italian', flag: '🇮🇹', nativeName: 'Italiano' },
-  nl: { name: 'Dutch', flag: '🇳🇱', nativeName: 'Nederlands' },
-  pl: { name: 'Polish', flag: '🇵🇱', nativeName: 'Polski' },
-  tr: { name: 'Turkish', flag: '🇹🇷', nativeName: 'Türkçe' },
-  sv: { name: 'Swedish', flag: '🇸🇪', nativeName: 'Svenska' },
-  no: { name: 'Norwegian', flag: '🇳🇴', nativeName: 'Norsk' },
-  da: { name: 'Danish', flag: '🇩🇰', nativeName: 'Dansk' },
-  fi: { name: 'Finnish', flag: '🇫🇮', nativeName: 'Suomi' }
+  hi: { name: 'Hindi', flag: '🇮🇳', nativeName: 'हिन्दी', rtl: false },
+  ur: { name: 'Urdu', flag: '🇵🇰', nativeName: 'اردو', rtl: true },
+  pt: { name: 'Portuguese', flag: '🇵🇹', nativeName: 'Português', rtl: false },
+  ru: { name: 'Russian', flag: '🇷🇺', nativeName: 'Русский', rtl: false },
+  it: { name: 'Italian', flag: '🇮🇹', nativeName: 'Italiano', rtl: false },
+  nl: { name: 'Dutch', flag: '🇳🇱', nativeName: 'Nederlands', rtl: false },
+  pl: { name: 'Polish', flag: '🇵🇱', nativeName: 'Polski', rtl: false },
+  tr: { name: 'Turkish', flag: '🇹🇷', nativeName: 'Türkçe', rtl: false },
+  sv: { name: 'Swedish', flag: '🇸🇪', nativeName: 'Svenska', rtl: false },
+  no: { name: 'Norwegian', flag: '🇳🇴', nativeName: 'Norsk', rtl: false },
+  da: { name: 'Danish', flag: '🇩🇰', nativeName: 'Dansk', rtl: false },
+  fi: { name: 'Finnish', flag: '🇫🇮', nativeName: 'Suomi', rtl: false },
+  ca: { name: 'Catalan', flag: '🏴󠁥󠁳󠁣󠁴󠁿', nativeName: 'Català', rtl: false },
+  ig: { name: 'Igbo', flag: '🇳🇬', nativeName: 'Igbo', rtl: false },
+  yo: { name: 'Yoruba', flag: '🇳🇬', nativeName: 'Yorùbá', rtl: false }
 } as const;
 
 const resources = {

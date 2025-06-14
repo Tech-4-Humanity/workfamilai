@@ -4,6 +4,8 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { getAgentInitials } from '@/utils/agent-images';
+import { X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface ChatHeaderProps {
   agentName: string;
@@ -12,6 +14,7 @@ interface ChatHeaderProps {
   agentImageUrl?: string;
   agentLanguages: string[];
   primaryLanguage: string;
+  onClose?: () => void;
 }
 
 const ChatHeaderContent = ({
@@ -20,7 +23,8 @@ const ChatHeaderContent = ({
   agentColor,
   agentImageUrl,
   agentLanguages,
-  primaryLanguage
+  primaryLanguage,
+  onClose
 }: ChatHeaderProps) => {
   // Debug logging
   console.log('ChatHeader Debug:', {
@@ -74,18 +78,35 @@ const ChatHeaderContent = ({
           <p className="text-sm opacity-90 mb-2">{agentPersonality}</p>
           {agentLanguages.length > 0 && (
             <div className="flex items-center">
-              <LanguageIndicator 
-                languages={agentLanguages}
-                primaryLanguage={primaryLanguage}
-                variant="minimal"
-                className="opacity-90"
-              />
+              <ErrorBoundary fallback={
+                <div className="flex items-center space-x-1 text-sm opacity-75">
+                  <span>🌐 Languages</span>
+                </div>
+              }>
+                <LanguageIndicator 
+                  languages={agentLanguages}
+                  primaryLanguage={primaryLanguage}
+                  variant="minimal"
+                  className="opacity-90"
+                />
+              </ErrorBoundary>
               <span className="text-xs ml-2 opacity-75">
                 Speaks {agentLanguages.length} language{agentLanguages.length !== 1 ? 's' : ''}
               </span>
             </div>
           )}
         </div>
+
+        {onClose && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="text-white hover:bg-white/20"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -105,6 +126,16 @@ export const ChatHeader = (props: ChatHeaderProps) => {
             <h3 className="text-lg font-semibold">{props.agentName}</h3>
             <p className="text-sm opacity-90">Agent Assistant</p>
           </div>
+          {props.onClose && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={props.onClose}
+              className="text-white hover:bg-white/20"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
     }>
