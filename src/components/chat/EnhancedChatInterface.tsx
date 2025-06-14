@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
+import React, { useState } from 'react';
 import { useEnhancedChat } from '@/hooks/useEnhancedChat';
 import { ChatHeader } from './ChatHeader';
-import { ChatMessage } from './ChatMessage';
+import { ChatLanguageBar } from './ChatLanguageBar';
+import { ChatContainer } from './ChatContainer';
 import { ChatInput } from './ChatInput';
 import { HoloOrgSidebar } from './HoloOrgSidebar';
-import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
 import { getAgentImageUrl } from '@/utils/agent-images';
 
@@ -29,7 +29,6 @@ export const EnhancedChatInterface = ({
   const [showOrgPanel, setShowOrgPanel] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
   
   const {
     messages,
@@ -79,12 +78,6 @@ export const EnhancedChatInterface = ({
     culturalProfile: !!culturalProfile,
     agentImageUrl 
   });
-
-  useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
-    }
-  }, [messages]);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
@@ -153,54 +146,18 @@ export const EnhancedChatInterface = ({
             onClose={onClose}
           />
           
-          {/* Language Capabilities Bar */}
-          <div className="px-4 py-2 bg-gray-50 border-b border-gray-200">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-sm text-gray-600">Language Capabilities:</span>
-                <LanguageIndicator 
-                  languages={supportedLanguages}
-                  primaryLanguage={primaryLanguage}
-                  variant="compact"
-                  showPopover={true}
-                />
-              </div>
-              {culturalProfile && (
-                <div className="text-xs text-gray-500">
-                  {culturalProfile.timeZone} • {culturalProfile.workingHours}
-                </div>
-              )}
-            </div>
-          </div>
+          <ChatLanguageBar
+            supportedLanguages={supportedLanguages}
+            primaryLanguage={primaryLanguage}
+            culturalProfile={culturalProfile}
+          />
         </div>
 
-        {/* Messages */}
-        <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
-          <div className="space-y-4">
-            {/* Welcome message with language context */}
-            {messages.length === 0 && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                <p className="text-sm text-blue-800">
-                  <strong>Welcome!</strong> I can communicate with you in{' '}
-                  {supportedLanguages.length > 1 
-                    ? `${supportedLanguages.length} languages` 
-                    : 'English'
-                  }. My primary language is{' '}
-                  <strong>{culturalProfile ? culturalProfile.primaryLanguage.toUpperCase() : 'EN'}</strong>.
-                  {culturalProfile && (
-                    <span className="block mt-2 text-xs">
-                      Cultural Context: {culturalProfile.culturalBackground}
-                    </span>
-                  )}
-                </p>
-              </div>
-            )}
-            
-            {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} />
-            ))}
-          </div>
-        </ScrollArea>
+        <ChatContainer
+          messages={messages}
+          supportedLanguages={supportedLanguages}
+          culturalProfile={culturalProfile}
+        />
 
         <ChatInput
           inputMessage={inputMessage}
