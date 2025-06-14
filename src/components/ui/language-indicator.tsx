@@ -58,14 +58,24 @@ const LanguageIndicatorContent = ({
 
   if (variant === 'minimal') {
     return (
-      <div className={`flex items-center space-x-1 ${className}`}>
+      <div className={`flex items-center space-x-1 ${className}`} role="img" aria-label="Supported languages">
         {validLanguages.slice(0, 3).map(lang => (
-          <span key={lang} className="text-lg" title={getLanguageName(lang)}>
+          <span 
+            key={lang} 
+            className="text-lg" 
+            title={getLanguageName(lang)}
+            role="img"
+            aria-label={`${getLanguageName(lang)} language`}
+          >
             {getLanguageFlag(lang)}
           </span>
         ))}
         {validLanguages.length > 3 && (
-          <span className="text-xs opacity-75" title={`${validLanguages.length - 3} more languages`}>
+          <span 
+            className="text-xs opacity-75" 
+            title={`${validLanguages.length - 3} more languages`}
+            aria-label={`${validLanguages.length - 3} additional languages`}
+          >
             +{validLanguages.length - 3}
           </span>
         )}
@@ -77,7 +87,7 @@ const LanguageIndicatorContent = ({
   const hasMore = validLanguages.length > displayLanguages.length;
 
   const content = (
-    <div className={`flex items-center space-x-1 ${className}`}>
+    <div className={`flex items-center space-x-1 ${className}`} role="group" aria-label="Language capabilities">
       {displayLanguages.map((lang) => (
         <Badge 
           key={lang} 
@@ -85,13 +95,19 @@ const LanguageIndicatorContent = ({
           className={`text-xs px-2 py-0.5 bg-white/20 text-white border-white/30 ${
             lang === primaryLanguage ? 'bg-white/30 border-white/50' : ''
           }`}
+          role="img"
+          aria-label={`${getLanguageName(lang)}${lang === primaryLanguage ? ' - Primary language' : ''}`}
         >
-          <span className="mr-1 text-sm">{getLanguageFlag(lang)}</span>
+          <span className="mr-1 text-sm" role="img" aria-hidden="true">{getLanguageFlag(lang)}</span>
           {variant === 'full' ? getLanguageName(lang) : lang.toUpperCase()}
         </Badge>
       ))}
       {hasMore && (
-        <Badge variant="outline" className="text-xs px-2 py-0.5 text-white bg-white/20 border-white/30">
+        <Badge 
+          variant="outline" 
+          className="text-xs px-2 py-0.5 text-white bg-white/20 border-white/30"
+          aria-label={`${validLanguages.length - displayLanguages.length} additional languages`}
+        >
           +{validLanguages.length - displayLanguages.length}
         </Badge>
       )}
@@ -102,29 +118,36 @@ const LanguageIndicatorContent = ({
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-auto p-1 hover:bg-white/20">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="h-auto p-1 hover:bg-white/20"
+            aria-label="View all supported languages"
+          >
             {content}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-80 p-3">
+        <PopoverContent className="w-80 p-3" role="dialog" aria-labelledby="language-popover-title">
           <div className="space-y-2">
-            <h4 className="font-medium text-sm flex items-center">
-              <Globe className="h-4 w-4 mr-2" />
+            <h4 id="language-popover-title" className="font-medium text-sm flex items-center">
+              <Globe className="h-4 w-4 mr-2" aria-hidden="true" />
               Language Capabilities
             </h4>
-            <div className="space-y-1">
+            <ul className="space-y-1" role="list">
               {validLanguages.map((lang) => (
-                <div key={lang} className="flex items-center justify-between text-sm">
+                <li key={lang} className="flex items-center justify-between text-sm" role="listitem">
                   <span className="flex items-center">
-                    <span className="mr-2 text-lg">{getLanguageFlag(lang)}</span>
+                    <span className="mr-2 text-lg" role="img" aria-label={`${getLanguageName(lang)} flag`}>
+                      {getLanguageFlag(lang)}
+                    </span>
                     {getLanguageName(lang)}
                   </span>
                   {lang === primaryLanguage && (
                     <Badge variant="secondary" className="text-xs">Primary</Badge>
                   )}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </PopoverContent>
       </Popover>

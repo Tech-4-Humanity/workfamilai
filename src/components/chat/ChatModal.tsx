@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { MessageCircle } from 'lucide-react';
 import { ChatInterface } from './ChatInterface';
@@ -41,12 +41,20 @@ export const ChatModal = ({
           variant={buttonVariant} 
           size={buttonSize}
           className={`flex items-center gap-2 ${triggerClassName}`}
+          aria-label={`Start chat with ${agentName}`}
         >
           <MessageCircle className="h-4 w-4" />
           {buttonText}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl h-[80vh] p-0">
+      <DialogContent className="max-w-4xl h-[80vh] p-0" aria-describedby="chat-description">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Chat with {agentName}</DialogTitle>
+          <DialogDescription id="chat-description">
+            Start a conversation with {agentName}, {agentPersonality.toLowerCase()}. 
+            This chat interface supports text messaging and voice interactions.
+          </DialogDescription>
+        </DialogHeader>
         <ChatInterface
           agentName={agentName}
           agentPersonality={agentPersonality}

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
@@ -51,7 +50,11 @@ const ChatHeaderContent = ({
   };
 
   return (
-    <div className={`${getHeaderColorClass(agentColor)} text-white p-4 rounded-t-lg`}>
+    <header 
+      className={`${getHeaderColorClass(agentColor)} text-white p-4 rounded-t-lg`}
+      role="banner"
+      aria-label={`Chat header for ${agentName}`}
+    >
       <div className="flex items-center gap-4">
         <ErrorBoundary fallback={
           <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
@@ -63,7 +66,7 @@ const ChatHeaderContent = ({
           <Avatar className="w-12 h-12 border-2 border-white/20">
             <AvatarImage 
               src={agentImageUrl} 
-              alt={agentName}
+              alt={`Profile picture of ${agentName}`}
               onLoad={() => console.log('Avatar image loaded successfully:', agentImageUrl)}
               onError={() => console.log('Avatar image failed to load:', agentImageUrl)}
             />
@@ -74,13 +77,14 @@ const ChatHeaderContent = ({
         </ErrorBoundary>
         
         <div className="flex-1">
-          <h3 className="text-lg font-semibold">{agentName}</h3>
+          <h1 className="text-lg font-semibold">{agentName}</h1>
           <p className="text-sm opacity-90 mb-2">{agentPersonality}</p>
           {agentLanguages.length > 0 && (
             <div className="flex items-center">
               <ErrorBoundary fallback={
                 <div className="flex items-center space-x-1 text-sm opacity-75">
-                  <span>🌐 Languages</span>
+                  <span role="img" aria-label="Languages">🌐</span>
+                  <span>Languages</span>
                 </div>
               }>
                 <LanguageIndicator 
@@ -90,7 +94,10 @@ const ChatHeaderContent = ({
                   className="opacity-90"
                 />
               </ErrorBoundary>
-              <span className="text-xs ml-2 opacity-75">
+              <span 
+                className="text-xs ml-2 opacity-75"
+                aria-label={`Speaks ${agentLanguages.length} language${agentLanguages.length !== 1 ? 's' : ''}`}
+              >
                 Speaks {agentLanguages.length} language{agentLanguages.length !== 1 ? 's' : ''}
               </span>
             </div>
@@ -103,12 +110,13 @@ const ChatHeaderContent = ({
             size="sm"
             onClick={onClose}
             className="text-white hover:bg-white/20"
+            aria-label="Close chat"
           >
             <X className="h-4 w-4" />
           </Button>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

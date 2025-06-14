@@ -35,16 +35,19 @@ export const EnhancedChatModal = ({
           variant={buttonVariant} 
           size={buttonSize}
           className={`flex items-center gap-2 ${triggerClassName}`}
+          aria-label={`Start enhanced organizational chat with ${agentName}`}
         >
           <Users className="h-4 w-4" />
           {buttonText}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-6xl h-[85vh] p-0">
+      <DialogContent className="max-w-6xl h-[85vh] p-0" aria-describedby="enhanced-chat-description">
         <DialogHeader className="sr-only">
           <DialogTitle>Enhanced Chat with {agentName}</DialogTitle>
-          <DialogDescription>
-            Engage in an enhanced conversation with {agentName}, featuring organizational intelligence and collaborative capabilities.
+          <DialogDescription id="enhanced-chat-description">
+            Engage in an enhanced conversation with {agentName}, featuring organizational intelligence 
+            and collaborative capabilities. This interface provides access to business insights, 
+            departmental knowledge, and multi-agent collaboration features.
           </DialogDescription>
         </DialogHeader>
         <EnhancedChatInterface
