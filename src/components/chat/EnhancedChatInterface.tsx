@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useEnhancedChat } from '@/hooks/useEnhancedChat';
 import { ChatHeader } from './ChatHeader';
@@ -6,7 +5,7 @@ import { ChatLanguageBar } from './ChatLanguageBar';
 import { ChatContainer } from './ChatContainer';
 import { ChatInput } from './ChatInput';
 import { HoloOrgSidebar } from './HoloOrgSidebar';
-import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
+import { getAgentCulturalProfile, getAgentSupportedLanguages, getAgentPrimaryLanguage } from '@/utils/agent-cultural-mapping';
 import { getAgentImageUrl } from '@/utils/agent-images';
 
 interface EnhancedChatInterfaceProps {
@@ -38,41 +37,20 @@ export const EnhancedChatInterface = ({
     setIsCollaborativeMode
   } = useEnhancedChat();
 
-  // Get language capabilities for agent - improved ID generation and debugging
-  const agentId = agentName.toLowerCase().replace(/\s+/g, '-');
+  // Get language capabilities for agent using the new mapping functions
   console.log('EnhancedChatInterface Debug - Agent setup:', {
     agentName,
-    agentId,
     agentColor,
     agentPersonality: agentPersonality.substring(0, 50) + '...'
   });
   
-  let supportedLanguages = getSupportedLanguagesForMember(agentId) || ['en'];
-  let culturalProfile = getCulturalProfile(agentId);
-  
-  // Fallback for main department leaders if cultural profile lookup fails
-  if (!culturalProfile && agentName === 'Amara Chen') {
-    console.log('Using fallback cultural profile for Amara Chen');
-    culturalProfile = {
-      primaryLanguage: 'zh',
-      secondaryLanguages: ['en', 'ja'],
-      culturalBackground: 'East Asian business culture with emphasis on innovation and harmony',
-      communicationStyle: 'Indirect, consensus-building, respectful of hierarchy',
-      businessEtiquette: 'Values patience, long-term relationships, and face-saving',
-      timeZone: 'Asia/Shanghai',
-      workingHours: '9:00 AM - 6:00 PM CST',
-      culturalHolidays: ['Chinese New Year', 'Mid-Autumn Festival'],
-      preferredGreeting: 'Respectful bow or handshake with business card exchange',
-      formalityLevel: 'high' as const
-    };
-    supportedLanguages = ['zh', 'en', 'ja'];
-  }
-  
-  const primaryLanguage = culturalProfile?.primaryLanguage || 'en';
+  const supportedLanguages = getAgentSupportedLanguages(agentName);
+  const culturalProfile = getAgentCulturalProfile(agentName);  
+  const primaryLanguage = getAgentPrimaryLanguage(agentName);
   const agentImageUrl = getAgentImageUrl(agentName, 'General');
   
   console.log('Final language and image data:', { 
-    agentId, 
+    agentName,
     supportedLanguages, 
     primaryLanguage, 
     culturalProfile: !!culturalProfile,

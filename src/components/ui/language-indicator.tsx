@@ -40,16 +40,19 @@ export const LanguageIndicator = ({
     return supportedLanguages[langCode as keyof typeof supportedLanguages]?.name || langCode.toUpperCase();
   };
 
-  // Filter out any invalid language codes and ensure we have valid languages
-  const validLanguages = languages.filter(lang => 
-    supportedLanguages[lang as keyof typeof supportedLanguages] || lang === 'en'
-  );
+  // Ensure we have valid languages and filter properly
+  const validLanguages = languages.filter(lang => {
+    const isValid = supportedLanguages[lang as keyof typeof supportedLanguages] !== undefined;
+    console.log(`Language ${lang} is valid:`, isValid);
+    return isValid;
+  });
 
   console.log('Valid languages after filtering:', validLanguages);
 
   if (validLanguages.length === 0) {
-    console.log('No valid languages found, returning null');
-    return null;
+    console.log('No valid languages found, using fallback [en]');
+    // Fallback to English if no valid languages
+    validLanguages.push('en');
   }
 
   if (variant === 'minimal') {
