@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, Users } from 'lucide-react';
 import { EnhancedChatInterface } from './EnhancedChatInterface';
@@ -41,6 +41,12 @@ export const EnhancedChatModal = ({
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-6xl h-[85vh] p-0">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Enhanced Chat with {agentName}</DialogTitle>
+          <DialogDescription>
+            Engage in an enhanced conversation with {agentName}, featuring organizational intelligence and collaborative capabilities.
+          </DialogDescription>
+        </DialogHeader>
         <EnhancedChatInterface
           agentName={agentName}
           agentPersonality={agentPersonality}
