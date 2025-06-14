@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { getAgentInitials } from '@/utils/agent-images';
+import { X } from 'lucide-react';
 
 interface ChatHeaderProps {
   agentName: string;
@@ -33,23 +34,23 @@ export const ChatHeader = ({
     agentColor
   });
 
-  // Fix dynamic color class issue by using static classes
-  const getColorClasses = (color: string) => {
-    const colorMap: Record<string, string> = {
-      'blue': 'bg-blue-600',
-      'green': 'bg-green-600',
-      'purple': 'bg-purple-600',
-      'red': 'bg-red-600',
-      'orange': 'bg-orange-600',
-      'indigo': 'bg-indigo-600',
-      'pink': 'bg-pink-600',
-      'teal': 'bg-teal-600'
-    };
-    return colorMap[color] || 'bg-blue-600';
+  // Use static color classes to avoid Tailwind purging issues
+  const getHeaderColorClass = (color: string) => {
+    switch (color) {
+      case 'blue': return 'bg-blue-600';
+      case 'green': return 'bg-green-600';
+      case 'purple': return 'bg-purple-600';
+      case 'red': return 'bg-red-600';
+      case 'orange': return 'bg-orange-600';
+      case 'indigo': return 'bg-indigo-600';
+      case 'pink': return 'bg-pink-600';
+      case 'teal': return 'bg-teal-600';
+      default: return 'bg-blue-600';
+    }
   };
 
   return (
-    <div className={`${getColorClasses(agentColor)} text-white p-4 rounded-t-lg`}>
+    <div className={`${getHeaderColorClass(agentColor)} text-white p-4 rounded-t-lg`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Avatar className="w-12 h-12 border-2 border-white/20">
@@ -83,7 +84,7 @@ export const ChatHeader = ({
         </div>
         {onClose && (
           <Button variant="ghost" size="sm" onClick={onClose} className="text-white hover:bg-white/20">
-            ×
+            <X className="h-4 w-4" />
           </Button>
         )}
       </div>

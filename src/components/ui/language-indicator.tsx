@@ -30,36 +30,52 @@ export const LanguageIndicator = ({
   });
 
   const getLanguageFlag = (langCode: string) => {
-    const flag = supportedLanguages[langCode as keyof typeof supportedLanguages]?.flag || '🌐';
-    console.log('Flag for', langCode, ':', flag);
+    const languageConfig = supportedLanguages[langCode as keyof typeof supportedLanguages];
+    const flag = languageConfig?.flag || '🌐';
+    console.log('Flag for', langCode, ':', flag, 'from config:', languageConfig);
     return flag;
   };
 
   const getLanguageName = (langCode: string) => {
-    return supportedLanguages[langCode as keyof typeof supportedLanguages]?.name || langCode;
+    return supportedLanguages[langCode as keyof typeof supportedLanguages]?.name || langCode.toUpperCase();
   };
 
-  const displayLanguages = languages.slice(0, variant === 'minimal' ? 1 : variant === 'compact' ? 3 : languages.length);
-  const hasMore = languages.length > displayLanguages.length;
+  // Filter out any invalid language codes and ensure we have valid languages
+  const validLanguages = languages.filter(lang => 
+    supportedLanguages[lang as keyof typeof supportedLanguages] || lang === 'en'
+  );
+
+  console.log('Valid languages after filtering:', validLanguages);
+
+  if (validLanguages.length === 0) {
+    console.log('No valid languages found, returning null');
+    return null;
+  }
 
   if (variant === 'minimal') {
+    const primaryLang = primaryLanguage || validLanguages[0];
     return (
       <div className={`flex items-center space-x-1 ${className}`}>
-        <span className="text-sm">{getLanguageFlag(primaryLanguage || languages[0])}</span>
-        {languages.length > 1 && (
-          <span className="text-xs text-gray-300">+{languages.length - 1}</span>
+        <span className="text-lg">{getLanguageFlag(primaryLang)}</span>
+        {validLanguages.length > 1 && (
+          <span className="text-xs opacity-75">+{validLanguages.length - 1}</span>
         )}
       </div>
     );
   }
 
+  const displayLanguages = validLanguages.slice(0, variant === 'compact' ? 3 : validLanguages.length);
+  const hasMore = validLanguages.length > displayLanguages.length;
+
   const content = (
     <div className={`flex items-center space-x-1 ${className}`}>
-      {displayLanguages.map((lang, index) => (
+      {displayLanguages.map((lang) => (
         <Badge 
           key={lang} 
           variant={lang === primaryLanguage ? 'default' : 'outline'}
-          className={`text-xs px-2 py-0.5 bg-white/20 text-white border-white/30 ${lang === primaryLanguage ? 'bg-white/30 border-white/50' : ''}`}
+          className={`text-xs px-2 py-0.5 bg-white/20 text-white border-white/30 ${
+            lang === primaryLanguage ? 'bg-white/30 border-white/50' : ''
+          }`}
         >
           <span className="mr-1 text-sm">{getLanguageFlag(lang)}</span>
           {variant === 'full' ? getLanguageName(lang) : lang.toUpperCase()}
@@ -67,13 +83,13 @@ export const LanguageIndicator = ({
       ))}
       {hasMore && (
         <Badge variant="outline" className="text-xs px-2 py-0.5 text-white bg-white/20 border-white/30">
-          +{languages.length - displayLanguages.length}
+          +{validLanguages.length - displayLanguages.length}
         </Badge>
       )}
     </div>
   );
 
-  if (showPopover && languages.length > 3) {
+  if (showPopover && validLanguages.length > 3) {
     return (
       <Popover>
         <PopoverTrigger asChild>
@@ -88,10 +104,10 @@ export const LanguageIndicator = ({
               Language Capabilities
             </h4>
             <div className="space-y-1">
-              {languages.map((lang) => (
+              {validLanguages.map((lang) => (
                 <div key={lang} className="flex items-center justify-between text-sm">
                   <span className="flex items-center">
-                    <span className="mr-2">{getLanguageFlag(lang)}</span>
+                    <span className="mr-2 text-lg">{getLanguageFlag(lang)}</span>
                     {getLanguageName(lang)}
                   </span>
                   {lang === primaryLanguage && (
