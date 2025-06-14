@@ -8,6 +8,7 @@ import { ChatInput } from './ChatInput';
 import { HoloOrgSidebar } from './HoloOrgSidebar';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
+import { getAgentImageUrl } from '@/utils/agent-images';
 
 interface EnhancedChatInterfaceProps {
   agentName: string;
@@ -27,11 +28,12 @@ export const EnhancedChatInterface = ({
   const [inputMessage, setInputMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [showOrgPanel, setShowOrgPanel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   
   const {
     messages,
-    isLoading,
     isCollaborativeMode,
     enhancedSendMessage,
     startCollaborativeSession,
@@ -43,6 +45,7 @@ export const EnhancedChatInterface = ({
   const supportedLanguages = getSupportedLanguagesForMember(agentId) || ['en'];
   const culturalProfile = getCulturalProfile(agentId);
   const primaryLanguage = culturalProfile?.primaryLanguage || 'en';
+  const agentImageUrl = getAgentImageUrl(agentName, 'General');
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -53,6 +56,7 @@ export const EnhancedChatInterface = ({
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
+    setIsLoading(true);
     try {
       await enhancedSendMessage(
         inputMessage,
@@ -64,14 +68,18 @@ export const EnhancedChatInterface = ({
       setInputMessage('');
     } catch (error) {
       console.error('Failed to send message:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
+  const handleStartRecording = async () => {
+    setIsRecording(true);
+    // Voice recording logic would go here
+  };
+
+  const handleStopRecording = () => {
+    setIsRecording(false);
   };
 
   const handleOrgMode = async () => {
@@ -104,11 +112,11 @@ export const EnhancedChatInterface = ({
         <div className="relative">
           <ChatHeader
             agentName={agentName}
+            agentPersonality={agentPersonality}
             agentColor={agentColor}
-            isCollaborativeMode={isCollaborativeMode}
-            showOrgPanel={showOrgPanel}
-            onOrgModeToggle={handleOrgMode}
-            onOrgPanelToggle={() => setShowOrgPanel(!showOrgPanel)}
+            agentImageUrl={agentImageUrl}
+            agentLanguages={supportedLanguages}
+            primaryLanguage={primaryLanguage}
             onClose={onClose}
           />
           
@@ -163,12 +171,14 @@ export const EnhancedChatInterface = ({
 
         <ChatInput
           inputMessage={inputMessage}
-          isRecording={isRecording}
+          setInputMessage={setInputMessage}
           isLoading={isLoading}
-          onInputChange={setInputMessage}
+          isRecording={isRecording}
+          isPlayingAudio={isPlayingAudio}
+          agentName={agentName}
           onSendMessage={handleSendMessage}
-          onRecordingToggle={() => setIsRecording(!isRecording)}
-          onKeyPress={handleKeyPress}
+          onStartRecording={handleStartRecording}
+          onStopRecording={handleStopRecording}
         />
       </div>
 
