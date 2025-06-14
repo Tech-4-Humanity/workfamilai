@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { LanguageIndicator } from '@/components/ui/language-indicator';
-import { Mic, MicOff, Send, Volume2, VolumeX } from 'lucide-react';
+
+import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { getAgentInitials } from '@/utils/agent-images';
+import { ChatHeader } from './ChatHeader';
+import { MessageList } from './MessageList';
+import { ChatInput } from './ChatInput';
+import { useVoiceRecording } from '@/hooks/useVoiceRecording';
 
 interface Message {
   id: string;
@@ -39,20 +37,10 @@ export const ChatInterface = ({
 }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
-  const [isRecording, setIsRecording] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  
+  const { isRecording, startRecording, stopRecording } = useVoiceRecording();
 
   useEffect(() => {
     // Add welcome message when chat starts
@@ -86,7 +74,7 @@ export const ChatInterface = ({
           agentName,
           agentPersonality,
           agentBackground,
-          conversationHistory: messages.slice(-10) // Last 10 messages for context
+          conversationHistory: messages.slice(-10)
         }
       });
 
@@ -102,7 +90,6 @@ export const ChatInterface = ({
 
       setMessages(prev => [...prev, agentMessage]);
 
-      // Auto-play audio response if available
       if (data.audioContent) {
         playAudioResponse(data.audioContent);
       }
@@ -120,46 +107,26 @@ export const ChatInterface = ({
     }
   };
 
-  const startRecording = async () => {
+  const handleStartRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
-      audioChunksRef.current = [];
-
-      mediaRecorder.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-
-      mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        await processVoiceMessage(audioBlob);
-        stream.getTracks().forEach(track => track.stop());
-      };
-
-      mediaRecorder.start();
-      setIsRecording(true);
+      const audioBlob = await startRecording();
+      processVoiceMessage(audioBlob);
     } catch (error) {
       console.error('Error starting recording:', error);
     }
   };
 
-  const stopRecording = () => {
-    if (mediaRecorderRef.current && isRecording) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-    }
+  const handleStopRecording = () => {
+    stopRecording();
   };
 
   const processVoiceMessage = async (audioBlob: Blob) => {
     setIsLoading(true);
 
     try {
-      // Convert audio to base64
       const arrayBuffer = await audioBlob.arrayBuffer();
       const base64Audio = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
 
-      // First, transcribe the audio
       const { data: transcribeData, error: transcribeError } = await supabase.functions.invoke('voice-to-text', {
         body: { audio: base64Audio }
       });
@@ -168,7 +135,6 @@ export const ChatInterface = ({
 
       const transcribedText = transcribeData.text;
 
-      // Add user message with transcribed text
       const userMessage: Message = {
         id: Date.now().toString(),
         type: 'user',
@@ -178,7 +144,6 @@ export const ChatInterface = ({
 
       setMessages(prev => [...prev, userMessage]);
 
-      // Get AI response
       const { data: chatData, error: chatError } = await supabase.functions.invoke('chat-with-agent', {
         body: {
           message: transcribedText,
@@ -202,7 +167,6 @@ export const ChatInterface = ({
 
       setMessages(prev => [...prev, agentMessage]);
 
-      // Auto-play audio response
       if (chatData.audioContent) {
         playAudioResponse(chatData.audioContent);
       }
@@ -240,148 +204,35 @@ export const ChatInterface = ({
 
   return (
     <div className="flex flex-col h-full max-h-[80vh] bg-white rounded-lg shadow-lg">
-      {/* Enhanced Chat Header with Agent Image and Languages */}
-      <div className={`bg-${agentColor}-600 text-white p-4 rounded-t-lg`}>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Avatar className="w-12 h-12 border-2 border-white/20">
-              <AvatarImage src={agentImageUrl} alt={agentName} />
-              <AvatarFallback className="bg-white/20 text-white font-semibold">
-                {getAgentInitials(agentName)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold">{agentName}</h3>
-              <p className="text-sm opacity-90 mb-2">{agentPersonality}</p>
-              {agentLanguages.length > 0 && (
-                <div className="flex items-center">
-                  <LanguageIndicator 
-                    languages={agentLanguages}
-                    primaryLanguage={primaryLanguage}
-                    variant="minimal"
-                    className="opacity-90"
-                  />
-                  <span className="text-xs ml-2 opacity-75">
-                    Speaks {agentLanguages.length} languages
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-          {onClose && (
-            <Button variant="ghost" size="sm" onClick={onClose} className="text-white hover:bg-white/20">
-              ×
-            </Button>
-          )}
-        </div>
-      </div>
+      <ChatHeader
+        agentName={agentName}
+        agentPersonality={agentPersonality}
+        agentColor={agentColor}
+        agentImageUrl={agentImageUrl}
+        agentLanguages={agentLanguages}
+        primaryLanguage={primaryLanguage}
+        onClose={onClose}
+      />
 
-      {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <Card className={`${
-              message.type === 'user' 
-                ? `max-w-[80%] bg-${agentColor}-100 border-${agentColor}-200` 
-                : 'w-full bg-gray-100 border-gray-200'
-            }`}>
-              <CardContent className="p-3">
-                <p className="text-sm">{message.content}</p>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs text-gray-500">
-                    {message.timestamp.toLocaleTimeString()}
-                  </span>
-                  {message.audio && (
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => playAudioResponse(message.audio!)}
-                      className="p-1 h-6"
-                    >
-                      <Volume2 className="h-3 w-3" />
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        ))}
-        {isLoading && (
-          <div className="flex justify-start">
-            <Card className="w-full bg-gray-100 border-gray-200">
-              <CardContent className="p-3">
-                <div className="flex items-center space-x-2">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}} />
-                  </div>
-                  <span className="text-sm text-gray-600">
-                    {agentName} is thinking...
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+      <MessageList
+        messages={messages}
+        isLoading={isLoading}
+        agentName={agentName}
+        agentColor={agentColor}
+        onPlayAudio={playAudioResponse}
+      />
 
-      {/* Input Container */}
-      <div className="p-4 border-t border-gray-200">
-        <div className="flex items-end space-x-2">
-          <div className="flex-1">
-            <Textarea
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              placeholder={`Type a message to ${agentName}...`}
-              className="min-h-[40px] max-h-[120px] resize-none"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  sendTextMessage();
-                }
-              }}
-            />
-          </div>
-          <div className="flex space-x-2">
-            <Button
-              size="sm"
-              variant={isRecording ? "destructive" : "outline"}
-              onClick={isRecording ? stopRecording : startRecording}
-              disabled={isLoading}
-              className="px-3"
-            >
-              {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-            </Button>
-            <Button
-              size="sm"
-              onClick={sendTextMessage}
-              disabled={!inputMessage.trim() || isLoading}
-              className="px-3"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-        
-        {isPlayingAudio && (
-          <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
-            <Volume2 className="h-4 w-4 mr-2 animate-pulse" />
-            Playing audio response...
-          </div>
-        )}
-        
-        {isRecording && (
-          <div className="flex items-center justify-center mt-2 text-sm text-red-600">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2" />
-            Recording... Tap the mic to stop
-          </div>
-        )}
-      </div>
+      <ChatInput
+        inputMessage={inputMessage}
+        setInputMessage={setInputMessage}
+        isLoading={isLoading}
+        isRecording={isRecording}
+        isPlayingAudio={isPlayingAudio}
+        agentName={agentName}
+        onSendMessage={sendTextMessage}
+        onStartRecording={handleStartRecording}
+        onStopRecording={handleStopRecording}
+      />
     </div>
   );
 };
