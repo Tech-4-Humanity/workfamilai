@@ -21,8 +21,18 @@ export const LanguageIndicator = ({
   showPopover = false,
   className = ''
 }: LanguageIndicatorProps) => {
+  // Debug logging
+  console.log('LanguageIndicator Debug:', {
+    languages,
+    primaryLanguage,
+    variant,
+    supportedLanguages: Object.keys(supportedLanguages)
+  });
+
   const getLanguageFlag = (langCode: string) => {
-    return supportedLanguages[langCode as keyof typeof supportedLanguages]?.flag || '🌐';
+    const flag = supportedLanguages[langCode as keyof typeof supportedLanguages]?.flag || '🌐';
+    console.log('Flag for', langCode, ':', flag);
+    return flag;
   };
 
   const getLanguageName = (langCode: string) => {
@@ -35,9 +45,9 @@ export const LanguageIndicator = ({
   if (variant === 'minimal') {
     return (
       <div className={`flex items-center space-x-1 ${className}`}>
-        <span className="text-xs">{getLanguageFlag(primaryLanguage || languages[0])}</span>
+        <span className="text-sm">{getLanguageFlag(primaryLanguage || languages[0])}</span>
         {languages.length > 1 && (
-          <span className="text-xs text-gray-500">+{languages.length - 1}</span>
+          <span className="text-xs text-gray-300">+{languages.length - 1}</span>
         )}
       </div>
     );
@@ -49,14 +59,14 @@ export const LanguageIndicator = ({
         <Badge 
           key={lang} 
           variant={lang === primaryLanguage ? 'default' : 'outline'}
-          className={`text-xs px-2 py-0.5 ${lang === primaryLanguage ? 'bg-blue-100 text-blue-800 border-blue-200' : ''}`}
+          className={`text-xs px-2 py-0.5 bg-white/20 text-white border-white/30 ${lang === primaryLanguage ? 'bg-white/30 border-white/50' : ''}`}
         >
-          <span className="mr-1">{getLanguageFlag(lang)}</span>
+          <span className="mr-1 text-sm">{getLanguageFlag(lang)}</span>
           {variant === 'full' ? getLanguageName(lang) : lang.toUpperCase()}
         </Badge>
       ))}
       {hasMore && (
-        <Badge variant="outline" className="text-xs px-2 py-0.5 text-gray-600">
+        <Badge variant="outline" className="text-xs px-2 py-0.5 text-white bg-white/20 border-white/30">
           +{languages.length - displayLanguages.length}
         </Badge>
       )}
@@ -67,7 +77,7 @@ export const LanguageIndicator = ({
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-auto p-1">
+          <Button variant="ghost" size="sm" className="h-auto p-1 hover:bg-white/20">
             {content}
           </Button>
         </PopoverTrigger>

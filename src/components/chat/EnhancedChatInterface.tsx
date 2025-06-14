@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEnhancedChat } from '@/hooks/useEnhancedChat';
@@ -42,7 +41,12 @@ export const EnhancedChatInterface = ({
 
   // Get language capabilities for agent - improved ID generation and debugging
   const agentId = agentName.toLowerCase().replace(/\s+/g, '-');
-  console.log('Agent ID generated:', agentId, 'for agent name:', agentName);
+  console.log('EnhancedChatInterface Debug - Agent setup:', {
+    agentName,
+    agentId,
+    agentColor,
+    agentPersonality: agentPersonality.substring(0, 50) + '...'
+  });
   
   let supportedLanguages = getSupportedLanguagesForMember(agentId) || ['en'];
   let culturalProfile = getCulturalProfile(agentId);
@@ -68,7 +72,13 @@ export const EnhancedChatInterface = ({
   const primaryLanguage = culturalProfile?.primaryLanguage || 'en';
   const agentImageUrl = getAgentImageUrl(agentName, 'General');
   
-  console.log('Language data:', { agentId, supportedLanguages, primaryLanguage, culturalProfile });
+  console.log('Final language and image data:', { 
+    agentId, 
+    supportedLanguages, 
+    primaryLanguage, 
+    culturalProfile: !!culturalProfile,
+    agentImageUrl 
+  });
 
   useEffect(() => {
     if (scrollAreaRef.current) {

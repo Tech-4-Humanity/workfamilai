@@ -24,12 +24,41 @@ export const ChatHeader = ({
   primaryLanguage,
   onClose
 }: ChatHeaderProps) => {
+  // Debug logging
+  console.log('ChatHeader Debug:', {
+    agentName,
+    agentImageUrl,
+    agentLanguages,
+    primaryLanguage,
+    agentColor
+  });
+
+  // Fix dynamic color class issue by using static classes
+  const getColorClasses = (color: string) => {
+    const colorMap: Record<string, string> = {
+      'blue': 'bg-blue-600',
+      'green': 'bg-green-600',
+      'purple': 'bg-purple-600',
+      'red': 'bg-red-600',
+      'orange': 'bg-orange-600',
+      'indigo': 'bg-indigo-600',
+      'pink': 'bg-pink-600',
+      'teal': 'bg-teal-600'
+    };
+    return colorMap[color] || 'bg-blue-600';
+  };
+
   return (
-    <div className={`bg-${agentColor}-600 text-white p-4 rounded-t-lg`}>
+    <div className={`${getColorClasses(agentColor)} text-white p-4 rounded-t-lg`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Avatar className="w-12 h-12 border-2 border-white/20">
-            <AvatarImage src={agentImageUrl} alt={agentName} />
+            <AvatarImage 
+              src={agentImageUrl} 
+              alt={agentName}
+              onLoad={() => console.log('Avatar image loaded successfully:', agentImageUrl)}
+              onError={() => console.log('Avatar image failed to load:', agentImageUrl)}
+            />
             <AvatarFallback className="bg-white/20 text-white font-semibold">
               {getAgentInitials(agentName)}
             </AvatarFallback>
