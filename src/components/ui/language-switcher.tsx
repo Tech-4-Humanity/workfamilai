@@ -10,11 +10,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
 import { supportedLanguages } from '@/i18n/config';
+import { analytics } from '@/utils/analytics';
 
 export const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation();
 
   const changeLanguage = (lng: string) => {
+    const currentLang = i18n.language;
+    analytics.trackLanguageSwitch(currentLang, lng);
     i18n.changeLanguage(lng);
     // Update document direction for RTL languages
     document.dir = supportedLanguages[lng as keyof typeof supportedLanguages]?.rtl ? 'rtl' : 'ltr';

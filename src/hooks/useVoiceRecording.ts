@@ -1,5 +1,6 @@
 
 import { useState, useRef, useCallback } from 'react';
+import { analytics } from '@/utils/analytics';
 
 export const useVoiceRecording = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -8,6 +9,7 @@ export const useVoiceRecording = () => {
 
   const startRecording = useCallback(async () => {
     try {
+      analytics.trackVoiceFeature('start_recording');
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
@@ -35,6 +37,7 @@ export const useVoiceRecording = () => {
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
+      analytics.trackVoiceFeature('stop_recording');
       mediaRecorderRef.current.stop();
       setIsRecording(false);
     }

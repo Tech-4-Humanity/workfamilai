@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog
 import { Button } from '@/components/ui/button';
 import { MessageCircle, Users } from 'lucide-react';
 import { EnhancedChatInterface } from './EnhancedChatInterface';
+import { analytics } from '@/utils/analytics';
 
 interface EnhancedChatModalProps {
   agentName: string;
@@ -29,7 +30,12 @@ export const EnhancedChatModal = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(isOpen) => {
+      if (isOpen) {
+        analytics.trackChatStart(agentName, 'enhanced');
+      }
+      setOpen(isOpen);
+    }}>
       <DialogTrigger asChild>
         <Button 
           variant={buttonVariant} 

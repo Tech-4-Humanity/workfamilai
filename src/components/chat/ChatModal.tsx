@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog
 import { Button } from '@/components/ui/button';
 import { MessageCircle } from 'lucide-react';
 import { ChatInterface } from './ChatInterface';
+import { analytics } from '@/utils/analytics';
 
 interface ChatModalProps {
   agentName: string;
@@ -35,7 +36,12 @@ export const ChatModal = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(isOpen) => {
+      if (isOpen) {
+        analytics.trackChatStart(agentName, 'basic');
+      }
+      setOpen(isOpen);
+    }}>
       <DialogTrigger asChild>
         <Button 
           variant={buttonVariant} 

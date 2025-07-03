@@ -6,6 +6,7 @@ import { ChevronRight, Users } from 'lucide-react';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
+import { analytics } from '@/utils/analytics';
 import { useState } from 'react';
 
 interface LeaderCardProps {
@@ -45,7 +46,10 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
   return (
     <Card 
       className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20 overflow-hidden h-full flex flex-col"
-      onClick={onClick}
+      onClick={() => {
+        analytics.trackLeaderClick(leader.name, leader.title);
+        onClick();
+      }}
     >
       {/* Neural network background pattern */}
       <div className="absolute inset-0 opacity-5">

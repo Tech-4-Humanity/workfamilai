@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { analytics } from '@/utils/analytics';
 import { 
   Sparkles, 
   MessageCircle, 
@@ -74,7 +75,10 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
           
           <Button 
             variant="outline"
-            onClick={() => setShowTour(true)}
+            onClick={() => {
+              analytics.trackTourAction('start_tour');
+              setShowTour(true);
+            }}
             className="px-6 py-3 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300"
           >
             <HelpCircle className="mr-2 h-4 w-4" />
@@ -140,7 +144,10 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
               </div>
 
               <Button 
-                onClick={() => setShowTour(false)}
+                onClick={() => {
+                  analytics.trackTourAction('complete_tour');
+                  setShowTour(false);
+                }}
                 className="w-full mt-6"
               >
                 Got it, let's explore!
