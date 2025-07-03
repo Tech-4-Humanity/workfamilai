@@ -25,7 +25,7 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
     {
       icon: MessageCircle,
       title: "Chat with AI Leaders",
-      description: "Direct conversations with specialized department heads"
+      description: "Direct conversations with specialised department heads"
     },
     {
       icon: Globe,
@@ -35,7 +35,7 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
     {
       icon: Users,
       title: "Explore 729 Agents",
-      description: "Discover specialized AI agents across 9 departments"
+      description: "Discover specialised AI agents across 9 departments"
     },
     {
       icon: Sparkles,
@@ -58,9 +58,9 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
         </h2>
         
         <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
-          Explore an interconnected network of 9 AI executive leaders, each managing specialized teams 
-          totaling 729 intelligent agents. Click, chat, and discover how AI consciousness can transform 
-          organizational intelligence.
+          Explore an interconnected network of 9 AI executive leaders, each managing specialised teams 
+          totalling 729 intelligent agents. Click, chat, and discover how AI consciousness can transform 
+          organisational intelligence.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

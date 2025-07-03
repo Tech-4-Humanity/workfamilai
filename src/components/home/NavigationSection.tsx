@@ -42,14 +42,14 @@ export const NavigationSection = () => {
     {
       icon: Network,
       titleKey: 'navigation.holoOrg',
-      description: 'Holographic organization dashboard',
+      description: 'Holographic organisation dashboard',
       path: '/holo-org',
       color: 'bg-orange-500 hover:bg-orange-600'
     },
     {
       icon: Brain,
       titleKey: 'navigation.orgIntelligence',
-      description: 'Advanced organizational intelligence',
+      description: 'Advanced organisational intelligence',
       path: '/organizational-intelligence',
       color: 'bg-indigo-500 hover:bg-indigo-600'
     }

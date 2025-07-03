@@ -6,11 +6,11 @@
     "scenarios": "Scenarios",
     "demo": "Demo",
     "holoOrg": "Holo-Org",
-    "orgIntelligence": "Organizational Intelligence"
+    "orgIntelligence": "Organisational Intelligence"
   },
   "family": {
     "title": "AI Family Consciousness Network",
-    "subtitle": "Meet the 9 executive leaders managing 729 specialized AI agents",
+    "subtitle": "Meet the 9 executive leaders managing 729 specialised AI agents",
     "totalAgents": "Total AI Agents",
     "activeDepartments": "Active Departments",
     "neuralConnections": "Neural Connections",
@@ -33,7 +33,7 @@
     "notFound": "Department Not Found",
     "notFoundMessage": "The department you are looking for does not exist in our family network.",
     "databaseIntegration": "Database Integration Active",
-    "databaseMessage": "Showing {{count}} sample agents from the family database. Each department manages 81 specialized agents in the complete consciousness pyramid."
+    "databaseMessage": "Showing {{count}} sample agents from the family database. Each department manages 81 specialised agents in the complete consciousness pyramid."
   },
   "chat": {
     "startConversation": "Start a conversation with {{name}}",
