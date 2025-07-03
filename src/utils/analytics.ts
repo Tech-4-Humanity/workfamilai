@@ -9,7 +9,7 @@ export const analytics = {
   // Track page views (handled automatically by GA4)
   pageView: (path: string) => {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
+      window.gtag('config', 'G-NRKJSNERRE', {
         page_path: path,
       });
     }
