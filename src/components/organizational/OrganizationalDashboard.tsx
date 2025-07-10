@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ArrowLeft, Mic, BarChart3, Users, Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { VoiceQueryInterface } from './VoiceQueryInterface';
+import { OrganizationalInsightsImage } from './OrganizationalInsightsImage';
 import { organizationalData } from '@/data/organizationalData';
 
 export const OrganizationalDashboard = () => {
@@ -120,6 +121,7 @@ export const OrganizationalDashboard = () => {
         </TabsList>
 
         <TabsContent value="voice-query" className="space-y-4">
+          <OrganizationalInsightsImage />
           <VoiceQueryInterface />
         </TabsContent>
 
