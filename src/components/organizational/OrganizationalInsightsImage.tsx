@@ -8,11 +8,11 @@ export const OrganizationalInsightsImage = () => {
   ];
 
   return (
-    <div className="w-full mb-6">
+    <div className="w-full mb-6 flex justify-center">
       <RobustImage
         src={imageSources}
         alt="Organizational Intelligence Dashboard Overview"
-        className="w-full h-auto rounded-lg border shadow-sm"
+        className="w-1/4 h-auto rounded-lg border shadow-sm"
         fallback={
           <div className="w-full h-48 bg-muted rounded-lg border flex items-center justify-center">
             <span className="text-muted-foreground">Dashboard Preview</span>

@@ -121,8 +121,49 @@ export const OrganizationalDashboard = () => {
         </TabsList>
 
         <TabsContent value="voice-query" className="space-y-4">
-          <OrganizationalInsightsImage />
-          <VoiceQueryInterface />
+            <OrganizationalInsightsImage />
+            
+            {/* Instructions Section */}
+            <Card className="mb-6">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">How to Use the Voice Query Interface</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-semibold text-primary">1</span>
+                      </div>
+                      <div>
+                        <p className="font-medium">Voice Input</p>
+                        <p className="text-sm text-muted-foreground">Click the microphone button and speak your query</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-semibold text-primary">2</span>
+                      </div>
+                      <div>
+                        <p className="font-medium">Text Input</p>
+                        <p className="text-sm text-muted-foreground">Type your query in the text field and press Enter</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="font-medium mb-2">Sample Queries:</p>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        <li>• "Show me agents in marketing"</li>
+                        <li>• "Find high-risk agents"</li>
+                        <li>• "What's the total cost?"</li>
+                        <li>• "Show agents with low availability"</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <VoiceQueryInterface />
         </TabsContent>
 
         <TabsContent value="analytics" className="space-y-4">
