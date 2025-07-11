@@ -38,32 +38,34 @@ const LoadingFallback = () => (
   </div>
 );
 
-const App = () => (
-  <I18nextProvider i18n={i18n}>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <NavigationHeader />
-          <Suspense fallback={<LoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/department/:departmentId" element={<DepartmentDetail />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/scenarios" element={<Scenarios />} />
-              <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
-              <Route path="/demo" element={<DemoComingSoon />} />
-              <Route path="/holo-org" element={<HoloOrgDashboard />} />
-              <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
-              {/* Catch-all route for 404 handling - MUST be last */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </I18nextProvider>
-);
+const App = () => {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <NavigationHeader />
+            <Suspense fallback={<LoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/department/:departmentId" element={<DepartmentDetail />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/scenarios" element={<Scenarios />} />
+                <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
+                <Route path="/demo" element={<DemoComingSoon />} />
+                <Route path="/holo-org" element={<HoloOrgDashboard />} />
+                <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
+                {/* Catch-all route for 404 handling - MUST be last */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </I18nextProvider>
+  );
+};
 
 export default App;
