@@ -16,7 +16,7 @@ import ScenarioDetail from "./pages/ScenarioDetail";
 import DemoComingSoon from "./pages/DemoComingSoon";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
-import { LanguageSwitcher } from "./components/ui/language-switcher";
+import { NavigationHeader } from "./components/ui/navigation-header";
 
 // Optimized query client for production
 const queryClient = new QueryClient({
@@ -45,9 +45,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="fixed top-4 right-4 z-50">
-            <LanguageSwitcher />
-          </div>
+          <NavigationHeader />
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
               <Route path="/" element={<Index />} />
