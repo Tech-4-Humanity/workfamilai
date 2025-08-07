@@ -6,7 +6,7 @@ import { Home, Users, Calendar, Building2, Brain, Settings, DollarSign, Graduati
 const navigationItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/scenarios", label: "Scenarios", icon: Calendar },
-  { href: "/holo-org", label: "Holo-Org", icon: Building2 },
+  { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
   { href: "/organizational-intelligence", label: "Org Intelligence", icon: Brain },
   { href: "/donations", label: "Donations", icon: DollarSign },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
