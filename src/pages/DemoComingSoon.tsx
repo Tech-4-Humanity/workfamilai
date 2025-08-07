@@ -99,7 +99,7 @@ const DemoComingSoon = () => {
             </Badge>
 
             <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-4xl mx-auto">
-              Experience the Neural Ennead Family in action with live, interactive demonstrations 
+              Experience the Neural Ennead™ Family in action with live, interactive demonstrations 
               of our AI agents collaborating in real-time to solve complex challenges.
             </p>
 
@@ -210,7 +210,7 @@ const DemoComingSoon = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore What's Available Now</h2>
             <p className="text-lg text-gray-600">
-              While you wait for the live demo, discover the Neural Ennead Family and their capabilities.
+              While you wait for the live demo, discover the Neural Ennead™ Family and their capabilities.
             </p>
           </div>
 

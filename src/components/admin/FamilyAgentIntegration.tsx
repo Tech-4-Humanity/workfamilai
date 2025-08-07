@@ -71,7 +71,7 @@ export const FamilyAgentIntegration = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Users className="h-5 w-5" />
-            Neural Ennead Family Agent Integration
+            Neural Ennead™ Family Agent Integration
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -176,7 +176,7 @@ export const FamilyAgentIntegration = () => {
           {/* Integration Details */}
           <div className="text-xs text-muted-foreground space-y-1">
             <p>• Each family leader manages 3-4 specialized divisions</p>
-            <p>• Total of 729 agents across all Neural Ennead family members</p>
+            <p>• Total of 729 agents across all Neural Ennead™ family members</p>
             <p>• Agents are distributed across different SFIA levels and specializations</p>
             <p>• Integration processes agents in batches of 50 for optimal performance</p>
           </div>
