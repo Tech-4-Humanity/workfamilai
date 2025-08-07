@@ -14,6 +14,9 @@ import Admin from "./pages/Admin";
 import Scenarios from "./pages/Scenarios";
 import ScenarioDetail from "./pages/ScenarioDetail";
 import DemoComingSoon from "./pages/DemoComingSoon";
+import Donations from "./pages/Donations";
+import DonationSuccess from "./pages/DonationSuccess";
+import DonationCancel from "./pages/DonationCancel";
 import { HoloOrgDashboard } from "./components/holo-org/HoloOrgDashboard";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 import { NavigationHeader } from "./components/ui/navigation-header";
@@ -55,6 +58,9 @@ const App = () => {
                 <Route path="/scenarios" element={<Scenarios />} />
                 <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
                 <Route path="/demo" element={<DemoComingSoon />} />
+                <Route path="/donations" element={<Donations />} />
+                <Route path="/donation-success" element={<DonationSuccess />} />
+                <Route path="/donation-cancel" element={<DonationCancel />} />
                 <Route path="/holo-org" element={<HoloOrgDashboard />} />
                 <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
                 {/* Catch-all route for 404 handling - MUST be last */}

@@ -1,13 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { Home, Users, Calendar, Building2, Brain, Settings } from "lucide-react";
+import { Home, Users, Calendar, Building2, Brain, Settings, DollarSign, GraduationCap, ExternalLink } from "lucide-react";
 
 const navigationItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/scenarios", label: "Scenarios", icon: Calendar },
   { href: "/holo-org", label: "Holo-Org", icon: Building2 },
   { href: "/organizational-intelligence", label: "Org Intelligence", icon: Brain },
+  { href: "/donations", label: "Donations", icon: DollarSign },
+  { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
+  { href: "https://augmentedhumanity.coach/", label: "Augmented Humanity Coach", icon: GraduationCap, external: true },
   { href: "/admin", label: "Admin", icon: Settings },
 ];
 
@@ -22,6 +25,23 @@ export function NavigationHeader() {
             {navigationItems.map((item) => {
               const isActive = location.pathname === item.href;
               const Icon = item.icon;
+              
+              if (item.external) {
+                return (
+                  <Button
+                    key={item.href}
+                    variant="ghost"
+                    size="sm"
+                    asChild
+                  >
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Icon className="h-4 w-4" />
+                      <span className="hidden sm:inline">{item.label}</span>
+                      <ExternalLink className="h-3 w-3 opacity-60" />
+                    </a>
+                  </Button>
+                );
+              }
               
               return (
                 <Button

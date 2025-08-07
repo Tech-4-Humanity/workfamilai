@@ -51,6 +51,9 @@ verify_jwt = false
 [functions.voice-to-text]
 verify_jwt = false
 
+[functions.create-donation]
+verify_jwt = false
+
 [edge-runtime]
 policy = "per_worker"
 inspector_port = 8083

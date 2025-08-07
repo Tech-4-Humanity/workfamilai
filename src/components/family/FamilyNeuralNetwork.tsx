@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Sparkles } from 'lucide-react';
 import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
-import { soundEffects } from '@/utils/soundEffects';
+
 import { NetworkVisualization } from './NetworkVisualization';
 import { NetworkStats } from './NetworkStats';
 import { NetworkMissionStatement } from './NetworkMissionStatement';
@@ -76,13 +76,8 @@ export const FamilyNeuralNetwork = () => {
     const timer = setTimeout(() => {
       animate();
       
-      // Play ambient neural activity once
-      if (!hasPlayedAmbient.current) {
-        setTimeout(() => {
-          soundEffects.playAmbientNeuralActivity();
-          hasPlayedAmbient.current = true;
-        }, 1000);
-      }
+      // Sound effects removed for better user experience
+      hasPlayedAmbient.current = true;
     }, 500); // Start animation after 500ms
     
     return () => clearTimeout(timer);

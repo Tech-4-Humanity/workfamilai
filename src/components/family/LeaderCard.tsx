@@ -7,7 +7,7 @@ import { getLeaderImageUrl } from '@/utils/supabase-images';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
 import { LanguageIndicator } from '@/components/ui/language-indicator';
 import { analytics } from '@/utils/analytics';
-import { soundEffects } from '@/utils/soundEffects';
+
 import { useState } from 'react';
 
 interface LeaderCardProps {
@@ -49,10 +49,8 @@ export const LeaderCard = ({ leader, onClick }: LeaderCardProps) => {
       className="group cursor-pointer hover-lift hover-glow neural-shimmer backdrop-blur-lg bg-white/10 border border-white/20 overflow-hidden h-full flex flex-col"
       onClick={() => {
         analytics.trackLeaderClick(leader.name, leader.title);
-        soundEffects.playNeuralActivation();
         onClick();
       }}
-      onMouseEnter={() => soundEffects.playInteraction()}
     >
       {/* Neural network background pattern */}
       <div className="absolute inset-0 opacity-5">

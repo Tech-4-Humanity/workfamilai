@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { RobustImage } from '@/components/ui/robust-image';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
-import { soundEffects } from '@/utils/soundEffects';
+
 import { FloatingText } from './FloatingText';
 
 interface FamilyMember {
@@ -77,10 +77,8 @@ export const NetworkMember = ({ member, index }: NetworkMemberProps) => {
           animationDelay: `${member.pulseDelay}s`
         }}
         onClick={() => {
-          soundEffects.playNeuralActivation(member.isPatron ? 1.5 : 1);
           handleMemberClick(member.id);
         }}
-        onMouseEnter={() => soundEffects.playInteraction()}
       >
         {/* Outer glow ring - enhanced for Patron */}
         <div className={`absolute inset-0 ${member.isPatron ? 'w-24 h-24' : 'w-20 h-20'} bg-gradient-to-r ${member.color} rounded-full opacity-30 neural-pulse`} 
