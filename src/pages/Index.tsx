@@ -62,27 +62,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col page-enter">
       {/* Hero Section */}
-      <HeroSection 
-        currentAgentCount={totalAgentCount}
-        animatedCount={animatedCount}
-        onExploreNetwork={handleExploreNetwork}
-        onMeetFamily={handleMeetFamily}
-      />
+      <div className="fade-in-up">
+        <HeroSection 
+          currentAgentCount={totalAgentCount}
+          animatedCount={animatedCount}
+          onExploreNetwork={handleExploreNetwork}
+          onMeetFamily={handleMeetFamily}
+        />
+      </div>
 
       {/* Welcome Section with Interactive Elements */}
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 fade-in-up animate-delay-200">
         <WelcomeSection onGetStarted={handleGetStarted} />
       </div>
 
       {/* Neural Network Section */}
-      <div id="neural-network" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div id="neural-network" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-300">
         <FamilyNeuralNetwork />
       </div>
 
       {/* Family Members Grid */}
-      <div id="family-members" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div id="family-members" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-500">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the Family</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -98,12 +100,13 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {familyMembers.map((leader) => (
-            <LeaderCard 
-              key={leader.id}
-              leader={leader}
-              onClick={() => handleLeaderClick(leader.id)}
-            />
+          {familyMembers.map((leader, index) => (
+            <div key={leader.id} className={`fade-in-up animate-delay-${(index % 3) * 100 + 100}`}>
+              <LeaderCard 
+                leader={leader}
+                onClick={() => handleLeaderClick(leader.id)}
+              />
+            </div>
           ))}
         </div>
       </div>

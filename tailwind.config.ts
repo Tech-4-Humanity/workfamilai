@@ -70,25 +70,83 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'neural-breathe': {
+					'0%, 100%': { 
+						transform: 'scale(1)',
+						opacity: '0.8'
 					},
-					to: {
-						height: '0'
+					'50%': { 
+						transform: 'scale(1.05)',
+						opacity: '1'
 					}
+				},
+				'neural-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 0 hsl(var(--neural-primary) / 0.7)'
+					},
+					'50%': {
+						boxShadow: '0 0 0 10px hsl(var(--neural-primary) / 0)'
+					}
+				},
+				'shimmer': {
+					'0%': { left: '-100%' },
+					'100%': { left: '100%' }
+				},
+				'agent-active': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--neural-primary) / 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 30px hsl(var(--neural-primary) / 0.6)'
+					}
+				},
+				'fade-in-up': {
+					'from': {
+						opacity: '0',
+						transform: 'translateY(30px)'
+					},
+					'to': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-in-right': {
+					'from': {
+						opacity: '0',
+						transform: 'translateX(30px)'
+					},
+					'to': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'skeleton-loading': {
+					'0%': { backgroundPosition: '200% 0' },
+					'100%': { backgroundPosition: '-200% 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'neural-breathe': 'neural-breathe 4s ease-in-out infinite',
+				'neural-pulse': 'neural-pulse 2s ease-in-out infinite',
+				'shimmer': 'shimmer 2s infinite',
+				'agent-active': 'agent-active 3s ease-in-out infinite',
+				'fade-in-up': 'fade-in-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+				'slide-in-right': 'slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+				'skeleton-loading': 'skeleton-loading 1.5s infinite'
+			},
+			transitionTimingFunction: {
+				'elastic': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 			}
 		}
 	},

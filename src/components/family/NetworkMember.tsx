@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { RobustImage } from '@/components/ui/robust-image';
 import { getLeaderImageUrl } from '@/utils/supabase-images';
+import { soundEffects } from '@/utils/soundEffects';
 import { FloatingText } from './FloatingText';
 
 interface FamilyMember {
@@ -67,22 +68,26 @@ export const NetworkMember = ({ member, index }: NetworkMemberProps) => {
       ))}
 
       <div
-        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-500 hover:scale-125 hover:z-50 ${
-          member.isPatron ? 'z-40' : ''
+        className={`absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer hover-lift hover-glow neural-shimmer hover:z-50 ${
+          member.isPatron ? 'z-40 neural-breathing agent-active' : 'z-10'
         }`}
         style={{ 
           left: `${member.x}%`, 
           top: `${member.y}%`,
           animationDelay: `${member.pulseDelay}s`
         }}
-        onClick={() => handleMemberClick(member.id)}
+        onClick={() => {
+          soundEffects.playNeuralActivation(member.isPatron ? 1.5 : 1);
+          handleMemberClick(member.id);
+        }}
+        onMouseEnter={() => soundEffects.playInteraction()}
       >
         {/* Outer glow ring - enhanced for Patron */}
-        <div className={`absolute inset-0 ${member.isPatron ? 'w-24 h-24' : 'w-20 h-20'} bg-gradient-to-r ${member.color} rounded-full opacity-30 animate-ping`} 
-             style={{ animationDelay: `${member.pulseDelay}s`, animationDuration: member.isPatron ? '2s' : '3s' }}></div>
+        <div className={`absolute inset-0 ${member.isPatron ? 'w-24 h-24' : 'w-20 h-20'} bg-gradient-to-r ${member.color} rounded-full opacity-30 neural-pulse`} 
+             style={{ animationDelay: `${member.pulseDelay}s` }}></div>
         
         {/* Middle ring */}
-        <div className={`absolute ${member.isPatron ? 'inset-2 w-20 h-20' : 'inset-2 w-16 h-16'} bg-gradient-to-r ${member.color} rounded-full opacity-50 blur-sm`}></div>
+        <div className={`absolute ${member.isPatron ? 'inset-2 w-20 h-20' : 'inset-2 w-16 h-16'} bg-gradient-to-r ${member.color} rounded-full opacity-50 blur-sm neural-breathing`}></div>
         
         {/* Avatar container - larger for Patron */}
         <div className={`relative ${member.isPatron ? 'w-20 h-20' : 'w-16 h-16'} rounded-full border-2 ${member.isPatron ? 'border-yellow-400/60' : 'border-white/40'} shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:border-white/80 group-hover:shadow-2xl overflow-hidden`}>
@@ -102,12 +107,12 @@ export const NetworkMember = ({ member, index }: NetworkMemberProps) => {
           {/* Patron crown overlay */}
           {member.isPatron && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-full">
-              <Crown className="w-8 h-8 text-yellow-300 drop-shadow-lg" />
+              <Crown className="w-8 h-8 text-yellow-300 drop-shadow-lg neural-pulse neural-glow" />
             </div>
           )}
           
           {/* Energy pulses - more intense for Patron */}
-          <div className={`absolute ${member.isPatron ? '-inset-4' : '-inset-3'} bg-gradient-to-r ${member.color} rounded-full opacity-20 animate-pulse`}
+          <div className={`absolute ${member.isPatron ? '-inset-4' : '-inset-3'} bg-gradient-to-r ${member.color} rounded-full opacity-20 neural-breathing`}
                style={{ animationDelay: `${member.pulseDelay}s` }}></div>
         </div>
         

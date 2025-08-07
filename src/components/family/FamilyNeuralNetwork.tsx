@@ -1,9 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Sparkles } from 'lucide-react';
 import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
+import { soundEffects } from '@/utils/soundEffects';
 import { NetworkVisualization } from './NetworkVisualization';
 import { NetworkStats } from './NetworkStats';
 import { NetworkMissionStatement } from './NetworkMissionStatement';
@@ -41,6 +42,7 @@ export const FamilyNeuralNetwork = () => {
     agents: 0,
     capabilities: 0
   });
+  const hasPlayedAmbient = useRef(false);
 
   // Animated counter effect
   useEffect(() => {
@@ -71,12 +73,23 @@ export const FamilyNeuralNetwork = () => {
       }
     };
 
-    const timer = setTimeout(animate, 500); // Start animation after 500ms
+    const timer = setTimeout(() => {
+      animate();
+      
+      // Play ambient neural activity once
+      if (!hasPlayedAmbient.current) {
+        setTimeout(() => {
+          soundEffects.playAmbientNeuralActivity();
+          hasPlayedAmbient.current = true;
+        }, 1000);
+      }
+    }, 500); // Start animation after 500ms
+    
     return () => clearTimeout(timer);
   }, [currentAgentCount]);
 
   return (
-    <Card className="w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white border-none shadow-2xl">
+    <Card className="w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white border-none shadow-2xl neural-shimmer hover-glow">
       {/* Animated background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>

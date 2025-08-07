@@ -27,11 +27,11 @@ export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProp
   };
 
   return (
-    <div className="relative h-[500px] mb-8 bg-gradient-to-br from-black/30 to-blue-900/30 rounded-xl border border-cyan-400/30 overflow-hidden backdrop-blur-sm">
+    <div className="relative h-[500px] mb-8 bg-gradient-to-br from-black/30 to-blue-900/30 rounded-xl border border-cyan-400/30 overflow-hidden backdrop-blur-sm neural-shimmer hover-glow">
       {/* Advanced background effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.1)_0%,transparent_70%)] animate-pulse"></div>
-        <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent_0deg,rgba(6,182,212,0.05)_180deg,transparent_360deg)] animate-spin" style={{ animationDuration: '30s' }}></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--neural-primary)/0.1)_0%,transparent_70%)] neural-breathing"></div>
+        <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent_0deg,hsl(var(--neural-primary)/0.05)_180deg,transparent_360deg)] animate-spin" style={{ animationDuration: '30s' }}></div>
         
         {/* Additional floating particles */}
         <div className="absolute inset-0">
@@ -110,9 +110,9 @@ export const NetworkVisualization = ({ familyMembers }: NetworkVisualizationProp
         )}
         
         {/* Enhanced central neural hub for Patron */}
-        <circle cx="50%" cy="50%" r="40" fill="url(#connectionGlow)" opacity="0.5">
-          <animate attributeName="r" values="35;45;35" dur="4s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" />
+        <circle cx="50%" cy="50%" r="40" fill="url(#connectionGlow)" opacity="0.5" filter="url(#glow)">
+          <animate attributeName="r" values="35;50;35" dur="4s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
         </circle>
       </svg>
       

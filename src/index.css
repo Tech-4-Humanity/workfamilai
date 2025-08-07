@@ -34,6 +34,33 @@
 
     --radius: 0.5rem;
 
+    /* Neural Network Colors */
+    --neural-primary: 196 100% 47%;
+    --neural-secondary: 276 100% 70%;
+    --neural-accent: 60 100% 50%;
+    --neural-glow: 196 100% 47%;
+
+    /* Animation Easing */
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Gradient Definitions */
+    --gradient-neural: linear-gradient(135deg, hsl(var(--neural-primary)) 0%, hsl(var(--neural-secondary)) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(var(--neural-glow) / 0.3) 0%, transparent 70%);
+    --gradient-shimmer: linear-gradient(90deg, transparent 0%, hsl(var(--neural-primary) / 0.3) 50%, transparent 100%);
+
+    /* Shadow Definitions */
+    --shadow-neural: 0 10px 30px -10px hsl(var(--neural-primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--neural-glow) / 0.4);
+    --shadow-pulse: 0 0 20px hsl(var(--neural-primary) / 0.6);
+
+    /* Transition Durations */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-breathing: 4s;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -98,4 +125,175 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Neural Network Animations */
+  .neural-breathing {
+    animation: neural-breathe var(--duration-breathing) ease-in-out infinite;
+  }
+
+  .neural-pulse {
+    animation: neural-pulse 2s ease-in-out infinite;
+  }
+
+  .neural-glow {
+    filter: drop-shadow(var(--shadow-glow));
+  }
+
+  .neural-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neural-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-shimmer);
+    animation: shimmer 2s infinite;
+  }
+
+  /* Interactive Elements */
+  .hover-lift {
+    transition: transform var(--duration-normal) var(--ease-smooth), 
+                box-shadow var(--duration-normal) var(--ease-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-neural);
+  }
+
+  .hover-glow {
+    transition: filter var(--duration-normal) var(--ease-smooth);
+  }
+
+  .hover-glow:hover {
+    filter: drop-shadow(var(--shadow-glow));
+  }
+
+  .hover-scale {
+    transition: transform var(--duration-normal) var(--ease-elastic);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Agent Status Indicators */
+  .agent-active {
+    animation: agent-active 3s ease-in-out infinite;
+    box-shadow: 0 0 20px hsl(var(--neural-primary) / 0.5);
+  }
+
+  .agent-inactive {
+    opacity: 0.7;
+    filter: grayscale(20%);
+  }
+
+  /* Page Transitions */
+  .page-enter {
+    animation: page-enter var(--duration-slow) var(--ease-smooth) forwards;
+  }
+
+  .fade-in-up {
+    animation: fade-in-up var(--duration-normal) var(--ease-smooth) forwards;
+  }
+
+  .slide-in-right {
+    animation: slide-in-right var(--duration-normal) var(--ease-smooth) forwards;
+  }
+
+  /* Loading States */
+  .loading-skeleton {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted) / 0.5) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes neural-breathe {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  @keyframes neural-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--neural-primary) / 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px hsl(var(--neural-primary) / 0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes agent-active {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--neural-primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(var(--neural-primary) / 0.6);
+    }
+  }
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Staggered Animation Delays */
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+}
 }
