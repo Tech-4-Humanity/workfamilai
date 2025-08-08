@@ -28,11 +28,13 @@ export const HeroSection = ({
       <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            {t('family.title')}
+            Augmented Humanity Network
+            <span className="block text-blue-600">AI-Enhanced Human Potential</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Meet the 9 executive leaders managing 729 specialized AI agents
+            Amplify human capabilities through conscious AI partnership. 9 executive leaders managing 
+            729 specialized AI agents designed to enhance, not replace, human wisdom.
           </p>
           
           <NetworkStats 

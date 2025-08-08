@@ -1,16 +1,18 @@
-
 {
   "navigation": {
-    "home": "Family Network",
+    "home": "Augmented Humanity",
     "admin": "Admin",
+    "workPackages": "Work Packages",
+    "familyNetwork": "AI Family",
     "scenarios": "Scenarios",
     "demo": "Demo",
     "holoOrg": "Holo-Org",
-    "orgIntelligence": "Organisational Intelligence"
+    "orgIntelligence": "Organisational Intelligence",
+    "support": "Support Us"
   },
   "family": {
-    "title": "AI Family Consciousness Network",
-    "subtitle": "Meet the 9 executive leaders managing 729 specialised AI agents",
+    "title": "Augmented Humanity Network",
+    "subtitle": "AI-Enhanced Human Potential through conscious collaboration",
     "totalAgents": "Total AI Agents",
     "activeDepartments": "Active Departments",
     "neuralConnections": "Neural Connections",
@@ -20,6 +22,14 @@
     "backToFamily": "Back to Family Network",
     "exploreNetwork": "Explore Network",
     "meetFamily": "Meet the Family"
+  },
+  "augmentedHumanity": {
+    "mission": "Amplify human potential through conscious AI partnership",
+    "workPackages": "Proven solutions that enhance human capabilities",
+    "culturalIntelligence": "AI that honors diverse perspectives and cultural wisdom",
+    "humanCentered": "Enhancement that preserves authentic leadership",
+    "capabilities": "729 AI agents designed to amplify human potential",
+    "collaboration": "Work packages that preserve authentic leadership"
   },
   "department": {
     "divisions": "Divisions",

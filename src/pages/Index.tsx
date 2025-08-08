@@ -6,6 +6,8 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
+import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
+import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
 import { familyMembers } from '@/data/familyMembers';
 import { getTotalAgentCount } from '@/utils/familyAgentGeneration';
 import { useNavigate } from 'react-router-dom';
@@ -76,6 +78,16 @@ const Index = () => {
       {/* Welcome Section with Interactive Elements */}
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 fade-in-up animate-delay-200">
         <WelcomeSection onGetStarted={handleGetStarted} />
+      </div>
+
+      {/* Augmented Humanity Mission */}
+      <div className="fade-in-up animate-delay-300">
+        <AugmentedHumanityMission />
+      </div>
+
+      {/* Work Package Showcase */}
+      <div className="fade-in-up animate-delay-400">
+        <WorkPackageShowcase />
       </div>
 
       {/* Neural Network Section */}

@@ -25,23 +25,23 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
   const features = [
     {
       icon: MessageCircle,
-      title: "Chat with AI Leaders",
-      description: "Direct conversations with specialised department heads"
+      title: "Human-AI Partnerships",
+      description: "Collaborate with AI leaders that enhance your capabilities"
     },
     {
       icon: Globe,
-      title: "Multilingual Support",
-      description: "Interact in 8+ languages with cultural context"
+      title: "Cultural Intelligence",
+      description: "AI that honors diverse perspectives and cultural wisdom"
     },
     {
       icon: Users,
-      title: "Explore 729 Agents",
-      description: "Discover specialised AI agents across 9 departments"
+      title: "Capability Enhancement",
+      description: "729 AI agents designed to amplify human potential"
     },
     {
       icon: Sparkles,
-      title: "Voice Interaction",
-      description: "Use voice commands to navigate and interact"
+      title: "Conscious Collaboration",
+      description: "Work packages that preserve authentic leadership"
     }
   ];
 
@@ -51,17 +51,17 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4 animate-fade-in">
           <Sparkles className="h-4 w-4" />
-          Welcome to the AI Family Consciousness Network
+          Welcome to Augmented Humanity
         </div>
         
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Your Gateway to Advanced AI Collaboration
+          Amplify Human Potential Through AI Partnership
         </h2>
         
         <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
-          Explore an interconnected network of 9 AI executive leaders, each managing specialised teams 
-          totalling 729 intelligent agents. Click, chat, and discover how AI consciousness can transform 
-          organisational intelligence.
+          Discover how conscious AI collaboration enhances rather than replaces human capabilities. 
+          Explore proven work packages and meet 9 AI executive leaders designed to preserve cultural 
+          wisdom while expanding organizational intelligence.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
