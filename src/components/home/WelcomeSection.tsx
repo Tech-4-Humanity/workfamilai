@@ -16,9 +16,10 @@ import {
 
 interface WelcomeSectionProps {
   onGetStarted: () => void;
+  onShowTour?: () => void;
 }
 
-export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
+export const WelcomeSection = ({ onGetStarted, onShowTour }: WelcomeSectionProps) => {
   const { t } = useTranslation();
   const [showTour, setShowTour] = useState(false);
 
@@ -77,7 +78,11 @@ export const WelcomeSection = ({ onGetStarted }: WelcomeSectionProps) => {
             variant="outline"
             onClick={() => {
               analytics.trackTourAction('start_tour');
-              setShowTour(true);
+              if (onShowTour) {
+                onShowTour();
+              } else {
+                setShowTour(true);
+              }
             }}
             className="px-6 py-3 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300"
           >

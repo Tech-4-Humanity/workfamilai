@@ -60,7 +60,9 @@ export function NavigationHeader() {
             })}
           </nav>
           
-          <LanguageSwitcher />
+          <div data-language-switcher>
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </header>

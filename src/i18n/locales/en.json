@@ -65,6 +65,22 @@
     "foundAgents": "Found {{count}} relevant family members",
     "lastQuery": "Last Query: \"{{query}}\""
   },
+  "guidance": {
+    "whereAmI": "Where am I?",
+    "whatCanIDo": "What can I do here?",
+    "quickHelp": "Quick Help",
+    "progressTitle": "Exploration Progress",
+    "tourTitle": "Interactive Tour",
+    "helpTitle": "Help & Support",
+    "contextualHints": "Context hints",
+    "searchHelp": "Search help topics...",
+    "noResults": "No help items found matching your search.",
+    "quickActions": "Quick Actions:",
+    "gotIt": "Got it!",
+    "showMe": "Show me",
+    "backToTop": "Back to Top",
+    "meetFamily": "Meet the Family"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

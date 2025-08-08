@@ -8,6 +8,11 @@ import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
 import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
 import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
+import { BreadcrumbIndicator } from '@/components/guidance/BreadcrumbIndicator';
+import { QuickActionToolbar } from '@/components/guidance/QuickActionToolbar';
+import { ProgressIndicator } from '@/components/guidance/ProgressIndicator';
+import { InteractiveTour } from '@/components/guidance/InteractiveTour';
+import { ContextualHelp } from '@/components/guidance/ContextualHelp';
 import { familyMembers } from '@/data/familyMembers';
 import { getTotalAgentCount } from '@/utils/familyAgentGeneration';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +24,8 @@ const Index = () => {
   const { t } = useTranslation();
   const totalAgentCount = getTotalAgentCount(); // 729 agents
   const [animatedCount, setAnimatedCount] = useState(0);
+  const [showTour, setShowTour] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   // Animated counter for agent count
   useEffect(() => {
@@ -63,8 +70,31 @@ const Index = () => {
     scrollToSection('family-members');
   };
 
+  const handleShowTour = () => {
+    setShowTour(true);
+  };
+
+  const handleShowHelp = () => {
+    setShowHelp(true);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col page-enter">
+      {/* User Guidance Components */}
+      <BreadcrumbIndicator />
+      <ProgressIndicator />
+      <QuickActionToolbar 
+        onShowTour={handleShowTour}
+        onShowHelp={handleShowHelp}
+      />
+      <InteractiveTour 
+        isOpen={showTour}
+        onClose={() => setShowTour(false)}
+      />
+      <ContextualHelp 
+        isOpen={showHelp}
+        onClose={() => setShowHelp(false)}
+      />
       {/* Hero Section */}
       <div className="fade-in-up">
         <HeroSection 
@@ -77,16 +107,16 @@ const Index = () => {
 
       {/* Welcome Section with Interactive Elements */}
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 fade-in-up animate-delay-200">
-        <WelcomeSection onGetStarted={handleGetStarted} />
+        <WelcomeSection onGetStarted={handleGetStarted} onShowTour={handleShowTour} />
       </div>
 
       {/* Augmented Humanity Mission */}
-      <div className="fade-in-up animate-delay-300">
+      <div className="fade-in-up animate-delay-300" data-mission-section>
         <AugmentedHumanityMission />
       </div>
 
       {/* Work Package Showcase */}
-      <div className="fade-in-up animate-delay-400">
+      <div className="fade-in-up animate-delay-400" data-work-packages>
         <WorkPackageShowcase />
       </div>
 
@@ -113,7 +143,7 @@ const Index = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {familyMembers.map((leader, index) => (
-            <div key={leader.id} className={`fade-in-up animate-delay-${(index % 3) * 100 + 100}`}>
+            <div key={leader.id} className={`fade-in-up animate-delay-${(index % 3) * 100 + 100}`} data-leader-card>
               <LeaderCard 
                 leader={leader}
                 onClick={() => handleLeaderClick(leader.id)}
@@ -130,7 +160,9 @@ const Index = () => {
       />
 
       {/* Navigation Section */}
-      <NavigationSection />
+      <div data-navigation-cards>
+        <NavigationSection />
+      </div>
 
       <Footer />
     </div>
