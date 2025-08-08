@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
+import { PartnerCarousel } from '@/components/ui/partner-carousel';
 import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
 import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
 import { BreadcrumbIndicator } from '@/components/guidance/BreadcrumbIndicator';
@@ -165,6 +166,7 @@ const Index = () => {
       </div>
 
       <Footer />
+      <PartnerCarousel />
     </div>
   );
 };

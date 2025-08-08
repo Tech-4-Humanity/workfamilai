@@ -130,6 +130,10 @@ export default {
 				'skeleton-loading': {
 					'0%': { backgroundPosition: '200% 0' },
 					'100%': { backgroundPosition: '-200% 0' }
+				},
+				'partner-scroll': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
 				}
 			},
 			animation: {
@@ -141,7 +145,8 @@ export default {
 				'agent-active': 'agent-active 3s ease-in-out infinite',
 				'fade-in-up': 'fade-in-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
 				'slide-in-right': 'slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'skeleton-loading': 'skeleton-loading 1.5s infinite'
+				'skeleton-loading': 'skeleton-loading 1.5s infinite',
+				'partner-scroll': 'partner-scroll 30s linear infinite'
 			},
 			transitionTimingFunction: {
 				'elastic': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
