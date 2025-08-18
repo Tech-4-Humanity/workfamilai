@@ -277,7 +277,7 @@ export const Footer = () => {
           </div>
 
           <div className="text-xs text-gray-500 pt-4 border-t">
-            <p>workfamilyai • Powered by Unified AI Intelligence • © 2024</p>
+            <p>workfamilyai • Tech 4 Humanity • © 2025</p>
             <p className="mt-1">
               <span className="inline-flex items-center space-x-1">
                 <Brain className="h-3 w-3" />
