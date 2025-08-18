@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationHeader } from '@/components/ui/navigation-header';
 import { Footer } from '@/components/ui/footer';
 import { AugmentedHumanityHero } from '@/components/augmented-humanity/AugmentedHumanityHero';
 import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
@@ -22,7 +21,6 @@ const WorkPackages = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/5 to-accent/5 flex flex-col">
-      <NavigationHeader />
       
       {/* Hero Section */}
       <div className="fade-in-up">

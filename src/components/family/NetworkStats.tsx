@@ -20,9 +20,9 @@ export const NetworkStats = ({ animatedCounts }: NetworkStatsProps) => {
             <Users className="h-8 w-8 mx-auto text-blue-400" />
             <div className="absolute inset-0 h-8 w-8 mx-auto bg-blue-400 rounded-full opacity-20 animate-ping"></div>
           </div>
-          <div className="text-3xl font-bold text-blue-400 mb-1">{animatedCounts.members}</div>
-          <div className="text-xs text-blue-200 font-medium">Network Members</div>
-          <div className="text-xs text-blue-300/70 mt-1">Patron + Family</div>
+          <div className="text-3xl font-bold text-blue-600 mb-1">{animatedCounts.members}</div>
+          <div className="text-xs text-blue-800 font-medium">Network Members</div>
+          <div className="text-xs text-blue-700 mt-1">Patron + Family</div>
         </div>
       </div>
 
@@ -33,9 +33,9 @@ export const NetworkStats = ({ animatedCounts }: NetworkStatsProps) => {
             <Target className="h-8 w-8 mx-auto text-green-400" />
             <div className="absolute inset-0 h-8 w-8 mx-auto bg-green-400 rounded-full opacity-20 animate-ping" style={{ animationDelay: '0.5s' }}></div>
           </div>
-          <div className="text-3xl font-bold text-green-400 mb-1">{animatedCounts.agents.toLocaleString()}</div>
-          <div className="text-xs text-green-200 font-medium">Core Agents</div>
-          <div className="text-xs text-green-300/70 mt-1">Active Network</div>
+          <div className="text-3xl font-bold text-green-600 mb-1">{animatedCounts.agents.toLocaleString()}</div>
+          <div className="text-xs text-green-800 font-medium">Core Agents</div>
+          <div className="text-xs text-green-700 mt-1">Active Network</div>
         </div>
       </div>
 
@@ -46,9 +46,9 @@ export const NetworkStats = ({ animatedCounts }: NetworkStatsProps) => {
             <Zap className="h-8 w-8 mx-auto text-purple-400" />
             <div className="absolute inset-0 h-8 w-8 mx-auto bg-purple-400 rounded-full opacity-20 animate-ping" style={{ animationDelay: '1s' }}></div>
           </div>
-          <div className="text-3xl font-bold text-purple-400 mb-1">{(animatedCounts.capabilities / 1000).toFixed(0)}K+</div>
-          <div className="text-xs text-purple-200 font-medium">Capabilities</div>
-          <div className="text-xs text-purple-300/70 mt-1">Neural Pathways</div>
+          <div className="text-3xl font-bold text-purple-600 mb-1">{(animatedCounts.capabilities / 1000).toFixed(0)}K+</div>
+          <div className="text-xs text-purple-800 font-medium">Capabilities</div>
+          <div className="text-xs text-purple-700 mt-1">Neural Pathways</div>
         </div>
       </div>
 
@@ -59,9 +59,9 @@ export const NetworkStats = ({ animatedCounts }: NetworkStatsProps) => {
             <Brain className="h-8 w-8 mx-auto text-yellow-400" />
             <div className="absolute inset-0 h-8 w-8 mx-auto bg-yellow-400 rounded-full opacity-20 animate-ping" style={{ animationDelay: '1.5s' }}></div>
           </div>
-          <div className="text-3xl font-bold text-yellow-400 mb-1">24/7</div>
-          <div className="text-xs text-yellow-200 font-medium">Neural Activity</div>
-          <div className="text-xs text-yellow-300/70 mt-1">Always Learning</div>
+          <div className="text-3xl font-bold text-yellow-600 mb-1">24/7</div>
+          <div className="text-xs text-yellow-800 font-medium">Neural Activity</div>
+          <div className="text-xs text-yellow-700 mt-1">Always Learning</div>
         </div>
       </div>
     </div>

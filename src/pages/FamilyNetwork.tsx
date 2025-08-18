@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { NavigationHeader } from '@/components/ui/navigation-header';
 import { Footer } from '@/components/ui/footer';
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { LeaderCard } from '@/components/family/LeaderCard';
@@ -40,7 +39,6 @@ const FamilyNetwork = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
-      <NavigationHeader />
       
       {/* Hero Section */}
       <div className="relative overflow-hidden py-16">
