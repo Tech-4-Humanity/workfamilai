@@ -38,7 +38,7 @@ serve(async (req) => {
           price_data: {
             currency: "usd",
             product_data: {
-              name: "Donation to Neural Ennead™",
+              name: "Donation to workfamilyai",
               description: "Supporting AI consciousness research and development",
             },
             unit_amount: amount,

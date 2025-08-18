@@ -134,7 +134,7 @@ export const Footer = () => {
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Brain className="h-8 w-8 text-blue-600" />
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Neural Ennead™ Family Platform
+              workfamilyai
             </h2>
             <Brain className="h-8 w-8 text-purple-600" />
           </div>
@@ -277,7 +277,7 @@ export const Footer = () => {
           </div>
 
           <div className="text-xs text-gray-500 pt-4 border-t">
-            <p>Neural Ennead™ Family Platform • Powered by Unified AI Intelligence • © 2024</p>
+            <p>workfamilyai • Powered by Unified AI Intelligence • © 2024</p>
             <p className="mt-1">
               <span className="inline-flex items-center space-x-1">
                 <Brain className="h-3 w-3" />

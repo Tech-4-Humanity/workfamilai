@@ -73,7 +73,7 @@ const Scenarios = () => {
                 Business Activity Scenarios
               </h1>
               <p className="text-muted-foreground">
-                Interactive visualizations of Neural Ennead™ family involvement in key business processes
+                Interactive visualizations of workfamilyai family involvement in key business processes
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@ const Scenarios = () => {
             <CardHeader>
               <CardTitle>About These Scenarios</CardTitle>
               <CardDescription>
-                These visualizations demonstrate how the Neural Ennead™ family members collaborate across different business activities
+                These visualizations demonstrate how the workfamilyai family members collaborate across different business activities
               </CardDescription>
             </CardHeader>
             <CardContent>

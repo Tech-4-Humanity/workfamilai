@@ -69,7 +69,7 @@ export const FamilyInvolvementMap: React.FC<FamilyInvolvementMapProps> = ({ acti
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Neural Ennead™ Family Involvement Map</CardTitle>
+          <CardTitle>workfamilyai Family Involvement Map</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

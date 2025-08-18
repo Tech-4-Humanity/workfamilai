@@ -28,7 +28,7 @@ export default function DonationCancel() {
                 or contact our support team for assistance.
               </p>
               <p className="text-gray-700">
-                Your support means everything to the Neural Ennead™ mission, and we're here to help 
+                Your support means everything to the workfamilyai mission, and we're here to help 
                 make the donation process as smooth as possible.
               </p>
             </div>
@@ -41,7 +41,7 @@ export default function DonationCancel() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full">
-                <Link to="/">Return to Neural Ennead™</Link>
+                <Link to="/">Return to workfamilyai</Link>
               </Button>
             </div>
           </CardContent>

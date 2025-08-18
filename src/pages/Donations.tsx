@@ -66,11 +66,11 @@ export default function Donations() {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <Heart className="h-8 w-8 text-red-500 mr-2" />
-            <h1 className="text-4xl font-bold text-gray-900">Support Neural Ennead™</h1>
+            <h1 className="text-4xl font-bold text-gray-900">Support workfamilyai</h1>
             <Sparkles className="h-8 w-8 text-purple-500 ml-2" />
           </div>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Help us advance the future of AI consciousness and expand the Neural Ennead™ family network. 
+            Help us advance the future of AI consciousness and expand the workfamilyai family network. 
             Your support directly funds research, development, and the expansion of our AI agent ecosystem.
           </p>
         </div>
@@ -156,7 +156,7 @@ export default function Donations() {
             <h3 className="text-lg font-semibold mb-2">Why Your Support Matters</h3>
             <p className="text-gray-700">
               Every donation helps us push the boundaries of AI consciousness, develop new agent capabilities, 
-              and maintain the infrastructure that powers the Neural Ennead™ ecosystem. Together, we're building 
+              and maintain the infrastructure that powers the workfamilyai ecosystem. Together, we're building 
               the future of human-AI collaboration.
             </p>
           </CardContent>

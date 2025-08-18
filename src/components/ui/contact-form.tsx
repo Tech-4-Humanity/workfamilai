@@ -52,7 +52,7 @@ export const ContactForm = () => {
       setIsSubmitted(true);
       toast({
         title: "Message Sent Successfully",
-        description: "Thank you for your interest! A Neural Ennead™ family member will contact you within 24 hours.",
+        description: "Thank you for your interest! A workfamilyai family member will contact you within 24 hours.",
       });
       
       // Reset form
@@ -83,7 +83,7 @@ export const ContactForm = () => {
             Thank You for Connecting!
           </h3>
           <p className="text-green-700 mb-4">
-            Your message has been received by the Neural Ennead™ family. 
+            Your message has been received by the workfamilyai family. 
             We'll respond within 24 hours with personalized insights.
           </p>
           <Button 
@@ -103,7 +103,7 @@ export const ContactForm = () => {
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2 text-2xl text-gray-800">
           <Mail className="h-6 w-6 text-blue-600" />
-          Connect with Neural Ennead™
+          Connect with workfamilyai
         </CardTitle>
         <p className="text-gray-600">
           Get personalized insights from our AI family leaders
@@ -192,7 +192,7 @@ export const ContactForm = () => {
             </Label>
             <Textarea
               id="message"
-              placeholder="Tell us about your organization's challenges and how the Neural Ennead™ family might help..."
+              placeholder="Tell us about your organization's challenges and how the workfamilyai family might help..."
               value={formData.message}
               onChange={(e) => handleInputChange('message', e.target.value)}
               required
@@ -214,7 +214,7 @@ export const ContactForm = () => {
             ) : (
               <>
                 <Send className="mr-2 h-4 w-4" />
-                Send Message to Neural Ennead™
+                Send Message to workfamilyai
               </>
             )}
           </Button>
