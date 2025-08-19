@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { Home, Users, Calendar, Building2, Brain, Settings, DollarSign, GraduationCap, ExternalLink } from "lucide-react";
+import { Home, Users, Calendar, Building2, DollarSign, GraduationCap, ExternalLink } from "lucide-react";
 
 const navigationItems = [
   { href: "/", label: "Augmented Humanity", icon: Home },
@@ -10,7 +10,7 @@ const navigationItems = [
   { href: "/donations", label: "Support Us", icon: DollarSign },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
   { href: "https://augmentedhumanity.coach/", label: "Augmented Humanity Coach", icon: GraduationCap, external: true },
-  { href: "/admin", label: "Admin", icon: Settings },
+  { href: "/family-network", label: "Family Tree", icon: Users },
 ];
 
 export function NavigationHeader() {
