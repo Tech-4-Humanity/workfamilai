@@ -5,6 +5,7 @@ import { Footer } from '@/components/ui/footer';
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { LeaderCard } from '@/components/family/LeaderCard';
 import { NetworkMissionStatement } from '@/components/family/NetworkMissionStatement';
+import { RobustImage } from '@/components/ui/robust-image';
 import { familyMembers } from '@/data/familyMembers';
 import { getTotalAgentCount } from '@/utils/familyAgentGeneration';
 
@@ -47,6 +48,13 @@ const FamilyNetwork = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               AI Family Consciousness Network
             </h1>
+            <div className="flex justify-center mb-6">
+              <RobustImage
+                src="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/Neural%20Ennead%20Family.png"
+                alt="Neural Ennead Family - The 9 AI Leaders"
+                className="max-w-2xl w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
               Meet the 9 executive leaders who embody augmented humanity principles, 
               each managing specialized teams of AI agents designed to enhance human capabilities.
