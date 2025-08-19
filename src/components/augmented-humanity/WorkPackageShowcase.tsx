@@ -3,13 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Brain, Users, Lightbulb, TrendingUp, Shield, Target } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const workPackages = [
   {
     title: "Augmented Decision Making",
     subtitle: "AI-Led Discovery Workshops",
     description: "Enhance human judgment with AI-powered insights while preserving intuitive wisdom and cultural context.",
-    value: "$45,000 - $75,000",
+    
     icon: Brain,
     category: "Strategic Intelligence",
     outcomes: ["Enhanced decision quality", "Preserved human intuition", "Cultural sensitivity"],
@@ -19,7 +20,7 @@ const workPackages = [
     title: "Augmented Talent Pipeline",
     subtitle: "Signal-Based Recruitment & Development",
     description: "Expand talent identification capabilities while honoring diverse cultural backgrounds and authentic potential.",
-    value: "$35,000 - $65,000", 
+     
     icon: Users,
     category: "Human Capital",
     outcomes: ["Wider talent discovery", "Cultural diversity", "Authentic assessment"],
@@ -29,7 +30,7 @@ const workPackages = [
     title: "Augmented Organizational Intelligence",
     subtitle: "Consciousness-Level Analytics",
     description: "Amplify organizational awareness through AI insights while maintaining human-centered leadership approaches.",
-    value: "$55,000 - $95,000",
+    
     icon: TrendingUp,
     category: "Organizational Enhancement",
     outcomes: ["Deeper awareness", "Human-centered metrics", "Cultural alignment"],
@@ -39,7 +40,7 @@ const workPackages = [
     title: "Augmented Innovation Labs",
     subtitle: "Human-AI Creative Partnerships",
     description: "Accelerate innovation through collaborative intelligence that enhances rather than replaces human creativity.",
-    value: "$40,000 - $80,000",
+    
     icon: Lightbulb,
     category: "Innovation Enhancement",
     outcomes: ["Enhanced creativity", "Faster ideation", "Human-AI synergy"],
@@ -49,7 +50,7 @@ const workPackages = [
     title: "Augmented Security Posture",
     subtitle: "Human-Centered Risk Management",
     description: "Strengthen security through AI augmentation while preserving human judgment in critical decision points.",
-    value: "$50,000 - $85,000",
+    
     icon: Shield,
     category: "Security Enhancement", 
     outcomes: ["Stronger defenses", "Human oversight", "Ethical boundaries"],
@@ -59,7 +60,7 @@ const workPackages = [
     title: "Augmented Leadership Development",
     subtitle: "AI-Enhanced Executive Coaching",
     description: "Develop authentic leadership capabilities through AI insights that honor individual and cultural strengths.",
-    value: "$30,000 - $60,000",
+    
     icon: Target,
     category: "Leadership Enhancement",
     outcomes: ["Authentic development", "Cultural wisdom", "Enhanced capabilities"],
@@ -68,6 +69,7 @@ const workPackages = [
 ];
 
 export const WorkPackageShowcase = () => {
+  const navigate = useNavigate();
   return (
     <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,10 +124,7 @@ export const WorkPackageShowcase = () => {
                   </div>
                   
                   <div className="pt-2 border-t border-border/50">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-foreground">
-                        {pkg.value}
-                      </span>
+                    <div className="flex justify-end">
                       <Button 
                         size="sm" 
                         variant="outline"
@@ -142,7 +141,11 @@ export const WorkPackageShowcase = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg" className="px-8 py-4 shadow-elegant hover:shadow-glow transition-all duration-300">
+          <Button 
+            size="lg" 
+            className="px-8 py-4 shadow-elegant hover:shadow-glow transition-all duration-300"
+            onClick={() => navigate('/work-packages')}
+          >
             Explore All Work Packages
           </Button>
         </div>
