@@ -61,13 +61,6 @@ export const Footer = () => {
       action: () => navigate('/admin'),
       badge: 'Management'
     },
-    {
-      title: 'Organizational Intelligence',
-      description: 'Advanced analytics and decision support systems',
-      icon: Network,
-      action: () => navigate('/organizational-intelligence'),
-      badge: 'Analytics'
-    }
   ];
 
   const userActions = [
@@ -254,7 +247,7 @@ export const Footer = () => {
             </div>
             <div>
               <h4 className="font-semibold text-gray-800 mb-2">Business Users</h4>
-              <p className="text-sm text-gray-600">Explore scenarios and organizational intelligence dashboards</p>
+              <p className="text-sm text-gray-600">Explore scenarios and holo-org dashboards</p>
               <Button variant="outline" size="sm" onClick={() => navigate('/scenarios')} className="mt-2">
                 View Scenarios
               </Button>

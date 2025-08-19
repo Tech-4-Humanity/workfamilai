@@ -61,13 +61,6 @@ export const HoloOrgDashboard = () => {
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            onClick={() => navigate('/organizational-intelligence')}
-          >
-            <TrendingUp className="h-4 w-4 mr-2" />
-            Organizational Intelligence
-          </Button>
           <Badge variant="secondary" className="px-3 py-1">
             <Activity className="w-3 h-3 mr-1" />
             Live Network
