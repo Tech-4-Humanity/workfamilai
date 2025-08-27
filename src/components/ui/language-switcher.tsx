@@ -21,6 +21,10 @@ export const LanguageSwitcher = () => {
     i18n.changeLanguage(lng);
     // Update document direction for RTL languages
     document.dir = supportedLanguages[lng as keyof typeof supportedLanguages]?.rtl ? 'rtl' : 'ltr';
+    
+    // Set flag for progress tracking and dispatch event
+    localStorage.setItem('language_changed', 'true');
+    window.dispatchEvent(new CustomEvent('language-changed'));
   };
 
   const currentLanguage = supportedLanguages[i18n.language as keyof typeof supportedLanguages];

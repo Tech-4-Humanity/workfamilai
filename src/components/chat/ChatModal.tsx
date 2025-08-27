@@ -39,6 +39,8 @@ export const ChatModal = ({
     <Dialog open={open} onOpenChange={(isOpen) => {
       if (isOpen) {
         analytics.trackChatStart(agentName, 'basic');
+        // Dispatch custom event for progress tracking
+        window.dispatchEvent(new CustomEvent('chat-started'));
       }
       setOpen(isOpen);
     }}>

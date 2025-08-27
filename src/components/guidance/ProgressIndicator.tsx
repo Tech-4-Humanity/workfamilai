@@ -21,48 +21,66 @@ interface ProgressItem {
 }
 
 export const ProgressIndicator = () => {
-  const [explorationData, setExplorationData] = useState<ProgressItem[]>([
-    {
-      id: 'visited_home',
-      label: 'Platform Overview',
-      description: 'Viewed main dashboard',
-      icon: Circle,
-      completed: true,
-      points: 10
-    },
-    {
-      id: 'met_family',
-      label: 'Meet the Family',
-      description: 'Explored family members section',
-      icon: Users,
-      completed: false,
-      points: 20
-    },
-    {
-      id: 'started_chat',
-      label: 'First Conversation',
-      description: 'Started chat with any leader',
-      icon: MessageCircle,
-      completed: false,
-      points: 30
-    },
-    {
-      id: 'language_switch',
-      label: 'Cultural Explorer',
-      description: 'Tried different languages',
-      icon: Globe,
-      completed: false,
-      points: 25
-    },
-    {
-      id: 'work_packages',
-      label: 'Solution Explorer',
-      description: 'Viewed work packages',
-      icon: Star,
-      completed: false,
-      points: 15
+  // Load progress from localStorage or use defaults
+  const [explorationData, setExplorationData] = useState<ProgressItem[]>(() => {
+    const saved = localStorage.getItem('exploration_progress');
+    const defaultData = [
+      {
+        id: 'visited_home',
+        label: 'Platform Overview',
+        description: 'Viewed main dashboard',
+        icon: Circle,
+        completed: true,
+        points: 10
+      },
+      {
+        id: 'met_family',
+        label: 'Meet the Family',
+        description: 'Explored family members section',
+        icon: Users,
+        completed: false,
+        points: 20
+      },
+      {
+        id: 'started_chat',
+        label: 'First Conversation',
+        description: 'Started chat with any leader',
+        icon: MessageCircle,
+        completed: false,
+        points: 30
+      },
+      {
+        id: 'language_switch',
+        label: 'Cultural Explorer',
+        description: 'Tried different languages',
+        icon: Globe,
+        completed: false,
+        points: 25
+      },
+      {
+        id: 'work_packages',
+        label: 'Solution Explorer',
+        description: 'Viewed work packages',
+        icon: Star,
+        completed: false,
+        points: 15
+      }
+    ];
+    
+    if (saved) {
+      try {
+        const savedData = JSON.parse(saved);
+        // Merge saved progress with default structure
+        return defaultData.map(item => ({
+          ...item,
+          completed: savedData.find((s: any) => s.id === item.id)?.completed || false
+        }));
+      } catch {
+        return defaultData;
+      }
     }
-  ]);
+    return defaultData;
+  });
 
   const [showProgress, setShowProgress] = useState(false);
 
@@ -71,6 +89,11 @@ export const ProgressIndicator = () => {
   const totalPoints = explorationData.reduce((sum, item) => sum + item.points, 0);
   const earnedPoints = completedItems.reduce((sum, item) => sum + item.points, 0);
   const progressPercentage = (earnedPoints / totalPoints) * 100;
+
+  // Persist progress to localStorage
+  useEffect(() => {
+    localStorage.setItem('exploration_progress', JSON.stringify(explorationData));
+  }, [explorationData]);
 
   // Auto-detect user actions and update progress
   useEffect(() => {
@@ -93,15 +116,34 @@ export const ProgressIndicator = () => {
       }
     };
 
-    // Check for chat interactions
-    const checkChatStarted = () => {
-      const chatElements = document.querySelectorAll('[data-chat-started]');
-      if (chatElements.length > 0) {
-        updateProgress('started_chat');
+    // Check for work packages section using IntersectionObserver
+    const checkWorkPackages = () => {
+      const workPackagesSection = document.querySelector('[data-work-packages]');
+      if (workPackagesSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              updateProgress('work_packages');
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        observer.observe(workPackagesSection);
+        return () => observer.disconnect();
       }
     };
 
-    // Listen for language changes
+    // Listen for custom events
+    const handleChatStarted = () => {
+      updateProgress('started_chat');
+    };
+
+    const handleLanguageChanged = () => {
+      updateProgress('language_switch');
+    };
+
+    // Listen for language changes from localStorage
     const checkLanguageSwitch = () => {
       const currentLang = localStorage.getItem('i18nextLng');
       const hasChangedLang = localStorage.getItem('language_changed');
@@ -113,10 +155,14 @@ export const ProgressIndicator = () => {
     // Event listeners
     window.addEventListener('scroll', checkFamilySection);
     window.addEventListener('storage', checkLanguageSwitch);
+    window.addEventListener('chat-started', handleChatStarted);
+    window.addEventListener('language-changed', handleLanguageChanged);
+    
+    // Setup observers
+    const workPackagesCleanup = checkWorkPackages();
     
     // Check initial state
     checkFamilySection();
-    checkChatStarted();
     checkLanguageSwitch();
 
     // Show progress indicator after 5 seconds
@@ -125,6 +171,9 @@ export const ProgressIndicator = () => {
     return () => {
       window.removeEventListener('scroll', checkFamilySection);
       window.removeEventListener('storage', checkLanguageSwitch);
+      window.removeEventListener('chat-started', handleChatStarted);
+      window.removeEventListener('language-changed', handleLanguageChanged);
+      if (workPackagesCleanup) workPackagesCleanup();
       clearTimeout(timer);
     };
   }, []);
