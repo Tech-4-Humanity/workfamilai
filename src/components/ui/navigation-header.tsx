@@ -20,7 +20,16 @@ export function NavigationHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
-          <nav className="flex items-center space-x-1">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <img 
+                src="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/AHC%20droid%20head.webp"
+                alt="Augmented Humanity Coach"
+                className="h-8 w-8"
+              />
+              <span className="font-semibold text-sm hidden sm:inline">AHC</span>
+            </div>
+            <nav className="flex items-center space-x-1">
             {navigationItems.map((item) => {
               const isActive = location.pathname === item.href;
               const Icon = item.icon;
@@ -56,7 +65,8 @@ export function NavigationHeader() {
                 </Button>
               );
             })}
-          </nav>
+            </nav>
+          </div>
           
           <div data-language-switcher>
             <LanguageSwitcher />
