@@ -18,6 +18,7 @@ import Donations from "./pages/Donations";
 import DonationSuccess from "./pages/DonationSuccess";
 import DonationCancel from "./pages/DonationCancel";
 import WorkPackages from "./pages/WorkPackages";
+import { useEffect } from "react";
 import FamilyNetwork from "./pages/FamilyNetwork";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 import { NavigationHeader } from "./components/ui/navigation-header";
@@ -42,6 +43,22 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Redirect component for external work packages link
+const WorkPackageRedirect = () => {
+  useEffect(() => {
+    window.location.replace('https://www.augmentedhumanity.coach/solutions');
+  }, []);
+  
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/5 to-accent/5 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+        <p className="text-muted-foreground">Redirecting to solutions...</p>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <I18nextProvider i18n={i18n}>
@@ -54,7 +71,7 @@ const App = () => {
             <Suspense fallback={<LoadingFallback />}>
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/work-packages" element={<WorkPackages />} />
+                <Route path="/work-packages" element={<WorkPackageRedirect />} />
                 <Route path="/family-network" element={<FamilyNetwork />} />
                 <Route path="/department/:departmentId" element={<DepartmentDetail />} />
                 <Route path="/admin" element={<Admin />} />

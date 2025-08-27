@@ -2,8 +2,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Brain, Users, Lightbulb, TrendingUp, Shield, Target } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Sparkles, Users, Lightbulb, TrendingUp, Shield, Target } from 'lucide-react';
+import { analytics } from '@/utils/analytics';
 
 const workPackages = [
   {
@@ -11,7 +11,7 @@ const workPackages = [
     subtitle: "AI-Led Discovery Workshops",
     description: "Enhance human judgment with AI-powered insights while preserving intuitive wisdom and cultural context.",
     
-    icon: Brain,
+    icon: Sparkles,
     category: "Strategic Intelligence",
     outcomes: ["Enhanced decision quality", "Preserved human intuition", "Cultural sensitivity"],
     color: "primary"
@@ -69,7 +69,15 @@ const workPackages = [
 ];
 
 export const WorkPackageShowcase = () => {
-  const navigate = useNavigate();
+  const handleExternalLinkClick = (packageTitle: string) => {
+    analytics.track('work_package_clicked', { package_title: packageTitle });
+    window.open('https://www.augmentedhumanity.coach/solutions', '_blank');
+  };
+
+  const handleExploreAllClick = () => {
+    analytics.track('work-packages-viewed', { source: 'explore_all_button' });
+    window.open('https://www.augmentedhumanity.coach/solutions', '_blank');
+  };
   return (
     <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -129,6 +137,7 @@ export const WorkPackageShowcase = () => {
                         size="sm" 
                         variant="outline"
                         className="text-xs hover-scale"
+                        onClick={() => handleExternalLinkClick(pkg.title)}
                       >
                         Learn More
                       </Button>
@@ -144,7 +153,7 @@ export const WorkPackageShowcase = () => {
           <Button 
             size="lg" 
             className="px-8 py-4 shadow-elegant hover:shadow-glow transition-all duration-300"
-            onClick={() => navigate('/work-packages')}
+            onClick={handleExploreAllClick}
           >
             Explore All Work Packages
           </Button>

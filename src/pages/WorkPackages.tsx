@@ -2,6 +2,7 @@ import React from 'react';
 import { Footer } from '@/components/ui/footer';
 import { AugmentedHumanityHero } from '@/components/augmented-humanity/AugmentedHumanityHero';
 import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
+import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
 
 const WorkPackages = () => {
@@ -37,7 +38,9 @@ const WorkPackages = () => {
 
       {/* Work Packages */}
       <div id="work-packages" className="fade-in-up animate-delay-300">
-        <WorkPackageShowcase />
+        <ErrorBoundary onError={(error) => console.error('WorkPackageShowcase error:', error)}>
+          <WorkPackageShowcase />
+        </ErrorBoundary>
       </div>
 
       {/* Additional Content Section */}
