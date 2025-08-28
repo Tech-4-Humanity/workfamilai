@@ -121,7 +121,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('Processing contact form submission for:', formData.email);
 
     // Store in database
-    const { data: submission, error: dbError } = await supabase
+    const { error: dbError } = await supabase
       .from('contact_submissions')
       .insert([
         {
@@ -133,9 +133,7 @@ const handler = async (req: Request): Promise<Response> => {
           ip_address: clientIP,
           status: 'pending'
         }
-      ])
-      .select()
-      .single();
+      ]);
 
     if (dbError) {
       console.error('Database error:', dbError);
@@ -148,7 +146,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Contact submission stored with ID:', submission.id);
+    console.log('Contact submission stored successfully for:', formData.email);
 
     // Send email notification
     const interestLabels: Record<string, string> = {
@@ -176,7 +174,6 @@ const handler = async (req: Request): Promise<Response> => {
       </div>
       
       <div style="background: #f1f8e9; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px;">
-        <p><strong>Submission ID:</strong> ${submission.id}</p>
         <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
         <p><strong>IP Address:</strong> ${clientIP}</p>
       </div>
@@ -189,7 +186,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: 'workfamilyai Contact <noreply@workfamilyai.org>',
-      to: ['info@workfamilyai.org'],
+      to: ['info@workfamilyai.org', 'troy@workfamilyai.org'],
       subject: `New Contact: ${formData.name} - ${interestLabels[formData.interest] || formData.interest}`,
       html: emailHtml,
     });
@@ -204,8 +201,7 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'Contact form submitted successfully',
-        submissionId: submission.id 
+        message: 'Contact form submitted successfully' 
       }),
       {
         status: 200,
