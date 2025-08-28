@@ -43,12 +43,15 @@ export const FamilyNeuralNetwork = () => {
     capabilities: 0
   });
   const hasPlayedAmbient = useRef(false);
+  
+  // Use fallback count if API data is unavailable
+  const safeCurrentAgentCount = currentAgentCount ?? 729;
 
   // Animated counter effect
   useEffect(() => {
     const targetCounts = {
       members: 10, // Updated to 10 to include Trojan Oz
-      agents: currentAgentCount || 729,
+      agents: safeCurrentAgentCount,
       capabilities: 10000
     };
 
@@ -81,7 +84,7 @@ export const FamilyNeuralNetwork = () => {
     }, 500); // Start animation after 500ms
     
     return () => clearTimeout(timer);
-  }, [currentAgentCount]);
+  }, [safeCurrentAgentCount]);
 
   return (
     <Card className="w-full overflow-hidden relative bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white border-none shadow-2xl neural-shimmer hover-glow">
