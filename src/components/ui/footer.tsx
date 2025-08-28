@@ -125,11 +125,19 @@ export const Footer = () => {
         {/* Platform Overview */}
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Brain className="h-8 w-8 text-blue-600" />
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <div className="w-4 h-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full"></div>
+              </div>
+            </div>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               workfamilyai
             </h2>
-            <Brain className="h-8 w-8 text-purple-600" />
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <div className="w-4 h-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full"></div>
+              </div>
+            </div>
           </div>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto">
             Nine specialized AI leaders managing 729 intelligent agents, working together as a unified neural network 
@@ -273,9 +281,9 @@ export const Footer = () => {
             <p>workfamilyai • Tech 4 Humanity • © 2025</p>
             <p className="mt-1">
               <span className="inline-flex items-center space-x-1">
-                <Brain className="h-3 w-3" />
+                <div className="w-3 h-3 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full"></div>
                 <span>Always Learning • Always Evolving • Always Collaborating</span>
-                <Brain className="h-3 w-3" />
+                <div className="w-3 h-3 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full"></div>
               </span>
             </p>
           </div>

@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Send, CheckCircle, User, Building, MessageSquare } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ContactFormData {
   name: string;
@@ -14,6 +15,7 @@ interface ContactFormData {
   company: string;
   interest: string;
   message: string;
+  honeypot: string; // For spam protection
 }
 
 export const ContactForm = () => {
@@ -23,7 +25,8 @@ export const ContactForm = () => {
     email: '',
     company: '',
     interest: '',
-    message: ''
+    message: '',
+    honeypot: '' // Hidden field for spam protection
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,8 +49,32 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission - in production, this would call an API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Check honeypot field - if filled, it's likely spam
+      if (formData.honeypot.trim() !== '') {
+        toast({
+          title: "Submission Failed",
+          description: "Please complete the form properly.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Submit to our edge function
+      const { error } = await supabase.functions.invoke('submit-contact-form', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          interest: formData.interest,
+          message: formData.message,
+          honeypot: formData.honeypot
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
       
       setIsSubmitted(true);
       toast({
@@ -61,12 +88,25 @@ export const ContactForm = () => {
         email: '',
         company: '',
         interest: '',
-        message: ''
+        message: '',
+        honeypot: ''
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Contact form submission error:', error);
+      
+      let errorMessage = "There was an error sending your message. Please try again.";
+      
+      if (error.message?.includes('Too many requests')) {
+        errorMessage = "Too many submissions. Please wait an hour before trying again.";
+      } else if (error.message?.includes('Missing required fields')) {
+        errorMessage = "Please fill in all required fields.";
+      } else if (error.message?.includes('Invalid email')) {
+        errorMessage = "Please enter a valid email address.";
+      }
+      
       toast({
         title: "Send Failed",
-        description: "There was an error sending your message. Please try again.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
@@ -200,6 +240,16 @@ export const ContactForm = () => {
               className="border-gray-300 focus:border-blue-500 resize-none"
             />
           </div>
+
+          {/* Honeypot field - hidden from users but visible to bots */}
+          <Input
+            type="text"
+            value={formData.honeypot}
+            onChange={(e) => handleInputChange('honeypot', e.target.value)}
+            className="absolute left-[-9999px] opacity-0"
+            tabIndex={-1}
+            autoComplete="off"
+          />
 
           <Button 
             type="submit" 
