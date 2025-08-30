@@ -8,6 +8,16 @@ export const useFamilyAgentMutation = () => {
 
   const insertFamilyAgents = useMutation({
     mutationFn: async (agents: FamilyAgent[]) => {
+      // Helper function to safely parse currency strings
+      const parseCurrency = (value: string | number): number => {
+        if (typeof value === 'number') return value;
+        if (!value || value === '') return 0;
+        // Remove currency symbols, commas, and whitespace, then parse
+        const cleanValue = value.toString().replace(/[$,\s]/g, '');
+        const parsed = parseFloat(cleanValue);
+        return isNaN(parsed) ? 0 : parsed;
+      };
+
       // Insert in batches of 50 to avoid timeouts
       const batchSize = 50;
       const batches = [];
@@ -16,12 +26,12 @@ export const useFamilyAgentMutation = () => {
         batches.push(agents.slice(i, i + batchSize));
       }
 
-      let totalInserted = 0;
+      let totalUpserted = 0;
       
       for (const batch of batches) {
         const { data, error } = await supabase
           .from('family_agents')
-          .insert(batch.map(agent => ({
+          .upsert(batch.map(agent => ({
             agent_code: agent.agent_code,
             persona: agent.persona,
             function: agent.function,
@@ -29,8 +39,8 @@ export const useFamilyAgentMutation = () => {
             sfia_level: agent.sfia_level,
             core_skills: agent.core_skills,
             summary_bio: agent.summary_bio,
-            final_cost: parseFloat(agent.final_cost),
-            consultant_hourly_rate: parseFloat(agent.consultant_hourly_rate),
+            final_cost: parseCurrency(agent.final_cost),
+            consultant_hourly_rate: parseCurrency(agent.consultant_hourly_rate),
             tech_stack: agent.tech_stack,
             delivery_type: agent.delivery_type,
             task_coverage_pct: agent.task_coverage_pct,
@@ -41,21 +51,24 @@ export const useFamilyAgentMutation = () => {
             cultural_expertise: agent.cultural_expertise,
             division_name: agent.division_name,
             family_member_id: agent.family_member_id
-          })));
+          })), {
+            onConflict: 'agent_code',
+            ignoreDuplicates: false
+          });
         
         if (error) {
-          console.error('Batch insert error:', error);
+          console.error('Batch upsert error:', error);
           throw error;
         }
         
-        totalInserted += batch.length;
-        console.log(`Inserted batch: ${totalInserted}/${agents.length} agents`);
+        totalUpserted += batch.length;
+        console.log(`Upserted batch: ${totalUpserted}/${agents.length} agents`);
         
         // Small delay between batches
         await new Promise(resolve => setTimeout(resolve, 100));
       }
       
-      return { totalInserted, totalAgents: agents.length };
+      return { totalInserted: totalUpserted, totalAgents: agents.length };
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['family-agents'] });
