@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users } from 'lucide-react';
 import { AgentCard } from './AgentCard';
 import { Division } from '@/types/family';
+import { generateAgentCode } from '@/utils/familyAgentGeneration';
 
 interface DivisionCardProps {
   division: Division;
@@ -11,6 +12,8 @@ interface DivisionCardProps {
   originalDivisions: Division[];
   getAgentLanguages: (divisionIndex: number, agentIndex: number) => string[];
   getPrimaryLanguage: () => string;
+  familyMemberId?: string;
+  familyAgentsMap?: Map<string, any>;
 }
 
 export const DivisionCard = ({ 
@@ -18,7 +21,9 @@ export const DivisionCard = ({
   divisionIndex, 
   originalDivisions, 
   getAgentLanguages, 
-  getPrimaryLanguage 
+  getPrimaryLanguage,
+  familyMemberId,
+  familyAgentsMap
 }: DivisionCardProps) => {
   return (
     <Card className="overflow-hidden">
@@ -37,21 +42,21 @@ export const DivisionCard = ({
       
       <CardContent className="p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {division.agents.map((agent, agentIndex) => {
-            const originalDivisionIndex = originalDivisions.findIndex(d => d.name === division.name);
-            const originalAgentIndex = originalDivisions[originalDivisionIndex]?.agents.findIndex(a => a.name === agent.name) ?? agentIndex;
-            const agentLanguages = getAgentLanguages(originalDivisionIndex, originalAgentIndex);
-            const primaryLanguage = getPrimaryLanguage();
-
-            return (
-              <AgentCard
-                key={agentIndex}
-                agent={agent}
-                agentLanguages={agentLanguages}
-                primaryLanguage={primaryLanguage}
-              />
-            );
-          })}
+        {division.agents.map((agent, agentIndex) => {
+          // Generate agent code and get family agent data if available
+          const agentCode = familyMemberId ? generateAgentCode(familyMemberId, divisionIndex, agentIndex) : null;
+          const familyAgentData = agentCode && familyAgentsMap ? familyAgentsMap.get(agentCode) : null;
+          
+          return (
+            <AgentCard
+              key={`agent-${divisionIndex}-${agentIndex}`}
+              agent={agent}
+              agentLanguages={getAgentLanguages(divisionIndex, agentIndex)}
+              primaryLanguage={getPrimaryLanguage()}
+              familyAgentData={familyAgentData}
+            />
+          );
+        })}
         </div>
       </CardContent>
     </Card>

@@ -1,15 +1,27 @@
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { LanguageFilter } from '@/components/ui/language-filter';
 import { getCulturalProfile, getSupportedLanguagesForMember } from '@/data/culturalProfiles';
 import { Division } from '@/types/family';
-import { useState, useMemo } from 'react';
 import { DivisionCard } from './DivisionCard';
+import { useFamilyAgentQueries } from '@/hooks/useFamilyAgentQueries';
 
 interface DivisionsGridProps {
   divisions: Division[];
+  familyMemberId?: string;
 }
 
-export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
+export const DivisionsGrid = ({ divisions, familyMemberId }: DivisionsGridProps) => {
+  const { familyAgents } = useFamilyAgentQueries();
+  
+  // Create a map of agent codes to family agent data for fast lookup
+  const familyAgentsMap = useMemo(() => {
+    const map = new Map();
+    (familyAgents || []).forEach(agent => {
+      map.set(agent.agent_code, agent);
+    });
+    return map;
+  }, [familyAgents]);
   const [languageFilter, setLanguageFilter] = useState<string[]>([]);
 
   // Enhanced language assignment based on agent names and specializations
@@ -156,6 +168,8 @@ export const DivisionsGrid = ({ divisions }: DivisionsGridProps) => {
           originalDivisions={divisions}
           getAgentLanguages={getAgentLanguages}
           getPrimaryLanguage={getPrimaryLanguage}
+          familyMemberId={familyMemberId}
+          familyAgentsMap={familyAgentsMap}
         />
       ))}
 

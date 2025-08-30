@@ -116,6 +116,7 @@ const DepartmentDetail = () => {
             
             <DivisionsGrid 
               divisions={familyMemberData.divisions}
+              familyMemberId={departmentId}
             />
           </div>
         </div>

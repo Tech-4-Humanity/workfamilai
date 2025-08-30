@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ChatModal } from '@/components/chat/ChatModal';
 import { AgentLanguageSection } from './AgentLanguageSection';
 import { AgentDetailsSection } from './AgentDetailsSection';
+import { AgentMetricsSection } from './AgentMetricsSection';
 import { Agent } from '@/types/family';
 import { getAgentImageUrl } from '@/utils/agent-images';
 
@@ -12,9 +13,10 @@ interface AgentCardProps {
   agent: Agent;
   agentLanguages: string[];
   primaryLanguage: string;
+  familyAgentData?: any;
 }
 
-export const AgentCard = ({ agent, agentLanguages, primaryLanguage }: AgentCardProps) => {
+export const AgentCard = ({ agent, agentLanguages, primaryLanguage, familyAgentData }: AgentCardProps) => {
   // Improved sentence structure for agent descriptions
   const improveAgentDescription = (background: string): string => {
     return background
@@ -63,6 +65,11 @@ export const AgentCard = ({ agent, agentLanguages, primaryLanguage }: AgentCardP
           signatureMethod={agent.signature_method}
           culturalExpertise={agent.cultural_expertise}
         />
+
+        {/* Family Agent Metrics (if available) */}
+        {familyAgentData && (
+          <AgentMetricsSection familyAgentData={familyAgentData} />
+        )}
 
         {/* Chat Button */}
         <div className="mt-auto">

@@ -122,7 +122,7 @@ const generateCostAndRate = (sfia_level: string, delivery_type: string): { final
   };
 };
 
-const generateAgentCode = (familyMemberId: string, divisionIndex: number, agentIndex: number): string => {
+export const generateAgentCode = (familyMemberId: string, divisionIndex: number, agentIndex: number): string => {
   const memberCodes: Record<string, string> = {
     'amara-chen': 'AC',
     'marcus-bennett': 'MB',
