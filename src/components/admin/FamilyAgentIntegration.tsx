@@ -1,15 +1,16 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { AlertCircle, CheckCircle, Database, Users, Trash2 } from 'lucide-react';
+import { AlertCircle, CheckCircle, Database, Users, Trash2, RefreshCw } from 'lucide-react';
 import { useFamilyAgentIntegration } from '@/hooks/useFamilyAgentIntegration';
 import { useToast } from '@/hooks/use-toast';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const FamilyAgentIntegration = () => {
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const {
     familyAgents,
     isLoading,
@@ -24,6 +25,21 @@ export const FamilyAgentIntegration = () => {
     clearError,
     clearSuccess
   } = useFamilyAgentIntegration();
+
+  // Refresh queries on component mount to ensure we have latest data
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['family-agents'] });
+    queryClient.invalidateQueries({ queryKey: ['current-family-agent-count'] });
+  }, [queryClient]);
+
+  const handleRefresh = () => {
+    queryClient.invalidateQueries({ queryKey: ['family-agents'] });
+    queryClient.invalidateQueries({ queryKey: ['current-family-agent-count'] });
+    toast({
+      title: "Data Refreshed",
+      description: "Family agent data has been refreshed from the database.",
+    });
+  };
 
   const handleIntegration = async () => {
     try {
@@ -72,9 +88,23 @@ export const FamilyAgentIntegration = () => {
           <CardTitle className="flex items-center gap-2">
             <Users className="h-5 w-5" />
             workfamilyai Family Agent Integration
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              className="ml-auto"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
+          {/* Debug info - can be removed later */}
+          <div className="text-xs text-muted-foreground p-2 bg-muted rounded">
+            Debug: currentAgentCount={currentAgentCount}, generatedAgentCount={generatedAgentCount}, isLoading={isLoading.toString()}
+          </div>
+
           {/* Status Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">
