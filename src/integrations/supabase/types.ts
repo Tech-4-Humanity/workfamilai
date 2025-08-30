@@ -3530,6 +3530,48 @@ export type Database = {
           },
         ]
       }
+      assessment_progress: {
+        Row: {
+          assessment_type: string
+          completion_percentage: number
+          created_at: string
+          current_step: number
+          id: string
+          is_completed: boolean
+          last_saved: string
+          responses: Json
+          total_steps: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          assessment_type: string
+          completion_percentage?: number
+          created_at?: string
+          current_step?: number
+          id?: string
+          is_completed?: boolean
+          last_saved?: string
+          responses?: Json
+          total_steps?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          assessment_type?: string
+          completion_percentage?: number
+          created_at?: string
+          current_step?: number
+          id?: string
+          is_completed?: boolean
+          last_saved?: string
+          responses?: Json
+          total_steps?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       assessment_progress_tracking: {
         Row: {
           assessment_type: string
@@ -6242,6 +6284,45 @@ export type Database = {
           "Retail Price ($)"?: number | null
           "Tier (Basic / Standard / Premium / Enterprise)"?: string | null
           Workstream?: string | null
+        }
+        Relationships: []
+      }
+      client_error_logs: {
+        Row: {
+          browser_info: Json | null
+          created_at: string
+          error_message: string
+          id: string
+          path: string
+          session_id: string | null
+          stack_trace: string | null
+          timestamp: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          browser_info?: Json | null
+          created_at?: string
+          error_message: string
+          id?: string
+          path: string
+          session_id?: string | null
+          stack_trace?: string | null
+          timestamp?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          browser_info?: Json | null
+          created_at?: string
+          error_message?: string
+          id?: string
+          path?: string
+          session_id?: string | null
+          stack_trace?: string | null
+          timestamp?: string
+          user_agent?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -9493,6 +9574,39 @@ export type Database = {
           },
         ]
       }
+      email_logs: {
+        Row: {
+          delivery_id: string | null
+          email_type: string
+          error_message: string | null
+          id: string
+          recipient_email: string
+          sent_at: string | null
+          status: string
+          subject: string | null
+        }
+        Insert: {
+          delivery_id?: string | null
+          email_type: string
+          error_message?: string | null
+          id?: string
+          recipient_email: string
+          sent_at?: string | null
+          status?: string
+          subject?: string | null
+        }
+        Update: {
+          delivery_id?: string | null
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          recipient_email?: string
+          sent_at?: string | null
+          status?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
       email_subscribers: {
         Row: {
           created_at: string
@@ -10234,6 +10348,30 @@ export type Database = {
             referencedColumns: ["tag_id"]
           },
         ]
+      }
+      envato_notes: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
       }
       envato_strategy_notes: {
         Row: {
@@ -11168,6 +11306,45 @@ export type Database = {
           "Tier (Basic / Standard / Premium / Enterprise)"?: string | null
           "Triggers Follow-Up (Y/N)"?: string | null
           Workstream?: string | null
+        }
+        Relationships: []
+      }
+      function_health_checks: {
+        Row: {
+          checked_at: string
+          created_at: string
+          error_message: string | null
+          function_name: string
+          id: string
+          latency_ms: number | null
+          response_excerpt: string | null
+          response_payload: Json | null
+          status: string
+          test_payload: Json | null
+        }
+        Insert: {
+          checked_at?: string
+          created_at?: string
+          error_message?: string | null
+          function_name: string
+          id?: string
+          latency_ms?: number | null
+          response_excerpt?: string | null
+          response_payload?: Json | null
+          status: string
+          test_payload?: Json | null
+        }
+        Update: {
+          checked_at?: string
+          created_at?: string
+          error_message?: string | null
+          function_name?: string
+          id?: string
+          latency_ms?: number | null
+          response_excerpt?: string | null
+          response_payload?: Json | null
+          status?: string
+          test_payload?: Json | null
         }
         Relationships: []
       }
@@ -22047,6 +22224,48 @@ export type Database = {
           state?: Json | null
           total_budget?: number
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      route_health_checks: {
+        Row: {
+          audit_id: string | null
+          checked_at: string
+          console_errors: Json | null
+          created_at: string
+          error_message: string | null
+          id: string
+          load_time_ms: number | null
+          performance_metrics: Json | null
+          render_success: boolean | null
+          route_path: string
+          status: string
+        }
+        Insert: {
+          audit_id?: string | null
+          checked_at?: string
+          console_errors?: Json | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          load_time_ms?: number | null
+          performance_metrics?: Json | null
+          render_success?: boolean | null
+          route_path: string
+          status: string
+        }
+        Update: {
+          audit_id?: string | null
+          checked_at?: string
+          console_errors?: Json | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          load_time_ms?: number | null
+          performance_metrics?: Json | null
+          render_success?: boolean | null
+          route_path?: string
+          status?: string
         }
         Relationships: []
       }
