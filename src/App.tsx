@@ -21,6 +21,7 @@ import WorkPackages from "./pages/WorkPackages";
 import { useEffect } from "react";
 import FamilyNetwork from "./pages/FamilyNetwork";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
+import { CompleteOrganizationalStructure } from "./components/organizational/CompleteOrganizationalStructure";
 import { NavigationHeader } from "./components/ui/navigation-header";
 
 // Optimized query client for production
@@ -83,6 +84,7 @@ const App = () => {
                 <Route path="/donation-cancel" element={<DonationCancel />} />
                 
                 <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
+                <Route path="/complete-structure" element={<CompleteOrganizationalStructure />} />
                 {/* Catch-all route for 404 handling - MUST be last */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
