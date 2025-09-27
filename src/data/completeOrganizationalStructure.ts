@@ -258,3 +258,7 @@ console.log('🏢 Structure:', ORGANIZATIONAL_SUMMARY.structure);
  * 
  * Total Structure: 10 × 9 × 9 = 810 agents + 10 leaders = 820 entities
  */
+
+export const getAllAgents = () => {
+  return COMPLETE_ORGANIZATIONAL_STRUCTURE;
+};
