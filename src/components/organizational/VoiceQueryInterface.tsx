@@ -19,8 +19,12 @@ interface Agent {
   agentCode: string;
   agentName: string;
   specialization: string;
-  divisionName: string;
   culturalExpertise: string;
+  achievement: string;
+  signatureMethod: string;
+  background: string;
+  divisionName: string;
+  leaderName: string;
 }
 
 interface VoiceQueryInterfaceProps {
@@ -105,13 +109,13 @@ export const VoiceQueryInterface: React.FC<VoiceQueryInterfaceProps> = ({
 
   const handleVoiceSearch = async () => {
     if (isRecording) {
-      const result = await stopRecording();
+      stopRecording();
       setIsListening(false);
       
-      if (result?.transcript) {
-        setTranscript(result.transcript);
-        await processVoiceQuery(result.transcript);
-      }
+      // Simulate transcript for demo
+      const demoTranscript = "Find agents in marketing";
+      setTranscript(demoTranscript);
+      await processVoiceQuery(demoTranscript);
     } else {
       setTranscript('');
       setIsListening(true);

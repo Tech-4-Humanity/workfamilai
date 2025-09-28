@@ -163,7 +163,21 @@ export const OrganizationalDashboard = () => {
               </CardContent>
             </Card>
             
-            <VoiceQueryInterface />
+            <VoiceQueryInterface 
+              agents={organizationalData.map(agent => ({
+                agentCode: agent.persona,
+                agentName: agent.persona,
+                specialization: agent.capability_tags,
+                culturalExpertise: 'Global',
+                achievement: 'Specialized expertise',
+                signatureMethod: 'Data-driven approach',
+                background: `Expert in ${agent.capability_tags}`,
+                divisionName: 'Operations',
+                leaderName: 'Operations Director'
+              }))}
+              onAgentSelect={(agent) => console.log('Selected agent:', agent)}
+              onSearchResults={(results) => console.log('Search results:', results)}
+            />
         </TabsContent>
 
         <TabsContent value="analytics" className="space-y-4">

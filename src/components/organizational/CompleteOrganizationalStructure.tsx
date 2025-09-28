@@ -243,7 +243,7 @@ export const CompleteOrganizationalStructure: React.FC = () => {
         <TabsContent value="network">
           <NetworkVisualization3D
             agents={filteredAgents}
-            onAgentSelect={setSelectedAgent}
+            onAgentSelect={(agent) => setSelectedAgent(agent)}
             selectedAgent={selectedAgent}
           />
         </TabsContent>
@@ -269,7 +269,7 @@ export const CompleteOrganizationalStructure: React.FC = () => {
         <TabsContent value="voice">
           <VoiceQueryInterface
             agents={filteredAgents}
-            onAgentSelect={setSelectedAgent}
+            onAgentSelect={(agent) => setSelectedAgent(agent)}
             onSearchResults={(results) => {
               // This would update the search results
               console.log('Voice search results:', results);

@@ -17,9 +17,12 @@ interface Agent {
   agentCode: string;
   agentName: string;
   specialization: string;
+  culturalExpertise: string;
+  achievement: string;
+  signatureMethod: string;
+  background: string;
   divisionName: string;
   leaderName: string;
-  culturalExpertise: string;
 }
 
 interface NetworkVisualization3DProps {

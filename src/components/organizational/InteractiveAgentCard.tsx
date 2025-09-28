@@ -36,6 +36,7 @@ interface InteractiveAgentCardProps {
   onAddToTeam: (agent: Agent) => void;
   onRemoveFromTeam: (agentCode: string) => void;
   isInPersonalTeam: boolean;
+  onInteraction?: () => void;
   showQuickStats?: boolean;
 }
 
@@ -44,6 +45,7 @@ export const InteractiveAgentCard: React.FC<InteractiveAgentCardProps> = ({
   onAddToTeam,
   onRemoveFromTeam,
   isInPersonalTeam,
+  onInteraction,
   showQuickStats = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -60,6 +62,7 @@ export const InteractiveAgentCard: React.FC<InteractiveAgentCardProps> = ({
       onAddToTeam(agent);
       toast.success(`${agent.agentName.split(' ')[0]} added to your team!`);
     }
+    onInteraction?.();
   };
 
   const getStatusColor = (status: string) => {
