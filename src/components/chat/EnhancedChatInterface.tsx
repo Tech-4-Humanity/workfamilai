@@ -38,24 +38,10 @@ export const EnhancedChatInterface = ({
   } = useEnhancedChat();
 
   // Get language capabilities for agent using the new mapping functions
-  console.log('EnhancedChatInterface Debug - Agent setup:', {
-    agentName,
-    agentColor,
-    agentPersonality: agentPersonality.substring(0, 50) + '...'
-  });
-  
   const supportedLanguages = getAgentSupportedLanguages(agentName);
   const culturalProfile = getAgentCulturalProfile(agentName);  
   const primaryLanguage = getAgentPrimaryLanguage(agentName);
   const agentImageUrl = getAgentImageUrl(agentName, 'General');
-  
-  console.log('Final language and image data:', { 
-    agentName,
-    supportedLanguages, 
-    primaryLanguage, 
-    culturalProfile: !!culturalProfile,
-    agentImageUrl 
-  });
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;

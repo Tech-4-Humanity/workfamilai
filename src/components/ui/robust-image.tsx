@@ -32,7 +32,7 @@ export const RobustImage: React.FC<RobustImageProps> = ({
   }, [src]);
 
   const handleImageLoad = () => {
-    console.log(`Image loaded successfully: ${currentSrc}`);
+    
     setImageLoaded(true);
     onLoad?.();
   };

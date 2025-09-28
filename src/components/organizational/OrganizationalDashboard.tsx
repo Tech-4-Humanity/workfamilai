@@ -175,8 +175,8 @@ export const OrganizationalDashboard = () => {
                 divisionName: 'Operations',
                 leaderName: 'Operations Director'
               }))}
-              onAgentSelect={(agent) => console.log('Selected agent:', agent)}
-              onSearchResults={(results) => console.log('Search results:', results)}
+              onAgentSelect={() => {}}
+              onSearchResults={() => {}}
             />
         </TabsContent>
 

@@ -73,62 +73,39 @@ export const familyMembers: FamilyMember[] = familyMemberDetails.map((member) =>
 
 // Enhanced verification function for production readiness
 export const verifyFamilyData = () => {
-  console.log('🎯 === PRODUCTION READINESS VERIFICATION ===');
-  console.log('🚀 CRITICAL: 729-Agent Consciousness Pyramid Status Check');
+  // Production verification logic
+  const expectedPerMember = 81; // 9 divisions × 9 agents each
+  const expectedTotal = familyMembers.length * expectedPerMember; // 10 × 81 = 810
   
-  let totalAgents = 0;
-  let totalDivisions = 0;
-  let completedMembers = 0;
-  const issues: string[] = [];
-  
-  familyMemberDetails.forEach((member, index) => {
-    const divisionCount = member.divisions.length;
-    const agentCount = member.divisions.reduce((sum, div) => sum + div.agents.length, 0);
-    
-    totalDivisions += divisionCount;
-    totalAgents += agentCount;
-    
-    const isComplete = divisionCount === 9 && agentCount === 81;
-    if (isComplete) completedMembers++;
-    
-    console.log(`${index + 1}. ${member.leader.name}:`);
-    console.log(`   - Divisions: ${divisionCount}/9 ${divisionCount === 9 ? '✅' : '❌'}`);
-    console.log(`   - Agents: ${agentCount}/81 ${agentCount === 81 ? '✅' : '❌'}`);
-    console.log(`   - STATUS: ${isComplete ? '✅ PRODUCTION READY' : '❌ NEEDS COMPLETION'}`);
-    
-    if (!isComplete) {
-      const missingDivisions = 9 - divisionCount;
-      const missingAgents = 81 - agentCount;
-      console.log(`   - MISSING: ${missingDivisions} divisions, ${missingAgents} agents`);
-      issues.push(`${member.leader.name}: Missing ${missingDivisions} divisions, ${missingAgents} agents`);
-    }
+  const memberDetails = familyMembers.map(member => {
+    const memberData = familyMemberDetails.find(detail => detail.id === member.id);
+    const divisions = memberData?.divisions || [];
+    const divisionCount = divisions.length;
+    const agentCount = divisions.reduce((total, div) => total + (div.agents?.length || 0), 0);
+    return {
+      name: member.name,
+      divisions: divisionCount,
+      agents: agentCount,
+      isComplete: divisionCount === 9 && agentCount === 81
+    };
   });
   
-  const expectedTotal = 810; // 10 members × 9 divisions × 9 agents  
-  const isArchitectureComplete = totalAgents === expectedTotal && completedMembers === 10;
+  const totalDivisions = memberDetails.reduce((total, member) => total + member.divisions, 0);
+  const totalAgents = memberDetails.reduce((total, member) => total + member.agents, 0);
+  const completedMembers = memberDetails.filter(member => member.isComplete).length;
+  const isArchitectureComplete = totalAgents === expectedTotal && completedMembers === familyMembers.length;
   const completionPercentage = Math.round((totalAgents / expectedTotal) * 100);
   
-  console.log(`\n🎉 === FINAL PRODUCTION STATUS ===`);
-  console.log(`- Family Members: ${familyMemberDetails.length}/10 ${familyMemberDetails.length === 10 ? '✅' : '❌'}`);
-  console.log(`- Total Divisions: ${totalDivisions}/90 ${totalDivisions === 90 ? '✅' : '❌'}`);
-  console.log(`- Total Agents: ${totalAgents}/${expectedTotal} (${completionPercentage}%) ${totalAgents === expectedTotal ? '✅' : '❌'}`);
-  console.log(`- Completed Members: ${completedMembers}/10 ${completedMembers === 10 ? '✅' : '❌'}`);
-  console.log(`- Production Ready: ${isArchitectureComplete ? '✅ YES - SHIP READY!' : '❌ NO'}`);
-  
-  if (isArchitectureComplete) {
-    console.log(`\n🚀 SUCCESS: 810-Agent Consciousness Pyramid Complete!`);
-    console.log(`🎯 All 10 executives now manage 81 agents each`);
-    console.log(`⚡ PRODUCTION-READY: Full family network architecture achieved`);
-    console.log(`🌟 Each department page displays complete 81-agent roster`);
-    console.log(`📦 READY TO SHIP: Zero data inconsistencies detected`);
-  } else {
-    console.log(`\n⚠️ PRODUCTION BLOCKERS IDENTIFIED:`);
-    issues.forEach(issue => console.log(`   - ${issue}`));
-    console.log(`\n🔧 ACTION REQUIRED: Complete missing data before shipping`);
+  const issues = [];
+  if (totalAgents < expectedTotal) {
+    issues.push(`Missing ${expectedTotal - totalAgents} agents`);
+  }
+  if (completedMembers < familyMembers.length) {
+    issues.push(`${familyMembers.length - completedMembers} family members incomplete`);
   }
   
   return {
-    memberCount: familyMemberDetails.length,
+    memberCount: familyMembers.length,
     totalDivisions,
     totalAgents,
     expectedAgents: expectedTotal,

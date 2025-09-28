@@ -224,10 +224,6 @@ export const LEADERSHIP_SUMMARY = generateLeadershipSummary();
 export const ORGANIZATIONAL_SUMMARY = generateOrganizationalSummary();
 
 // Console log summary for verification
-console.log('🎯 COMPLETE ORGANIZATIONAL STRUCTURE GENERATED');
-console.log('📊 Summary:', ORGANIZATIONAL_SUMMARY);
-console.log('👥 Total Entities:', ORGANIZATIONAL_SUMMARY.totalEntities);
-console.log('🏢 Structure:', ORGANIZATIONAL_SUMMARY.structure);
 
 /**
  * ORGANIZATIONAL HIERARCHY REFERENCE:

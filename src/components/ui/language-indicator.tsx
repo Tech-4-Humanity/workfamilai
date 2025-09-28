@@ -22,18 +22,9 @@ const LanguageIndicatorContent = ({
   showPopover = false,
   className = ''
 }: LanguageIndicatorProps) => {
-  console.log('LanguageIndicator Debug:', {
-    languages,
-    primaryLanguage,
-    variant,
-    availableLanguages: Object.keys(supportedLanguages)
-  });
-
   const getLanguageFlag = (langCode: string) => {
     const languageConfig = supportedLanguages[langCode as keyof typeof supportedLanguages];
-    const flag = languageConfig?.flag || '🌐';
-    console.log('Flag for', langCode, ':', flag);
-    return flag;
+    return languageConfig?.flag || '🌐';
   };
 
   const getLanguageName = (langCode: string) => {
@@ -43,18 +34,13 @@ const LanguageIndicatorContent = ({
   // Enhanced language validation with better fallbacks
   const validLanguages = languages.filter(lang => {
     if (!lang || typeof lang !== 'string') return false;
-    const isValid = supportedLanguages[lang as keyof typeof supportedLanguages] !== undefined;
-    console.log(`Language ${lang} is valid:`, isValid);
-    return isValid;
+    return supportedLanguages[lang as keyof typeof supportedLanguages] !== undefined;
   });
 
   // If no valid languages, ensure we have English as fallback
   if (validLanguages.length === 0) {
-    console.log('No valid languages found, defaulting to English');
     validLanguages.push('en');
   }
-
-  console.log('Final valid languages:', validLanguages);
 
   if (variant === 'minimal') {
     return (

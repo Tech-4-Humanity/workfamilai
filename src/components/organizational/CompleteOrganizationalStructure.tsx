@@ -106,7 +106,7 @@ export const CompleteOrganizationalStructure: React.FC = () => {
 
   const startTeamChat = (agents: Agent[]) => {
     // This would open a multi-agent chat interface
-    console.log('Starting team chat with:', agents);
+    
   };
 
   const handleAgentInteraction = (agent: Agent) => {
@@ -272,7 +272,7 @@ export const CompleteOrganizationalStructure: React.FC = () => {
             onAgentSelect={(agent) => setSelectedAgent(agent)}
             onSearchResults={(results) => {
               // This would update the search results
-              console.log('Voice search results:', results);
+              
             }}
           />
         </TabsContent>
@@ -282,7 +282,7 @@ export const CompleteOrganizationalStructure: React.FC = () => {
           <AchievementSystem
             userStats={userStats}
             onAchievementUnlock={(achievement) => {
-              console.log('Achievement unlocked:', achievement);
+              
               // Could show a toast notification here
             }}
           />

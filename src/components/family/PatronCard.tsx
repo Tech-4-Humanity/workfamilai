@@ -64,7 +64,7 @@ export const PatronCard = ({ totalDepartments, totalAgents }: PatronCardProps) =
             alt="Trojan Oz - AHC Cyborg Patron"
             className="relative w-24 h-24 mx-auto rounded-full object-cover border-4 border-yellow-400/50 shadow-2xl"
             fallback={fallbackContent}
-            onError={(failedUrl) => console.log(`Failed to load Trojan Oz image: ${failedUrl}`)}
+            onError={() => {}}
           />
           
           {/* Crown overlay */}

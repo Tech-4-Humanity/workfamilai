@@ -100,11 +100,6 @@ export const FamilyAgentIntegration = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Debug info - can be removed later */}
-          <div className="text-xs text-muted-foreground p-2 bg-muted rounded">
-            Debug: currentAgentCount={currentAgentCount}, generatedAgentCount={generatedAgentCount}, isLoading={isLoading.toString()}
-          </div>
-
           {/* Status Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">

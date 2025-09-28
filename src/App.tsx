@@ -1,7 +1,8 @@
 
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { ProductionErrorBoundary } from "@/components/ui/production-error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
@@ -63,38 +64,39 @@ const WorkPackageRedirect = () => {
 
 const App = () => {
   return (
-    <I18nextProvider i18n={i18n}>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <NavigationHeader />
-            <Suspense fallback={<LoadingFallback />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/work-packages" element={<WorkPackageRedirect />} />
-                <Route path="/family-network" element={<FamilyNetwork />} />
-                <Route path="/department/:departmentId" element={<DepartmentDetail />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/contact-test" element={<ContactTest />} />
-                <Route path="/scenarios" element={<Scenarios />} />
-                <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
-                <Route path="/demo" element={<DemoComingSoon />} />
-                <Route path="/donations" element={<Donations />} />
-                <Route path="/donation-success" element={<DonationSuccess />} />
-                <Route path="/donation-cancel" element={<DonationCancel />} />
-                
-                <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
-                <Route path="/complete-structure" element={<CompleteOrganizationalStructure />} />
-                {/* Catch-all route for 404 handling - MUST be last */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </I18nextProvider>
+    <ProductionErrorBoundary>
+      <I18nextProvider i18n={i18n}>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <NavigationHeader />
+              <Suspense fallback={<LoadingFallback />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/work-packages" element={<WorkPackageRedirect />} />
+                  <Route path="/family-network" element={<FamilyNetwork />} />
+                  <Route path="/department/:departmentId" element={<DepartmentDetail />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/contact-test" element={<ContactTest />} />
+                  <Route path="/scenarios" element={<Scenarios />} />
+                  <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
+                  <Route path="/demo" element={<DemoComingSoon />} />
+                  <Route path="/donations" element={<Donations />} />
+                  <Route path="/donation-success" element={<DonationSuccess />} />
+                  <Route path="/donation-cancel" element={<DonationCancel />} />
+                  
+                  <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
+                  <Route path="/complete-structure" element={<CompleteOrganizationalStructure />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
+      </I18nextProvider>
+    </ProductionErrorBoundary>
   );
 };
 

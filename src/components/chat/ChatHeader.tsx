@@ -25,14 +25,6 @@ const ChatHeaderContent = ({
   primaryLanguage,
   onClose
 }: ChatHeaderProps) => {
-  // Debug logging
-  console.log('ChatHeader Debug:', {
-    agentName,
-    agentImageUrl,
-    agentLanguages,
-    primaryLanguage,
-    agentColor
-  });
 
   // Use static color classes to avoid Tailwind purging issues
   const getHeaderColorClass = (color: string) => {
@@ -67,8 +59,8 @@ const ChatHeaderContent = ({
             <AvatarImage 
               src={agentImageUrl} 
               alt={`Profile picture of ${agentName}`}
-              onLoad={() => console.log('Avatar image loaded successfully:', agentImageUrl)}
-              onError={() => console.log('Avatar image failed to load:', agentImageUrl)}
+              onLoad={() => {}}
+              onError={() => {}}
             />
             <AvatarFallback className="bg-white/20 text-white font-semibold">
               {getAgentInitials(agentName)}
