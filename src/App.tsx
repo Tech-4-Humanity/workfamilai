@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import ContactTest from "./pages/ContactTest";
 import Scenarios from "./pages/Scenarios";
 import ScenarioDetail from "./pages/ScenarioDetail";
 import DemoComingSoon from "./pages/DemoComingSoon";
@@ -76,6 +77,7 @@ const App = () => {
                 <Route path="/family-network" element={<FamilyNetwork />} />
                 <Route path="/department/:departmentId" element={<DepartmentDetail />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/contact-test" element={<ContactTest />} />
                 <Route path="/scenarios" element={<Scenarios />} />
                 <Route path="/scenarios/:scenarioId" element={<ScenarioDetail />} />
                 <Route path="/demo" element={<DemoComingSoon />} />

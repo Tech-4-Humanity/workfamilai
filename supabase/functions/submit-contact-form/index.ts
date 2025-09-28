@@ -148,7 +148,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Contact submission stored successfully for:', formData.email);
 
-    // Send email notification
+    // Send admin notification email
     const interestLabels: Record<string, string> = {
       'enterprise': 'Enterprise Solutions',
       'partnership': 'Partnership Opportunities', 

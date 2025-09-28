@@ -4,8 +4,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { FamilyAgentIntegration } from '@/components/admin/FamilyAgentIntegration';
 import { PatronDashboard } from '@/components/admin/PatronDashboard';
 import { DivisionLeadersPanel } from '@/components/admin/DivisionLeadersPanel';
+import { ContactManagement } from '@/components/admin/ContactManagement';
+import { ContactAnalytics } from '@/components/analytics/ContactAnalytics';
 import { Footer } from '@/components/ui/footer';
-import { Database, Users, Settings, BarChart3, Crown, Building2 } from 'lucide-react';
+import { Database, Users, Settings, BarChart3, Crown, Building2, Mail, TestTube } from 'lucide-react';
 
 const Admin = () => {
   return (
@@ -32,13 +34,17 @@ const Admin = () => {
               <Users className="h-4 w-4" />
               Agent Integration
             </TabsTrigger>
-            <TabsTrigger value="database" className="flex items-center gap-2">
-              <Database className="h-4 w-4" />
-              Database
+            <TabsTrigger value="contacts" className="flex items-center gap-2">
+              <Mail className="h-4 w-4" />
+              Contacts
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center gap-2">
               <BarChart3 className="h-4 w-4" />
-              Analytics
+              Contact Analytics
+            </TabsTrigger>
+            <TabsTrigger value="database" className="flex items-center gap-2">
+              <Database className="h-4 w-4" />
+              Database
             </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
@@ -58,6 +64,14 @@ const Admin = () => {
             <FamilyAgentIntegration />
           </TabsContent>
 
+          <TabsContent value="contacts" className="space-y-4">
+            <ContactManagement />
+          </TabsContent>
+
+          <TabsContent value="analytics" className="space-y-4">
+            <ContactAnalytics />
+          </TabsContent>
+
           <TabsContent value="database" className="space-y-4">
             <Card>
               <CardHeader>
@@ -67,21 +81,22 @@ const Admin = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Database management tools coming soon...</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="analytics" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>System Analytics</CardTitle>
-                <CardDescription>
-                  View system performance and usage analytics
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Analytics dashboard coming soon...</p>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">Database management tools coming soon...</p>
+                  <div className="p-4 bg-blue-50 rounded-lg">
+                    <h4 className="font-semibold text-blue-800 mb-2">🧪 Contact System Testing</h4>
+                    <p className="text-blue-700 text-sm mb-3">
+                      Test the complete contact form functionality including email delivery and database storage.
+                    </p>
+                    <a 
+                      href="/contact-test" 
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      <TestTube className="h-4 w-4" />
+                      Open Contact Test Suite
+                    </a>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
