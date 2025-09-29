@@ -22925,13 +22925,6 @@ export type Database = {
             foreignKeyName: "roi_team_members_team_id_fkey"
             columns: ["team_id"]
             isOneToOne: false
-            referencedRelation: "roi_team_summaries"
-            referencedColumns: ["team_id"]
-          },
-          {
-            foreignKeyName: "roi_team_members_team_id_fkey"
-            columns: ["team_id"]
-            isOneToOne: false
             referencedRelation: "roi_teams"
             referencedColumns: ["id"]
           },
@@ -26995,13 +26988,6 @@ export type Database = {
             foreignKeyName: "team_invitations_team_id_fkey"
             columns: ["team_id"]
             isOneToOne: false
-            referencedRelation: "roi_team_summaries"
-            referencedColumns: ["team_id"]
-          },
-          {
-            foreignKeyName: "team_invitations_team_id_fkey"
-            columns: ["team_id"]
-            isOneToOne: false
             referencedRelation: "roi_teams"
             referencedColumns: ["id"]
           },
@@ -27604,24 +27590,10 @@ export type Database = {
             referencedColumns: ["member_code"]
           },
           {
-            foreignKeyName: "fk_team_member_to_neural_member"
-            columns: ["member_code"]
-            isOneToOne: false
-            referencedRelation: "neural_ennead_members_overview"
-            referencedColumns: ["member_code"]
-          },
-          {
             foreignKeyName: "thinker_alignment_team_members_member_code_fkey"
             columns: ["member_code"]
             isOneToOne: false
             referencedRelation: "neural_ennead_members"
-            referencedColumns: ["member_code"]
-          },
-          {
-            foreignKeyName: "thinker_alignment_team_members_member_code_fkey"
-            columns: ["member_code"]
-            isOneToOne: false
-            referencedRelation: "neural_ennead_members_overview"
             referencedColumns: ["member_code"]
           },
           {
@@ -27774,13 +27746,6 @@ export type Database = {
             columns: ["member_code"]
             isOneToOne: false
             referencedRelation: "neural_ennead_members"
-            referencedColumns: ["member_code"]
-          },
-          {
-            foreignKeyName: "thinker_member_alignment_member_code_fkey"
-            columns: ["member_code"]
-            isOneToOne: false
-            referencedRelation: "neural_ennead_members_overview"
             referencedColumns: ["member_code"]
           },
         ]
@@ -32545,78 +32510,22 @@ export type Database = {
       }
       annual_reports: {
         Row: {
-          asset_type: string | null
-          cadence: string | null
-          category: string | null
-          full_text: string | null
-          id: string | null
-          industry_sector: string | null
-          lifecycle_stage: string | null
-          link: string | null
-          project: string | null
-          run_date: string | null
-          source: string | null
-          summary: string | null
-          tags: string[] | null
-          title: string | null
-          value_lens: string | null
-        }
-        Insert: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
-        }
-        Update: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       app_event_daily_counts: {
         Row: {
-          count: number | null
-          day: string | null
-          event_type: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Augmented first roles": {
         Row: {
-          function: string | null
-          why_augmented_first: string | null
-        }
-        Insert: {
-          function?: string | null
-          why_augmented_first?: string | null
-        }
-        Update: {
-          function?: string | null
-          why_augmented_first?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
@@ -32653,130 +32562,50 @@ export type Database = {
       }
       calculator_analytics: {
         Row: {
-          all_selected_services: string[] | null
-          avg_revenue: number | null
-          avg_users: number | null
-          industry: string | null
-          industry_distribution: Json | null
-          session_count: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       consent_analytics: {
         Row: {
-          active_consents: number | null
-          denied_consents: number | null
-          expired_consents: number | null
-          pending_consents: number | null
-          total_consents: number | null
-          unique_templates: number | null
-          unique_users: number | null
-          withdrawn_consents: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       consent_category_analytics: {
         Row: {
-          active_consents: number | null
-          avg_privacy_impact: number | null
-          category_name: string | null
-          total_consents: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       consent_registry_category_summary: {
         Row: {
-          avg_complexity: number | null
-          category: string | null
-          high_complexity_count: number | null
-          total: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       consent_registry_combined: {
         Row: {
-          age_of_subject: string | null
-          agent_required: string | null
-          applicable_age_range: string | null
-          automated_processing: string | null
-          awareness_level: string | null
-          can_revoke_text: string | null
-          category: string | null
-          collected_by: string | null
-          complexity_band: string | null
-          complexity_score: number | null
-          consent_expiry: string | null
-          consent_giver: string | null
-          consent_id: string | null
-          consent_language_complexity: string | null
-          consent_log_id: string | null
-          consent_mechanism: string | null
-          consent_method_traceable: string | null
-          consent_name: string | null
-          consent_scope: string | null
-          consent_trigger: string | null
-          consent_type: string | null
-          consent_update_required: string | null
-          data_captured: string | null
-          data_controller: string | null
-          data_retention_estimate: string | null
-          data_retention_policy: string | null
-          data_type: string | null
-          data_usage: string | null
-          disputed_rights: string | null
-          example_data_collectors: string | null
-          flags_count: number | null
-          frequency: string | null
-          guardian_involvement: string | null
-          impact_on_opportunities: string | null
-          inference_based: string | null
-          insights_derived: string | null
-          jurisdictional_threshold: string | null
-          legal_owner: string | null
-          life_domain: string | null
-          life_stage: string | null
-          linked_services: string | null
-          linked_systems: string | null
-          linked_systems_count: number | null
-          minor_involvement: string | null
-          ownership_notes: string | null
-          policy_sources: string | null
-          profiling_applied: string | null
-          profiling_risk: string | null
-          registry_code: string | null
-          retention_period: string | null
-          revocation_available: string | null
-          revocation_method: string | null
-          risk_level: string | null
-          risk_of_misuse: string | null
-          risk_rating: string | null
-          sensitivity: string | null
-          shared_with: string | null
-          shared_with_third_parties: string | null
-          source: string | null
+          note: string | null
           status: string | null
-          subject_age: string | null
-          used_for_decision_making: string | null
-          visibility_to_subject: string | null
-          vulnerability_flag: string | null
         }
         Relationships: []
       }
       consent_registry_life_stage_summary: {
         Row: {
-          avg_complexity: number | null
-          high_complexity_count: number | null
-          life_stage: string | null
-          total: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       consent_registry_type_summary: {
         Row: {
-          avg_complexity: number | null
-          consent_type: string | null
-          high_complexity_count: number | null
-          total: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
@@ -32818,85 +32647,15 @@ export type Database = {
       }
       "CV overlay": {
         Row: {
-          agent_code: string | null
-          cv_overlay_required: boolean | null
-          function: string | null
-          overlay_reason: string | null
-          overlay_suggested_roles: string | null
-          persona: string | null
-          sfia_level: string | null
-        }
-        Insert: {
-          agent_code?: string | null
-          cv_overlay_required?: boolean | null
-          function?: string | null
-          overlay_reason?: string | null
-          overlay_suggested_roles?: string | null
-          persona?: string | null
-          sfia_level?: string | null
-        }
-        Update: {
-          agent_code?: string | null
-          cv_overlay_required?: boolean | null
-          function?: string | null
-          overlay_reason?: string | null
-          overlay_suggested_roles?: string | null
-          persona?: string | null
-          sfia_level?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       daily_reports: {
         Row: {
-          asset_type: string | null
-          cadence: string | null
-          category: string | null
-          full_text: string | null
-          id: string | null
-          industry_sector: string | null
-          lifecycle_stage: string | null
-          link: string | null
-          project: string | null
-          run_date: string | null
-          source: string | null
-          summary: string | null
-          tags: string[] | null
-          title: string | null
-          value_lens: string | null
-        }
-        Insert: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
-        }
-        Update: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
@@ -33007,563 +32766,87 @@ export type Database = {
       }
       "Function Metrics": {
         Row: {
-          agent_count: number | null
-          avg_agent_price: number | null
-          avg_auto_cost: number | null
-          avg_human_cost: number | null
-          cost_savings_pct: number | null
-          coverage_pct: number | null
-          function_value_score: number | null
-          job_function: string | null
-          price_rank_pct: number | null
-        }
-        Insert: {
-          agent_count?: number | null
-          avg_agent_price?: number | null
-          avg_auto_cost?: number | null
-          avg_human_cost?: number | null
-          cost_savings_pct?: number | null
-          coverage_pct?: number | null
-          function_value_score?: number | null
-          job_function?: string | null
-          price_rank_pct?: number | null
-        }
-        Update: {
-          agent_count?: number | null
-          avg_agent_price?: number | null
-          avg_auto_cost?: number | null
-          avg_human_cost?: number | null
-          cost_savings_pct?: number | null
-          coverage_pct?: number | null
-          function_value_score?: number | null
-          job_function?: string | null
-          price_rank_pct?: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "G2U Full Catalogue": {
         Row: {
-          A: string | null
-          Active: boolean | null
-          "Allow Multi-Currency": boolean | null
-          Billable: boolean | null
-          "Billing Frequency": string | null
-          "Bundle Name": string | null
-          C: string | null
-          Category: string | null
-          "Cost to Company (AUD)": number | null
-          "Currency Code": string | null
-          Description: string | null
-          "Early Payment Discount": string | null
-          "Exchange Rate to AUD": number | null
-          "GL Account": string | null
-          I: string | null
-          "Is Agentic AI": boolean | null
-          "Is Consulting": boolean | null
-          "Is Premium": boolean | null
-          "Is Recurring": boolean | null
-          "Lead Time (Days)": number | null
-          "Max Qty": string | null
-          "Min Contract Term (Months)": string | null
-          "Min Qty": number | null
-          "Partner Price": string | null
-          "Payment Terms": string | null
-          Phase: string | null
-          "Phase Code": string | null
-          "Price (AUD)": string | null
-          "Price Raw": string | null
-          "Price Unit": string | null
-          "Price Value": number | null
-          "Profit Margin Target (%)": number | null
-          R: string | null
-          "Retail Price": number | null
-          "Seasonal Discount": string | null
-          "Service Duration": string | null
-          "Service Level Tier": string | null
-          SKU: string | null
-          "SKU Grouping": string | null
-          "SOW Code": string | null
-          Subcategory: string | null
-          "Subscription Billing Cycle": string | null
-          "Supplier Code": string | null
-          "Supplier Name": string | null
-          "Supplier SKU": string | null
-          "Tax Category": string | null
-          "Unit of Measure": string | null
-          "Volume Discount": string | null
-          "Warranty Terms": string | null
-          "White Label Price": number | null
-          "Wholesale Price": number | null
-        }
-        Insert: {
-          A?: string | null
-          Active?: boolean | null
-          "Allow Multi-Currency"?: boolean | null
-          Billable?: boolean | null
-          "Billing Frequency"?: string | null
-          "Bundle Name"?: string | null
-          C?: string | null
-          Category?: string | null
-          "Cost to Company (AUD)"?: number | null
-          "Currency Code"?: string | null
-          Description?: string | null
-          "Early Payment Discount"?: string | null
-          "Exchange Rate to AUD"?: number | null
-          "GL Account"?: string | null
-          I?: string | null
-          "Is Agentic AI"?: boolean | null
-          "Is Consulting"?: boolean | null
-          "Is Premium"?: boolean | null
-          "Is Recurring"?: boolean | null
-          "Lead Time (Days)"?: number | null
-          "Max Qty"?: string | null
-          "Min Contract Term (Months)"?: string | null
-          "Min Qty"?: number | null
-          "Partner Price"?: string | null
-          "Payment Terms"?: string | null
-          Phase?: string | null
-          "Phase Code"?: string | null
-          "Price (AUD)"?: string | null
-          "Price Raw"?: string | null
-          "Price Unit"?: string | null
-          "Price Value"?: number | null
-          "Profit Margin Target (%)"?: number | null
-          R?: string | null
-          "Retail Price"?: number | null
-          "Seasonal Discount"?: string | null
-          "Service Duration"?: string | null
-          "Service Level Tier"?: string | null
-          SKU?: string | null
-          "SKU Grouping"?: string | null
-          "SOW Code"?: string | null
-          Subcategory?: string | null
-          "Subscription Billing Cycle"?: string | null
-          "Supplier Code"?: string | null
-          "Supplier Name"?: string | null
-          "Supplier SKU"?: string | null
-          "Tax Category"?: string | null
-          "Unit of Measure"?: string | null
-          "Volume Discount"?: string | null
-          "Warranty Terms"?: string | null
-          "White Label Price"?: number | null
-          "Wholesale Price"?: number | null
-        }
-        Update: {
-          A?: string | null
-          Active?: boolean | null
-          "Allow Multi-Currency"?: boolean | null
-          Billable?: boolean | null
-          "Billing Frequency"?: string | null
-          "Bundle Name"?: string | null
-          C?: string | null
-          Category?: string | null
-          "Cost to Company (AUD)"?: number | null
-          "Currency Code"?: string | null
-          Description?: string | null
-          "Early Payment Discount"?: string | null
-          "Exchange Rate to AUD"?: number | null
-          "GL Account"?: string | null
-          I?: string | null
-          "Is Agentic AI"?: boolean | null
-          "Is Consulting"?: boolean | null
-          "Is Premium"?: boolean | null
-          "Is Recurring"?: boolean | null
-          "Lead Time (Days)"?: number | null
-          "Max Qty"?: string | null
-          "Min Contract Term (Months)"?: string | null
-          "Min Qty"?: number | null
-          "Partner Price"?: string | null
-          "Payment Terms"?: string | null
-          Phase?: string | null
-          "Phase Code"?: string | null
-          "Price (AUD)"?: string | null
-          "Price Raw"?: string | null
-          "Price Unit"?: string | null
-          "Price Value"?: number | null
-          "Profit Margin Target (%)"?: number | null
-          R?: string | null
-          "Retail Price"?: number | null
-          "Seasonal Discount"?: string | null
-          "Service Duration"?: string | null
-          "Service Level Tier"?: string | null
-          SKU?: string | null
-          "SKU Grouping"?: string | null
-          "SOW Code"?: string | null
-          Subcategory?: string | null
-          "Subscription Billing Cycle"?: string | null
-          "Supplier Code"?: string | null
-          "Supplier Name"?: string | null
-          "Supplier SKU"?: string | null
-          "Tax Category"?: string | null
-          "Unit of Measure"?: string | null
-          "Volume Discount"?: string | null
-          "Warranty Terms"?: string | null
-          "White Label Price"?: number | null
-          "Wholesale Price"?: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Generate proposal assets": {
         Row: {
-          agent_code: string | null
-          cost: number | null
-          cv_overlay_required: boolean | null
-          delivery_model: string | null
-          function: string | null
-          role: string | null
-          sfia_level: string | null
-          task_coverage_pct: number | null
-        }
-        Insert: {
-          agent_code?: string | null
-          cost?: number | null
-          cv_overlay_required?: boolean | null
-          delivery_model?: string | null
-          function?: string | null
-          role?: string | null
-          sfia_level?: string | null
-          task_coverage_pct?: number | null
-        }
-        Update: {
-          agent_code?: string | null
-          cost?: number | null
-          cv_overlay_required?: boolean | null
-          delivery_model?: string | null
-          function?: string | null
-          role?: string | null
-          sfia_level?: string | null
-          task_coverage_pct?: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       monthly_reports: {
         Row: {
-          asset_type: string | null
-          cadence: string | null
-          category: string | null
-          full_text: string | null
-          id: string | null
-          industry_sector: string | null
-          lifecycle_stage: string | null
-          link: string | null
-          project: string | null
-          run_date: string | null
-          source: string | null
-          summary: string | null
-          tags: string[] | null
-          title: string | null
-          value_lens: string | null
-        }
-        Insert: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
-        }
-        Update: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       neural_ennead_members_overview: {
         Row: {
-          canonical_keywords: string[] | null
-          created_at: string | null
-          description: string | null
-          display_name: string | null
-          exemplar_roles: string[] | null
-          member_code: string | null
-          primary_family: string | null
-          secondary_family: string | null
-          short_label: string | null
-          tertiary_family: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Nuix overlay": {
         Row: {
-          agent_code: string | null
-          delivery_model: string | null
-          final_cost: number | null
-          fit_for_partner_solutions: string | null
-          function: string | null
-          partner_match_confidence: number | null
-          persona: string | null
-          preferred_partners: string | null
-          sfia_level: string | null
-          summary_bio: string | null
-          task_coverage_pct: number | null
-        }
-        Insert: {
-          agent_code?: string | null
-          delivery_model?: string | null
-          final_cost?: number | null
-          fit_for_partner_solutions?: string | null
-          function?: string | null
-          partner_match_confidence?: number | null
-          persona?: string | null
-          preferred_partners?: string | null
-          sfia_level?: string | null
-          summary_bio?: string | null
-          task_coverage_pct?: number | null
-        }
-        Update: {
-          agent_code?: string | null
-          delivery_model?: string | null
-          final_cost?: number | null
-          fit_for_partner_solutions?: string | null
-          function?: string | null
-          partner_match_confidence?: number | null
-          persona?: string | null
-          preferred_partners?: string | null
-          sfia_level?: string | null
-          summary_bio?: string | null
-          task_coverage_pct?: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Org change agents": {
         Row: {
-          agent_code: string | null
-          aps_band: string | null
-          aps_role: string | null
-          complexity: string | null
-          match_percentage: string | null
-          required_skills: string | null
-          required_tasks: string | null
-        }
-        Insert: {
-          agent_code?: string | null
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          match_percentage?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
-        }
-        Update: {
-          agent_code?: string | null
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          match_percentage?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       partner_ecosystem_view: {
         Row: {
-          avg_deal_size: number | null
-          certifications: string | null
-          description: string | null
-          joint_win_count: number | null
-          logo_url: string | null
-          partner_name: string | null
-          partner_tier: string | null
-          partner_type: string | null
-          source_table: string | null
-        }
-        Insert: {
-          avg_deal_size?: number | null
-          certifications?: string | null
-          description?: string | null
-          joint_win_count?: number | null
-          logo_url?: string | null
-          partner_name?: string | null
-          partner_tier?: string | null
-          partner_type?: string | null
-          source_table?: never
-        }
-        Update: {
-          avg_deal_size?: number | null
-          certifications?: string | null
-          description?: string | null
-          joint_win_count?: number | null
-          logo_url?: string | null
-          partner_name?: string | null
-          partner_tier?: string | null
-          partner_type?: string | null
-          source_table?: never
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "PMO match": {
         Row: {
-          agent_code: string | null
-          aps_band: string | null
-          aps_role: string | null
-          complexity: string | null
-          match_percentage: string | null
-          required_skills: string | null
-          required_tasks: string | null
-        }
-        Insert: {
-          agent_code?: string | null
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          match_percentage?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
-        }
-        Update: {
-          agent_code?: string | null
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          match_percentage?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       quarterly_reports: {
         Row: {
-          asset_type: string | null
-          cadence: string | null
-          category: string | null
-          full_text: string | null
-          id: string | null
-          industry_sector: string | null
-          lifecycle_stage: string | null
-          link: string | null
-          project: string | null
-          run_date: string | null
-          source: string | null
-          summary: string | null
-          tags: string[] | null
-          title: string | null
-          value_lens: string | null
-        }
-        Insert: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
-        }
-        Update: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "RFT Metrics Final": {
         Row: {
-          "Current Value": string | null
-          Data_Source: string | null
-          Default_Weight: number | null
-          Dimension: string | null
-          Labor_Model: string | null
-          Metric: string | null
-          Reason: string | null
-          Weight_Gov_Federal: number | null
-          Weight_Gov_State: number | null
-          Weight_Nonprofit: number | null
-          Weight_Private_Enterprise: number | null
-          Weight_SMB: number | null
-          WhyItMatters: string | null
-        }
-        Insert: {
-          "Current Value"?: string | null
-          Data_Source?: string | null
-          Default_Weight?: number | null
-          Dimension?: string | null
-          Labor_Model?: string | null
-          Metric?: string | null
-          Reason?: string | null
-          Weight_Gov_Federal?: number | null
-          Weight_Gov_State?: number | null
-          Weight_Nonprofit?: number | null
-          Weight_Private_Enterprise?: number | null
-          Weight_SMB?: number | null
-          WhyItMatters?: string | null
-        }
-        Update: {
-          "Current Value"?: string | null
-          Data_Source?: string | null
-          Default_Weight?: number | null
-          Dimension?: string | null
-          Labor_Model?: string | null
-          Metric?: string | null
-          Reason?: string | null
-          Weight_Gov_Federal?: number | null
-          Weight_Gov_State?: number | null
-          Weight_Nonprofit?: number | null
-          Weight_Private_Enterprise?: number | null
-          Weight_SMB?: number | null
-          WhyItMatters?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       roi_team_summaries: {
         Row: {
-          assessments_count: number | null
-          organization_id: string | null
-          roi_percentage: number | null
-          team_id: string | null
-          team_name: string | null
-          total_annual_cost: number | null
-          total_estimated_savings: number | null
+          note: string | null
+          status: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "roi_teams_organization_id_fkey"
-            columns: ["organization_id"]
-            isOneToOne: false
-            referencedRelation: "roi_organizations"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       role_instance: {
         Row: {
@@ -33584,163 +32867,43 @@ export type Database = {
       }
       rpt_combined: {
         Row: {
-          category: string | null
-          created_at: string | null
-          description: string | null
-          frequency: string | null
-          id: string | null
-          name: string | null
-          slack_message: string | null
-          source_type: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       scan_combined: {
         Row: {
-          category: string | null
-          created_at: string | null
-          description: string | null
-          frequency: string | null
-          id: string | null
-          name: string | null
-          source_type: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Skills Metrics": {
         Row: {
-          agent_count: number | null
-          associated_functions: string | null
-          avg_agent_price: number | null
-          avg_auto_cost: number | null
-          avg_human_cost: number | null
-          avg_popularity_score: string | null
-          avg_trust_score: number | null
-          cost_ratio_agent_to_auto: number | null
-          cost_savings_pct: number | null
-          coverage_pct: number | null
-          function_count: number | null
-          skill: string | null
-          skill_value_score: number | null
-        }
-        Insert: {
-          agent_count?: number | null
-          associated_functions?: string | null
-          avg_agent_price?: number | null
-          avg_auto_cost?: number | null
-          avg_human_cost?: number | null
-          avg_popularity_score?: string | null
-          avg_trust_score?: number | null
-          cost_ratio_agent_to_auto?: number | null
-          cost_savings_pct?: number | null
-          coverage_pct?: number | null
-          function_count?: number | null
-          skill?: string | null
-          skill_value_score?: number | null
-        }
-        Update: {
-          agent_count?: number | null
-          associated_functions?: string | null
-          avg_agent_price?: number | null
-          avg_auto_cost?: number | null
-          avg_human_cost?: number | null
-          avg_popularity_score?: string | null
-          avg_trust_score?: number | null
-          cost_ratio_agent_to_auto?: number | null
-          cost_savings_pct?: number | null
-          coverage_pct?: number | null
-          function_count?: number | null
-          skill?: string | null
-          skill_value_score?: number | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       "Skills Roles Tasks": {
         Row: {
-          aps_band: string | null
-          aps_role: string | null
-          complexity: string | null
-          required_skills: string | null
-          required_tasks: string | null
-        }
-        Insert: {
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
-        }
-        Update: {
-          aps_band?: string | null
-          aps_role?: string | null
-          complexity?: string | null
-          required_skills?: string | null
-          required_tasks?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       user_consent_analytics: {
         Row: {
-          active_consents: number | null
-          first_consent_date: string | null
-          last_activity_date: string | null
-          pending_consents: number | null
-          total_consents: number | null
-          user_id: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
       weekly_reports: {
         Row: {
-          asset_type: string | null
-          cadence: string | null
-          category: string | null
-          full_text: string | null
-          id: string | null
-          industry_sector: string | null
-          lifecycle_stage: string | null
-          link: string | null
-          project: string | null
-          run_date: string | null
-          source: string | null
-          summary: string | null
-          tags: string[] | null
-          title: string | null
-          value_lens: string | null
-        }
-        Insert: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
-        }
-        Update: {
-          asset_type?: string | null
-          cadence?: string | null
-          category?: string | null
-          full_text?: string | null
-          id?: string | null
-          industry_sector?: string | null
-          lifecycle_stage?: string | null
-          link?: string | null
-          project?: string | null
-          run_date?: string | null
-          source?: string | null
-          summary?: string | null
-          tags?: string[] | null
-          title?: string | null
-          value_lens?: string | null
+          note: string | null
+          status: string | null
         }
         Relationships: []
       }
