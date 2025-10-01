@@ -20,8 +20,8 @@ import Donations from "./pages/Donations";
 import DonationSuccess from "./pages/DonationSuccess";
 import DonationCancel from "./pages/DonationCancel";
 import WorkPackages from "./pages/WorkPackages";
-import { useEffect } from "react";
 import FamilyNetwork from "./pages/FamilyNetwork";
+import SiteAudit from "./pages/SiteAudit";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 import { CompleteOrganizationalStructure } from "./components/organizational/CompleteOrganizationalStructure";
 import { NavigationHeader } from "./components/ui/navigation-header";
@@ -46,21 +46,6 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Redirect component for external work packages link
-const WorkPackageRedirect = () => {
-  useEffect(() => {
-    window.location.replace('https://www.augmentedhumanity.coach/solutions');
-  }, []);
-  
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/5 to-accent/5 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-        <p className="text-muted-foreground">Redirecting to solutions...</p>
-      </div>
-    </div>
-  );
-};
 
 const App = () => {
   return (
@@ -75,7 +60,7 @@ const App = () => {
               <Suspense fallback={<LoadingFallback />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/work-packages" element={<WorkPackageRedirect />} />
+                  <Route path="/work-packages" element={<WorkPackages />} />
                   <Route path="/family-network" element={<FamilyNetwork />} />
                   <Route path="/department/:departmentId" element={<DepartmentDetail />} />
                   <Route path="/admin" element={<Admin />} />
@@ -86,7 +71,7 @@ const App = () => {
                   <Route path="/donations" element={<Donations />} />
                   <Route path="/donation-success" element={<DonationSuccess />} />
                   <Route path="/donation-cancel" element={<DonationCancel />} />
-                  
+                  <Route path="/site-audit" element={<SiteAudit />} />
                   <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
                   <Route path="/complete-structure" element={<CompleteOrganizationalStructure />} />
                   <Route path="*" element={<NotFound />} />

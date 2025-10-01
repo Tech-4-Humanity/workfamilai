@@ -69,14 +69,22 @@ const workPackages = [
 ];
 
 export const WorkPackageShowcase = () => {
-  const handleExternalLinkClick = (packageTitle: string) => {
+  const handleLearnMoreClick = (packageTitle: string) => {
     analytics.track('work_package_clicked', { package_title: packageTitle });
-    window.open('https://www.augmentedhumanity.coach/solutions', '_blank');
+    // Scroll to top of work packages section for more details
+    const element = document.getElementById('work-packages');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleExploreAllClick = () => {
     analytics.track('work-packages-viewed', { source: 'explore_all_button' });
-    window.open('https://www.augmentedhumanity.coach/solutions', '_blank');
+    // Smooth scroll to work packages section
+    const element = document.getElementById('work-packages');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
   return (
     <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
@@ -137,7 +145,7 @@ export const WorkPackageShowcase = () => {
                         size="sm" 
                         variant="outline"
                         className="text-xs hover-scale"
-                        onClick={() => handleExternalLinkClick(pkg.title)}
+                        onClick={() => handleLearnMoreClick(pkg.title)}
                       >
                         Learn More
                       </Button>
