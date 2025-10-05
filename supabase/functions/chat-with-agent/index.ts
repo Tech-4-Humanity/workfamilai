@@ -1,4 +1,3 @@
-
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import 'https://deno.land/x/xhr@0.1.0/mod.ts'
 
@@ -13,23 +12,60 @@ interface Message {
   timestamp: string;
 }
 
+// Allowed agent names from the system
+const ALLOWED_AGENTS = [
+  'Yuna Kim', 'David Okafor', 'Priya Sharma', 'Theo Williams',
+  'Miguel Santos', 'Marcus Bennett', 'Sofia Rodriguez', 
+  'Aisha Al-Farsi', 'Amara Chen'
+]
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    const { 
-      message, 
-      agentName, 
-      agentPersonality, 
-      agentBackground, 
-      conversationHistory = [],
-      includeAudio = false 
-    } = await req.json()
+    const body = await req.json()
+    
+    // Input validation
+    const message = String(body.message || '').trim()
+    const agentName = String(body.agentName || '').trim()
+    const agentPersonality = String(body.agentPersonality || '').trim()
+    const agentBackground = String(body.agentBackground || '').trim()
+    const conversationHistory = Array.isArray(body.conversationHistory) ? body.conversationHistory : []
+    const includeAudio = Boolean(body.includeAudio)
 
-    if (!message || !agentName) {
-      throw new Error('Message and agent name are required')
+    // Validation rules
+    if (!message || message.length === 0) {
+      throw new Error('Message is required')
+    }
+    if (message.length > 2000) {
+      throw new Error('Message too long (max 2000 characters)')
+    }
+    if (!agentName || !ALLOWED_AGENTS.includes(agentName)) {
+      throw new Error('Invalid agent name')
+    }
+    if (agentPersonality && agentPersonality.length > 500) {
+      throw new Error('Agent personality too long')
+    }
+    if (agentBackground && agentBackground.length > 1000) {
+      throw new Error('Agent background too long')
+    }
+    if (conversationHistory.length > 10) {
+      throw new Error('Conversation history too long (max 10 messages)')
+    }
+    
+    // Validate conversation history structure
+    for (const msg of conversationHistory) {
+      if (!msg || typeof msg !== 'object') {
+        throw new Error('Invalid conversation history format')
+      }
+      if (!['user', 'agent'].includes(msg.type)) {
+        throw new Error('Invalid message type in conversation history')
+      }
+      if (typeof msg.content !== 'string' || msg.content.length > 5000) {
+        throw new Error('Invalid message content in conversation history')
+      }
     }
 
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY')

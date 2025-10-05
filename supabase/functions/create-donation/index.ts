@@ -20,9 +20,21 @@ serve(async (req) => {
       throw new Error("STRIPE_SECRET_KEY is not set");
     }
 
-    const { amount } = await req.json();
-    if (!amount || amount < 100) { // Minimum $1.00
+    const body = await req.json();
+    
+    // Input validation
+    const amount = Number(body.amount)
+    if (!amount || isNaN(amount)) {
+      throw new Error("Amount is required and must be a number");
+    }
+    if (amount < 100) { // Minimum $1.00
       throw new Error("Invalid amount - minimum $1.00 required");
+    }
+    if (amount > 1000000) { // Maximum $10,000.00
+      throw new Error("Invalid amount - maximum $10,000.00");
+    }
+    if (!Number.isInteger(amount)) {
+      throw new Error("Amount must be an integer (cents)");
     }
 
     console.log(`Creating donation for amount: $${amount / 100}`);

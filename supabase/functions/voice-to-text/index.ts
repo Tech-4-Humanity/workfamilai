@@ -42,10 +42,24 @@ serve(async (req) => {
   }
 
   try {
-    const { audio } = await req.json()
+    const body = await req.json()
     
-    if (!audio) {
+    // Input validation
+    const audio = String(body.audio || '')
+    
+    if (!audio || audio.length === 0) {
       throw new Error('No audio data provided')
+    }
+    
+    // Validate base64 format
+    if (!/^[A-Za-z0-9+/]*={0,2}$/.test(audio)) {
+      throw new Error('Invalid audio data format')
+    }
+    
+    // Limit audio size (10MB base64 ≈ 7.5MB binary)
+    const maxSize = 10 * 1024 * 1024 // 10MB
+    if (audio.length > maxSize) {
+      throw new Error('Audio file too large (max 10MB)')
     }
 
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY')

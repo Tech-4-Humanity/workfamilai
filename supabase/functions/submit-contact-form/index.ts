@@ -26,6 +26,14 @@ const resend = new Resend(resendApiKey);
 // Rate limiting - simple in-memory store (in production, use Redis or similar)
 const rateLimits = new Map<string, number[]>();
 
+// Spam detection patterns
+const SPAM_PATTERNS = [
+  /\b(viagra|cialis|casino|lottery|winner|click here|buy now|forex|crypto|investment opportunity)\b/i,
+  /http[s]?:\/\/[^\s]{50,}/i, // Suspiciously long URLs
+  /(.)\1{15,}/, // Repeated characters (15+)
+  /<script|javascript:|onclick|onerror/i, // XSS attempts
+];
+
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const windowMs = 60 * 60 * 1000; // 1 hour
@@ -45,6 +53,10 @@ function checkRateLimit(ip: string): boolean {
   recentRequests.push(now);
   rateLimits.set(ip, recentRequests);
   return true;
+}
+
+function containsSpam(text: string): boolean {
+  return SPAM_PATTERNS.some(pattern => pattern.test(text));
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -83,26 +95,73 @@ const handler = async (req: Request): Promise<Response> => {
 
     const formData: ContactFormData = await req.json();
 
+    // Input validation and length limits
+    if (!formData.name || formData.name.trim().length === 0) {
+      return new Response(
+        JSON.stringify({ error: 'Name is required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (formData.name.length > 100) {
+      return new Response(
+        JSON.stringify({ error: 'Name too long (max 100 characters)' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (!formData.email || formData.email.trim().length === 0) {
+      return new Response(
+        JSON.stringify({ error: 'Email is required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (formData.email.length > 255) {
+      return new Response(
+        JSON.stringify({ error: 'Email too long (max 255 characters)' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (!formData.message || formData.message.trim().length === 0) {
+      return new Response(
+        JSON.stringify({ error: 'Message is required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (formData.message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Message too long (max 5000 characters)' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+    if (formData.company && formData.company.length > 200) {
+      return new Response(
+        JSON.stringify({ error: 'Company name too long (max 200 characters)' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
     // Check honeypot field (should be empty)
     if (formData.honeypot && formData.honeypot.trim() !== '') {
       console.log('Honeypot triggered, blocking submission');
       return new Response(
         JSON.stringify({ error: 'Invalid submission' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json', ...corsHeaders } 
-        }
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Spam detection
+    if (containsSpam(formData.message) || containsSpam(formData.name) || (formData.company && containsSpam(formData.company))) {
+      console.log('Spam detected in submission from:', formData.email);
+      return new Response(
+        JSON.stringify({ error: 'Message rejected due to spam detection' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.interest || !formData.message) {
+    if (!formData.interest) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json', ...corsHeaders } 
-        }
+        JSON.stringify({ error: 'Area of interest is required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
@@ -111,10 +170,7 @@ const handler = async (req: Request): Promise<Response> => {
     if (!emailRegex.test(formData.email)) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json', ...corsHeaders } 
-        }
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
