@@ -9,6 +9,7 @@ import { I18nextProvider } from "react-i18next";
 import { Suspense } from "react";
 import i18n from "./i18n/config";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
@@ -60,6 +61,7 @@ const App = () => {
               <Suspense fallback={<LoadingFallback />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/auth" element={<Auth />} />
                   <Route path="/work-packages" element={<WorkPackages />} />
                   <Route path="/family-network" element={<FamilyNetwork />} />
                   <Route path="/department/:departmentId" element={<DepartmentDetail />} />

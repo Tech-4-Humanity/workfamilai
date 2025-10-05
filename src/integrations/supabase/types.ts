@@ -12023,6 +12023,81 @@ export type Database = {
         }
         Relationships: []
       }
+      external_learning_resources: {
+        Row: {
+          author_name: string | null
+          author_url: string | null
+          category: string
+          click_count: number | null
+          complements_courses: string[] | null
+          created_at: string | null
+          description: string | null
+          difficulty_level: string | null
+          estimated_hours: number | null
+          github_stars: number | null
+          id: string
+          is_active: boolean | null
+          last_updated: string | null
+          prerequisite_for: string[] | null
+          quality_score: number | null
+          related_certifications: string[] | null
+          source_type: string
+          source_url: string
+          tags: string[] | null
+          title: string
+          updated_at: string | null
+          view_count: number | null
+        }
+        Insert: {
+          author_name?: string | null
+          author_url?: string | null
+          category: string
+          click_count?: number | null
+          complements_courses?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_hours?: number | null
+          github_stars?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_updated?: string | null
+          prerequisite_for?: string[] | null
+          quality_score?: number | null
+          related_certifications?: string[] | null
+          source_type: string
+          source_url: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string | null
+          view_count?: number | null
+        }
+        Update: {
+          author_name?: string | null
+          author_url?: string | null
+          category?: string
+          click_count?: number | null
+          complements_courses?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          estimated_hours?: number | null
+          github_stars?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_updated?: string | null
+          prerequisite_for?: string[] | null
+          quality_score?: number | null
+          related_certifications?: string[] | null
+          source_type?: string
+          source_url?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string | null
+          view_count?: number | null
+        }
+        Relationships: []
+      }
       fairness_assessments: {
         Row: {
           assessed_at: string
@@ -21207,6 +21282,35 @@ export type Database = {
           role?: string | null
         }
         Relationships: []
+      }
+      resource_bookmarks: {
+        Row: {
+          created_at: string
+          id: string
+          resource_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          resource_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          resource_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resource_bookmarks_resource_id_fkey"
+            columns: ["resource_id"]
+            isOneToOne: false
+            referencedRelation: "external_learning_resources"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       resource_downloads: {
         Row: {
@@ -33217,6 +33321,14 @@ export type Database = {
           neutral_count: number
           up_count: number
         }[]
+      }
+      increment_resource_clicks: {
+        Args: { resource_id: string }
+        Returns: undefined
+      }
+      increment_resource_views: {
+        Args: { resource_id: string }
+        Returns: undefined
       }
       initialize_user_training_progress: {
         Args: { p_user_id: string }
