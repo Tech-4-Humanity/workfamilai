@@ -46,13 +46,13 @@ refresh_token_rotation_enabled = true
 security_update_password_require_reauthentication = true
 
 [functions.chat-with-agent]
-verify_jwt = false
+verify_jwt = true
 
 [functions.voice-to-text]
-verify_jwt = false
+verify_jwt = true
 
 [functions.create-donation]
-verify_jwt = false
+verify_jwt = true
 
 [functions.submit-contact-form]
 verify_jwt = false
