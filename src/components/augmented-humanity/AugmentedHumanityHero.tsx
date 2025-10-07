@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Brain, Users, Zap, Target } from 'lucide-react';
+import heroBackground from '@/assets/hero-augmented-background.jpg';
 
 interface AugmentedHumanityHeroProps {
   onExploreCapabilities: () => void;
@@ -12,8 +13,14 @@ export const AugmentedHumanityHero = ({
   onViewWorkPackages 
 }: AugmentedHumanityHeroProps) => {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-      <div className="absolute inset-0 bg-gradient-subtle opacity-30" />
+    <div className="relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      />
+      {/* Overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background/95" />
       
       <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
         <div className="text-center">
