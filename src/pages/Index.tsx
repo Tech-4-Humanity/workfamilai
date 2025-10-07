@@ -1,14 +1,9 @@
-
 import { FamilyNeuralNetwork } from '@/components/family/FamilyNeuralNetwork';
 import { LeaderCard } from '@/components/family/LeaderCard';
 import { Footer } from '@/components/ui/footer';
-import { HeroSection } from '@/components/home/HeroSection';
-import { WelcomeSection } from '@/components/home/WelcomeSection';
 import { QuickStats } from '@/components/home/QuickStats';
 import { NavigationSection } from '@/components/home/NavigationSection';
 import { PartnerCarousel } from '@/components/ui/partner-carousel';
-import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
-import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
 import { BreadcrumbIndicator } from '@/components/guidance/BreadcrumbIndicator';
 import { QuickActionToolbar } from '@/components/guidance/QuickActionToolbar';
 import { ProgressIndicator } from '@/components/guidance/ProgressIndicator';
@@ -60,18 +55,6 @@ const Index = () => {
     }
   };
 
-  const handleExploreNetwork = () => {
-    scrollToSection('neural-network');
-  };
-
-  const handleMeetFamily = () => {
-    scrollToSection('family-members');
-  };
-
-  const handleGetStarted = () => {
-    scrollToSection('family-members');
-  };
-
   const handleShowTour = () => {
     setShowTour(true);
   };
@@ -97,38 +80,8 @@ const Index = () => {
         isOpen={showHelp}
         onClose={() => setShowHelp(false)}
       />
-      {/* Hero Section */}
-      <div className="fade-in-up">
-        <HeroSection 
-          currentAgentCount={totalAgentCount}
-          animatedCount={animatedCount}
-          onExploreNetwork={handleExploreNetwork}
-          onMeetFamily={handleMeetFamily}
-        />
-      </div>
-
-      {/* Welcome Section with Interactive Elements */}
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 fade-in-up animate-delay-200">
-        <WelcomeSection onGetStarted={handleGetStarted} onShowTour={handleShowTour} />
-      </div>
-
-      {/* Augmented Humanity Mission */}
-      <div className="fade-in-up animate-delay-300" data-mission-section>
-        <AugmentedHumanityMission />
-      </div>
-
-      {/* Work Package Showcase */}
-      <div className="fade-in-up animate-delay-400" data-work-packages>
-        <WorkPackageShowcase />
-      </div>
-
-      {/* Neural Network Section */}
-      <div id="neural-network" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-300">
-        <FamilyNeuralNetwork />
-      </div>
-
-      {/* Family Members Grid */}
-      <div id="family-members" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-500">
+      {/* Family Members Grid - Main Focus */}
+      <div id="family-members" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet the Family</h2>
           <div className="flex justify-center mb-6">
@@ -160,6 +113,11 @@ const Index = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Neural Network Section */}
+      <div id="neural-network" className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-200">
+        <FamilyNeuralNetwork />
       </div>
 
       {/* Quick Stats */}

@@ -4,8 +4,8 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Home, Users, Calendar, Building2, DollarSign, GraduationCap, ExternalLink } from "lucide-react";
 
 const navigationItems = [
-  { href: "/", label: "Augmented Humanity", icon: Home },
-  { href: "/work-packages", label: "Work Packages", icon: Calendar },
+  { href: "/", label: "Home", icon: Home },
+  { href: "/work-packages", label: "Augmented Humanity", icon: Calendar },
   { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
   { href: "/donations", label: "Support Us", icon: DollarSign },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
