@@ -8,6 +8,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Send, CheckCircle, User, Building, MessageSquare } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().max(200, "Company name must be less than 200 characters").optional(),
+  interest: z.string().min(1, "Please select an area of interest"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+  honeypot: z.string().max(0, "Invalid submission"),
+});
 
 interface ContactFormData {
   name: string;
@@ -15,7 +25,7 @@ interface ContactFormData {
   company: string;
   interest: string;
   message: string;
-  honeypot: string; // For spam protection
+  honeypot: string;
 }
 
 export const ContactForm = () => {
@@ -26,7 +36,7 @@ export const ContactForm = () => {
     company: '',
     interest: '',
     message: '',
-    honeypot: '' // Hidden field for spam protection
+    honeypot: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,66 +59,53 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Check honeypot field - if filled, it's likely spam
-      if (formData.honeypot.trim() !== '') {
-        toast({
-          title: "Submission Failed",
-          description: "Please complete the form properly.",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
-      }
+      // Validate form data
+      const validatedData = contactSchema.parse(formData);
 
-      // Submit to our edge function
       const { error } = await supabase.functions.invoke('submit-contact-form', {
         body: {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          interest: formData.interest,
-          message: formData.message,
-          honeypot: formData.honeypot
-        }
+          name: validatedData.name,
+          email: validatedData.email,
+          company: validatedData.company || undefined,
+          interest: validatedData.interest,
+          message: validatedData.message,
+        },
       });
 
-      if (error) {
-        throw error;
-      }
-      
-      setIsSubmitted(true);
+      if (error) throw error;
+
       toast({
-        title: "Message Sent Successfully",
-        description: "Thank you for your interest! A workfamilyai family member will contact you within 24 hours.",
+        title: "Message sent!",
+        description: "We'll get back to you soon.",
       });
+
+      setIsSubmitted(true);
       
       // Reset form
       setFormData({
-        name: '',
-        email: '',
-        company: '',
-        interest: '',
-        message: '',
-        honeypot: ''
+        name: "",
+        email: "",
+        company: "",
+        interest: "",
+        message: "",
+        honeypot: "",
       });
-    } catch (error: any) {
-      console.error('Contact form submission error:', error);
+    } catch (error) {
+      console.error("Form error:", error);
       
-      let errorMessage = "There was an error sending your message. Please try again.";
-      
-      if (error.message?.includes('Too many requests')) {
-        errorMessage = "Too many submissions. Please wait an hour before trying again.";
-      } else if (error.message?.includes('Missing required fields')) {
-        errorMessage = "Please fill in all required fields.";
-      } else if (error.message?.includes('Invalid email')) {
-        errorMessage = "Please enter a valid email address.";
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Invalid form data",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Send failed",
+          description: "Please try again or email us directly.",
+          variant: "destructive",
+        });
       }
-      
-      toast({
-        title: "Send Failed",
-        description: errorMessage,
-        variant: "destructive"
-      });
     } finally {
       setIsSubmitting(false);
     }
@@ -268,6 +265,13 @@ export const ContactForm = () => {
               </>
             )}
           </Button>
+
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            Having trouble? <a href="mailto:info@workfamilyai.org" className="text-primary hover:underline inline-flex items-center gap-1">
+              <Mail className="h-3 w-3" />
+              Email us directly
+            </a>
+          </p>
 
           <p className="text-xs text-gray-500 text-center">
             By submitting this form, you agree to be contacted by our AI family members 

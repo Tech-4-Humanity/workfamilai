@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
-import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -13,25 +12,35 @@ interface ContactFormData {
   company: string;
   interest: string;
   message: string;
-  honeypot?: string; // For spam protection
+  honeypot?: string;
 }
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
-const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
+const resendApiKey = Deno.env.get('RESEND_API_KEY');
+const slackWebhook = Deno.env.get('SLACK_WEBHOOK_URL');
+const discordWebhook = Deno.env.get('DISCORD_WEBHOOK_URL');
 
 const supabase = createClient(supabaseUrl, supabaseKey);
-const resend = new Resend(resendApiKey);
 
-// Rate limiting - simple in-memory store (in production, use Redis or similar)
+// Only initialize Resend if API key is available
+let resend: any = null;
+if (resendApiKey) {
+  const { Resend } = await import("npm:resend@2.0.0");
+  resend = new Resend(resendApiKey);
+  console.log('✓ Resend email notifications enabled');
+} else {
+  console.log('⚠ Resend not configured - email notifications disabled');
+}
+
+// Rate limiting
 const rateLimits = new Map<string, number[]>();
 
-// Spam detection patterns
 const SPAM_PATTERNS = [
   /\b(viagra|cialis|casino|lottery|winner|click here|buy now|forex|crypto|investment opportunity)\b/i,
-  /http[s]?:\/\/[^\s]{50,}/i, // Suspiciously long URLs
-  /(.)\1{15,}/, // Repeated characters (15+)
-  /<script|javascript:|onclick|onerror/i, // XSS attempts
+  /http[s]?:\/\/[^\s]{50,}/i,
+  /(.)\1{15,}/,
+  /<script|javascript:|onclick|onerror/i,
 ];
 
 function checkRateLimit(ip: string): boolean {
@@ -60,7 +69,6 @@ function containsSpam(text: string): boolean {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -76,14 +84,12 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    // Get client IP for rate limiting
     const clientIP = req.headers.get('cf-connecting-ip') || 
                     req.headers.get('x-forwarded-for') || 
                     'unknown';
 
-    // Check rate limit
     if (!checkRateLimit(clientIP)) {
-      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      console.log(`❌ Rate limit exceeded: ${clientIP}`);
       return new Response(
         JSON.stringify({ error: 'Too many requests. Please try again in an hour.' }),
         { 
@@ -95,7 +101,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const formData: ContactFormData = await req.json();
 
-    // Input validation and length limits
+    // Input validation
     if (!formData.name || formData.name.trim().length === 0) {
       return new Response(
         JSON.stringify({ error: 'Name is required' }),
@@ -139,9 +145,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Check honeypot field (should be empty)
+    // Honeypot check
     if (formData.honeypot && formData.honeypot.trim() !== '') {
-      console.log('Honeypot triggered, blocking submission');
+      console.log('🍯 Honeypot triggered - blocking spam');
       return new Response(
         JSON.stringify({ error: 'Invalid submission' }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
@@ -150,14 +156,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Spam detection
     if (containsSpam(formData.message) || containsSpam(formData.name) || (formData.company && containsSpam(formData.company))) {
-      console.log('Spam detected in submission from:', formData.email);
+      console.log(`🚫 Spam detected: ${formData.email}`);
       return new Response(
         JSON.stringify({ error: 'Message rejected due to spam detection' }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
-    // Validate required fields
     if (!formData.interest) {
       return new Response(
         JSON.stringify({ error: 'Area of interest is required' }),
@@ -165,7 +170,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Sanitize and validate email
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       return new Response(
@@ -174,7 +179,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Processing contact form submission for:', formData.email);
+    console.log(`📝 Processing submission: ${formData.email}`);
 
     // Store in database
     const { error: dbError } = await supabase
@@ -192,7 +197,7 @@ const handler = async (req: Request): Promise<Response> => {
       ]);
 
     if (dbError) {
-      console.error('Database error:', dbError);
+      console.error('❌ Database error:', dbError);
       return new Response(
         JSON.stringify({ error: 'Failed to store submission' }),
         { 
@@ -202,9 +207,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Contact submission stored successfully for:', formData.email);
+    console.log(`✓ Stored in database: ${formData.email}`);
 
-    // Send admin notification email
+    // Send notifications (non-blocking)
     const interestLabels: Record<string, string> = {
       'enterprise': 'Enterprise Solutions',
       'partnership': 'Partnership Opportunities', 
@@ -214,44 +219,92 @@ const handler = async (req: Request): Promise<Response> => {
       'other': 'Other Inquiry'
     };
 
-    const emailHtml = `
-      <h2>New Contact Form Submission - workfamilyai</h2>
-      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <h3>Contact Details</h3>
-        <p><strong>Name:</strong> ${formData.name}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Company:</strong> ${formData.company || 'Not provided'}</p>
-        <p><strong>Area of Interest:</strong> ${interestLabels[formData.interest] || formData.interest}</p>
-      </div>
-      
-      <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <h3>Message</h3>
-        <p style="white-space: pre-wrap;">${formData.message}</p>
-      </div>
-      
-      <div style="background: #f1f8e9; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px;">
-        <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
-        <p><strong>IP Address:</strong> ${clientIP}</p>
-      </div>
-      
-      <p style="color: #666; font-size: 14px; margin-top: 30px;">
-        This inquiry was submitted through the workfamilyai contact form. 
-        Please respond within 24 hours to maintain our commitment to customers.
-      </p>
-    `;
+    const notifications: Promise<void>[] = [];
 
-    const emailResponse = await resend.emails.send({
-      from: 'workfamilyai Contact <noreply@workfamilyai.org>',
-      to: ['info@workfamilyai.org', 'troy@workfamilyai.org'],
-      subject: `New Contact: ${formData.name} - ${interestLabels[formData.interest] || formData.interest}`,
-      html: emailHtml,
-    });
+    // Email notification
+    if (resend) {
+      const emailHtml = `
+        <h2>New Contact Form Submission - workfamilyai</h2>
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Contact Details</h3>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Company:</strong> ${formData.company || 'Not provided'}</p>
+          <p><strong>Area of Interest:</strong> ${interestLabels[formData.interest] || formData.interest}</p>
+        </div>
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Message</h3>
+          <p style="white-space: pre-wrap;">${formData.message}</p>
+        </div>
+        <div style="background: #f1f8e9; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px;">
+          <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+          <p><strong>IP Address:</strong> ${clientIP}</p>
+        </div>
+      `;
 
-    if (emailResponse.error) {
-      console.error('Email sending error:', emailResponse.error);
-      // Don't fail the request if email fails - submission is already stored
-    } else {
-      console.log('Notification email sent successfully:', emailResponse.data?.id);
+      notifications.push(
+        resend.emails.send({
+          from: 'workfamilyai Contact <noreply@workfamilyai.org>',
+          to: ['info@workfamilyai.org', 'troy@workfamilyai.org'],
+          subject: `New Contact: ${formData.name} - ${interestLabels[formData.interest] || formData.interest}`,
+          html: emailHtml,
+        })
+        .then(() => console.log('✓ Email sent'))
+        .catch((err: Error) => console.error('✗ Email failed:', err.message))
+      );
+    }
+
+    // Slack notification
+    if (slackWebhook) {
+      notifications.push(
+        fetch(slackWebhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: `🔔 New Contact Form Submission`,
+            blocks: [{
+              type: "section",
+              text: {
+                type: "mrkdwn",
+                text: `*New Contact*\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n${formData.company ? `*Company:* ${formData.company}\n` : ''}*Interest:* ${interestLabels[formData.interest]}\n*Message:* ${formData.message}`
+              }
+            }]
+          })
+        })
+        .then(() => console.log('✓ Slack sent'))
+        .catch((err: Error) => console.error('✗ Slack failed:', err.message))
+      );
+    }
+
+    // Discord notification
+    if (discordWebhook) {
+      notifications.push(
+        fetch(discordWebhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            embeds: [{
+              title: "🔔 New Contact Form Submission",
+              color: 0x00ff00,
+              fields: [
+                { name: "Name", value: formData.name, inline: true },
+                { name: "Email", value: formData.email, inline: true },
+                ...(formData.company ? [{ name: "Company", value: formData.company, inline: true }] : []),
+                { name: "Interest", value: interestLabels[formData.interest], inline: false },
+                { name: "Message", value: formData.message.substring(0, 1024), inline: false }
+              ],
+              timestamp: new Date().toISOString()
+            }]
+          })
+        })
+        .then(() => console.log('✓ Discord sent'))
+        .catch((err: Error) => console.error('✗ Discord failed:', err.message))
+      );
+    }
+
+    // Fire notifications but don't wait for them
+    if (notifications.length > 0) {
+      Promise.allSettled(notifications);
     }
 
     return new Response(
@@ -266,7 +319,7 @@ const handler = async (req: Request): Promise<Response> => {
     );
 
   } catch (error: any) {
-    console.error('Error in submit-contact-form function:', error);
+    console.error('❌ Error:', error);
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),
       {

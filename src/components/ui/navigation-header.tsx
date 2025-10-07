@@ -6,7 +6,6 @@ import { Home, Users, Calendar, Building2, DollarSign, GraduationCap, ExternalLi
 const navigationItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
-  { href: "/donations", label: "Support Us", icon: DollarSign },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
   { href: "https://augmentedhumanity.coach/", label: "Augmented Humanity Coach", icon: GraduationCap, external: true },
   { href: "/family-network", label: "Family Tree", icon: Users },
