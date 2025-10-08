@@ -1,7 +1,7 @@
-import { Footer } from '@/components/ui/footer';
+import { SimpleFooter } from '@/components/ui/simple-footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, BookOpen, GraduationCap } from 'lucide-react';
+import { ExternalLink, Github, BookOpen, GraduationCap, Brain, Code, Zap, Award, Cloud, Users } from 'lucide-react';
 
 const FreeCourses = () => {
   const courses = [
@@ -29,6 +29,84 @@ const FreeCourses = () => {
         "Anthropic API Development",
         "Advanced MCP Topics"
       ]
+    },
+    {
+      title: "🤗 AI Agents Course",
+      provider: "Hugging Face",
+      description: "Comprehensive course on building AI agents with Hugging Face tools. Learn practical implementation with hands-on examples and community support.",
+      link: "https://huggingface.co/learn/agents-course/unit0/introduction",
+      icon: Brain,
+      topics: [
+        "AI Agents Fundamentals",
+        "Hugging Face Tools Integration",
+        "Practical Agent Building",
+        "Community-Driven Learning"
+      ]
+    },
+    {
+      title: "Generative AI for Software Development",
+      provider: "DeepLearning.AI",
+      description: "Learn from Laurence Moroney, former AI lead at Google. Master GitHub Copilot, ChatGPT, and other generative AI tools from design to deployment.",
+      link: "https://www.deeplearning.ai/courses/generative-ai-for-software-development/",
+      icon: Code,
+      topics: [
+        "GitHub Copilot Integration",
+        "Code Quality Optimization",
+        "AI-Assisted Development",
+        "Deployment Best Practices"
+      ]
+    },
+    {
+      title: "Practical Deep Learning for Coders",
+      provider: "Fast.ai",
+      description: "Top-down teaching approach to deep learning. Build real applications while learning fundamentals with PyTorch and fastai library.",
+      link: "https://course.fast.ai/",
+      icon: Zap,
+      topics: [
+        "Deep Learning Foundations",
+        "PyTorch & FastAI",
+        "Computer Vision",
+        "Natural Language Processing"
+      ]
+    },
+    {
+      title: "Google AI Essentials",
+      provider: "Google (Coursera)",
+      description: "Master AI fundamentals with Google's comprehensive introduction course. Over 240,000 students enrolled. Perfect for business leaders and beginners.",
+      link: "https://coursera.org/learn/google-introduction-to-ai",
+      icon: Award,
+      topics: [
+        "AI Fundamentals",
+        "Business Applications",
+        "Practical Use Cases",
+        "Google AI Tools"
+      ]
+    },
+    {
+      title: "Machine Learning & AI Fundamentals",
+      provider: "AWS (Coursera)",
+      description: "Learn machine learning and AI basics with Amazon Web Services. Understand cloud-based ML deployment and scalable AI solutions.",
+      link: "https://coursera.org/learn/fundamentals-of-machine-learning-and-artificial-intelligence",
+      icon: Cloud,
+      topics: [
+        "ML Fundamentals",
+        "Cloud AI Deployment",
+        "AWS AI Services",
+        "Scalable Solutions"
+      ]
+    },
+    {
+      title: "Understanding Agentic AI",
+      provider: "Agent Academy",
+      description: "Free crash course on agentic AI for business leaders. Learn how autonomous AI agents can transform business operations and decision-making.",
+      link: "https://agentacademy.ai/courses/understanding-agentic-ai/",
+      icon: Users,
+      topics: [
+        "Agentic AI Concepts",
+        "Business Transformation",
+        "Autonomous Agents",
+        "Decision-Making Systems"
+      ]
     }
   ];
 
@@ -48,7 +126,7 @@ const FreeCourses = () => {
         </div>
 
         {/* Courses Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {courses.map((course) => {
             const IconComponent = course.icon;
             return (
@@ -106,7 +184,7 @@ const FreeCourses = () => {
         </div>
       </div>
 
-      <Footer />
+      <SimpleFooter />
     </div>
   );
 };
