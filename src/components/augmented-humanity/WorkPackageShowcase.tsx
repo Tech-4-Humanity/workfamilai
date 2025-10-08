@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Sparkles, Users, Lightbulb, TrendingUp, Shield, Target, Loader2 } from 'lucide-react';
 import { analytics } from '@/utils/analytics';
-import { useWorkPackages } from '@/hooks/useWorkPackages';
+import { useWorkPackages, WorkPackage } from '@/hooks/useWorkPackages';
+import { WorkPackageDetailModal } from './WorkPackageDetailModal';
 
 export const WorkPackageShowcase = () => {
   const { data: workPackages, isLoading, error } = useWorkPackages();
-  const handleLearnMoreClick = (packageTitle: string) => {
-    analytics.track('work_package_clicked', { package_title: packageTitle });
-    // Scroll to top of work packages section for more details
-    const element = document.getElementById('work-packages');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const [selectedPackage, setSelectedPackage] = useState<WorkPackage | null>(null);
+  
+  const handleLearnMoreClick = (pkg: WorkPackage) => {
+    analytics.track('work_package_clicked', { package_title: pkg.name });
+    setSelectedPackage(pkg);
   };
 
   const handleExploreAllClick = () => {
@@ -140,8 +139,8 @@ export const WorkPackageShowcase = () => {
                       <Button 
                         size="sm" 
                         variant="outline"
-                        className="text-xs hover-scale"
-                        onClick={() => handleLearnMoreClick(pkg.name)}
+                        className="text-xs hover-scale cursor-pointer"
+                        onClick={() => handleLearnMoreClick(pkg)}
                       >
                         Learn More
                       </Button>
@@ -163,6 +162,11 @@ export const WorkPackageShowcase = () => {
           </Button>
         </div>
       </div>
+
+      <WorkPackageDetailModal 
+        workPackage={selectedPackage} 
+        onClose={() => setSelectedPackage(null)} 
+      />
     </div>
   );
 };
