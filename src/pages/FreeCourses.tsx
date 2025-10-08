@@ -1,7 +1,7 @@
 import { Footer } from '@/components/ui/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, BookOpen } from 'lucide-react';
+import { ExternalLink, Github, BookOpen, GraduationCap } from 'lucide-react';
 
 const FreeCourses = () => {
   const courses = [
@@ -12,6 +12,23 @@ const FreeCourses = () => {
       link: "https://github.com/microsoft/ai-agents-for-beginners",
       icon: Github,
       topics: ["AI Agent Fundamentals", "Multi-Agent Systems", "Agent Communication", "Practical Implementation"]
+    },
+    {
+      title: "Anthropic AI Academy",
+      provider: "Anthropic",
+      description: "Enterprise-level AI education at zero cost. Master AI fundamentals, Claude for business work, building AI agents, and advanced integration skills. This comprehensive academy transforms executives and consultants from AI-curious to AI-fluent.",
+      link: "https://lnkd.in/e_m2u-ju",
+      icon: GraduationCap,
+      topics: [
+        "AI Fundamentals for Business Leaders",
+        "Claude for Business Work",
+        "Building AI Agents",
+        "Model Context Protocol (MCP)",
+        "Claude Code Automation",
+        "Claude + Amazon Bedrock",
+        "Anthropic API Development",
+        "Advanced MCP Topics"
+      ]
     }
   ];
 
