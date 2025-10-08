@@ -17,28 +17,28 @@ export const QuickStats = ({ animatedCount, currentAgentCount }: QuickStatsProps
       icon: Users,
       labelKey: 'family.totalAgents',
       value: animatedCount,
-      color: 'text-gray-900',
+      color: 'text-white',
       bgColor: 'bg-blue-600 border-blue-500'
     },
     {
       icon: Brain,
       labelKey: 'family.activeDepartments',
       value: 10,
-      color: 'text-gray-900',
+      color: 'text-white',
       bgColor: 'bg-green-600 border-green-500'
     },
     {
       icon: Network,
       labelKey: 'family.neuralConnections',
       value: Math.floor(currentAgentCount * 1.2),
-      color: 'text-gray-900',
+      color: 'text-white',
       bgColor: 'bg-purple-600 border-purple-500'
     },
     {
       icon: Layers,
       labelKey: 'family.consciousnessLayers',
       value: 9,
-      color: 'text-gray-900',
+      color: 'text-white',
       bgColor: 'bg-orange-600 border-orange-500'
     }
   ];
@@ -54,10 +54,10 @@ export const QuickStats = ({ animatedCount, currentAgentCount }: QuickStatsProps
                 <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 border-2 border-white/30 mb-4 backdrop-blur-sm`}>
                   <IconComponent className={`h-6 w-6 ${stat.color}`} />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-3xl font-bold text-white mb-2">
                   {stat.value.toLocaleString()}
                 </div>
-                <div className="text-base text-gray-900 font-semibold">
+                <div className="text-base text-white font-semibold">
                   {t(stat.labelKey)}
                 </div>
               </CardContent>

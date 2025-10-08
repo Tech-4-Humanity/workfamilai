@@ -1,14 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { Home, Users, Calendar, Building2, DollarSign, GraduationCap, ExternalLink } from "lucide-react";
+import { Home, Users, Building2, GraduationCap, ExternalLink, Package } from "lucide-react";
 
 const navigationItems = [
   { href: "/", label: "Home", icon: Home },
-  { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
+  { href: "/free-courses", label: "Free Courses", icon: GraduationCap },
+  { href: "/work-packages", label: "Work Packages", icon: Package },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
   { href: "https://augmentedhumanity.coach/", label: "Augmented Humanity Coach", icon: GraduationCap, external: true },
-  { href: "/family-network", label: "Family Tree", icon: Users },
+  { href: "/family-network", label: "Your WorkFamilyAI", icon: Users },
+  { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
 ];
 
 export function NavigationHeader() {
