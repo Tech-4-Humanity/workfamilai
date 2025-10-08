@@ -2,73 +2,12 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Users, Lightbulb, TrendingUp, Shield, Target } from 'lucide-react';
+import { Sparkles, Users, Lightbulb, TrendingUp, Shield, Target, Loader2 } from 'lucide-react';
 import { analytics } from '@/utils/analytics';
-
-const workPackages = [
-  {
-    title: "Augmented Decision Making",
-    subtitle: "AI-Led Discovery Workshops",
-    description: "Enhance human judgment with AI-powered insights while preserving intuitive wisdom and cultural context.",
-    
-    icon: Sparkles,
-    category: "Strategic Intelligence",
-    outcomes: ["Enhanced decision quality", "Preserved human intuition", "Cultural sensitivity"],
-    color: "primary"
-  },
-  {
-    title: "Augmented Talent Pipeline",
-    subtitle: "Signal-Based Recruitment & Development",
-    description: "Expand talent identification capabilities while honoring diverse cultural backgrounds and authentic potential.",
-     
-    icon: Users,
-    category: "Human Capital",
-    outcomes: ["Wider talent discovery", "Cultural diversity", "Authentic assessment"],
-    color: "secondary"
-  },
-  {
-    title: "Augmented Organizational Intelligence",
-    subtitle: "Consciousness-Level Analytics",
-    description: "Amplify organizational awareness through AI insights while maintaining human-centered leadership approaches.",
-    
-    icon: TrendingUp,
-    category: "Organizational Enhancement",
-    outcomes: ["Deeper awareness", "Human-centered metrics", "Cultural alignment"],
-    color: "accent"
-  },
-  {
-    title: "Augmented Innovation Labs",
-    subtitle: "Human-AI Creative Partnerships",
-    description: "Accelerate innovation through collaborative intelligence that enhances rather than replaces human creativity.",
-    
-    icon: Lightbulb,
-    category: "Innovation Enhancement",
-    outcomes: ["Enhanced creativity", "Faster ideation", "Human-AI synergy"],
-    color: "primary"
-  },
-  {
-    title: "Augmented Security Posture",
-    subtitle: "Human-Centered Risk Management",
-    description: "Strengthen security through AI augmentation while preserving human judgment in critical decision points.",
-    
-    icon: Shield,
-    category: "Security Enhancement", 
-    outcomes: ["Stronger defenses", "Human oversight", "Ethical boundaries"],
-    color: "secondary"
-  },
-  {
-    title: "Augmented Leadership Development",
-    subtitle: "AI-Enhanced Executive Coaching",
-    description: "Develop authentic leadership capabilities through AI insights that honor individual and cultural strengths.",
-    
-    icon: Target,
-    category: "Leadership Enhancement",
-    outcomes: ["Authentic development", "Cultural wisdom", "Enhanced capabilities"],
-    color: "accent"
-  }
-];
+import { useWorkPackages } from '@/hooks/useWorkPackages';
 
 export const WorkPackageShowcase = () => {
+  const { data: workPackages, isLoading, error } = useWorkPackages();
   const handleLearnMoreClick = (packageTitle: string) => {
     analytics.track('work_package_clicked', { package_title: packageTitle });
     // Scroll to top of work packages section for more details
@@ -86,6 +25,38 @@ export const WorkPackageShowcase = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+          <p className="mt-4 text-muted-foreground">Loading work packages...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-destructive">Error loading work packages. Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!workPackages || workPackages.length === 0) {
+    return (
+      <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-muted-foreground">No work packages available at this time.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-16 bg-gradient-to-br from-background via-secondary/5 to-accent/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,11 +71,22 @@ export const WorkPackageShowcase = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {workPackages.map((pkg, index) => {
-            const IconComponent = pkg.icon;
+          {workPackages.map((pkg) => {
+            const iconMap: Record<string, any> = {
+              'Training AI': Lightbulb,
+              'Strategic Intelligence': Sparkles,
+              'Human Capital': Users,
+              'Organizational Enhancement': TrendingUp,
+              'Innovation Enhancement': Lightbulb,
+              'Security Enhancement': Shield,
+              'Leadership Enhancement': Target,
+            };
+            
+            const IconComponent = iconMap[pkg.category] || Sparkles;
+            
             return (
               <Card 
-                key={pkg.title}
+                key={pkg.id}
                 className="group hover:shadow-elegant transition-all duration-300 hover:scale-105 border-border/50 bg-background/60 backdrop-blur-sm"
               >
                 <CardHeader className="pb-2">
@@ -112,14 +94,21 @@ export const WorkPackageShowcase = () => {
                     <Badge variant="secondary" className="text-xs">
                       {pkg.category}
                     </Badge>
-                    <IconComponent className={`h-5 w-5 text-${pkg.color}`} />
+                    {pkg.tier && (
+                      <Badge variant="outline" className="text-xs">
+                        {pkg.tier}
+                      </Badge>
+                    )}
+                    <IconComponent className="h-5 w-5 text-primary" />
                   </div>
                   <CardTitle className="text-lg leading-tight">
-                    {pkg.title}
+                    {pkg.name}
                   </CardTitle>
-                  <p className="text-sm text-muted-foreground font-medium">
-                    {pkg.subtitle}
-                  </p>
+                  {pkg.subcategory && (
+                    <p className="text-sm text-muted-foreground font-medium">
+                      {pkg.subcategory}
+                    </p>
+                  )}
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
@@ -127,25 +116,32 @@ export const WorkPackageShowcase = () => {
                     {pkg.description}
                   </p>
                   
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold text-foreground">Key Outcomes:</p>
-                    <ul className="text-xs text-muted-foreground space-y-1">
-                      {pkg.outcomes.map((outcome, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <div className={`w-1.5 h-1.5 rounded-full bg-${pkg.color}`} />
-                          {outcome}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {pkg.target_audience && (
+                    <div>
+                      <p className="text-xs font-semibold text-foreground">Target Audience:</p>
+                      <p className="text-xs text-muted-foreground">{pkg.target_audience}</p>
+                    </div>
+                  )}
+                  
+                  {pkg.customer_outcome && (
+                    <div>
+                      <p className="text-xs font-semibold text-foreground">Outcome:</p>
+                      <p className="text-xs text-muted-foreground">{pkg.customer_outcome}</p>
+                    </div>
+                  )}
                   
                   <div className="pt-2 border-t border-border/50">
-                    <div className="flex justify-end">
+                    <div className="flex justify-between items-center">
+                      {pkg.base_price && (
+                        <p className="text-sm font-bold text-primary">
+                          From ${(pkg.base_price / 1000).toFixed(0)}k
+                        </p>
+                      )}
                       <Button 
                         size="sm" 
                         variant="outline"
                         className="text-xs hover-scale"
-                        onClick={() => handleLearnMoreClick(pkg.title)}
+                        onClick={() => handleLearnMoreClick(pkg.name)}
                       >
                         Learn More
                       </Button>
