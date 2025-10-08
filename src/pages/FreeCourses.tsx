@@ -1,119 +1,119 @@
 import { SimpleFooter } from '@/components/ui/simple-footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, BookOpen, GraduationCap, Brain, Code, Zap, Award, Cloud, Users } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
+import { ExternalLink, Github, BookOpen, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useExternalLearningResources, getCoursesByCategory, type LearningResource } from '@/hooks/useExternalLearningResources';
+
+const getDifficultyColor = (difficulty: string) => {
+  switch (difficulty) {
+    case 'beginner': return 'bg-green-100 text-green-800 border-green-200';
+    case 'intermediate': return 'bg-blue-100 text-blue-800 border-blue-200';
+    case 'advanced': return 'bg-purple-100 text-purple-800 border-purple-200';
+    default: return 'bg-gray-100 text-gray-800 border-gray-200';
+  }
+};
+
+const getIconForProvider = (authorName: string): any => {
+  const lowerAuthor = authorName.toLowerCase();
+  if (lowerAuthor.includes('microsoft') || lowerAuthor.includes('github')) return Github;
+  if (lowerAuthor.includes('anthropic')) return GraduationCap;
+  if (lowerAuthor.includes('hugging')) return Brain;
+  if (lowerAuthor.includes('deeplearning')) return Code;
+  if (lowerAuthor.includes('fast.ai')) return Zap;
+  if (lowerAuthor.includes('google')) return Award;
+  if (lowerAuthor.includes('aws')) return Cloud;
+  return Users;
+};
+
+const CourseCard = ({ course }: { course: LearningResource }) => {
+  const IconComponent = getIconForProvider(course.author_name);
+  
+  return (
+    <Card className="hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="outline" className={getDifficultyColor(course.difficulty_level)}>
+                {course.difficulty_level}
+              </Badge>
+              {!course.requires_signup && (
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                  <CheckCircle2 className="h-3 w-3 mr-1" />
+                  No Signup
+                </Badge>
+              )}
+            </div>
+            <CardTitle className="text-xl mb-2">{course.title}</CardTitle>
+            <CardDescription className="text-sm">
+              by {course.author_name}
+            </CardDescription>
+          </div>
+          <IconComponent className="h-8 w-8 text-primary flex-shrink-0" />
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4 flex-1 flex flex-col">
+        <p className="text-gray-700 flex-1">{course.description}</p>
+        
+        <div className="flex items-center gap-4 text-sm text-gray-600">
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{course.estimated_hours}h</span>
+          </div>
+          {course.github_stars && (
+            <div className="flex items-center gap-1">
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+              <span>{course.github_stars.toLocaleString()}</span>
+            </div>
+          )}
+        </div>
+
+        {course.tags && course.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {course.tags.slice(0, 4).map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        )}
+
+        {course.prerequisites && (
+          <div className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
+            <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+            <p className="text-xs text-blue-800">
+              <span className="font-semibold">Prerequisites:</span> {course.prerequisites}
+            </p>
+          </div>
+        )}
+
+        <Button asChild className="w-full mt-auto">
+          <a 
+            href={course.resource_url || '#'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2"
+          >
+            Start Learning
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </Button>
+      </CardContent>
+    </Card>
+  );
+};
 
 const FreeCourses = () => {
-  const courses = [
-    {
-      title: "AI Agents for Beginners",
-      provider: "Microsoft",
-      description: "A comprehensive 8-lesson course teaching the fundamentals of AI agents, from basic concepts to building sophisticated multi-agent systems. Perfect for developers looking to understand and implement AI agents in their applications.",
-      link: "https://github.com/microsoft/ai-agents-for-beginners",
-      icon: Github,
-      topics: ["AI Agent Fundamentals", "Multi-Agent Systems", "Agent Communication", "Practical Implementation"]
-    },
-    {
-      title: "Anthropic AI Academy",
-      provider: "Anthropic",
-      description: "Enterprise-level AI education at zero cost. Master AI fundamentals, Claude for business work, building AI agents, and advanced integration skills. This comprehensive academy transforms executives and consultants from AI-curious to AI-fluent.",
-      link: "https://lnkd.in/e_m2u-ju",
-      icon: GraduationCap,
-      topics: [
-        "AI Fundamentals for Business Leaders",
-        "Claude for Business Work",
-        "Building AI Agents",
-        "Model Context Protocol (MCP)",
-        "Claude Code Automation",
-        "Claude + Amazon Bedrock",
-        "Anthropic API Development",
-        "Advanced MCP Topics"
-      ]
-    },
-    {
-      title: "🤗 AI Agents Course",
-      provider: "Hugging Face",
-      description: "Comprehensive course on building AI agents with Hugging Face tools. Learn practical implementation with hands-on examples and community support.",
-      link: "https://huggingface.co/learn/agents-course/unit0/introduction",
-      icon: Brain,
-      topics: [
-        "AI Agents Fundamentals",
-        "Hugging Face Tools Integration",
-        "Practical Agent Building",
-        "Community-Driven Learning"
-      ]
-    },
-    {
-      title: "Generative AI for Software Development",
-      provider: "DeepLearning.AI",
-      description: "Learn from Laurence Moroney, former AI lead at Google. Master GitHub Copilot, ChatGPT, and other generative AI tools from design to deployment.",
-      link: "https://www.deeplearning.ai/courses/generative-ai-for-software-development/",
-      icon: Code,
-      topics: [
-        "GitHub Copilot Integration",
-        "Code Quality Optimization",
-        "AI-Assisted Development",
-        "Deployment Best Practices"
-      ]
-    },
-    {
-      title: "Practical Deep Learning for Coders",
-      provider: "Fast.ai",
-      description: "Top-down teaching approach to deep learning. Build real applications while learning fundamentals with PyTorch and fastai library.",
-      link: "https://course.fast.ai/",
-      icon: Zap,
-      topics: [
-        "Deep Learning Foundations",
-        "PyTorch & FastAI",
-        "Computer Vision",
-        "Natural Language Processing"
-      ]
-    },
-    {
-      title: "Google AI Essentials",
-      provider: "Google (Coursera)",
-      description: "Master AI fundamentals with Google's comprehensive introduction course. Over 240,000 students enrolled. Perfect for business leaders and beginners.",
-      link: "https://coursera.org/learn/google-introduction-to-ai",
-      icon: Award,
-      topics: [
-        "AI Fundamentals",
-        "Business Applications",
-        "Practical Use Cases",
-        "Google AI Tools"
-      ]
-    },
-    {
-      title: "Machine Learning & AI Fundamentals",
-      provider: "AWS (Coursera)",
-      description: "Learn machine learning and AI basics with Amazon Web Services. Understand cloud-based ML deployment and scalable AI solutions.",
-      link: "https://coursera.org/learn/fundamentals-of-machine-learning-and-artificial-intelligence",
-      icon: Cloud,
-      topics: [
-        "ML Fundamentals",
-        "Cloud AI Deployment",
-        "AWS AI Services",
-        "Scalable Solutions"
-      ]
-    },
-    {
-      title: "Understanding Agentic AI",
-      provider: "Agent Academy",
-      description: "Free crash course on agentic AI for business leaders. Learn how autonomous AI agents can transform business operations and decision-making.",
-      link: "https://agentacademy.ai/courses/understanding-agentic-ai/",
-      icon: Users,
-      topics: [
-        "Agentic AI Concepts",
-        "Business Transformation",
-        "Autonomous Agents",
-        "Decision-Making Systems"
-      ]
-    }
-  ];
+  const { data: courses, isLoading, error } = useExternalLearningResources();
+  const categorizedCourses = getCoursesByCategory(courses);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
-      {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        {/* Hero Section */}
         <div className="text-center mb-12">
           <BookOpen className="h-16 w-16 mx-auto mb-4 text-primary" />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -125,53 +125,108 @@ const FreeCourses = () => {
           </p>
         </div>
 
-        {/* Courses Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {courses.map((course) => {
-            const IconComponent = course.icon;
-            return (
-              <Card key={course.title} className="hover:shadow-xl transition-all duration-300">
+        {/* Loading State */}
+        {isLoading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Card key={i}>
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="text-2xl mb-2">{course.title}</CardTitle>
-                      <CardDescription className="text-base">
-                        by {course.provider}
-                      </CardDescription>
-                    </div>
-                    <IconComponent className="h-8 w-8 text-primary" />
-                  </div>
+                  <Skeleton className="h-6 w-3/4 mb-2" />
+                  <Skeleton className="h-4 w-1/2" />
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-gray-700">{course.description}</p>
-                  
-                  <div className="space-y-2">
-                    <p className="font-semibold text-sm text-gray-900">Topics Covered:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                      {course.topics.map((topic) => (
-                        <li key={topic} className="text-sm text-gray-600">{topic}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <Button asChild className="w-full">
-                    <a 
-                      href={course.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      Start Learning
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
+                <CardContent>
+                  <Skeleton className="h-20 w-full mb-4" />
+                  <Skeleton className="h-10 w-full" />
                 </CardContent>
               </Card>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
 
-        {/* Additional Info */}
+        {/* Error State */}
+        {error && (
+          <Card className="max-w-2xl mx-auto bg-red-50 border-red-200">
+            <CardContent className="pt-6">
+              <p className="text-red-700">
+                Failed to load courses. Please try again later.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Tabbed Content */}
+        {!isLoading && !error && courses && (
+          <Tabs defaultValue="foundational" className="mb-16">
+            <TabsList className="grid w-full grid-cols-4 max-w-4xl mx-auto mb-8">
+              <TabsTrigger value="foundational">
+                🎯 Getting Started
+              </TabsTrigger>
+              <TabsTrigger value="intermediate">
+                ⚙️ Build & Deploy
+              </TabsTrigger>
+              <TabsTrigger value="advanced">
+                🧠 Advanced Topics
+              </TabsTrigger>
+              <TabsTrigger value="collections">
+                📚 Collections
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="foundational" className="space-y-8">
+              <div className="text-center mb-6">
+                <p className="text-gray-600">
+                  Perfect for beginners and business leaders looking to understand AI fundamentals
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {categorizedCourses.foundational.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="intermediate" className="space-y-8">
+              <div className="text-center mb-6">
+                <p className="text-gray-600">
+                  For developers ready to build and deploy AI-powered applications
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {categorizedCourses.intermediate.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="advanced" className="space-y-8">
+              <div className="text-center mb-6">
+                <p className="text-gray-600">
+                  Deep dives into specialized AI topics and cutting-edge research
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {categorizedCourses.advanced.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="collections" className="space-y-8">
+              <div className="text-center mb-6">
+                <p className="text-gray-600">
+                  Curated collections and resource directories from trusted sources
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {categorizedCourses.collections.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        )}
+
+        {/* Info Card */}
         <div className="text-center">
           <Card className="max-w-2xl mx-auto bg-blue-50 border-blue-200">
             <CardContent className="pt-6">
