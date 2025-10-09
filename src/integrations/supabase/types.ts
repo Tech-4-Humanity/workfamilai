@@ -8427,6 +8427,7 @@ export type Database = {
           email: string
           id: string
           inquiry_type: string | null
+          ip_address: string | null
           message: string
           name: string
           phone: string | null
@@ -8444,6 +8445,7 @@ export type Database = {
           email: string
           id?: string
           inquiry_type?: string | null
+          ip_address?: string | null
           message: string
           name: string
           phone?: string | null
@@ -8461,6 +8463,7 @@ export type Database = {
           email?: string
           id?: string
           inquiry_type?: string | null
+          ip_address?: string | null
           message?: string
           name?: string
           phone?: string | null
