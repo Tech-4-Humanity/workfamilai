@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface LearningResource {
@@ -72,4 +72,40 @@ export const getCoursesByCategory = (courses: LearningResource[] | undefined) =>
       c.category === 'resource_collections'
     ),
   };
+};
+
+// Hook to track course clicks
+export const useTrackCourseClick = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (resourceId: string) => {
+      const { error } = await supabase.rpc('increment_resource_clicks', {
+        resource_id: resourceId,
+      });
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['external-learning-resources'] });
+    },
+  });
+};
+
+// Hook to track course views (when modal opens or card is viewed)
+export const useTrackCourseView = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (resourceId: string) => {
+      const { error } = await supabase.rpc('increment_resource_views', {
+        resource_id: resourceId,
+      });
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['external-learning-resources'] });
+    },
+  });
 };

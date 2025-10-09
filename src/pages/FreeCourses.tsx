@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RobustImage } from "@/components/ui/robust-image";
 import { NewsletterSignupModal } from "@/components/courses/NewsletterSignupModal";
 import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User } from 'lucide-react';
-import { useExternalLearningResources, getCoursesByCategory, type LearningResource } from '@/hooks/useExternalLearningResources';
+import { useExternalLearningResources, getCoursesByCategory, useTrackCourseClick, type LearningResource } from '@/hooks/useExternalLearningResources';
 import { analytics } from "@/utils/analytics";
 import { Link } from "react-router-dom";
 
@@ -86,6 +86,20 @@ const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onS
             <Clock className="h-4 w-4 text-cyan-400" />
             <span>{course.estimated_hours} hours</span>
           </div>
+          {course.view_count > 0 && (
+            <div className="flex items-center gap-3 text-xs">
+              <span className="flex items-center gap-1">
+                <span className="text-cyan-400">👁</span>
+                {course.view_count.toLocaleString()} views
+              </span>
+              {course.click_count > 0 && (
+                <span className="flex items-center gap-1">
+                  <span className="text-green-400">✓</span>
+                  {course.click_count.toLocaleString()} enrolled
+                </span>
+              )}
+            </div>
+          )}
         </div>
         
         {course.tags && course.tags.length > 0 && (
@@ -119,6 +133,7 @@ const FreeCourses = () => {
   const categorizedCourses = getCoursesByCategory(courses);
   const [selectedCourse, setSelectedCourse] = useState<LearningResource | null>(null);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+  const { mutate: trackClick } = useTrackCourseClick();
 
   // Check if user already subscribed recently
   const hasRecentSubscription = () => {
@@ -141,6 +156,9 @@ const FreeCourses = () => {
   };
 
   const handleNavigateToCourse = (course: LearningResource) => {
+    // Track click in database
+    trackClick(course.id);
+    
     // Track analytics
     analytics.track("course_started", {
       course_name: course.title,
