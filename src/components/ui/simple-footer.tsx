@@ -174,9 +174,9 @@ export const SimpleFooter = () => {
             <p>workfamilyai • Tech 4 Humanity • © 2025</p>
             <p className="mt-1">
               <span className="inline-flex items-center space-x-1">
-                <div className="w-3 h-3 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full"></div>
+                <span className="inline-block w-3 h-3 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full"></span>
                 <span>Always Learning • Always Evolving • Always Collaborating</span>
-                <div className="w-3 h-3 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full"></div>
+                <span className="inline-block w-3 h-3 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full"></span>
               </span>
             </p>
           </div>

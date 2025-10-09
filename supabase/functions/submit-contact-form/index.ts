@@ -193,7 +193,7 @@ const handler = async (req: Request): Promise<Response> => {
           inquiry_type: formData.interest,
           message: formData.message.trim(),
           ip_address: clientIP,
-          status: 'pending'
+          status: 'new'
         }
       ]);
 
