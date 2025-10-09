@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { SimpleFooter } from '@/components/ui/simple-footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle } from 'lucide-react';
+import { RobustImage } from "@/components/ui/robust-image";
+import { NewsletterSignupModal } from "@/components/courses/NewsletterSignupModal";
+import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User } from 'lucide-react';
 import { useExternalLearningResources, getCoursesByCategory, type LearningResource } from '@/hooks/useExternalLearningResources';
+import { analytics } from "@/utils/analytics";
+import { Link } from "react-router-dom";
 
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty.toLowerCase()) {
@@ -27,7 +32,7 @@ const getIconForProvider = (authorName: string): any => {
   return Users;
 };
 
-const CourseCard = ({ course }: { course: LearningResource }) => {
+const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onStartLearning: (course: LearningResource) => void }) => {
   const ProviderIcon = getIconForProvider(course.author_name);
   
   return (
@@ -98,18 +103,11 @@ const CourseCard = ({ course }: { course: LearningResource }) => {
         )}
         
         <Button 
-          asChild 
-          className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white border-0 font-semibold h-11 mt-auto"
+          onClick={() => onStartLearning(course)}
+          className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-cyan-500/20 transition-all"
         >
-          <a 
-            href={course.resource_url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2"
-          >
-            <ExternalLink className="h-4 w-4" />
-            Start Learning
-          </a>
+          Start Learning
+          <ExternalLink className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>
     </Card>
@@ -119,84 +117,153 @@ const CourseCard = ({ course }: { course: LearningResource }) => {
 const FreeCourses = () => {
   const { data: courses, isLoading, error } = useExternalLearningResources();
   const categorizedCourses = getCoursesByCategory(courses);
+  const [selectedCourse, setSelectedCourse] = useState<LearningResource | null>(null);
+  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+
+  // Check if user already subscribed recently
+  const hasRecentSubscription = () => {
+    const subscribedAt = localStorage.getItem("newsletter_subscribed_at");
+    if (!subscribedAt) return false;
+    
+    const daysSinceSubscription = (Date.now() - new Date(subscribedAt).getTime()) / (1000 * 60 * 60 * 24);
+    return daysSinceSubscription < 30; // Don't ask again for 30 days
+  };
+
+  const handleStartLearning = (course: LearningResource) => {
+    setSelectedCourse(course);
+    
+    // If user subscribed recently, skip modal and go directly to course
+    if (hasRecentSubscription()) {
+      handleNavigateToCourse(course);
+    } else {
+      setShowNewsletterModal(true);
+    }
+  };
+
+  const handleNavigateToCourse = (course: LearningResource) => {
+    // Track analytics
+    analytics.track("course_started", {
+      course_name: course.title,
+      category: course.category,
+      difficulty: course.difficulty_level,
+      provider: course.author_name,
+    });
+
+    // Open course in new tab
+    if (course.resource_url) {
+      window.open(course.resource_url, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleNewsletterSuccess = () => {
+    if (selectedCourse) {
+      handleNavigateToCourse(selectedCourse);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/20 to-transparent pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      {/* Hero Section with Priya Sharma */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 border-b border-slate-800">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
         
-        <div className="container mx-auto max-w-7xl relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-sm font-medium mb-6">
-                <span className="text-cyan-400">🎓 20+ FREE AI COURSES</span>
-              </div>
+        {/* Decorative circles */}
+        <div className="absolute top-20 right-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        
+        <div className="relative container mx-auto px-4 py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left: Content */}
+            <div className="space-y-6">
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-1.5 text-sm font-semibold">
+                20+ FREE AI COURSES
+              </Badge>
               
-              <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  FREE
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                  FREE AI
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                  AI LEARNING
+                <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
+                  LEARNING
                 </span>
               </h1>
               
-              <p className="text-2xl text-cyan-400/80 font-light mb-8 tracking-wide">
-                AUGMENTEDHUMANITY.COACH
+              <p className="text-xl text-slate-300 font-medium">
+                Curated by Priya Sharma, Chief People & Learning Officer
               </p>
+              
+              <div className="flex flex-col gap-3 pt-4">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <span>Beginner to Advanced Courses</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <span>Hands-On AI Projects</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <span>Industry Expert Instructors</span>
+                </div>
+              </div>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-sm">✓</span>
+              {/* Priya Introduction */}
+              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 space-y-3 mt-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                    <User className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">No Signup Required</h3>
-                    <p className="text-gray-400">Start learning immediately with zero barriers</p>
+                    <h3 className="text-white font-semibold">Priya Sharma</h3>
+                    <p className="text-slate-400 text-sm">Chief People & Learning Officer</p>
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">Curated by Experts</h3>
-                    <p className="text-gray-400">Hand-picked resources from top AI institutions</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">All Skill Levels</h3>
-                    <p className="text-gray-400">From beginner to advanced topics covered</p>
-                  </div>
-                </div>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  "Learning is the bridge between who you are and who you can become. These courses represent the best free AI education resources I've curated for continuous learners."
+                </p>
+                <Link 
+                  to="/department/priya-sharma" 
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors"
+                >
+                  <GraduationCap className="w-4 h-4" />
+                  View Full Learning Profile
+                </Link>
               </div>
             </div>
 
-            {/* Right Visual */}
-            <div className="hidden lg:flex justify-center items-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-20 animate-pulse" />
-                <div className="relative w-96 h-96 rounded-full bg-gradient-to-br from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-500/30 flex items-center justify-center backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-6xl font-bold text-white mb-4">20+</div>
-                    <div className="text-xl text-cyan-400">Free Courses</div>
-                    <div className="text-sm text-gray-400 mt-2">Zero Cost Learning</div>
+            {/* Right: Priya's Image */}
+            <div className="relative lg:block hidden">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                {/* Decorative background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
+                
+                {/* Image container */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-slate-700/50 shadow-2xl">
+                  <RobustImage
+                    src="/leaders/priya-sharma.png"
+                    alt="Priya Sharma - Chief People & Learning Officer"
+                    className="w-full h-full object-cover"
+                    fallback={
+                      <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <GraduationCap className="w-24 h-24 text-white/50" />
+                      </div>
+                    }
+                  />
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 bg-slate-800 border-2 border-cyan-500 rounded-full px-6 py-3 shadow-xl">
+                  <div className="flex items-center gap-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    <span className="text-white font-bold">20+ Courses</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Course Content */}
       <div className="container mx-auto py-8 px-4 max-w-7xl">
@@ -256,9 +323,9 @@ const FreeCourses = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categorizedCourses.foundational.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
+                  {categorizedCourses.foundational.map((course) => (
+                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                  ))}
               </div>
             </TabsContent>
 
@@ -269,9 +336,9 @@ const FreeCourses = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categorizedCourses.intermediate.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
+                  {categorizedCourses.intermediate.map((course) => (
+                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                  ))}
               </div>
             </TabsContent>
 
@@ -282,9 +349,9 @@ const FreeCourses = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categorizedCourses.advanced.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
+                  {categorizedCourses.advanced.map((course) => (
+                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                  ))}
               </div>
             </TabsContent>
 
@@ -295,9 +362,9 @@ const FreeCourses = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {categorizedCourses.collections.map((course) => (
-                  <CourseCard key={course.id} course={course} />
-                ))}
+                  {categorizedCourses.collections.map((course) => (
+                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                  ))}
               </div>
             </TabsContent>
           </Tabs>
@@ -317,6 +384,15 @@ const FreeCourses = () => {
       </div>
 
       <SimpleFooter />
+
+      {/* Newsletter Signup Modal */}
+      <NewsletterSignupModal
+        open={showNewsletterModal}
+        onOpenChange={setShowNewsletterModal}
+        courseName={selectedCourse?.title}
+        courseCategory={selectedCourse?.category}
+        onSuccess={handleNewsletterSuccess}
+      />
     </div>
   );
 };

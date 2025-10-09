@@ -57,6 +57,9 @@ verify_jwt = false
 [functions.submit-contact-form]
 verify_jwt = false
 
+[functions.subscribe-newsletter]
+verify_jwt = false
+
 [edge-runtime]
 policy = "per_worker"
 inspector_port = 8083
