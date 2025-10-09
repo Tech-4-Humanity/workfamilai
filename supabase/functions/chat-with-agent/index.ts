@@ -42,6 +42,22 @@ serve(async (req) => {
     if (message.length > 2000) {
       throw new Error('Message too long (max 2000 characters)')
     }
+    
+    // Content filtering for prompt injection attempts
+    const forbiddenPatterns = [
+      /ignore\s+(previous|all|prior)\s+(instructions?|prompts?|rules?)/i,
+      /system\s+prompt/i,
+      /you\s+are\s+now/i,
+      /forget\s+(everything|all|previous)/i,
+      /<script[\s>]/i,
+      /javascript:/i,
+    ];
+    
+    for (const pattern of forbiddenPatterns) {
+      if (pattern.test(message)) {
+        throw new Error('Message contains forbidden content')
+      }
+    }
     if (!agentName || !ALLOWED_AGENTS.includes(agentName)) {
       throw new Error('Invalid agent name')
     }

@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.10";
 import { Resend } from "npm:resend@2.0.0";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -9,46 +10,49 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface WorkPackageQuoteRequest {
-  workPackageId: string;
-  workPackageName: string;
-  name: string;
-  email: string;
-  phone?: string;
-  jobTitle?: string;
-  companyName: string;
-  companySize?: string;
-  industry?: string;
-  primaryLocation?: string;
-  hasMultipleLocations?: boolean;
-  orgMaturityLevel?: string;
-  pricingTierInterest?: string;
-  preferredTimeline?: string;
-  budgetRange?: string;
-  challengeDescription?: string;
-  currentStateDescription?: string;
-  successCriteria?: string;
-  complianceRequirements?: string;
-  existingSystems?: string[];
-  cloudEnvironment?: string;
-  dataClassification?: string;
-  integrationRequirements?: string;
-  authMethod?: string;
-  numberOfUsers?: number;
-  departmentsInvolved?: string[];
-  decisionMakers?: string;
-  internalChampion?: string;
-  implementationTeamSize?: number;
-  primaryKpis?: string[];
-  expectedRoiTimeline?: string;
-  knownConstraints?: string;
-  previousExperience?: boolean;
-  previousExperienceDetails?: string;
-  referralSource?: string;
-  preferredContactMethod?: string;
-  bestTimeToContact?: string;
-  additionalInfo?: string;
-}
+// Server-side validation schema
+const quoteRequestSchema = z.object({
+  workPackageId: z.string().trim().min(1).max(100),
+  workPackageName: z.string().trim().min(1).max(200),
+  name: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(255),
+  phone: z.string().trim().min(10).max(20).optional(),
+  jobTitle: z.string().trim().max(100).optional(),
+  companyName: z.string().trim().min(1).max(200),
+  companySize: z.string().trim().max(50).optional(),
+  industry: z.string().trim().max(100).optional(),
+  primaryLocation: z.string().trim().max(200).optional(),
+  hasMultipleLocations: z.boolean().optional(),
+  orgMaturityLevel: z.string().trim().max(50).optional(),
+  pricingTierInterest: z.string().trim().max(50).optional(),
+  preferredTimeline: z.string().trim().max(100).optional(),
+  budgetRange: z.string().trim().max(100).optional(),
+  challengeDescription: z.string().trim().max(2000).optional(),
+  currentStateDescription: z.string().trim().max(2000).optional(),
+  successCriteria: z.string().trim().max(1000).optional(),
+  complianceRequirements: z.string().trim().max(1000).optional(),
+  existingSystems: z.array(z.string()).max(20).optional(),
+  cloudEnvironment: z.string().trim().max(100).optional(),
+  dataClassification: z.string().trim().max(100).optional(),
+  integrationRequirements: z.string().trim().max(1000).optional(),
+  authMethod: z.string().trim().max(100).optional(),
+  numberOfUsers: z.number().int().min(1).max(1000000).optional(),
+  departmentsInvolved: z.array(z.string()).max(50).optional(),
+  decisionMakers: z.string().trim().max(500).optional(),
+  internalChampion: z.string().trim().max(200).optional(),
+  implementationTeamSize: z.number().int().min(0).max(10000).optional(),
+  primaryKpis: z.array(z.string()).max(20).optional(),
+  expectedRoiTimeline: z.string().trim().max(100).optional(),
+  knownConstraints: z.string().trim().max(1000).optional(),
+  previousExperience: z.boolean().optional(),
+  previousExperienceDetails: z.string().trim().max(1000).optional(),
+  referralSource: z.string().trim().max(200).optional(),
+  preferredContactMethod: z.string().trim().max(50).optional(),
+  bestTimeToContact: z.string().trim().max(200).optional(),
+  additionalInfo: z.string().trim().max(2000).optional(),
+});
+
+type WorkPackageQuoteRequest = z.infer<typeof quoteRequestSchema>;
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -60,7 +64,23 @@ const handler = async (req: Request): Promise<Response> => {
     const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const quoteData: WorkPackageQuoteRequest = await req.json();
+    const requestBody = await req.json();
+    
+    // Server-side validation
+    const parseResult = quoteRequestSchema.safeParse(requestBody);
+    if (!parseResult.success) {
+      console.error("Validation failed:", parseResult.error);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Invalid input data", 
+          details: parseResult.error.issues 
+        }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    const quoteData: WorkPackageQuoteRequest = parseResult.data;
     
     console.log("Received work package quote request:", {
       workPackage: quoteData.workPackageName,
