@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -19,7 +19,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { WorkPackage } from '@/hooks/useWorkPackages';
-import { useNavigate } from 'react-router-dom';
+import { WorkPackageQuoteRequestForm } from '@/components/work-packages/WorkPackageQuoteRequestForm';
 
 interface WorkPackageDetailModalProps {
   workPackage: WorkPackage | null;
@@ -27,12 +27,13 @@ interface WorkPackageDetailModalProps {
 }
 
 export const WorkPackageDetailModal = ({ workPackage, onClose }: WorkPackageDetailModalProps) => {
-  const navigate = useNavigate();
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
 
   if (!workPackage) return null;
 
-  const handleRequestQuote = () => {
-    navigate('/contact', { state: { workPackage: workPackage.name } });
+  const handleQuoteSuccess = () => {
+    setShowQuoteForm(false);
+    onClose();
   };
 
   // Parse deliverables if it's JSON
@@ -44,31 +45,33 @@ export const WorkPackageDetailModal = ({ workPackage, onClose }: WorkPackageDeta
 
   return (
     <Dialog open={!!workPackage} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <DialogTitle className="text-2xl font-bold mb-2">
-                {workPackage.name}
-              </DialogTitle>
-              {workPackage.subcategory && (
-                <DialogDescription className="text-base">
-                  {workPackage.subcategory}
-                </DialogDescription>
-              )}
-            </div>
-            <div className="flex gap-2 flex-wrap justify-end">
-              <Badge variant="secondary">
-                {workPackage.category}
-              </Badge>
-              {workPackage.tier && (
-                <Badge variant="outline">
-                  {workPackage.tier}
-                </Badge>
-              )}
-            </div>
-          </div>
-        </DialogHeader>
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        {!showQuoteForm ? (
+          <>
+            <DialogHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <DialogTitle className="text-2xl font-bold mb-2">
+                    {workPackage.name}
+                  </DialogTitle>
+                  {workPackage.subcategory && (
+                    <DialogDescription className="text-base">
+                      {workPackage.subcategory}
+                    </DialogDescription>
+                  )}
+                </div>
+                <div className="flex gap-2 flex-wrap justify-end">
+                  <Badge variant="secondary">
+                    {workPackage.category}
+                  </Badge>
+                  {workPackage.tier && (
+                    <Badge variant="outline">
+                      {workPackage.tier}
+                    </Badge>
+                  )}
+                </div>
+              </div>
+            </DialogHeader>
 
         <div className="space-y-6 mt-4">
           {/* Description */}
@@ -202,7 +205,7 @@ export const WorkPackageDetailModal = ({ workPackage, onClose }: WorkPackageDeta
             )}
             <Button 
               size="lg" 
-              onClick={handleRequestQuote}
+              onClick={() => setShowQuoteForm(true)}
               className="gap-2"
             >
               Request Quote
@@ -210,6 +213,24 @@ export const WorkPackageDetailModal = ({ workPackage, onClose }: WorkPackageDeta
             </Button>
           </div>
         </div>
+          </>
+        ) : (
+          <>
+            <DialogHeader>
+              <DialogTitle>Request Quote: {workPackage.name}</DialogTitle>
+              <DialogDescription>
+                Please provide the following information so we can prepare a detailed quote for you.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="mt-4">
+              <WorkPackageQuoteRequestForm
+                workPackage={workPackage}
+                onSuccess={handleQuoteSuccess}
+                onCancel={() => setShowQuoteForm(false)}
+              />
+            </div>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );

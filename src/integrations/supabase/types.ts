@@ -30944,6 +30944,156 @@ export type Database = {
           },
         ]
       }
+      work_package_quote_requests: {
+        Row: {
+          additional_info: string | null
+          admin_notes: string | null
+          auth_method: string | null
+          best_time_to_contact: string | null
+          budget_range: string | null
+          challenge_description: string | null
+          cloud_environment: string | null
+          company_name: string
+          company_size: string | null
+          compliance_requirements: string | null
+          created_at: string | null
+          current_state_description: string | null
+          data_classification: string | null
+          decision_makers: string | null
+          departments_involved: string[] | null
+          email: string
+          estimated_quote_value: number | null
+          existing_systems: string[] | null
+          expected_roi_timeline: string | null
+          follow_up_date: string | null
+          has_multiple_locations: boolean | null
+          id: string
+          implementation_team_size: number | null
+          industry: string | null
+          integration_requirements: string | null
+          internal_champion: string | null
+          ip_address: string | null
+          job_title: string | null
+          known_constraints: string | null
+          name: string
+          number_of_users: number | null
+          org_maturity_level: string | null
+          phone: string | null
+          preferred_contact_method: string | null
+          preferred_timeline: string | null
+          previous_experience: boolean | null
+          previous_experience_details: string | null
+          pricing_tier_interest: string | null
+          primary_kpis: string[] | null
+          primary_location: string | null
+          quoted_at: string | null
+          referral_source: string | null
+          status: Database["public"]["Enums"]["quote_request_status"] | null
+          success_criteria: string | null
+          updated_at: string | null
+          work_package_id: string
+          work_package_name: string
+        }
+        Insert: {
+          additional_info?: string | null
+          admin_notes?: string | null
+          auth_method?: string | null
+          best_time_to_contact?: string | null
+          budget_range?: string | null
+          challenge_description?: string | null
+          cloud_environment?: string | null
+          company_name: string
+          company_size?: string | null
+          compliance_requirements?: string | null
+          created_at?: string | null
+          current_state_description?: string | null
+          data_classification?: string | null
+          decision_makers?: string | null
+          departments_involved?: string[] | null
+          email: string
+          estimated_quote_value?: number | null
+          existing_systems?: string[] | null
+          expected_roi_timeline?: string | null
+          follow_up_date?: string | null
+          has_multiple_locations?: boolean | null
+          id?: string
+          implementation_team_size?: number | null
+          industry?: string | null
+          integration_requirements?: string | null
+          internal_champion?: string | null
+          ip_address?: string | null
+          job_title?: string | null
+          known_constraints?: string | null
+          name: string
+          number_of_users?: number | null
+          org_maturity_level?: string | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          preferred_timeline?: string | null
+          previous_experience?: boolean | null
+          previous_experience_details?: string | null
+          pricing_tier_interest?: string | null
+          primary_kpis?: string[] | null
+          primary_location?: string | null
+          quoted_at?: string | null
+          referral_source?: string | null
+          status?: Database["public"]["Enums"]["quote_request_status"] | null
+          success_criteria?: string | null
+          updated_at?: string | null
+          work_package_id: string
+          work_package_name: string
+        }
+        Update: {
+          additional_info?: string | null
+          admin_notes?: string | null
+          auth_method?: string | null
+          best_time_to_contact?: string | null
+          budget_range?: string | null
+          challenge_description?: string | null
+          cloud_environment?: string | null
+          company_name?: string
+          company_size?: string | null
+          compliance_requirements?: string | null
+          created_at?: string | null
+          current_state_description?: string | null
+          data_classification?: string | null
+          decision_makers?: string | null
+          departments_involved?: string[] | null
+          email?: string
+          estimated_quote_value?: number | null
+          existing_systems?: string[] | null
+          expected_roi_timeline?: string | null
+          follow_up_date?: string | null
+          has_multiple_locations?: boolean | null
+          id?: string
+          implementation_team_size?: number | null
+          industry?: string | null
+          integration_requirements?: string | null
+          internal_champion?: string | null
+          ip_address?: string | null
+          job_title?: string | null
+          known_constraints?: string | null
+          name?: string
+          number_of_users?: number | null
+          org_maturity_level?: string | null
+          phone?: string | null
+          preferred_contact_method?: string | null
+          preferred_timeline?: string | null
+          previous_experience?: boolean | null
+          previous_experience_details?: string | null
+          pricing_tier_interest?: string | null
+          primary_kpis?: string[] | null
+          primary_location?: string | null
+          quoted_at?: string | null
+          referral_source?: string | null
+          status?: Database["public"]["Enums"]["quote_request_status"] | null
+          success_criteria?: string | null
+          updated_at?: string | null
+          work_package_id?: string
+          work_package_name?: string
+        }
+        Relationships: []
+      }
       work_packages: {
         Row: {
           access_level: string | null
@@ -33643,6 +33793,13 @@ export type Database = {
       content_status: "scaffold" | "seeded" | "complete"
       ladder_tier: "bronze" | "silver" | "gold" | "platinum" | "elite"
       metric_type: "numeric" | "text" | "boolean" | "date"
+      quote_request_status:
+        | "new"
+        | "in_review"
+        | "quoted"
+        | "won"
+        | "lost"
+        | "cancelled"
       sales_stage:
         | "lead"
         | "qualification"
@@ -33803,6 +33960,14 @@ export const Constants = {
       content_status: ["scaffold", "seeded", "complete"],
       ladder_tier: ["bronze", "silver", "gold", "platinum", "elite"],
       metric_type: ["numeric", "text", "boolean", "date"],
+      quote_request_status: [
+        "new",
+        "in_review",
+        "quoted",
+        "won",
+        "lost",
+        "cancelled",
+      ],
       sales_stage: [
         "lead",
         "qualification",
