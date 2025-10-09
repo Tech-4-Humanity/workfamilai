@@ -250,7 +250,7 @@ const handler = async (req: Request): Promise<Response> => {
 
       notifications.push(
         resend.emails.send({
-          from: 'Lovable <onboarding@resend.dev>',
+          from: 'WorkFamily AI <noreply@workfamilyai.org>',
           to: ['info@workfamilyai.org', 'troy@workfamilyai.org'],
           subject: `New Contact: ${formData.name} - ${interestLabels[formData.interest] || formData.interest}`,
           html: emailHtml,
