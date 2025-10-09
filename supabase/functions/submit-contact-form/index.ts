@@ -16,12 +16,13 @@ interface ContactFormData {
 }
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const resendApiKey = Deno.env.get('RESEND_API_KEY');
 const slackWebhook = Deno.env.get('SLACK_WEBHOOK_URL');
 const discordWebhook = Deno.env.get('DISCORD_WEBHOOK_URL');
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Use service role key to bypass RLS for contact submissions
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // Only initialize Resend if API key is available
 let resend: any = null;
@@ -197,7 +198,12 @@ const handler = async (req: Request): Promise<Response> => {
       ]);
 
     if (dbError) {
-      console.error('❌ Database error:', dbError);
+      console.error('❌ Database error:', {
+        code: dbError.code,
+        message: dbError.message,
+        details: dbError.details,
+        hint: dbError.hint
+      });
       return new Response(
         JSON.stringify({ error: 'Failed to store submission' }),
         { 
@@ -244,7 +250,7 @@ const handler = async (req: Request): Promise<Response> => {
 
       notifications.push(
         resend.emails.send({
-          from: 'workfamilyai Contact <noreply@workfamilyai.org>',
+          from: 'Lovable <onboarding@resend.dev>',
           to: ['info@workfamilyai.org', 'troy@workfamilyai.org'],
           subject: `New Contact: ${formData.name} - ${interestLabels[formData.interest] || formData.interest}`,
           html: emailHtml,
