@@ -24,6 +24,7 @@ import WorkPackages from "./pages/WorkPackages";
 import FamilyNetwork from "./pages/FamilyNetwork";
 import SiteAudit from "./pages/SiteAudit";
 import FreeCourses from "./pages/FreeCourses";
+import Contact from "./pages/Contact";
 import { OrganizationalDashboard } from "./components/organizational/OrganizationalDashboard";
 import { CompleteOrganizationalStructure } from "./components/organizational/CompleteOrganizationalStructure";
 import { NavigationHeader } from "./components/ui/navigation-header";
@@ -76,6 +77,7 @@ const App = () => {
                   <Route path="/donation-success" element={<DonationSuccess />} />
                   <Route path="/donation-cancel" element={<DonationCancel />} />
                   <Route path="/site-audit" element={<SiteAudit />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="/organizational-intelligence" element={<OrganizationalDashboard />} />
                   <Route path="/complete-structure" element={<CompleteOrganizationalStructure />} />
                   <Route path="*" element={<NotFound />} />
