@@ -9,7 +9,6 @@ const navigationItems = [
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
   { href: "/work-packages", label: "Services", icon: Package },
   { href: "https://augmentedhumanity.coach/", label: "Augmented Humanity Coach", icon: GraduationCap, external: true },
-  { href: "/family-network", label: "Your WorkFamilyAI", icon: Users },
   { href: "https://holo-org.com", label: "Holo-Org", icon: Building2, external: true },
 ];
 

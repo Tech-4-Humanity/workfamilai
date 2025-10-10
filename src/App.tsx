@@ -21,7 +21,6 @@ import Donations from "./pages/Donations";
 import DonationSuccess from "./pages/DonationSuccess";
 import DonationCancel from "./pages/DonationCancel";
 import WorkPackages from "./pages/WorkPackages";
-import FamilyNetwork from "./pages/FamilyNetwork";
 import SiteAudit from "./pages/SiteAudit";
 import FreeCourses from "./pages/FreeCourses";
 import Contact from "./pages/Contact";
@@ -66,7 +65,6 @@ const App = () => {
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/free-courses" element={<FreeCourses />} />
                   <Route path="/work-packages" element={<WorkPackages />} />
-                  <Route path="/family-network" element={<FamilyNetwork />} />
                   <Route path="/department/:departmentId" element={<DepartmentDetail />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/contact-test" element={<ContactTest />} />
