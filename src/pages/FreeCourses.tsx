@@ -37,6 +37,39 @@ const getIconForProvider = (authorName: string): any => {
   return Users;
 };
 
+const TopicBadge = ({ 
+  icon: Icon, 
+  text, 
+  color 
+}: { 
+  icon: any; 
+  text: string; 
+  color: 'purple' | 'blue' | 'yellow' | 'cyan' | 'pink' | 'orange';
+}) => {
+  const colorClasses = {
+    purple: 'bg-purple-500/10 border-purple-500/30 text-purple-300',
+    blue: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
+    yellow: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-300',
+    cyan: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300',
+    pink: 'bg-pink-500/10 border-pink-500/30 text-pink-300',
+    orange: 'bg-orange-500/10 border-orange-500/30 text-orange-300',
+  };
+
+  return (
+    <div className={`
+      ${colorClasses[color]}
+      border rounded-lg px-3 py-2
+      flex items-center gap-2
+      transition-all duration-300
+      hover:scale-105 hover:shadow-lg
+      hover:bg-opacity-20
+    `}>
+      <Icon className="w-4 h-4 flex-shrink-0" />
+      <span className="text-xs md:text-sm font-medium">{text}</span>
+    </div>
+  );
+};
+
 const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onStartLearning: (course: LearningResource) => void }) => {
   const ProviderIcon = getIconForProvider(course.author_name);
   
@@ -280,14 +313,49 @@ const FreeCourses = () => {
                 </div>
               </div>
 
-              <div className="pt-6 space-y-4">
-                <p className="text-cyan-400 font-semibold text-lg">
-                  Unlock Your AI Potential
-                </p>
-                <p className="text-slate-300 leading-relaxed">
-                  Start your AI transformation journey with our expert assessments. Discover opportunities, calculate benefits, and build your strategic roadmap.
-                </p>
-              </div>
+                <div className="pt-6 space-y-6">
+                  {/* Main headline */}
+                  <div className="space-y-3">
+                    <h2 className="text-cyan-400 font-bold text-2xl md:text-3xl">
+                      Unlock Your AI Potential
+                    </h2>
+                    <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+                      Start your AI transformation journey with our expert assessments. 
+                      Discover opportunities, calculate benefits, and build your strategic roadmap.
+                    </p>
+                  </div>
+
+                  {/* Topics Include Section */}
+                  <div className="space-y-4">
+                    <p className="text-orange-400 font-semibold text-sm uppercase tracking-wider">
+                      Topics Include
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <TopicBadge icon={Brain} text="GenAI & Agents" color="purple" />
+                      <TopicBadge icon={Code} text="ML Engineering" color="blue" />
+                      <TopicBadge icon={Zap} text="Prompt Engineering" color="yellow" />
+                      <TopicBadge icon={GraduationCap} text="LLM Development" color="cyan" />
+                      <TopicBadge icon={Brain} text="Deep Learning" color="pink" />
+                      <TopicBadge icon={Briefcase} text="AI Product Management" color="orange" />
+                    </div>
+                  </div>
+
+                  {/* Quick stats */}
+                  <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <Users className="w-4 h-4 text-cyan-400" />
+                      <span className="text-sm">10+ Top Providers</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <Clock className="w-4 h-4 text-orange-400" />
+                      <span className="text-sm">500+ Hours Content</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <Award className="w-4 h-4 text-yellow-400" />
+                      <span className="text-sm">Industry Certified</span>
+                    </div>
+                  </div>
+                </div>
             </div>
 
             {/* Right: Priya's Circular Image */}
