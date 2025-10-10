@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RobustImage } from "@/components/ui/robust-image";
 import { NewsletterSignupModal } from "@/components/courses/NewsletterSignupModal";
 import { ResourceTypeBadge } from "@/components/courses/ResourceTypeBadge";
+import { SourcePlatformBadge } from "@/components/courses/SourcePlatformBadge";
 import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User, Briefcase } from 'lucide-react';
 import { useExternalLearningResources, getCoursesByCategory, useTrackCourseClick, type LearningResource } from '@/hooks/useExternalLearningResources';
 import { analytics } from "@/utils/analytics";
@@ -78,9 +79,11 @@ const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onS
           {course.title}
         </CardTitle>
         
-        <div className="flex items-center gap-2 text-sm text-gray-400">
-          <ProviderIcon className="h-4 w-4 text-cyan-400" />
-          <span>{course.author_name}</span>
+        <div className="mb-3">
+          <SourcePlatformBadge 
+            sourceType={course.source_type} 
+            authorName={course.author_name}
+          />
         </div>
       </CardHeader>
       
