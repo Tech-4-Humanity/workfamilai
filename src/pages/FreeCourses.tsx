@@ -72,15 +72,35 @@ const TopicBadge = ({
 
 const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onStartLearning: (course: LearningResource) => void }) => {
   const ProviderIcon = getIconForProvider(course.author_name);
+  const isInternalCourse = course.author_name?.toLowerCase().includes('workfamily') || 
+                           course.author_name?.toLowerCase().includes('augmented humanity') ||
+                           course.author_name?.toLowerCase().includes('university of technical humanity') ||
+                           course.tags?.includes('workfamily');
   
   return (
-    <Card className="group bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 relative overflow-hidden h-full flex flex-col">
+    <Card className={`
+      group relative overflow-hidden h-full flex flex-col transition-all duration-300
+      ${isInternalCourse
+        ? 'bg-gradient-to-br from-slate-800/80 via-slate-800/50 to-slate-900/80 border-2 border-cyan-500/40 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/20'
+        : 'bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10'
+      }
+      hover:-translate-y-1
+    `}>
       {/* Colored left border accent */}
       <div className={`absolute left-0 top-0 bottom-0 w-1 ${
         course.difficulty_level?.toLowerCase() === 'beginner' ? 'bg-green-500' :
         course.difficulty_level?.toLowerCase() === 'intermediate' ? 'bg-orange-500' :
         'bg-red-500'
       }`} />
+      
+      {/* INTERNAL COURSE BADGE */}
+      {isInternalCourse && (
+        <div className="absolute top-4 right-4 z-10">
+          <Badge className="bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-bold text-xs shadow-lg animate-pulse">
+            ⭐ BY US
+          </Badge>
+        </div>
+      )}
       
       <CardHeader>
         <div className="flex items-start justify-between mb-3">
@@ -180,16 +200,31 @@ const FreeCourses = () => {
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("newest");
+  const [showOnlyInternal, setShowOnlyInternal] = useState(false);
   const { mutate: trackClick } = useTrackCourseClick();
 
   const priyaSources = useMemo(() => getLeaderImageFallbacks('Priya Sharma'), []);
+
+  // Filter internal courses (WorkFamily.AI content)
+  const internalCourses = useMemo(() => {
+    return courses?.filter(c => 
+      c.author_name?.toLowerCase().includes('workfamily') || 
+      c.author_name?.toLowerCase().includes('augmented humanity') ||
+      c.author_name?.toLowerCase().includes('university of technical humanity') ||
+      c.tags?.includes('workfamily') ||
+      c.tags?.includes('official')
+    ) || [];
+  }, [courses]);
 
   // Filter and sort courses
   const filteredAndSortedCourses = useMemo(() => {
     if (!courses) return [];
     
-    // Filter by search term
-    let filtered = courses.filter(course => {
+    // First filter by internal content if toggle is on
+    let filtered = showOnlyInternal ? internalCourses : courses;
+    
+    // Then filter by search term
+    filtered = filtered.filter(course => {
       const searchLower = searchTerm.toLowerCase();
       return (
         course.title.toLowerCase().includes(searchLower) ||
@@ -211,7 +246,7 @@ const FreeCourses = () => {
           new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
         );
     }
-  }, [courses, searchTerm, sortBy]);
+  }, [courses, internalCourses, searchTerm, sortBy, showOnlyInternal]);
 
   const categorizedCourses = getCoursesByCategory(filteredAndSortedCourses);
 
@@ -274,7 +309,7 @@ const FreeCourses = () => {
             {/* Left: Content */}
             <div className="space-y-8">
               <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-2 text-sm font-bold tracking-wide">
-                ✨ 75+ FREE AI & PM COURSES
+                ✨ 106+ FREE AI COURSES + RESOURCES
               </Badge>
               
               <div className="space-y-2">
@@ -283,12 +318,14 @@ const FreeCourses = () => {
                     FREE AI
                   </span>
                   <span className="block bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                    FREE LEARNING
+                    + OUR COURSES
                   </span>
                 </h1>
                 
-                <p className="text-lg text-slate-400 font-medium tracking-wider uppercase pt-2">
-                  WORKFAMILY.AI
+                <p className="text-lg md:text-xl text-slate-400 font-medium tracking-wider uppercase pt-2 flex items-center justify-center gap-3">
+                  <span>From WorkFamily.AI</span>
+                  <span className="text-cyan-500">•</span>
+                  <span>+ Top Providers</span>
                 </p>
               </div>
               
@@ -320,8 +357,9 @@ const FreeCourses = () => {
                       Unlock Your AI Potential
                     </h2>
                     <p className="text-slate-300 leading-relaxed text-base md:text-lg">
-                      Start your AI transformation journey with our expert assessments. 
-                      Discover opportunities, calculate benefits, and build your strategic roadmap.
+                      Access our <span className="text-cyan-400 font-semibold">exclusive courses, tools, and resources</span> — 
+                      plus curated content from the world's best AI educators. 
+                      <span className="text-orange-400 font-semibold">Everything you need</span> to master AI transformation.
                     </p>
                   </div>
 
@@ -344,15 +382,19 @@ const FreeCourses = () => {
                   <div className="flex flex-wrap gap-4 pt-2">
                     <div className="flex items-center gap-2 text-slate-400">
                       <Users className="w-4 h-4 text-cyan-400" />
-                      <span className="text-sm">10+ Top Providers</span>
+                      <span className="text-sm">⭐ 31 WorkFamily.AI + 10+ Providers</span>
                     </div>
-          <div className="flex items-center gap-2 text-slate-400">
-            <Clock className="w-4 h-4 text-orange-400" />
-            <span className="text-sm">1,600+ Hours Content</span>
-          </div>
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <Clock className="w-4 h-4 text-orange-400" />
+                      <span className="text-sm">1,850+ Hours Content</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <GraduationCap className="w-4 h-4 text-purple-400" />
+                      <span className="text-sm">220+ Hours from Us</span>
+                    </div>
                     <div className="flex items-center gap-2 text-slate-400">
                       <Award className="w-4 h-4 text-yellow-400" />
-                      <span className="text-sm">Industry Certified</span>
+                      <span className="text-sm">15K+ Template Downloads</span>
                     </div>
                   </div>
                 </div>
@@ -382,7 +424,7 @@ const FreeCourses = () => {
                 <div className="absolute bottom-8 right-8 bg-gradient-to-r from-slate-800 to-slate-900 border-2 border-cyan-400 rounded-full px-6 py-3 shadow-xl shadow-cyan-500/30">
                   <div className="flex items-center gap-2">
                     <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white font-bold text-lg">75+ Courses</span>
+                    <span className="text-white font-bold text-lg">106+ Courses</span>
                   </div>
                 </div>
               </div>
@@ -415,6 +457,76 @@ const FreeCourses = () => {
 
         {!isLoading && !error && (
           <>
+            {/* Featured WorkFamily.AI Content */}
+            {internalCourses.length > 0 && (
+              <div className="mb-12 relative">
+                {/* Gradient background with glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 rounded-2xl blur-xl" />
+                
+                <div className="relative bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-900/90 rounded-2xl border-2 border-cyan-500/30 p-8 backdrop-blur-sm">
+                  {/* Header */}
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+                    <div className="flex items-center gap-3">
+                      <Badge className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 text-sm font-bold animate-pulse">
+                        ⭐ FROM WORKFAMILY.AI
+                      </Badge>
+                      <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-cyan-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
+                        Our Official Courses
+                      </h2>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white font-semibold shadow-lg shadow-cyan-500/20"
+                        onClick={() => window.open('https://augmentedhumanity.coach/university', '_blank')}
+                      >
+                        Visit University →
+                      </Button>
+                      <Button 
+                        size="lg" 
+                        variant="outline"
+                        className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+                        onClick={() => window.open('https://augmentedhumanity.coach/resources', '_blank')}
+                      >
+                        All Resources →
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <p className="text-slate-300 text-lg mb-8 max-w-4xl">
+                    Exclusive courses, resources, and tools designed by our AI Family experts. Learn from industry-leading content in augmented humanity, AI product management, and modern business leadership.
+                  </p>
+
+                  {/* Course Grid - Show top 6 */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {internalCourses.slice(0, 6).map(course => (
+                      <CourseCard 
+                        key={course.id} 
+                        course={course} 
+                        onStartLearning={handleStartLearning} 
+                      />
+                    ))}
+                  </div>
+                  
+                  {internalCourses.length > 6 && (
+                    <div className="mt-6 text-center">
+                      <Button 
+                        variant="outline" 
+                        className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+                        onClick={() => {
+                          const tabsTrigger = document.querySelector('[value="workfamily"]') as HTMLElement;
+                          tabsTrigger?.click();
+                        }}
+                      >
+                        View All {internalCourses.length} WorkFamily.AI Courses →
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* Search and Sort Bar */}
             <div className="mb-8 bg-slate-800/50 border border-slate-700 rounded-lg p-4">
               <div className="flex flex-col md:flex-row gap-4">
@@ -428,6 +540,19 @@ const FreeCourses = () => {
                     className="pl-10 bg-slate-900/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-cyan-500"
                   />
                 </div>
+                
+                {/* WorkFamily.AI Filter Toggle */}
+                <Button
+                  variant={showOnlyInternal ? "default" : "outline"}
+                  onClick={() => setShowOnlyInternal(!showOnlyInternal)}
+                  className={showOnlyInternal 
+                    ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold hover:from-cyan-600 hover:to-purple-600"
+                    : "border-slate-700 text-slate-300 hover:bg-slate-800"
+                  }
+                >
+                  ⭐ WorkFamily.AI Only
+                </Button>
+                
                 <div className="w-full md:w-48">
                   <Select value={sortBy} onValueChange={setSortBy}>
                     <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white">
@@ -459,29 +584,35 @@ const FreeCourses = () => {
               )}
             </div>
 
-            <Tabs defaultValue="foundational" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8 bg-slate-800/50 border border-slate-700">
+            <Tabs defaultValue="workfamily" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 mb-8 bg-slate-800/50 border border-slate-700">
+                <TabsTrigger 
+                  value="workfamily" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500 data-[state=active]:text-white text-xs sm:text-sm"
+                >
+                  ⭐ Our Courses ({internalCourses.length})
+                </TabsTrigger>
                 <TabsTrigger 
                   value="foundational" 
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white text-xs sm:text-sm"
                 >
                   Getting Started
                 </TabsTrigger>
                 <TabsTrigger 
                   value="intermediate" 
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-xs sm:text-sm"
                 >
                   Build & Deploy
                 </TabsTrigger>
                 <TabsTrigger 
                   value="advanced" 
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white text-xs sm:text-sm"
                 >
                   Advanced Topics
                 </TabsTrigger>
                 <TabsTrigger 
                   value="aiPm" 
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white flex items-center gap-1"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white flex items-center gap-1 text-xs sm:text-sm"
                 >
                   <Briefcase className="w-4 h-4" />
                   AI PM
@@ -489,11 +620,53 @@ const FreeCourses = () => {
                 </TabsTrigger>
                 <TabsTrigger 
                   value="collections" 
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white text-xs sm:text-sm"
                 >
                   Collections
                 </TabsTrigger>
               </TabsList>
+
+              {/* NEW: WorkFamily.AI Tab */}
+              <TabsContent value="workfamily" className="mt-6">
+                <div className="space-y-6">
+                  <div className="text-center space-y-3 mb-8">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                      Official WorkFamily.AI Learning Path
+                    </h3>
+                    <p className="text-slate-300 max-w-2xl mx-auto">
+                      Courses, resources, and tools created by the Augmented Humanity Coach team. 
+                      From fundamentals to advanced implementation, build your AI skills with expert guidance.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                      <Badge className="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        {internalCourses.length} Resources
+                      </Badge>
+                      <Badge className="bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                        220+ Hours
+                      </Badge>
+                      <Badge className="bg-orange-500/20 text-orange-300 border border-orange-500/30">
+                        15K+ Downloads
+                      </Badge>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {internalCourses.map(course => (
+                      <CourseCard 
+                        key={course.id} 
+                        course={course} 
+                        onStartLearning={handleStartLearning} 
+                      />
+                    ))}
+                  </div>
+                  
+                  {internalCourses.length === 0 && (
+                    <div className="text-center text-slate-400 py-12">
+                      Loading WorkFamily.AI courses...
+                    </div>
+                  )}
+                </div>
+              </TabsContent>
 
               <TabsContent value="foundational" className="space-y-6">
                 <div className="text-center mb-6">
