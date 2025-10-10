@@ -51,7 +51,7 @@ verify_jwt = false
 
 [functions.voice-to-text]
 verify_jwt = false
-# Consider enabling JWT or adding rate limiting
+# Rate limited: 5 requests/minute per IP to prevent OpenAI API abuse
 
 [functions.create-donation]
 verify_jwt = false

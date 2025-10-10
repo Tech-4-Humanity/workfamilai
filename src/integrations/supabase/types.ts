@@ -18709,6 +18709,99 @@ export type Database = {
         }
         Relationships: []
       }
+      partner_applications: {
+        Row: {
+          abn: string
+          application_number: string | null
+          capabilities: string
+          certifications: string | null
+          clearance_level: string | null
+          collaboration_model: string | null
+          company_name: string
+          company_size: string
+          contact_name: string
+          contact_title: string
+          created_at: string | null
+          email: string
+          gov_experience: string | null
+          government_panels: string[] | null
+          id: string
+          industry_sector: string
+          location: string
+          notes: string | null
+          partnership_type: string
+          phone: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          security_clearances: string[] | null
+          service_offerings: string[]
+          status: string | null
+          updated_at: string | null
+          website: string
+          why_partner: string
+        }
+        Insert: {
+          abn: string
+          application_number?: string | null
+          capabilities: string
+          certifications?: string | null
+          clearance_level?: string | null
+          collaboration_model?: string | null
+          company_name: string
+          company_size: string
+          contact_name: string
+          contact_title: string
+          created_at?: string | null
+          email: string
+          gov_experience?: string | null
+          government_panels?: string[] | null
+          id?: string
+          industry_sector: string
+          location: string
+          notes?: string | null
+          partnership_type: string
+          phone: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          security_clearances?: string[] | null
+          service_offerings: string[]
+          status?: string | null
+          updated_at?: string | null
+          website: string
+          why_partner: string
+        }
+        Update: {
+          abn?: string
+          application_number?: string | null
+          capabilities?: string
+          certifications?: string | null
+          clearance_level?: string | null
+          collaboration_model?: string | null
+          company_name?: string
+          company_size?: string
+          contact_name?: string
+          contact_title?: string
+          created_at?: string | null
+          email?: string
+          gov_experience?: string | null
+          government_panels?: string[] | null
+          id?: string
+          industry_sector?: string
+          location?: string
+          notes?: string | null
+          partnership_type?: string
+          phone?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          security_clearances?: string[] | null
+          service_offerings?: string[]
+          status?: string | null
+          updated_at?: string | null
+          website?: string
+          why_partner?: string
+        }
+        Relationships: []
+      }
       partner_bundles: {
         Row: {
           bundle_id: string
@@ -33211,6 +33304,10 @@ export type Database = {
       dispatch_snapshot: {
         Args: { scope: string }
         Returns: undefined
+      }
+      generate_application_number: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       generate_partner_slug: {
         Args: { name: string }

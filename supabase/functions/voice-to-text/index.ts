@@ -7,6 +7,29 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
+// Rate limiting: 5 requests per minute per IP
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 5;
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetTime: number } {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    const resetTime = now + RATE_LIMIT_WINDOW;
+    rateLimitMap.set(ip, { count: 1, resetTime });
+    return { allowed: true, remaining: RATE_LIMIT - 1, resetTime };
+  }
+
+  if (record.count >= RATE_LIMIT) {
+    return { allowed: false, remaining: 0, resetTime: record.resetTime };
+  }
+
+  record.count++;
+  return { allowed: true, remaining: RATE_LIMIT - record.count, resetTime: record.resetTime };
+}
+
 function processBase64Chunks(base64String: string, chunkSize = 32768) {
   const chunks: Uint8Array[] = [];
   let position = 0;
@@ -41,7 +64,35 @@ serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  // Rate limiting check
+  const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+                   req.headers.get('x-real-ip') || 
+                   'unknown';
+  
+  const rateLimit = checkRateLimit(clientIp);
+  
+  if (!rateLimit.allowed) {
+    console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+    return new Response(
+      JSON.stringify({ 
+        error: 'Rate limit exceeded. Please try again later.',
+        resetTime: new Date(rateLimit.resetTime).toISOString()
+      }),
+      {
+        status: 429,
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'X-RateLimit-Limit': RATE_LIMIT.toString(),
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString()
+        },
+      }
+    );
+  }
+
   try {
+    console.log(`Voice-to-text request from IP: ${clientIp}, Remaining: ${rateLimit.remaining}`);
     const body = await req.json()
     
     // Input validation
@@ -92,9 +143,19 @@ serve(async (req) => {
 
     const result = await response.json()
 
+    console.log(`Transcription successful for IP: ${clientIp}, Length: ${result.text?.length || 0} chars`);
+
     return new Response(
       JSON.stringify({ text: result.text }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { 
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'X-RateLimit-Limit': RATE_LIMIT.toString(),
+          'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString()
+        } 
+      }
     )
 
   } catch (error) {
