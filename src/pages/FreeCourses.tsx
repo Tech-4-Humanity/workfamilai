@@ -254,8 +254,8 @@ const FreeCourses = () => {
             </div>
 
             {/* Right: Priya's Circular Image */}
-            <div className="relative lg:flex hidden justify-center items-center">
-              <div className="relative w-[500px] h-[500px]">
+            <div className="relative flex justify-center items-center">
+              <div className="relative w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[500px] lg:h-[500px]">
                 {/* Outer glow ring */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/30 to-orange-500/30 blur-2xl"></div>
                 

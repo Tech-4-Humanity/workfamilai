@@ -81,7 +81,8 @@ export const getLeaderImageFallbacks = (leaderName: string): string[] => {
     ],
     'Priya Sharma': [
       '/leaders/priya-sharma.png',
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop&crop=face&auto=format&q=90'
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop&crop=face&auto=format&q=90',
+      '/placeholder.svg'
     ],
     'Theo Williams': [
       '/leaders/theo-williams.png',
