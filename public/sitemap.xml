@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Authentication -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/auth</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Work Packages -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/work-packages</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Free Courses -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/free-courses</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contact -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/contact</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Site Audit -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/site-audit</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Donations -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/donations</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Organizational Intelligence -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/organizational-intelligence</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Complete Structure -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/complete-structure</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Division Leader: Aisha Al-Farsi (Chief Diplomatic Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/aisha-al-farsi</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Amara Chen (Chief Technology Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/amara-chen</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: David Okafor (Chief Operations Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/david-okafor</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Elena Vasquez (Chief Legal Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/elena-vasquez</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Marcus Bennett (Chief Strategy Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/marcus-bennett</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Miguel Santos (Chief Marketing Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/miguel-santos</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Priya Sharma (Chief Human Resources Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/priya-sharma</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Sofia Rodriguez (Chief Revenue Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/sofia-rodriguez</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Theo Williams (Chief Financial Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/theo-williams</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Trojan Oz (Chief Executive Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/trojan-oz</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Division Leader: Yuna Kim (Chief Customer Officer) -->
+  <url>
+    <loc>https://lovable.dev/projects/731a24a4-05b2-4e39-a768-5fa7406a92f8/department/yuna-kim</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
