@@ -6,12 +6,14 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RobustImage } from '@/components/ui/robust-image';
 import { useWorkPackages } from '@/hooks/useWorkPackages';
 import { useWorkPackageQuote } from '@/hooks/useWorkPackageQuote';
+import { getLeaderImageFallbacks } from '@/utils/supabase-images';
 import { 
   Brain, Users, Lightbulb, Shield, Sparkles, Target, TrendingUp, Globe,
   Search, Clock, Zap, CheckCircle2, ExternalLink, ArrowUpDown, Briefcase,
-  GraduationCap, Network, Lock, Rocket
+  GraduationCap, Network, Lock, Rocket, Star, Check
 } from 'lucide-react';
 import { analytics } from '@/utils/analytics';
 
@@ -55,6 +57,8 @@ const WorkPackages = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("category");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  
+  const sofiaSources = getLeaderImageFallbacks('Sofia Rodriguez');
 
   // Get unique categories
   const categories = useMemo(() => {
@@ -145,51 +149,127 @@ const WorkPackages = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
         
         <div className="relative container mx-auto px-4 py-20">
-          {/* Stats Badge */}
-          <div className="flex flex-wrap gap-3 mb-8 justify-center">
-            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 text-sm px-4 py-2">
-              <Sparkles className="w-4 h-4 mr-2" />
-              {workPackages?.length || 25}+ Professional Services
-            </Badge>
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-sm px-4 py-2">
-              <Target className="w-4 h-4 mr-2" />
-              {categories.length} Service Categories
-            </Badge>
-            <Badge className="bg-green-500/20 text-green-300 border-green-500/30 text-sm px-4 py-2">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              Proven ROI
-            </Badge>
-            <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 text-sm px-4 py-2">
-              <Globe className="w-4 h-4 mr-2" />
-              Global Delivery
-            </Badge>
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+            {/* Left Column: Content */}
+            <div className="space-y-8">
+              {/* Badge */}
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 text-sm px-4 py-2">
+                ✨ {workPackages?.length || 25}+ PROFESSIONAL AI SERVICES
+              </Badge>
+              
+              {/* Title */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
+                <span className="block text-cyan-400">AI TRANSFORMATION</span>
+                <span className="block bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
+                  SERVICES
+                </span>
+              </h1>
+              
+              {/* Description */}
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+                Professional AI implementation, training, and consulting services designed to amplify 
+                your organization's capabilities while preserving cultural wisdom and authentic leadership.
+              </p>
+              
+              {/* Checkmarks */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 text-slate-200">
+                  <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-base">Strategy to Execution Services</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-200">
+                  <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-base">Expert-Led Implementation</span>
+                </div>
+                <div className="flex items-center gap-3 text-slate-200">
+                  <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-base">Industry-Recognized Expertise</span>
+                </div>
+              </div>
+              
+              {/* Topic badges grid */}
+              <div className="grid grid-cols-2 gap-3">
+                <TopicBadge icon={Brain} text="AI Strategy" color="purple" />
+                <TopicBadge icon={Users} text="Training & Development" color="blue" />
+                <TopicBadge icon={Lightbulb} text="Innovation Labs" color="yellow" />
+                <TopicBadge icon={Shield} text="Security & Governance" color="cyan" />
+              </div>
+              
+              {/* Stats */}
+              <div className="flex flex-wrap gap-6 text-sm text-slate-300">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <span>{workPackages?.length || 25}+ Service Packages</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Target className="w-4 h-4 text-orange-400" />
+                  <span>{categories.length} Categories</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span>Proven ROI</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-purple-400" />
+                  <span>Global Delivery</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Sofia's Image */}
+            <div className="relative flex justify-center items-center lg:justify-end">
+              <div className="relative w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px]">
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/30 to-orange-500/30 blur-2xl"></div>
+                
+                {/* Image container - Fully circular */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border-8 border-slate-700/50 shadow-2xl shadow-cyan-500/20">
+                  <RobustImage
+                    src={sofiaSources}
+                    alt="Sofia Rodriguez - Chief Sales Officer"
+                    className="w-full h-full object-cover"
+                    fallback={
+                      <div className="w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                        <Briefcase className="w-24 h-24 text-slate-400" />
+                      </div>
+                    }
+                  />
+                </div>
+                
+                {/* Floating badge */}
+                <div className="absolute bottom-8 right-0 bg-gradient-to-r from-slate-800 to-slate-900 border-2 border-cyan-400 rounded-full px-5 py-3 shadow-lg flex items-center gap-2">
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <span className="text-white font-bold text-base">{workPackages?.length || 25}+ Services</span>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          {/* Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
-              <span className="block text-cyan-400 mb-2">AI TRANSFORMATION</span>
-              <span className="block bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                SERVICES
-              </span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Professional AI implementation, training, and consulting services designed to amplify 
-              your organization's capabilities while preserving cultural wisdom and authentic leadership.
-            </p>
-          </div>
-          
-          {/* Topic badges grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
-            <TopicBadge icon={Brain} text="AI Strategy" color="purple" />
-            <TopicBadge icon={GraduationCap} text="Training & Development" color="blue" />
-            <TopicBadge icon={Lightbulb} text="Innovation Labs" color="yellow" />
-            <TopicBadge icon={Shield} text="Security & Governance" color="cyan" />
-            <TopicBadge icon={Network} text="Integration Services" color="pink" />
-            <TopicBadge icon={Rocket} text="Rapid Deployment" color="orange" />
-            <TopicBadge icon={Users} text="Change Management" color="blue" />
-            <TopicBadge icon={Lock} text="Compliance Ready" color="purple" />
+        </div>
+      </div>
+
+      {/* Sofia Introduction Section */}
+      <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 border-b border-slate-700 py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-cyan-400/30">
+              <RobustImage 
+                src={sofiaSources} 
+                alt="Sofia Rodriguez"
+                className="w-full h-full object-cover"
+                fallback={
+                  <div className="w-full h-full bg-slate-700 flex items-center justify-center">
+                    <Briefcase className="w-6 h-6 text-slate-400" />
+                  </div>
+                }
+              />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-cyan-400">Meet Sofia Rodriguez</h3>
+              <p className="text-slate-300">Chief Sales Officer</p>
+              <p className="text-sm text-slate-400 italic mt-2">
+                "Success comes from building genuine relationships and delivering real value"
+              </p>
+            </div>
           </div>
         </div>
       </div>
