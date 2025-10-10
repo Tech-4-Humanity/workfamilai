@@ -23,13 +23,14 @@ export const RobustImage: React.FC<RobustImageProps> = ({
   const [allFailed, setAllFailed] = useState(false);
   
   const srcArray = Array.isArray(src) ? src : [src];
+  const srcKey = Array.isArray(src) ? src.join('|') : src;
   const currentSrc = srcArray[currentSrcIndex];
 
   useEffect(() => {
     setCurrentSrcIndex(0);
     setImageLoaded(false);
     setAllFailed(false);
-  }, [src]);
+  }, [srcKey]);
 
   const handleImageLoad = () => {
     
@@ -65,6 +66,9 @@ export const RobustImage: React.FC<RobustImageProps> = ({
       <img
         src={currentSrc}
         alt={alt}
+        loading="eager"
+        decoding="async"
+        crossOrigin="anonymous"
         className={`${className} transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
         onLoad={handleImageLoad}
         onError={handleImageError}

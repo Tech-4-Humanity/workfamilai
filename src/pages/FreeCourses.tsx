@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { SimpleFooter } from '@/components/ui/simple-footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Us
 import { useExternalLearningResources, getCoursesByCategory, useTrackCourseClick, type LearningResource } from '@/hooks/useExternalLearningResources';
 import { analytics } from "@/utils/analytics";
 import { Link } from "react-router-dom";
+import { getLeaderImageFallbacks } from "@/utils/supabase-images";
 
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty.toLowerCase()) {
@@ -142,6 +143,8 @@ const FreeCourses = () => {
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const { mutate: trackClick } = useTrackCourseClick();
 
+  const priyaSources = useMemo(() => getLeaderImageFallbacks('Priya Sharma'), []);
+
   // Check if user already subscribed recently
   const hasRecentSubscription = () => {
     const subscribedAt = localStorage.getItem("newsletter_subscribed_at");
@@ -259,10 +262,7 @@ const FreeCourses = () => {
                 {/* Image container - Fully circular */}
                 <div className="relative w-full h-full rounded-full overflow-hidden border-8 border-slate-700/50 shadow-2xl shadow-cyan-500/20">
                   <RobustImage
-                    src={[
-                      '/leaders/priya-sharma.png',
-                      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop'
-                    ]}
+                    src={priyaSources}
                     alt="Priya Sharma - Chief People & Learning Officer"
                     className="w-full h-full object-cover"
                     fallback={
