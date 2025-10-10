@@ -175,8 +175,8 @@ const FreeCourses = () => {
     });
 
     // Open course in new tab
-    if (course.resource_url) {
-      window.open(course.resource_url, "_blank", "noopener,noreferrer");
+    if (course.source_url) {
+      window.open(course.source_url, "_blank", "noopener,noreferrer");
     }
   };
 

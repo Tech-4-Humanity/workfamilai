@@ -7,7 +7,7 @@ export interface LearningResource {
   author_name: string;
   author_url: string;
   description: string;
-  resource_url?: string | null;
+  source_url?: string | null;
   category: string;
   difficulty_level: string;
   estimated_hours: number;
