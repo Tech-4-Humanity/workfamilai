@@ -346,10 +346,10 @@ const FreeCourses = () => {
                       <Users className="w-4 h-4 text-cyan-400" />
                       <span className="text-sm">10+ Top Providers</span>
                     </div>
-                    <div className="flex items-center gap-2 text-slate-400">
-                      <Clock className="w-4 h-4 text-orange-400" />
-                      <span className="text-sm">500+ Hours Content</span>
-                    </div>
+          <div className="flex items-center gap-2 text-slate-400">
+            <Clock className="w-4 h-4 text-orange-400" />
+            <span className="text-sm">1,600+ Hours Content</span>
+          </div>
                     <div className="flex items-center gap-2 text-slate-400">
                       <Award className="w-4 h-4 text-yellow-400" />
                       <span className="text-sm">Industry Certified</span>
