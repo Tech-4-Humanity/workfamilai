@@ -4,7 +4,7 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Home, Users, Building2, GraduationCap, ExternalLink, Package } from "lucide-react";
 
 const navigationItems = [
-  { href: "/", label: "Home", icon: Home },
+  { href: "/", label: "WorkFamilyAI" },
   { href: "/free-courses", label: "Free Courses", icon: GraduationCap },
   { href: "https://free-agents.augmentedhumanity.coach/", label: "Free Agents", icon: Users, external: true },
   { href: "/work-packages", label: "Services", icon: Package },
@@ -42,7 +42,7 @@ export function NavigationHeader() {
                     asChild
                   >
                     <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <Icon className="h-4 w-4" />
+                      {Icon && <Icon className="h-4 w-4" />}
                       <span className="hidden sm:inline">{item.label}</span>
                       <ExternalLink className="h-3 w-3 opacity-60" />
                     </a>
@@ -58,8 +58,8 @@ export function NavigationHeader() {
                   asChild
                 >
                   <Link to={item.href} className="flex items-center gap-2">
-                    <Icon className="h-4 w-4" />
-                    <span className="hidden sm:inline">{item.label}</span>
+                    {Icon && <Icon className="h-4 w-4" />}
+                    <span className={Icon ? "hidden sm:inline" : ""}>{item.label}</span>
                   </Link>
                 </Button>
               );
