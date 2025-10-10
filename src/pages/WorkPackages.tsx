@@ -1,86 +1,426 @@
-import React from 'react';
-import { Footer } from '@/components/ui/footer';
-import { AugmentedHumanityHero } from '@/components/augmented-humanity/AugmentedHumanityHero';
-import { WorkPackageShowcase } from '@/components/augmented-humanity/WorkPackageShowcase';
-import { ErrorBoundary } from '@/components/ui/error-boundary';
-import { AugmentedHumanityMission } from '@/components/augmented-humanity/AugmentedHumanityMission';
+import React, { useState, useMemo } from 'react';
+import { SimpleFooter } from '@/components/ui/simple-footer';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useWorkPackages } from '@/hooks/useWorkPackages';
+import { useWorkPackageQuote } from '@/hooks/useWorkPackageQuote';
+import { 
+  Brain, Users, Lightbulb, Shield, Sparkles, Target, TrendingUp, Globe,
+  Search, Clock, Zap, CheckCircle2, ExternalLink, ArrowUpDown, Briefcase,
+  GraduationCap, Network, Lock, Rocket
+} from 'lucide-react';
+import { analytics } from '@/utils/analytics';
 
-const WorkPackages = () => {
-  const handleExploreCapabilities = () => {
-    const element = document.getElementById('work-packages');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleViewWorkPackages = () => {
-    const element = document.getElementById('work-packages');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+const TopicBadge = ({ 
+  icon: Icon, 
+  text, 
+  color 
+}: { 
+  icon: any; 
+  text: string; 
+  color: 'purple' | 'blue' | 'yellow' | 'cyan' | 'pink' | 'orange';
+}) => {
+  const colorClasses = {
+    purple: 'bg-purple-500/10 border-purple-500/30 text-purple-300',
+    blue: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
+    yellow: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-300',
+    cyan: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300',
+    pink: 'bg-pink-500/10 border-pink-500/30 text-pink-300',
+    orange: 'bg-orange-500/10 border-orange-500/30 text-orange-300',
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/5 to-accent/5 flex flex-col">
-      
-      {/* Hero Section */}
-      <div className="fade-in-up">
-        <AugmentedHumanityHero 
-          onExploreCapabilities={handleExploreCapabilities}
-          onViewWorkPackages={handleViewWorkPackages}
-        />
-      </div>
+    <div className={`
+      ${colorClasses[color]}
+      border rounded-lg px-3 py-2
+      flex items-center gap-2
+      transition-all duration-300
+      hover:scale-105 hover:shadow-lg
+      hover:bg-opacity-20
+    `}>
+      <Icon className="w-4 h-4 flex-shrink-0" />
+      <span className="text-xs md:text-sm font-medium">{text}</span>
+    </div>
+  );
+};
 
-      {/* Mission Statement */}
-      <div className="fade-in-up animate-delay-200">
-        <AugmentedHumanityMission />
-      </div>
+const WorkPackages = () => {
+  const { data: workPackages, isLoading } = useWorkPackages();
+  const { submitQuote, isSubmitting } = useWorkPackageQuote();
+  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("category");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-      {/* Work Packages */}
-      <div id="work-packages" className="fade-in-up animate-delay-300">
-        <ErrorBoundary onError={(error) => console.error('WorkPackageShowcase error:', error)}>
-          <WorkPackageShowcase />
-        </ErrorBoundary>
-      </div>
+  // Get unique categories
+  const categories = useMemo(() => {
+    if (!workPackages) return [];
+    const uniqueCategories = [...new Set(workPackages.map(pkg => pkg.category))];
+    return uniqueCategories;
+  }, [workPackages]);
 
-      {/* Additional Content Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 fade-in-up animate-delay-400">
+  // Filter and sort services
+  const filteredServices = useMemo(() => {
+    if (!workPackages) return [];
+    let filtered = [...workPackages];
+    
+    // Filter by search
+    if (searchTerm) {
+      filtered = filtered.filter(pkg =>
+        pkg.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pkg.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pkg.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pkg.customer_outcome?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(pkg => pkg.category === selectedCategory);
+    }
+    
+    // Sort
+    switch (sortBy) {
+      case "duration":
+        return filtered.sort((a, b) => 
+          (a.delivery_timeframe_days || 999) - (b.delivery_timeframe_days || 999)
+        );
+      case "price":
+        return filtered.sort((a, b) => 
+          (a.base_price || 0) - (b.base_price || 0)
+        );
+      case "category":
+      default:
+        return filtered.sort((a, b) => 
+          a.category.localeCompare(b.category) || a.name.localeCompare(b.name)
+        );
+    }
+  }, [workPackages, searchTerm, selectedCategory, sortBy]);
+
+  // Featured/popular services (top 6 by tier or price)
+  const featuredServices = useMemo(() => {
+    if (!workPackages) return [];
+    return [...workPackages]
+      .filter(pkg => pkg.tier === 'Premium' || pkg.tier === 'Enterprise')
+      .slice(0, 6);
+  }, [workPackages]);
+
+  const handleRequestQuote = (pkg: any) => {
+    analytics.track('consultation_requested', {
+      service_name: pkg.name,
+      category: pkg.category,
+      tier: pkg.tier,
+    });
+    
+    // Open quote form (implement modal later)
+    console.log('Request quote for:', pkg.name);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Ready to Amplify Your Organization's Potential?
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            These work packages represent years of research into human-AI collaboration. 
-            Each solution is designed to preserve what makes your organization uniquely human 
-            while expanding capabilities through conscious AI partnership.
-          </p>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="p-6 bg-background/60 backdrop-blur-sm rounded-lg border border-border/50">
-                <h3 className="font-semibold text-foreground mb-2">Proven Results</h3>
-                <p className="text-sm text-muted-foreground">
-                  Implemented across diverse organizations with measurable improvements in capability and cultural preservation.
-                </p>
-              </div>
-              <div className="p-6 bg-background/60 backdrop-blur-sm rounded-lg border border-border/50">
-                <h3 className="font-semibold text-foreground mb-2">Cultural Sensitivity</h3>
-                <p className="text-sm text-muted-foreground">
-                  Every work package honors cultural diversity and adapts to your organization's unique context.
-                </p>
-              </div>
-              <div className="p-6 bg-background/60 backdrop-blur-sm rounded-lg border border-border/50">
-                <h3 className="font-semibold text-foreground mb-2">Human-Centered</h3>
-                <p className="text-sm text-muted-foreground">
-                  AI enhancement that amplifies human judgment rather than replacing human decision-making.
-                </p>
-              </div>
-            </div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
+          <p className="text-slate-400">Loading AI transformation services...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex flex-col">
+      
+      {/* Dark Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900/40 to-slate-950 border-b border-slate-800">
+        {/* Decorative glowing orbs */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl" />
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+        
+        <div className="relative container mx-auto px-4 py-20">
+          {/* Stats Badge */}
+          <div className="flex flex-wrap gap-3 mb-8 justify-center">
+            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 text-sm px-4 py-2">
+              <Sparkles className="w-4 h-4 mr-2" />
+              {workPackages?.length || 25}+ Professional Services
+            </Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 text-sm px-4 py-2">
+              <Target className="w-4 h-4 mr-2" />
+              {categories.length} Service Categories
+            </Badge>
+            <Badge className="bg-green-500/20 text-green-300 border-green-500/30 text-sm px-4 py-2">
+              <TrendingUp className="w-4 h-4 mr-2" />
+              Proven ROI
+            </Badge>
+            <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 text-sm px-4 py-2">
+              <Globe className="w-4 h-4 mr-2" />
+              Global Delivery
+            </Badge>
+          </div>
+          
+          {/* Title */}
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6">
+              <span className="block text-cyan-400 mb-2">AI TRANSFORMATION</span>
+              <span className="block bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
+                SERVICES
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Professional AI implementation, training, and consulting services designed to amplify 
+              your organization's capabilities while preserving cultural wisdom and authentic leadership.
+            </p>
+          </div>
+          
+          {/* Topic badges grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+            <TopicBadge icon={Brain} text="AI Strategy" color="purple" />
+            <TopicBadge icon={GraduationCap} text="Training & Development" color="blue" />
+            <TopicBadge icon={Lightbulb} text="Innovation Labs" color="yellow" />
+            <TopicBadge icon={Shield} text="Security & Governance" color="cyan" />
+            <TopicBadge icon={Network} text="Integration Services" color="pink" />
+            <TopicBadge icon={Rocket} text="Rapid Deployment" color="orange" />
+            <TopicBadge icon={Users} text="Change Management" color="blue" />
+            <TopicBadge icon={Lock} text="Compliance Ready" color="purple" />
           </div>
         </div>
       </div>
 
-      <Footer />
+      {/* Main Content */}
+      <div className="flex-1">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          
+          {/* Featured Services Section */}
+          {featuredServices.length > 0 && (
+            <div className="mb-12 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-orange-500/10 rounded-2xl blur-xl" />
+              
+              <div className="relative bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-900/90 rounded-2xl border-2 border-cyan-500/30 p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Badge className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 font-bold text-sm">
+                    ⭐ MOST POPULAR
+                  </Badge>
+                  <h2 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                    Top Requested Services
+                  </h2>
+                </div>
+                
+                <p className="text-slate-300 text-base md:text-lg mb-8">
+                  Our most sought-after AI transformation services, proven across diverse organizations.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {featuredServices.map(service => (
+                    <ServiceCard 
+                      key={service.id} 
+                      pkg={service} 
+                      onRequestQuote={handleRequestQuote}
+                      featured
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Search & Filter Bar */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Search services by name, category, or outcome..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-slate-800/50 border-slate-700 text-slate-200 placeholder:text-slate-500 focus:border-cyan-500"
+              />
+            </div>
+            
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger className="w-full md:w-[200px] bg-slate-800/50 border-slate-700 text-slate-200">
+                <ArrowUpDown className="w-4 h-4 mr-2" />
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectItem value="category">By Category</SelectItem>
+                <SelectItem value="duration">By Duration</SelectItem>
+                <SelectItem value="price">By Price</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Tabs Navigation */}
+          <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 bg-slate-800/50 border border-slate-700 p-1 mb-8">
+              <TabsTrigger 
+                value="all" 
+                className="data-[state=active]:bg-cyan-500 data-[state=active]:text-white"
+              >
+                All ({workPackages?.length || 0})
+              </TabsTrigger>
+              {categories.slice(0, 7).map(category => (
+                <TabsTrigger 
+                  key={category}
+                  value={category}
+                  className="data-[state=active]:bg-cyan-500 data-[state=active]:text-white text-xs md:text-sm"
+                >
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            <TabsContent value={selectedCategory} className="mt-0">
+              {filteredServices.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-8 max-w-md mx-auto">
+                    <Briefcase className="w-12 h-12 text-slate-600 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-slate-300 mb-2">No services found</h3>
+                    <p className="text-slate-500">Try adjusting your search or filter criteria</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredServices.map(pkg => (
+                    <ServiceCard 
+                      key={pkg.id} 
+                      pkg={pkg} 
+                      onRequestQuote={handleRequestQuote}
+                    />
+                  ))}
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
+
+        </div>
+      </div>
+
+      <SimpleFooter />
     </div>
+  );
+};
+
+// Service Card Component
+const ServiceCard = ({ 
+  pkg, 
+  onRequestQuote, 
+  featured = false 
+}: { 
+  pkg: any; 
+  onRequestQuote: (pkg: any) => void;
+  featured?: boolean;
+}) => {
+  const getTierColor = (tier: string | null) => {
+    if (!tier) return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
+    switch (tier.toLowerCase()) {
+      case 'starter': return 'bg-green-500/20 text-green-400 border-green-500/30';
+      case 'professional': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+      case 'premium': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
+      case 'enterprise': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
+      default: return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
+    }
+  };
+
+  const benefits = pkg.stakeholder_benefits?.primary || [];
+  const displayBenefits = Array.isArray(benefits) ? benefits.slice(0, 3) : [];
+
+  return (
+    <Card className={`
+      group relative overflow-hidden h-full flex flex-col transition-all duration-300
+      ${featured
+        ? 'bg-gradient-to-br from-slate-800/80 via-slate-800/50 to-slate-900/80 border-2 border-cyan-500/40 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/20'
+        : 'bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10'
+      }
+      hover:-translate-y-1
+    `}>
+      {/* Colored left border accent */}
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-500 to-purple-500" />
+      
+      {/* Featured badge */}
+      {featured && (
+        <div className="absolute top-4 right-4 z-10">
+          <Badge className="bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 text-white font-bold text-xs shadow-lg animate-pulse">
+            ⭐ POPULAR
+          </Badge>
+        </div>
+      )}
+      
+      <CardHeader>
+        {/* Category & tier badges */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 font-semibold">
+            {pkg.category}
+          </Badge>
+          {pkg.tier && (
+            <Badge className={`${getTierColor(pkg.tier)} font-semibold border`}>
+              {pkg.tier}
+            </Badge>
+          )}
+        </div>
+        
+        {/* Title */}
+        <CardTitle className="text-lg md:text-xl text-white group-hover:text-cyan-400 transition-colors line-clamp-2 mb-2">
+          {pkg.name}
+        </CardTitle>
+        
+        {/* Subcategory */}
+        {pkg.subcategory && (
+          <p className="text-xs text-slate-400 mb-2">{pkg.subcategory}</p>
+        )}
+      </CardHeader>
+      
+      <CardContent className="flex-1 flex flex-col">
+        {/* Description */}
+        <p className="text-sm text-gray-300 mb-4 line-clamp-3">
+          {pkg.description || pkg.customer_outcome}
+        </p>
+        
+        {/* Key benefits with checkmarks */}
+        {displayBenefits.length > 0 && (
+          <div className="space-y-2 mb-4">
+            {displayBenefits.map((benefit: string, idx: number) => (
+              <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                <CheckCircle2 className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                <span className="line-clamp-2">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Timeline & AI level badges */}
+        <div className="flex flex-wrap gap-2 mb-4 mt-auto">
+          {pkg.delivery_timeframe_days && (
+            <Badge variant="outline" className="text-xs border-slate-600 bg-slate-700/50 text-slate-300">
+              <Clock className="h-3 w-3 mr-1" />
+              {pkg.delivery_timeframe_days} days
+            </Badge>
+          )}
+          {pkg.ai_leverage_level && (
+            <Badge variant="outline" className="text-xs border-slate-600 bg-slate-700/50 text-slate-300">
+              <Zap className="h-3 w-3 mr-1" />
+              {pkg.ai_leverage_level}
+            </Badge>
+          )}
+        </div>
+        
+        {/* CTA Button */}
+        <Button 
+          onClick={() => onRequestQuote(pkg)}
+          className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+        >
+          Request Consultation
+          <ExternalLink className="w-4 h-4 ml-2" />
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
