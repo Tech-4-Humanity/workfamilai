@@ -57,8 +57,8 @@ export const RobustImage: React.FC<RobustImageProps> = ({
   return (
     <>
       {!imageLoaded && !allFailed && (
-        <div className={`${className} animate-pulse bg-gray-200 flex items-center justify-center`}>
-          <div className="w-8 h-8 bg-white/30 rounded-full"></div>
+        <div className={`${className} animate-pulse bg-slate-800/50 flex items-center justify-center`}>
+          <div className="w-8 h-8 bg-slate-600/50 rounded-full"></div>
         </div>
       )}
       
