@@ -6,7 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RobustImage } from "@/components/ui/robust-image";
 import { NewsletterSignupModal } from "@/components/courses/NewsletterSignupModal";
-import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User } from 'lucide-react';
+import { ResourceTypeBadge } from "@/components/courses/ResourceTypeBadge";
+import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User, Briefcase } from 'lucide-react';
 import { useExternalLearningResources, getCoursesByCategory, useTrackCourseClick, type LearningResource } from '@/hooks/useExternalLearningResources';
 import { analytics } from "@/utils/analytics";
 import { Link } from "react-router-dom";
@@ -46,12 +47,18 @@ const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onS
       
       <CardHeader>
         <div className="flex items-start justify-between mb-3">
-          <Badge 
-            variant="secondary" 
-            className={`${getDifficultyColor(course.difficulty_level || 'beginner')} font-semibold border`}
-          >
-            {course.difficulty_level || 'Beginner'}
-          </Badge>
+          <div className="flex flex-wrap gap-2">
+            <Badge 
+              variant="secondary" 
+              className={`${getDifficultyColor(course.difficulty_level || 'beginner')} font-semibold border`}
+            >
+              {course.difficulty_level || 'Beginner'}
+            </Badge>
+            <ResourceTypeBadge 
+              resourceType={course.resource_type} 
+              isInteractive={course.is_interactive}
+            />
+          </div>
           <div className="flex items-center gap-2">
             {course.github_stars && (
               <Badge variant="outline" className="border-yellow-500/30 bg-yellow-500/10 text-yellow-400">
@@ -120,7 +127,7 @@ const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onS
           onClick={() => onStartLearning(course)}
           className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-cyan-500/20 transition-all"
         >
-          Start Learning
+          {course.resource_type === 'tool' ? 'Try Now' : course.resource_type === 'template' ? 'Get Template' : 'Start Learning'}
           <ExternalLink className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>
@@ -194,7 +201,7 @@ const FreeCourses = () => {
             {/* Left: Content */}
             <div className="space-y-6">
               <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-1.5 text-sm font-semibold">
-                20+ FREE AI COURSES
+                50+ FREE AI & PM COURSES
               </Badge>
               
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
@@ -273,8 +280,8 @@ const FreeCourses = () => {
                 {/* Floating badge */}
                 <div className="absolute -bottom-4 -right-4 bg-slate-800 border-2 border-cyan-500 rounded-full px-6 py-3 shadow-xl">
                   <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white font-bold">20+ Courses</span>
+                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    <span className="text-white font-bold">50+ Courses</span>
                   </div>
                 </div>
               </div>
@@ -307,7 +314,7 @@ const FreeCourses = () => {
 
         {!isLoading && !error && (
           <Tabs defaultValue="foundational" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8 bg-slate-800/50 border border-slate-700">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8 bg-slate-800/50 border border-slate-700">
               <TabsTrigger 
                 value="foundational" 
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white"
@@ -325,6 +332,14 @@ const FreeCourses = () => {
                 className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
               >
                 Advanced Topics
+              </TabsTrigger>
+              <TabsTrigger 
+                value="aiPm" 
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white flex items-center gap-1"
+              >
+                <Briefcase className="w-4 h-4" />
+                AI PM
+                <Badge variant="secondary" className="ml-1 text-xs bg-white/20">30+</Badge>
               </TabsTrigger>
               <TabsTrigger 
                 value="collections" 
@@ -368,6 +383,46 @@ const FreeCourses = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categorizedCourses.advanced.map((course) => (
+                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                  ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="aiPm" className="space-y-6">
+              <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-lg p-6 mb-6">
+                <div className="flex items-start gap-4">
+                  <Briefcase className="w-8 h-8 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      Master AI Product Management
+                    </h3>
+                    <p className="text-gray-300 mb-4">
+                      30+ curated resources covering the full spectrum of AI PM skills: prompt engineering, 
+                      AI agents, evaluation strategies, prototyping, PRDs, and career development. Progress 
+                      from fundamentals to advanced topics with interactive tools and production-ready templates.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/30">
+                        Prompt Engineering
+                      </Badge>
+                      <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/30">
+                        AI Agents & Workflows
+                      </Badge>
+                      <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/30">
+                        Evaluation & Testing
+                      </Badge>
+                      <Badge variant="outline" className="bg-orange-500/10 text-orange-400 border-orange-500/30">
+                        Prototyping Tools
+                      </Badge>
+                      <Badge variant="outline" className="bg-pink-500/10 text-pink-400 border-pink-500/30">
+                        Career Resources
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {categorizedCourses.aiPm?.map((course) => (
                     <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
                   ))}
               </div>

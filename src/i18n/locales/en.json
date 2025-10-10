@@ -81,6 +81,18 @@
     "backToTop": "Back to Top",
     "meetFamily": "Meet the Family"
   },
+  "courses": {
+    "aiPm": "AI Product Management",
+    "aiPmDescription": "Master AI Product Management with curated resources",
+    "resourceTypes": {
+      "course": "Course",
+      "guide": "Guide",
+      "tool": "Tool",
+      "template": "Template",
+      "library": "Library",
+      "tutorial": "Tutorial"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

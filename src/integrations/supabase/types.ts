@@ -12040,12 +12040,16 @@ export type Database = {
           github_stars: number | null
           id: string
           is_active: boolean | null
+          is_interactive: boolean | null
           last_updated: string | null
           prerequisite_for: string[] | null
           quality_score: number | null
           related_certifications: string[] | null
+          requires_signup: boolean | null
+          resource_type: string | null
           source_type: string
           source_url: string
+          special_notes: string | null
           tags: string[] | null
           title: string
           updated_at: string | null
@@ -12064,12 +12068,16 @@ export type Database = {
           github_stars?: number | null
           id?: string
           is_active?: boolean | null
+          is_interactive?: boolean | null
           last_updated?: string | null
           prerequisite_for?: string[] | null
           quality_score?: number | null
           related_certifications?: string[] | null
+          requires_signup?: boolean | null
+          resource_type?: string | null
           source_type: string
           source_url: string
+          special_notes?: string | null
           tags?: string[] | null
           title: string
           updated_at?: string | null
@@ -12088,12 +12096,16 @@ export type Database = {
           github_stars?: number | null
           id?: string
           is_active?: boolean | null
+          is_interactive?: boolean | null
           last_updated?: string | null
           prerequisite_for?: string[] | null
           quality_score?: number | null
           related_certifications?: string[] | null
+          requires_signup?: boolean | null
+          resource_type?: string | null
           source_type?: string
           source_url?: string
+          special_notes?: string | null
           tags?: string[] | null
           title?: string
           updated_at?: string | null

@@ -1,0 +1,71 @@
+-- Add AI Product Management Resources with Enhanced Schema
+-- Adds 30+ high-quality AI PM resources organized by skill level
+
+-- Add new fields to support different resource types
+ALTER TABLE public.external_learning_resources
+ADD COLUMN IF NOT EXISTS resource_type text CHECK (resource_type IN ('course', 'guide', 'tool', 'template', 'library', 'tutorial')),
+ADD COLUMN IF NOT EXISTS is_interactive boolean DEFAULT false,
+ADD COLUMN IF NOT EXISTS requires_signup boolean DEFAULT false,
+ADD COLUMN IF NOT EXISTS special_notes text;
+
+-- Update existing records to have resource_type = 'course'
+UPDATE public.external_learning_resources 
+SET resource_type = 'course' 
+WHERE resource_type IS NULL;
+
+-- Insert AI Product Management Resources
+INSERT INTO public.external_learning_resources (
+  title, description, source_type, source_url, author_name, author_url,
+  category, difficulty_level, estimated_hours, tags,
+  resource_type, is_interactive, requires_signup, is_active
+) VALUES
+-- Beginner Level: AI PM Fundamentals
+('WTF is AI PM? Complete Guide', 'Comprehensive guide explaining what makes AI Product Management different from traditional PM. Learn the unique challenges, required skills, and career opportunities in AI PM.', 'guide', 'https://lnkd.in/emhANJu8', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'beginner', 2, ARRAY['AI Product Management', 'Career', 'PM Fundamentals', 'Role Definition'], 'guide', false, false, true),
+('Become AI PM: Career Transition Guide', 'Step-by-step guide for product managers transitioning into AI PM roles. Covers required skills, learning paths, and how to position yourself for AI PM opportunities.', 'guide', 'https://lnkd.in/exUfCpiZ', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'beginner', 3, ARRAY['Career Transition', 'AI PM', 'Skills Development', 'Job Search'], 'guide', false, false, true),
+('Everything About AI: Foundation Course', 'Comprehensive overview of artificial intelligence covering fundamentals, current capabilities, and practical applications for product managers.', 'course', 'https://lnkd.in/e6zyYugs', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'beginner', 6, ARRAY['AI Fundamentals', 'Overview', 'Technology', 'Foundations'], 'course', false, false, true),
+('Foundation Models Explained', 'Understand LLMs, embeddings, encoders, and vectors. Learn how foundation models work and how to evaluate them for your product.', 'guide', 'https://lnkd.in/dveWsD9f', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'beginner', 4, ARRAY['LLMs', 'Embeddings', 'Foundation Models', 'Technical Concepts'], 'guide', false, false, true),
+('How to Land an AI PM Job', 'Career guide covering resume preparation, interview skills, portfolio building, and networking strategies specific to AI PM roles.', 'guide', 'https://lnkd.in/erqVwqPv', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'beginner', 2, ARRAY['Career', 'Job Search', 'Interview Prep', 'Resume'], 'guide', false, false, true),
+
+-- Intermediate Level: Prompt Engineering
+('Anthropic Prompt Engineering Interactive Tutorial', 'Official Anthropic guide to prompt engineering with interactive examples. Master Claude-specific prompting techniques, XML tags, chain-of-thought prompting, and best practices.', 'tutorial', 'https://lnkd.in/eqPAHXzQ', 'Anthropic', 'https://anthropic.com', 'ai_product_management', 'intermediate', 4, ARRAY['Prompt Engineering', 'Claude', 'Anthropic', 'Best Practices', 'Interactive'], 'tutorial', true, false, true),
+('ChatGPT for Product Managers', 'Practical course on using ChatGPT effectively for PM tasks. Learn prompting strategies, workflow automation, and productivity techniques.', 'course', 'https://lnkd.in/eyfUi8ZN', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 5, ARRAY['ChatGPT', 'Prompt Engineering', 'Productivity', 'Workflows'], 'course', false, false, true),
+('Anthropic Prompt Library', 'Curated library of high-quality prompts for common use cases. Copy, customize, and use production-tested prompts for various AI PM scenarios.', 'library', 'https://lnkd.in/emjw8Rqg', 'Anthropic', 'https://anthropic.com', 'ai_product_management', 'intermediate', 2, ARRAY['Prompt Engineering', 'Templates', 'Examples', 'Best Practices'], 'library', true, false, true),
+('Anthropic Prompt Generator', 'Interactive tool that generates optimized prompts for your use case. Input your requirements and get production-ready prompts following Anthropic best practices.', 'tool', 'https://lnkd.in/e_Vb7Cqs', 'Anthropic', 'https://anthropic.com', 'ai_product_management', 'intermediate', 1, ARRAY['Prompt Engineering', 'Tool', 'Generator', 'Productivity', 'Claude'], 'tool', true, false, true),
+('GPT-4.1 Prompting Guide', 'Comprehensive guide to prompting GPT-4.1 with advanced techniques, few-shot examples, and optimization strategies for production use.', 'guide', 'https://lnkd.in/dt8FxriE', 'OpenAI Community', 'https://openai.com', 'ai_product_management', 'intermediate', 3, ARRAY['GPT-4', 'Prompt Engineering', 'OpenAI', 'Advanced Techniques'], 'guide', false, false, true),
+('Google Prompt Engineering Course', 'Official Google course on prompt engineering fundamentals. Learn structured prompting, chain-of-thought, and Google AI best practices.', 'course', 'https://lnkd.in/dEU2Y_9v', 'Google', 'https://google.com', 'ai_product_management', 'intermediate', 4, ARRAY['Prompt Engineering', 'Google', 'PaLM', 'Fundamentals'], 'course', false, false, true),
+('Prompt Engineering Deep Dive', 'Advanced prompt engineering course covering complex techniques, system design, and production optimization strategies.', 'course', 'https://lnkd.in/d_qYCBT7', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 8, ARRAY['Advanced Prompting', 'System Design', 'Optimization', 'Production'], 'course', false, false, true),
+
+-- Context Engineering & RAG
+('Context Engineering: Step-by-Step Guide', 'Deep dive into context engineering, RAG vs fine-tuning decisions, and when to use different approaches. Learn to optimize context windows and manage token costs.', 'guide', 'https://lnkd.in/ebfnDUmi', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 3, ARRAY['Context Engineering', 'RAG', 'Fine-tuning', 'Architecture'], 'guide', false, false, true),
+('RAG Architectures Course', 'Comprehensive course on Retrieval-Augmented Generation architectures. Learn to design, implement, and optimize RAG systems for production.', 'course', 'https://lnkd.in/dnmQ_kP8', 'AI Engineering Academy', 'https://linkedin.com', 'ai_product_management', 'intermediate', 6, ARRAY['RAG', 'Architecture', 'Vector Databases', 'Retrieval'], 'course', false, true, true),
+('Build RAG Chatbot Without Coding', 'Practical guide to building RAG-powered chatbots using no-code tools. Learn to integrate document retrieval with conversational AI.', 'tutorial', 'https://lnkd.in/dew--RqD', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 4, ARRAY['RAG', 'Chatbots', 'No-Code', 'Tutorial'], 'tutorial', false, true, true),
+
+-- AI Prototyping
+('AI Prototyping: Ultimate Guide', 'Learn to build AI prototypes without code. Master tools like Lovable, v0, and Cursor to quickly validate AI product ideas and test with users.', 'guide', 'https://lnkd.in/eDVWcaPz', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 4, ARRAY['Prototyping', 'No-Code', 'Product Validation', 'Testing'], 'guide', false, false, true),
+('Ace AI PM Interviews with Prototypes', 'Interview preparation guide focused on building prototypes during AI PM interviews. Learn what evaluators look for and how to showcase your skills.', 'guide', 'https://lnkd.in/e66DrW-h', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 2, ARRAY['Interview Prep', 'Prototyping', 'Career', 'Portfolio'], 'guide', false, false, true),
+('5 Top AI Prototyping Tools', 'Comprehensive comparison of the best AI prototyping tools for PMs. Learn the strengths and use cases for each platform.', 'guide', 'https://lnkd.in/eJujDhBV', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 2, ARRAY['Prototyping', 'Tools', 'Comparison', 'No-Code'], 'guide', false, false, true),
+
+-- AI PRDs & Building
+('AI PRDs: Complete Guide', 'Learn to write effective AI product requirements documents. Covers model selection, evaluation criteria, fallback strategies, and success metrics.', 'guide', 'https://lnkd.in/eMu59p_z', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 3, ARRAY['PRD', 'Documentation', 'Product Spec', 'Requirements'], 'guide', false, false, true),
+('AI PRD Template', 'Production-ready AI PRD template covering model selection, evaluation criteria, fallback strategies, and success metrics. Copy and customize for your needs.', 'template', 'https://lnkd.in/ef5Yde54', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 1, ARRAY['PRD', 'Template', 'Documentation', 'Product Spec'], 'template', true, false, true),
+('ChatPRD: AI PRD Generator', 'Interactive tool that generates AI-optimized PRDs from your requirements. Get structured, comprehensive product specs in minutes.', 'tool', 'https://lnkd.in/e6nsDWKt', 'ChatPRD', 'https://chatprd.ai', 'ai_product_management', 'intermediate', 1, ARRAY['PRD', 'Generator', 'Tool', 'Automation'], 'tool', true, true, true),
+
+-- Advanced: AI Agents
+('AI Agents Guide for Product Managers', 'Comprehensive guide to AI agent architectures from a PM perspective. Learn planning patterns, tool use, reflection, and multi-agent systems.', 'guide', 'https://lnkd.in/eeey5Cxr', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 5, ARRAY['AI Agents', 'Agent Architecture', 'Multi-Agent', 'Planning'], 'guide', false, false, true),
+('Anthropic Building Effective Agents', 'Official Anthropic guide to building production-ready AI agents. Covers agent design patterns, tool integration, and safety considerations.', 'guide', 'https://lnkd.in/eSFEdWvz', 'Anthropic', 'https://anthropic.com', 'ai_product_management', 'advanced', 6, ARRAY['AI Agents', 'Anthropic', 'Claude', 'Production', 'Design Patterns'], 'guide', false, false, true),
+('IBM AI Agents Guide', 'Enterprise-focused guide to AI agents covering governance, scalability, and integration with existing systems.', 'guide', 'https://lnkd.in/eiwQBMF9', 'IBM', 'https://ibm.com', 'ai_product_management', 'advanced', 4, ARRAY['AI Agents', 'Enterprise', 'IBM', 'Governance'], 'guide', false, false, true),
+
+-- Advanced: AI Evals & Testing
+('AI Evals: Everything You Need to Know', 'Complete guide to AI evaluation and testing. Learn to build eval sets, use LLM judges, track quality over time, and prevent regressions.', 'guide', 'https://lnkd.in/eGbzWMxf', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 4, ARRAY['AI Evaluation', 'Testing', 'Quality Assurance', 'LLM Judges'], 'guide', false, false, true),
+('Guide to LLM Judges', 'Deep dive into using LLMs as judges for evaluating AI outputs. Learn rubric design, calibration techniques, and bias mitigation.', 'guide', 'https://lnkd.in/ez3stJRm', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 3, ARRAY['LLM Judges', 'Evaluation', 'Quality', 'Testing'], 'guide', false, false, true),
+('AI Observability Guide', 'Comprehensive guide to observability for AI products. Learn to monitor model performance, track costs, and debug production issues.', 'guide', 'https://lnkd.in/e3eQBdMp', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 4, ARRAY['Observability', 'Monitoring', 'Production', 'Debugging'], 'guide', false, false, true),
+('Vibe Experimentation Guide', 'Learn to run qualitative experiments and "vibe checks" for AI products. Balance quantitative evals with human judgment.', 'guide', 'https://lnkd.in/e86mpjGR', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'advanced', 2, ARRAY['Experimentation', 'Testing', 'Qualitative', 'User Research'], 'guide', false, false, true),
+
+-- Advanced: Fine-Tuning & Tools
+('OpenAI Fine-Tuning Platform', 'Official OpenAI platform for fine-tuning GPT models without code. Upload your data, configure parameters, and deploy custom models through the UI.', 'tool', 'https://lnkd.in/dGuNNNip', 'OpenAI', 'https://platform.openai.com', 'ai_product_management', 'advanced', 2, ARRAY['Fine-Tuning', 'GPT', 'Model Training', 'Platform'], 'tool', true, true, true),
+('Hugging Face AutoTrain', 'No-code platform for fine-tuning open-source models. Train custom models on your data without writing code.', 'tool', 'https://lnkd.in/dAwHaWFF', 'Hugging Face', 'https://huggingface.co', 'ai_product_management', 'advanced', 3, ARRAY['Fine-Tuning', 'Open Source', 'AutoML', 'Training'], 'tool', true, true, true),
+
+-- Professional Development
+('Complete AI PM Course', 'Comprehensive AI Product Management course covering all aspects from fundamentals to advanced topics. Complete learning pathway.', 'course', 'https://lnkd.in/eb8Q5TAb', 'AI PM Academy', 'https://linkedin.com', 'ai_product_management', 'intermediate', 40, ARRAY['Complete Course', 'AI PM', 'Certification', 'Comprehensive'], 'course', false, true, true),
+('AI PM MBA Program', 'MBA-style program focused on AI Product Management. Covers strategy, leadership, and business aspects of AI products.', 'course', 'https://lnkd.in/eFhzDBGV', 'AI PM Academy', 'https://linkedin.com', 'ai_product_management', 'advanced', 80, ARRAY['MBA', 'Leadership', 'Strategy', 'Executive'], 'course', false, true, true),
+('AI PM Interview Preparation', 'Comprehensive interview prep covering technical questions, case studies, and portfolio presentation for AI PM roles.', 'guide', 'https://lnkd.in/eZZ_vvQc', 'AI PM Community', 'https://linkedin.com', 'ai_product_management', 'intermediate', 6, ARRAY['Interview Prep', 'Career', 'Case Studies', 'Portfolio'], 'guide', false, false, true);

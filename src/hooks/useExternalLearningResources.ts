@@ -24,6 +24,9 @@ export interface LearningResource {
   is_active: boolean;
   click_count: number;
   view_count: number;
+  resource_type?: string | null;
+  is_interactive?: boolean | null;
+  special_notes?: string | null;
 }
 
 export const useExternalLearningResources = () => {
@@ -49,28 +52,33 @@ export const getCoursesByCategory = (courses: LearningResource[] | undefined) =>
     intermediate: [],
     advanced: [],
     collections: [],
+    aiPm: [],
   };
 
+  const aiPmCourses = courses.filter(c => c.category === 'ai_product_management');
+  const otherCourses = courses.filter(c => c.category !== 'ai_product_management');
+
   return {
-    foundational: courses.filter(c => 
+    foundational: otherCourses.filter(c => 
       c.category?.includes('foundational') || 
       c.category?.includes('beginner') ||
       c.difficulty_level === 'beginner'
     ),
-    intermediate: courses.filter(c => 
+    intermediate: otherCourses.filter(c => 
       c.category?.includes('intermediate') || 
       c.category?.includes('developer') ||
       (c.difficulty_level === 'intermediate' && c.category !== 'resource_collections')
     ),
-    advanced: courses.filter(c => 
+    advanced: otherCourses.filter(c => 
       c.category?.includes('advanced') || 
       c.category?.includes('specialized') ||
       (c.difficulty_level === 'advanced' && c.category !== 'resource_collections')
     ),
-    collections: courses.filter(c => 
+    collections: otherCourses.filter(c => 
       c.source_type === 'curated_list' || 
       c.category === 'resource_collections'
     ),
+    aiPm: aiPmCourses,
   };
 };
 
