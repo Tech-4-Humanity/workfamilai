@@ -9,6 +9,8 @@ interface ProtectedRouteProps {
   requireAdmin?: boolean;
 }
 
+// Protected route wrapper for authentication and authorization
+
 export const ProtectedRoute = ({ children, requireAdmin = false }: ProtectedRouteProps) => {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
