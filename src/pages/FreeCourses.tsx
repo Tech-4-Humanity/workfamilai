@@ -188,100 +188,96 @@ const FreeCourses = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section with Priya Sharma */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 border-b border-slate-800">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
+      {/* Hero Section with Priya Sharma - Matching Free Agents Design */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900/40 to-slate-950 border-b border-slate-800">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         
-        {/* Decorative circles */}
-        <div className="absolute top-20 right-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
         
-        <div className="relative container mx-auto px-4 py-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div className="relative container mx-auto px-4 py-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             {/* Left: Content */}
-            <div className="space-y-6">
-              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-1.5 text-sm font-semibold">
-                50+ FREE AI & PM COURSES
+            <div className="space-y-8">
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-2 text-sm font-bold tracking-wide">
+                ✨ 50+ FREE AI & PM COURSES
               </Badge>
               
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                  FREE AI
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
-                  LEARNING
-                </span>
-              </h1>
+              <div className="space-y-2">
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
+                  <span className="block text-cyan-400">
+                    FREE AI
+                  </span>
+                  <span className="block bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
+                    FREE LEARNING
+                  </span>
+                </h1>
+                
+                <p className="text-lg text-slate-400 font-medium tracking-wider uppercase pt-2">
+                  WORKFAMILY.AI
+                </p>
+              </div>
               
-              <p className="text-xl text-slate-300 font-medium">
-                Curated by Priya Sharma, Chief People & Learning Officer
-              </p>
-              
-              <div className="flex flex-col gap-3 pt-4">
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span>Beginner to Advanced Courses</span>
+              <div className="flex flex-col gap-4 pt-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <span className="text-lg text-slate-200 font-medium">Beginner to Advanced Courses</span>
                 </div>
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span>Hands-On AI Projects</span>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <span className="text-lg text-slate-200 font-medium">Hands-On AI Projects</span>
                 </div>
-                <div className="flex items-center gap-2 text-slate-300">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span>Industry Expert Instructors</span>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-yellow-400" />
+                  </div>
+                  <span className="text-lg text-slate-200 font-medium">Industry Expert Instructors</span>
                 </div>
               </div>
 
-              {/* Priya Introduction */}
-              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 space-y-3 mt-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                    <User className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold">Priya Sharma</h3>
-                    <p className="text-slate-400 text-sm">Chief People & Learning Officer</p>
-                  </div>
-                </div>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  "Learning is the bridge between who you are and who you can become. These courses represent the best free AI education resources I've curated for continuous learners."
+              <div className="pt-6 space-y-4">
+                <p className="text-cyan-400 font-semibold text-lg">
+                  Unlock Your AI Potential
                 </p>
-                <Link 
-                  to="/department/priya-sharma" 
-                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors"
-                >
-                  <GraduationCap className="w-4 h-4" />
-                  View Full Learning Profile
-                </Link>
+                <p className="text-slate-300 leading-relaxed">
+                  Start your AI transformation journey with our expert assessments. Discover opportunities, calculate benefits, and build your strategic roadmap.
+                </p>
               </div>
             </div>
 
-            {/* Right: Priya's Image */}
-            <div className="relative lg:block hidden">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                {/* Decorative background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
+            {/* Right: Priya's Circular Image */}
+            <div className="relative lg:flex hidden justify-center items-center">
+              <div className="relative w-[500px] h-[500px]">
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/30 to-orange-500/30 blur-2xl"></div>
                 
-                {/* Image container */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-slate-700/50 shadow-2xl">
+                {/* Image container - Fully circular */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border-8 border-slate-700/50 shadow-2xl shadow-cyan-500/20">
                   <RobustImage
-                    src="/leaders/priya-sharma.png"
+                    src={[
+                      '/leaders/priya-sharma.png',
+                      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop'
+                    ]}
                     alt="Priya Sharma - Chief People & Learning Officer"
                     className="w-full h-full object-cover"
                     fallback={
                       <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                        <GraduationCap className="w-24 h-24 text-white/50" />
+                        <GraduationCap className="w-32 h-32 text-white/50" />
                       </div>
                     }
                   />
                 </div>
 
                 {/* Floating badge */}
-                <div className="absolute -bottom-4 -right-4 bg-slate-800 border-2 border-cyan-500 rounded-full px-6 py-3 shadow-xl">
+                <div className="absolute bottom-8 right-8 bg-gradient-to-r from-slate-800 to-slate-900 border-2 border-cyan-400 rounded-full px-6 py-3 shadow-xl shadow-cyan-500/30">
                   <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white font-bold">50+ Courses</span>
+                    <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                    <span className="text-white font-bold text-lg">50+ Courses</span>
                   </div>
                 </div>
               </div>
