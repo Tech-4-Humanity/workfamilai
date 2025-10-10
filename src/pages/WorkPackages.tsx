@@ -16,6 +16,8 @@ import {
   GraduationCap, Network, Lock, Rocket, Star, Check
 } from 'lucide-react';
 import { analytics } from '@/utils/analytics';
+import { WorkPackageDetailModal } from '@/components/augmented-humanity/WorkPackageDetailModal';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const TopicBadge = ({ 
   icon: Icon, 
@@ -57,6 +59,7 @@ const WorkPackages = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("category");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedPackage, setSelectedPackage] = useState<any>(null);
   
   const sofiaSources = getLeaderImageFallbacks('Sofia Rodriguez');
 
@@ -105,6 +108,21 @@ const WorkPackages = () => {
     }
   }, [workPackages, searchTerm, selectedCategory, sortBy]);
 
+  // Group services by category for accordion
+  const groupedServices = useMemo(() => {
+    if (!filteredServices) return {};
+    
+    const grouped: Record<string, any[]> = {};
+    filteredServices.forEach(service => {
+      if (!grouped[service.category]) {
+        grouped[service.category] = [];
+      }
+      grouped[service.category].push(service);
+    });
+    
+    return grouped;
+  }, [filteredServices]);
+
   // Featured/popular services (top 6 by tier or price)
   const featuredServices = useMemo(() => {
     if (!workPackages) return [];
@@ -120,8 +138,8 @@ const WorkPackages = () => {
       tier: pkg.tier,
     });
     
-    // Open quote form (implement modal later)
-    console.log('Request quote for:', pkg.name);
+    // Open the modal with selected package
+    setSelectedPackage(pkg);
   };
 
   if (isLoading) {
@@ -337,7 +355,7 @@ const WorkPackages = () => {
             </Select>
           </div>
 
-          {/* Tabs Navigation */}
+          {/* Category Filter Tabs */}
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
             <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 bg-slate-800/50 border border-slate-700 p-1 mb-8">
               <TabsTrigger 
@@ -356,34 +374,99 @@ const WorkPackages = () => {
                 </TabsTrigger>
               ))}
             </TabsList>
+          </Tabs>
 
-            <TabsContent value={selectedCategory} className="mt-0">
-              {filteredServices.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-8 max-w-md mx-auto">
-                    <Briefcase className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-slate-300 mb-2">No services found</h3>
-                    <p className="text-slate-500">Try adjusting your search or filter criteria</p>
-                  </div>
+          {/* Services Display */}
+          <div className="space-y-4">
+            {/* Results count bar */}
+            <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+              <div className="flex items-center gap-3">
+                <Badge variant="secondary" className="text-sm">
+                  {filteredServices.length} Service{filteredServices.length !== 1 ? 's' : ''} Found
+                </Badge>
+                {selectedCategory !== 'all' && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedCategory('all')}
+                    className="text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
+                  >
+                    Clear Filter
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {filteredServices.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-8 max-w-md mx-auto">
+                  <Briefcase className="w-12 h-12 text-slate-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-slate-300 mb-2">No services found</h3>
+                  <p className="text-slate-500">Try adjusting your search or filter criteria</p>
                 </div>
-              ) : (
+              </div>
+            ) : selectedCategory === 'all' ? (
+              // Accordion view for all categories
+              <Accordion type="multiple" defaultValue={categories.slice(0, 2)} className="space-y-4">
+                {Object.entries(groupedServices).map(([category, services]) => (
+                  <AccordionItem
+                    key={category}
+                    value={category}
+                    className="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden"
+                  >
+                    <AccordionTrigger className="px-6 py-4 hover:bg-slate-700/30 hover:no-underline">
+                      <div className="flex items-center justify-between w-full pr-4">
+                        <div className="flex items-center gap-3">
+                          <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
+                            {category}
+                          </Badge>
+                        </div>
+                        <Badge variant="outline" className="text-slate-400 border-slate-600">
+                          {services.length} service{services.length !== 1 ? 's' : ''}
+                        </Badge>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 pt-2">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {services.map((pkg: any) => (
+                          <ServiceCard
+                            key={pkg.id}
+                            pkg={pkg}
+                            onRequestQuote={handleRequestQuote}
+                          />
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            ) : (
+              // Single category view
+              <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                <h3 className="text-2xl font-bold text-cyan-400 mb-6">{selectedCategory}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredServices.map(pkg => (
-                    <ServiceCard 
-                      key={pkg.id} 
-                      pkg={pkg} 
+                  {filteredServices.map((pkg: any) => (
+                    <ServiceCard
+                      key={pkg.id}
+                      pkg={pkg}
                       onRequestQuote={handleRequestQuote}
                     />
                   ))}
                 </div>
-              )}
-            </TabsContent>
-          </Tabs>
+              </div>
+            )}
+          </div>
 
         </div>
       </div>
 
       <SimpleFooter />
+      
+      {/* Quote Request Modal */}
+      <WorkPackageDetailModal
+        workPackage={selectedPackage}
+        onClose={() => setSelectedPackage(null)}
+      />
     </div>
   );
 };
@@ -459,18 +542,51 @@ const ServiceCard = ({
       
       <CardContent className="flex-1 flex flex-col">
         {/* Description */}
-        <p className="text-sm text-gray-300 mb-4 line-clamp-3">
-          {pkg.description || pkg.customer_outcome}
+        <p className="text-sm text-gray-300 mb-4 line-clamp-2">
+          {pkg.description}
         </p>
+        
+        {/* Target Audience */}
+        {pkg.target_audience && (
+          <div className="flex items-start gap-2 mb-3 p-2 bg-slate-700/30 rounded-lg border border-slate-600/50">
+            <Users className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-semibold text-cyan-400 mb-1">Perfect For:</p>
+              <p className="text-xs text-slate-300 line-clamp-2">{pkg.target_audience}</p>
+            </div>
+          </div>
+        )}
+        
+        {/* Customer Outcome */}
+        {pkg.customer_outcome && (
+          <div className="flex items-start gap-2 mb-3 p-2 bg-slate-700/30 rounded-lg border border-slate-600/50">
+            <Target className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-semibold text-green-400 mb-1">You'll Achieve:</p>
+              <p className="text-xs text-slate-300 line-clamp-2">{pkg.customer_outcome}</p>
+            </div>
+          </div>
+        )}
         
         {/* Key benefits with checkmarks */}
         {displayBenefits.length > 0 && (
-          <div className="space-y-2 mb-4">
+          <div className="space-y-2 mb-3">
             {displayBenefits.map((benefit: string, idx: number) => (
               <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
                 <CheckCircle2 className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
                 <span className="line-clamp-2">{benefit}</span>
               </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Tags */}
+        {pkg.tags && pkg.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mb-3">
+            {pkg.tags.slice(0, 3).map((tag: string, idx: number) => (
+              <Badge key={idx} variant="outline" className="text-xs border-slate-600 bg-slate-900/50 text-slate-400">
+                {tag}
+              </Badge>
             ))}
           </div>
         )}
@@ -491,14 +607,24 @@ const ServiceCard = ({
           )}
         </div>
         
-        {/* CTA Button */}
-        <Button 
-          onClick={() => onRequestQuote(pkg)}
-          className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
-        >
-          Request Consultation
-          <ExternalLink className="w-4 h-4 ml-2" />
-        </Button>
+        {/* CTA Buttons */}
+        <div className="flex gap-2">
+          <Button
+            onClick={() => onRequestQuote(pkg)}
+            variant="outline"
+            size="sm"
+            className="flex-1 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+          >
+            View Details
+          </Button>
+          <Button
+            onClick={() => onRequestQuote(pkg)}
+            size="sm"
+            className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold"
+          >
+            Get Quote
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
