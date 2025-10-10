@@ -6,6 +6,26 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
+// Rate limiting
+const rateLimits = new Map<string, number[]>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 60 * 1000; // 1 minute
+  const maxRequests = 10; // 10 requests per minute
+  
+  const requests = rateLimits.get(ip) || [];
+  const recentRequests = requests.filter(time => now - time < windowMs);
+  
+  if (recentRequests.length >= maxRequests) {
+    return false;
+  }
+  
+  recentRequests.push(now);
+  rateLimits.set(ip, recentRequests);
+  return true;
+}
+
 interface Message {
   type: 'user' | 'agent';
   content: string;
@@ -25,6 +45,18 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get('cf-connecting-ip') || 
+                     req.headers.get('x-forwarded-for') || 
+                     'unknown';
+    
+    if (!checkRateLimit(clientIP)) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again in a minute.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
     const body = await req.json()
     
     // Input validation

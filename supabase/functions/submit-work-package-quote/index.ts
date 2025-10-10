@@ -10,6 +10,26 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting
+const rateLimits = new Map<string, number[]>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 60 * 60 * 1000; // 1 hour
+  const maxRequests = 3; // 3 quotes per hour
+  
+  const requests = rateLimits.get(ip) || [];
+  const recentRequests = requests.filter(time => now - time < windowMs);
+  
+  if (recentRequests.length >= maxRequests) {
+    return false;
+  }
+  
+  recentRequests.push(now);
+  rateLimits.set(ip, recentRequests);
+  return true;
+}
+
 // Server-side validation schema
 const quoteRequestSchema = z.object({
   workPackageId: z.string().trim().min(1).max(100),
@@ -60,6 +80,19 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get('cf-connecting-ip') || 
+                     req.headers.get('x-forwarded-for') || 
+                     'unknown';
+    
+    if (!checkRateLimit(clientIP)) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: 'Too many quote requests. Please try again in an hour.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);

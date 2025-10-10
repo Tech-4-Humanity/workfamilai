@@ -47,9 +47,11 @@ security_update_password_require_reauthentication = true
 
 [functions.chat-with-agent]
 verify_jwt = false
+# Rate limited: 10 requests/minute per IP
 
 [functions.voice-to-text]
 verify_jwt = false
+# Consider enabling JWT or adding rate limiting
 
 [functions.create-donation]
 verify_jwt = false
@@ -62,6 +64,7 @@ verify_jwt = false
 
 [functions.submit-work-package-quote]
 verify_jwt = false
+# Rate limited: 3 requests/hour per IP, server-side validation enabled
 
 [edge-runtime]
 policy = "per_worker"

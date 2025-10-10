@@ -56,8 +56,26 @@ export const ContactAnalytics = () => {
   const [timeRange, setTimeRange] = useState('30d');
 
   useEffect(() => {
-    fetchAnalytics();
+    checkAuthAndFetch();
   }, [timeRange]);
+
+  const checkAuthAndFetch = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      return;
+    }
+
+    // Verify admin role
+    const { data: roleCheck, error: roleError } = await supabase
+      .rpc('has_role', { _role: 'admin' });
+
+    if (roleError || !roleCheck) {
+      return;
+    }
+
+    fetchAnalytics();
+  };
 
   const fetchAnalytics = async () => {
     try {

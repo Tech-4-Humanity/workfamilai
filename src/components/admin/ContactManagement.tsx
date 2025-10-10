@@ -53,8 +53,36 @@ export const ContactManagement = () => {
   const [submissionStatus, setSubmissionStatus] = useState('pending');
 
   useEffect(() => {
-    fetchSubmissions();
+    checkAuthAndFetch();
   }, []);
+
+  const checkAuthAndFetch = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to access admin features.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Verify admin role
+    const { data: roleCheck, error: roleError } = await supabase
+      .rpc('has_role', { _role: 'admin' });
+
+    if (roleError || !roleCheck) {
+      toast({
+        title: "Access Denied",
+        description: "You do not have permission to access this feature.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    fetchSubmissions();
+  };
 
   useEffect(() => {
     applyFilters();
