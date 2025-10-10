@@ -277,7 +277,7 @@ const FreeCourses = () => {
                 <div className="absolute bottom-8 right-8 bg-gradient-to-r from-slate-800 to-slate-900 border-2 border-cyan-400 rounded-full px-6 py-3 shadow-xl shadow-cyan-500/30">
                   <div className="flex items-center gap-2">
                     <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white font-bold text-lg">50+ Courses</span>
+                    <span className="text-white font-bold text-lg">1000+ Courses</span>
                   </div>
                 </div>
               </div>
