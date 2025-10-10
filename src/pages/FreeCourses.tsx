@@ -4,11 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RobustImage } from "@/components/ui/robust-image";
 import { NewsletterSignupModal } from "@/components/courses/NewsletterSignupModal";
 import { ResourceTypeBadge } from "@/components/courses/ResourceTypeBadge";
 import { SourcePlatformBadge } from "@/components/courses/SourcePlatformBadge";
-import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User, Briefcase } from 'lucide-react';
+import { ExternalLink, Github, GraduationCap, Brain, Code, Zap, Award, Cloud, Users, Clock, Star, CheckCircle, User, Briefcase, Search, ArrowUpDown } from 'lucide-react';
 import { useExternalLearningResources, getCoursesByCategory, useTrackCourseClick, type LearningResource } from '@/hooks/useExternalLearningResources';
 import { analytics } from "@/utils/analytics";
 import { Link } from "react-router-dom";
@@ -141,12 +143,44 @@ const CourseCard = ({ course, onStartLearning }: { course: LearningResource; onS
 
 const FreeCourses = () => {
   const { data: courses, isLoading, error } = useExternalLearningResources();
-  const categorizedCourses = getCoursesByCategory(courses);
   const [selectedCourse, setSelectedCourse] = useState<LearningResource | null>(null);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
   const { mutate: trackClick } = useTrackCourseClick();
 
   const priyaSources = useMemo(() => getLeaderImageFallbacks('Priya Sharma'), []);
+
+  // Filter and sort courses
+  const filteredAndSortedCourses = useMemo(() => {
+    if (!courses) return [];
+    
+    // Filter by search term
+    let filtered = courses.filter(course => {
+      const searchLower = searchTerm.toLowerCase();
+      return (
+        course.title.toLowerCase().includes(searchLower) ||
+        course.description?.toLowerCase().includes(searchLower) ||
+        course.author_name?.toLowerCase().includes(searchLower) ||
+        course.tags?.some(tag => tag.toLowerCase().includes(searchLower))
+      );
+    });
+    
+    // Sort courses
+    switch (sortBy) {
+      case "popular":
+        return [...filtered].sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
+      case "duration":
+        return [...filtered].sort((a, b) => (a.estimated_hours || 0) - (b.estimated_hours || 0));
+      case "newest":
+      default:
+        return [...filtered].sort((a, b) => 
+          new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
+        );
+    }
+  }, [courses, searchTerm, sortBy]);
+
+  const categorizedCourses = getCoursesByCategory(filteredAndSortedCourses);
 
   // Check if user already subscribed recently
   const hasRecentSubscription = () => {
@@ -207,7 +241,7 @@ const FreeCourses = () => {
             {/* Left: Content */}
             <div className="space-y-8">
               <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-2 text-sm font-bold tracking-wide">
-                ✨ 50+ FREE AI & PM COURSES
+                ✨ 75+ FREE AI & PM COURSES
               </Badge>
               
               <div className="space-y-2">
@@ -280,7 +314,7 @@ const FreeCourses = () => {
                 <div className="absolute bottom-8 right-8 bg-gradient-to-r from-slate-800 to-slate-900 border-2 border-cyan-400 rounded-full px-6 py-3 shadow-xl shadow-cyan-500/30">
                   <div className="flex items-center gap-2">
                     <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-                    <span className="text-white font-bold text-lg">1000+ Courses</span>
+                    <span className="text-white font-bold text-lg">75+ Courses</span>
                   </div>
                 </div>
               </div>
@@ -312,54 +346,99 @@ const FreeCourses = () => {
         )}
 
         {!isLoading && !error && (
-          <Tabs defaultValue="foundational" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8 bg-slate-800/50 border border-slate-700">
-              <TabsTrigger 
-                value="foundational" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white"
-              >
-                Getting Started
-              </TabsTrigger>
-              <TabsTrigger 
-                value="intermediate" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white"
-              >
-                Build & Deploy
-              </TabsTrigger>
-              <TabsTrigger 
-                value="advanced" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
-              >
-                Advanced Topics
-              </TabsTrigger>
-              <TabsTrigger 
-                value="aiPm" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white flex items-center gap-1"
-              >
-                <Briefcase className="w-4 h-4" />
-                AI PM
-                <Badge variant="secondary" className="ml-1 text-xs bg-white/20">30+</Badge>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="collections" 
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
-              >
-                Collections
-              </TabsTrigger>
-            </TabsList>
+          <>
+            {/* Search and Sort Bar */}
+            <div className="mb-8 bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="Search courses by title, description, provider, or tags..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 bg-slate-900/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-cyan-500"
+                  />
+                </div>
+                <div className="w-full md:w-48">
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white">
+                      <ArrowUpDown className="w-4 h-4 mr-2" />
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-800 border-slate-700 text-white">
+                      <SelectItem value="newest">Newest First</SelectItem>
+                      <SelectItem value="popular">Most Popular</SelectItem>
+                      <SelectItem value="duration">Shortest First</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              {searchTerm && (
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-sm text-gray-400">
+                    Found {filteredAndSortedCourses.length} course{filteredAndSortedCourses.length !== 1 ? 's' : ''}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSearchTerm("")}
+                    className="h-6 px-2 text-xs text-cyan-400 hover:text-cyan-300"
+                  >
+                    Clear search
+                  </Button>
+                </div>
+              )}
+            </div>
 
-            <TabsContent value="foundational" className="space-y-6">
-              <div className="text-center mb-6">
-                <p className="text-gray-300">
-                  Perfect for beginners and business leaders looking to understand AI fundamentals
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {categorizedCourses.foundational.map((course) => (
-                    <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
-                  ))}
-              </div>
-            </TabsContent>
+            <Tabs defaultValue="foundational" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8 bg-slate-800/50 border border-slate-700">
+                <TabsTrigger 
+                  value="foundational" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white"
+                >
+                  Getting Started
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="intermediate" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white"
+                >
+                  Build & Deploy
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="advanced" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white"
+                >
+                  Advanced Topics
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="aiPm" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white flex items-center gap-1"
+                >
+                  <Briefcase className="w-4 h-4" />
+                  AI PM
+                  <Badge variant="secondary" className="ml-1 text-xs bg-white/20">30+</Badge>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="collections" 
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
+                >
+                  Collections
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="foundational" className="space-y-6">
+                <div className="text-center mb-6">
+                  <p className="text-gray-300">
+                    Perfect for beginners and business leaders looking to understand AI fundamentals
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {categorizedCourses.foundational.map((course) => (
+                      <CourseCard key={course.id} course={course} onStartLearning={handleStartLearning} />
+                    ))}
+                </div>
+              </TabsContent>
 
             <TabsContent value="intermediate" className="space-y-6">
               <div className="text-center mb-6">
@@ -440,6 +519,7 @@ const FreeCourses = () => {
               </div>
             </TabsContent>
           </Tabs>
+          </>
         )}
 
         {/* Info Card */}
