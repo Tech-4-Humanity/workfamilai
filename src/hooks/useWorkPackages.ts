@@ -12,6 +12,8 @@ export interface WorkPackage {
   target_audience: string | null;
   customer_outcome: string | null;
   deliverables: any;
+  stakeholder_benefits: any;
+  success_metrics: any;
   tags: string[] | null;
   is_active: boolean;
   ai_leverage_level: string | null;

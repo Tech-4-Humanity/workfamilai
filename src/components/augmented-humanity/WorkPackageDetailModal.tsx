@@ -192,21 +192,13 @@ export const WorkPackageDetailModal = ({ workPackage, onClose }: WorkPackageDeta
             </>
           )}
 
-          {/* Pricing & CTA */}
+          {/* CTA - No Pricing */}
           <Separator />
-          <div className="flex items-center justify-between pt-2">
-            {workPackage.base_price && (
-              <div>
-                <p className="text-sm text-muted-foreground">Starting from</p>
-                <p className="text-2xl font-bold text-primary">
-                  ${(workPackage.base_price / 1000).toFixed(0)}k
-                </p>
-              </div>
-            )}
+          <div className="flex items-center justify-center pt-4">
             <Button 
               size="lg" 
               onClick={() => setShowQuoteForm(true)}
-              className="gap-2"
+              className="gap-2 px-8"
             >
               Request Quote
               <ArrowRight className="h-4 w-4" />
