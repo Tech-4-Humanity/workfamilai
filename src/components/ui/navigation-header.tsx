@@ -63,7 +63,7 @@ export function NavigationHeader() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <img 
-                src="https://lzfgigiyqpuuxslsygjt.supabase.co/storage/v1/object/public/images/AHC%20droid%20head.webp"
+                src="/images/ahc-droid-head.webp"
                 alt="Augmented Humanity Coach"
                 className="h-8 w-8"
               />

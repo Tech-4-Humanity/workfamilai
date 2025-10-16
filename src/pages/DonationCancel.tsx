@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 
 export default function DonationCancel() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16">
+    <>
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16">
       <div className="container mx-auto px-4 max-w-2xl">
         <Card className="border-none shadow-xl backdrop-blur-lg bg-white/10 text-center">
           <CardHeader>
@@ -48,5 +52,6 @@ export default function DonationCancel() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

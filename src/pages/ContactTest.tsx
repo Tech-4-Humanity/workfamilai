@@ -152,7 +152,11 @@ const ContactTest = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
+    <>
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
       <div className="max-w-6xl mx-auto space-y-6">
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -353,6 +357,7 @@ const ContactTest = () => {
         </Tabs>
       </div>
     </div>
+    </>
   );
 };
 
