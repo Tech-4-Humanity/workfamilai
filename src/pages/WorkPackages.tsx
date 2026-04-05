@@ -18,6 +18,7 @@ import {
 import { analytics } from '@/utils/analytics';
 import { WorkPackageDetailModal } from '@/components/augmented-humanity/WorkPackageDetailModal';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { WFAIFrontDoor } from '@/components/wfai/FrontDoor';
 
 const TopicBadge = ({ 
   icon: Icon, 
@@ -155,6 +156,7 @@ const WorkPackages = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 flex flex-col">
+      <WFAIFrontDoor />
       
       {/* Dark Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900/40 to-slate-950 border-b border-slate-800">
