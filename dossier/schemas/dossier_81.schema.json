@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dossier81",
+  "type": "object",
+  "required": [
+    "dossier_id",
+    "dossier_name",
+    "domain_code",
+    "archetype_code",
+    "owner_entity",
+    "risk_class",
+    "data_sensitivity",
+    "cost_policy",
+    "approval_policy",
+    "crew",
+    "playbooks",
+    "telemetry"
+  ],
+  "properties": {
+    "dossier_id": {"type": "string", "pattern": "^D81-[A-Z]{2}-[A-Z]{2}$"},
+    "dossier_name": {"type": "string"},
+    "domain_code": {"type": "string", "enum": ["HM","WR","FN","HL","ED","LG","TR","CM","CR"]},
+    "archetype_code": {"type": "string", "enum": ["SO","FA","CO","EX","ND","RE","ST","NE","MK"]},
+    "owner_entity": {"type": "string", "enum": ["T4H","TROY","HYBRID"]},
+    "risk_class": {"type": "string", "enum": ["open","far_cage"]},
+    "data_sensitivity": {"type": "string", "enum": ["low","medium","high"]},
+
+    "context": {
+      "type": "object",
+      "properties": {
+        "summary": {"type": "string"},
+        "location": {"type": "string"},
+        "timezone": {"type": "string"},
+        "life_stage": {"type": "string"},
+        "constraints": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["goal", "metric", "target"],
+        "properties": {
+          "goal": {"type": "string"},
+          "metric": {"type": "string"},
+          "target": {"type": "string"},
+          "due": {"type": "string"}
+        }
+      }
+    },
+
+    "cost_policy": {
+      "type": "object",
+      "required": ["monthly_cap_usd", "per_task_cap_usd", "connector_caps"],
+      "properties": {
+        "monthly_cap_usd": {"type": "number"},
+        "per_task_cap_usd": {"type": "number"},
+        "connector_caps": {
+          "type": "object",
+          "additionalProperties": {"type": "number"}
+        }
+      }
+    },
+
+    "approval_policy": {
+      "type": "object",
+      "required": ["required_for", "spend_threshold_usd"],
+      "properties": {
+        "required_for": {"type": "array", "items": {"type": "string"}},
+        "spend_threshold_usd": {"type": "number"},
+        "legal_required": {"type": "boolean"},
+        "medical_required": {"type": "boolean"}
+      }
+    },
+
+    "crew": {
+      "type": "object",
+      "required": ["crew_id", "members"],
+      "properties": {
+        "crew_id": {"type": "string"},
+        "members": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["role", "agent_id", "sfia_level", "coverage_percent"],
+            "properties": {
+              "role": {"type": "string", "enum": ["NAV","OPS","ANA","COM","HAA"]},
+              "agent_id": {"type": "string"},
+              "sfia_level": {"type": "integer", "minimum": 1, "maximum": 7},
+              "coverage_percent": {"type": "number", "minimum": 0, "maximum": 100},
+              "tool_allowlist": {"type": "array", "items": {"type": "string"}},
+              "tool_blocklist": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+
+    "playbooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "cadence", "steps"],
+        "properties": {
+          "name": {"type": "string"},
+          "cadence": {"type": "string", "enum": ["daily","weekly","monthly","ad_hoc"]},
+          "steps": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+
+    "telemetry": {
+      "type": "object",
+      "required": ["timesheet_required", "task_log_required", "activity_required", "evidence_required"],
+      "properties": {
+        "timesheet_required": {"type": "boolean"},
+        "task_log_required": {"type": "boolean"},
+        "activity_required": {"type": "boolean"},
+        "evidence_required": {"type": "boolean"}
+      }
+    }
+  }
+}
