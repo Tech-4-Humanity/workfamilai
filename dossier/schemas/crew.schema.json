@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crew",
+  "type": "object",
+  "required": ["crew_id", "dossier_id", "members"],
+  "properties": {
+    "crew_id": {"type": "string"},
+    "dossier_id": {"type": "string"},
+    "members": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["role", "agent_id", "sfia_level", "coverage_percent"],
+        "properties": {
+          "role": {"type": "string", "enum": ["NAV","OPS","ANA","COM","HAA"]},
+          "agent_id": {"type": "string"},
+          "sfia_level": {"type": "integer", "minimum": 1, "maximum": 7},
+          "coverage_percent": {"type": "number", "minimum": 0, "maximum": 100},
+          "primary": {"type": "boolean"},
+          "notes": {"type": "string"},
+          "tool_allowlist": {"type": "array", "items": {"type": "string"}},
+          "tool_blocklist": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}
