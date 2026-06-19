@@ -25,6 +25,10 @@ const DepartmentDetail = () => {
     return departmentId ? familyMemberDetails.find(member => member.id === departmentId) : null;
   }, [departmentId]);
 
+  const totalAgents = useMemo(() => {
+    return familyMemberData?.divisions.reduce((total, division) => total + (division.agents?.length || 0), 0) || 0;
+  }, [familyMemberData]);
+
   // Get agents for this family member from the database (optional integration)
   const { data: databaseAgents = [] } = departmentId ? getAgentsByFamilyMember(departmentId) : { data: [] };
 
@@ -69,7 +73,7 @@ const DepartmentDetail = () => {
       background: familyMemberData.leader.background,
       domainOverview: '',
       color: 'blue',
-      agentCount: 81 // Each department leader manages 81 agents (9 divisions × 9 agents)
+      agentCount: totalAgents
     };
 
     return (
@@ -80,9 +84,6 @@ const DepartmentDetail = () => {
       />
     );
   }
-
-  // Each department leader manages 81 agents (9 divisions × 9 agents each)
-  const totalAgents = 81;
 
   // Show department detail view with optimized performance
   return (
