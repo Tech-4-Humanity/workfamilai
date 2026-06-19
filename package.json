@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run audit:family && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "audit:family": "node scripts/audit-family-data.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
