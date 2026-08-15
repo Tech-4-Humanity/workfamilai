@@ -4,7 +4,7 @@ runtime:
   source: TML-4PM/runtime-real
   managed: true
 repository:
-  name: "TML-4PM/neural-ennead-family"
+  name: "TML-4PM/workfamilai"
   capabilities:
     - build
     - test
